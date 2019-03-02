@@ -3,18 +3,25 @@ package edu.uwm.capstone.model.Judge;
 import java.util.Objects;
 
 public class Judge {
-    private int JudgeID;
+    protected Long JudgeID;
     private String JudgeFirstName;
     private String JudgeLastName;
     private String JudgeStatus;
     private String JudgeEmail;
 
-    public int getJudgeID() {
+    public Judge(String judgeFirstName, String judgeLastName, String judgeStatus, String judgeEmail) {
+        JudgeFirstName = judgeFirstName;
+        JudgeLastName = judgeLastName;
+        JudgeStatus = judgeStatus;
+        JudgeEmail = judgeEmail;
+    }
+
+    public Long getJudgeID() {
         return JudgeID;
     }
 
-    public void setJudgeID(int judgeID) {
-        JudgeID = judgeID;
+    public void setJudgeID(Long judgeID) {
+        this.JudgeID = judgeID;
     }
 
     public String getJudgeFirstName() {
@@ -22,15 +29,15 @@ public class Judge {
     }
 
     public void setJudgeFirstName(String judgeFirstName) {
-        JudgeFirstName = judgeFirstName;
+        this.JudgeFirstName = judgeFirstName;
     }
 
     public String getJudgeLastName() {
-        return JudgeLastName;
+        return this.JudgeLastName;
     }
 
     public void setJudgeLastName(String judgeLastName) {
-        JudgeLastName = judgeLastName;
+        this.JudgeLastName = judgeLastName;
     }
 
     public String getJudgeStatus() {
@@ -38,7 +45,7 @@ public class Judge {
     }
 
     public void setJudgeStatus(String judgeStatus) {
-        JudgeStatus = judgeStatus;
+        this.JudgeStatus = judgeStatus;
     }
 
     public String getJudgeEmail() {
@@ -46,7 +53,7 @@ public class Judge {
     }
 
     public void setJudgeEmail(String judgeEmail) {
-        JudgeEmail = judgeEmail;
+        this.JudgeEmail = judgeEmail;
     }
 
     @Override
