@@ -12,21 +12,16 @@ public class Poster {
     private String PosterLink;
     private String FileName;
     private String PosterPresentationLink;
-    private String AdvisorFirstName;
-    private String AdvisorLastName;
-    private String AdvisorEmail;
     private Author AuthorID;
 
-    public Poster(String posterTitle, String anAbstract, String posterDepartment, String posterLink, String fileName, String posterPresentationLink, String advisorFirstName, String advisorLastName, String advisorEmail) {
+    public Poster(String posterTitle, String anAbstract, String posterDepartment, String posterLink, String fileName, String posterPresentationLink) {
         PosterTitle = posterTitle;
         Abstract = anAbstract;
         PosterDepartment = posterDepartment;
         PosterLink = posterLink;
         FileName = fileName;
         PosterPresentationLink = posterPresentationLink;
-        AdvisorFirstName = advisorFirstName;
-        AdvisorLastName = advisorLastName;
-        AdvisorEmail = advisorEmail;
+
     }
 
     public int getPosterID() {
@@ -85,29 +80,7 @@ public class Poster {
         PosterPresentationLink = posterPresentationLink;
     }
 
-    public String getAdvisorFirstName() {
-        return AdvisorFirstName;
-    }
 
-    public void setAdvisorFirstName(String advisorFirstName) {
-        AdvisorFirstName = advisorFirstName;
-    }
-
-    public String getAdvisorLastName() {
-        return AdvisorLastName;
-    }
-
-    public void setAdvisorLastName(String advisorLastName) {
-        AdvisorLastName = advisorLastName;
-    }
-
-    public String getAdvisorEmail() {
-        return AdvisorEmail;
-    }
-
-    public void setAdvisorEmail(String advisorEmail) {
-        AdvisorEmail = advisorEmail;
-    }
 
     public Author getAuthorID() {
         return AuthorID;
@@ -140,9 +113,6 @@ public class Poster {
                 ", PosterLink='" + PosterLink + '\'' +
                 ", FileName='" + FileName + '\'' +
                 ", PosterPresentationLink='" + PosterPresentationLink + '\'' +
-                ", AdvisorFirstName='" + AdvisorFirstName + '\'' +
-                ", AdvisorLastName='" + AdvisorLastName + '\'' +
-                ", AdvisorEmail='" + AdvisorEmail + '\'' +
                 '}';
     }
 }

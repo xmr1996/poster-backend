@@ -24,15 +24,12 @@ CREATE TABLE POSTER(
   PosterLink  VARCHAR(255),
   PosterFileName VARCHAR(255),
   PosterPresentationLink VARCHAR(255),
-  AdvisorFirstName VARCHAR(255),
-  AdvisorLastName VARCHAR(255),
-  AdvisorEmail VARCHAR(255),
   AuthorID SMALLINT(255),
   FOREIGN KEY (AuthorID) REFERENCES AUTHOR(AuthorID)
 );
 
 CREATE TABLE JUDGE(
-  JudgeID INT(255) PRIMARY KEY,
+  JudgeID INT(255) AUTO_INCREMENT PRIMARY KEY,
   JudgeFirstName VARCHAR(255),
   JudgeLastName VARCHAR(255),
   JudgeStatus VARCHAR(255),
