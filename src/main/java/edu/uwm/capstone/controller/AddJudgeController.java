@@ -16,11 +16,11 @@ public class AddJudgeController {
     private JudgeDao judge = new JudgeDao();
 
     /**
-     * This endpoint takes two separate values and combines them together.
+     * This endpoint is to add a Judge
 
      *
      */
-    @ApiOperation(value = "two create a new Judge table")
+    @ApiOperation(value = " create a new Judge table")
     @RequestMapping(value = CONCATENATE_PATH, method = RequestMethod.GET)
     public void createJudge() {
 
