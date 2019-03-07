@@ -13,7 +13,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 public class JudgeDao extends BaseDao<Judge> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProfileDao.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JudgeDao.class);
 
     /**
      * Create a {@link Judge} object.

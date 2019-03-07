@@ -1,4 +1,3 @@
-
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.db.JudgeDao;
