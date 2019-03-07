@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ProfileDao extends BaseDao<Profile> {
 
@@ -59,6 +60,15 @@ public class ProfileDao extends BaseDao<Profile> {
         LOG.trace("Reading profile {}", id);
         try {
             return (Profile) this.jdbcTemplate.queryForObject(sql("readProfile"), new MapSqlParameterSource("id", id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public List<Profile> read() {
+        LOG.trace("Reading profile {}");
+        try {
+            return (List<Profile>) this.jdbcTemplate.query(sql("getProfiles"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
