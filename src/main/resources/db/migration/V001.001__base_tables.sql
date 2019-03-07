@@ -17,7 +17,8 @@ CREATE TABLE POSTER(
   AuthorFirstName VARCHAR(255),
   AuthorLastName VARCHAR(255),
   AuthorEmail VARCHAR(255),
-  AuthorStatus VARCHAR(255)
+  AuthorStatus VARCHAR(255),
+  AuthorPin INT(255)
 );
 
 CREATE TABLE JUDGE(

@@ -49,7 +49,7 @@ public class JudgeDao extends BaseDao<Judge> {
     }
 
     /**
-     * Retrieve a {@link Judge} object by its {@link Judge#JudgeID}.
+     * Retrieve a {@link Judge} object by its {@link Judge#getJudgeID}.
      *
      * @param id long
      * @return {@link Judge}
@@ -87,7 +87,7 @@ public class JudgeDao extends BaseDao<Judge> {
     }
 
     /**
-     * Delete a {@link Judge} object by its {@link Judge#JudgeID}.
+     * Delete a {@link Judge} object by its {@link Judge#getJudgeID}.
      *
      * @param id long
      */
