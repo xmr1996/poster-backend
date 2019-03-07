@@ -12,6 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class ProfileRestController {
@@ -90,6 +91,26 @@ public class ProfileRestController {
 
         if (profile == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Profile with ID: " + profileId + " not found.");
+            return null;
+        }
+
+        return profile;
+    }
+
+
+    /**
+     * Get the {@link Profile}
+     *
+     * @return {@link List<Profile>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Read All Profiles")
+    @GetMapping(value = PROFILE_PATH)
+    public List<Profile> read(@ApiIgnore HttpServletResponse response) throws IOException {
+        List<Profile> profile = profileDao.read();
+
+        if (profile == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Profiles Were Found.");
             return null;
         }
 
