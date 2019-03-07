@@ -20,11 +20,8 @@ SELECT * FROM JUDGE;
 SELECT * FROM JUDGE WHERE JudgeId = :JudgeID;
 
 --STATEMENT getJudgesByStatus
-SELECT JudgeID, JudgeFirstName, JudgeStatus, JudgeEmail FROM JUDGE
+SELECT * FROM JUDGE
 WHERE JudgeStatus = :JudgeStatus;
-
---STATEMENT getJudgeUsernamesAndPins
-SELECT JudgeEmail, JudgePin FROM JUDGE;
 
 --STATEMENT deleteJudgeById
 DELETE FROM JUDGE WHERE JUDGEID = :JUDGEID;

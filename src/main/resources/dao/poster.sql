@@ -13,17 +13,11 @@ VALUES (
 );
 
 --STATEMENT getPosters
-SELECT PosterID, AuthorStatus, PosterTitle, AuthorFirstName, AuthorLastName FROM POSTER;
+SELECT * FROM POSTER;
 
 --STATEMENT getPostersByStatus
-SELECT PosterID, AuthorStatus, PosterTitle, AuthorFirstName, AuthorLastName FROM POSTER
+SELECT * FROM POSTER
 WHERE AuthorStatus = :AuthorStatus;
-
---STATEMENT getAuthorPins
-SELECT AuthorEmail, AuthorPin FROM POSTER;
-
---STATEMENT getAuthors
-SELECT AuthorEmail, AuthorFirstName, AuthorLastName, AuthorStatus FROM POSTER;
 
 --STATEMENT updatePoster
 UPDATE POSTER SET
@@ -41,7 +35,5 @@ UPDATE POSTER SET
   AuthorStatus = :AuthorStatus
 WHERE
   PosterID = :PosterID;
-
---STATEMENT getScores
 
 
