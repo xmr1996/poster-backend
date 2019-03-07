@@ -9,12 +9,12 @@ public class Judge {
     private String JudgeStatus;
     private String JudgeEmail;
 
-    public Judge(String judgeFirstName, String judgeLastName, String judgeStatus, String judgeEmail) {
-        JudgeFirstName = judgeFirstName;
-        JudgeLastName = judgeLastName;
-        JudgeStatus = judgeStatus;
-        JudgeEmail = judgeEmail;
-    }
+//    public Judge(String judgeFirstName, String judgeLastName, String judgeStatus, String judgeEmail) {
+//        JudgeFirstName = judgeFirstName;
+//        JudgeLastName = judgeLastName;
+//        JudgeStatus = judgeStatus;
+//        JudgeEmail = judgeEmail;
+//    }
 
     public Long getJudgeID() {
         return JudgeID;

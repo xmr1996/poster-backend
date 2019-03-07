@@ -13,7 +13,7 @@ import org.springframework.jdbc.support.KeyHolder;
 
 public class JudgeDao extends BaseDao<Judge> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ProfileDao.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JudgeDao.class);
 
     /**
      * Create a {@link Judge} object.
@@ -26,9 +26,9 @@ public class JudgeDao extends BaseDao<Judge> {
     public Judge create(Judge judge) {
         // validate input
         if (judge == null) {
-            throw new RuntimeException("Request to create a new Profile received null");
+            throw new RuntimeException("Request to create a new Judge received null");
         } else if (judge.getJudgeID() != null) {
-            throw new RuntimeException("When creating a new Profile the id should be null, but was set to " + judge.getJudgeID());
+            throw new RuntimeException("When creating a new Judge the id should be null, but was set to " + judge.getJudgeID());
         }
 
         LOG.trace("Creating judge {}", judge);
