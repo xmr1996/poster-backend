@@ -1,5 +1,7 @@
 package edu.uwm.capstone;
 
+import edu.uwm.capstone.db.JudgeDao;
+import edu.uwm.capstone.db.JudgeDaoRowMapper;
 import edu.uwm.capstone.db.ProfileDao;
 import edu.uwm.capstone.db.ProfileDaoRowMapper;
 import edu.uwm.capstone.sql.statement.ISqlStatementsFileLoader;
@@ -107,6 +109,20 @@ public class ApplicationConfig {
     @Bean
     public ProfileDaoRowMapper profileDaoRowMapper() {
         return new ProfileDaoRowMapper();
+    }
+
+    @Bean
+    public JudgeDao judgeDao() {
+        JudgeDao judgeDao = new JudgeDao();
+        judgeDao.setDataSource(dataSource());
+        judgeDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        judgeDao.setRowMapper(judgeDaoRowMapper());
+        return judgeDao;
+    }
+
+    @Bean
+    public JudgeDaoRowMapper judgeDaoRowMapper() {
+        return new JudgeDaoRowMapper();
     }
 
     public String getDbDriverClassName() {

@@ -17,7 +17,7 @@ import java.io.IOException;
 public class JudgeRestController {
 
     public static final String JUDGE_PATH = "/judge/";
-
+//
     private static final Logger logger = LoggerFactory.getLogger(JudgeRestController.class);
     private final JudgeDao judgeDao;
 
