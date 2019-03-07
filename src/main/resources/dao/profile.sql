@@ -29,3 +29,6 @@ WHERE
 --STATEMENT getAllProfilesByProject
 SELECT * from profiles where project = :project;
 
+--STATEMENT getProfiles
+SELECT * from profiles;
+
