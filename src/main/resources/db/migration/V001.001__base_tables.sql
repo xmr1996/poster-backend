@@ -6,16 +6,6 @@ CREATE TABLE profiles (
   updated_date BIGINT(25) DEFAULT NULL
 );
 
-
-CREATE TABLE AUTHOR(
-  AuthorID SMALLINT(255) PRIMARY KEY,
-  AuthorFirstName VARCHAR(255),
-  AuthorLastName VARCHAR(255),
-  AuthorEmail VARCHAR(255),
-  AuthorStatus VARCHAR(255)
-);
-commit;
-
 CREATE TABLE POSTER(
   PosterID VARCHAR(50) PRIMARY KEY,
   PosterTitle VARCHAR(255),
@@ -24,8 +14,10 @@ CREATE TABLE POSTER(
   PosterLink  VARCHAR(255),
   PosterFileName VARCHAR(255),
   PosterPresentationLink VARCHAR(255),
-  AuthorID SMALLINT(255),
-  FOREIGN KEY (AuthorID) REFERENCES AUTHOR(AuthorID)
+  AuthorFirstName VARCHAR(255),
+  AuthorLastName VARCHAR(255),
+  AuthorEmail VARCHAR(255),
+  AuthorStatus VARCHAR(255)
 );
 
 CREATE TABLE JUDGE(
@@ -38,9 +30,6 @@ CREATE TABLE JUDGE(
 );
 
 commit;
-
-ALTER TABLE AUTHOR ADD PosterID VARCHAR(50);
-ALTER TABLE AUTHOR ADD FOREIGN KEY(PosterID) REFERENCES POSTER(PosterID);
 
 CREATE TABLE SCORE(
   PosterID VARCHAR(50),
