@@ -16,8 +16,14 @@ VALUES(
     :poster_score
 );
 
+--STATEMENT getScore
+SELECT * FROM SCORE WHERE ScoreID = :ScoreID;
+
 --STATEMENT getAllScores
 SELECT * FROM SCORE;
+
+--STATEMENT getScoreByID
+SELECT * FROM SCORE WHERE PosterID = :PosterID and JudgeID = :JudgeID;
 
 --STATEMENT getScoreByPosterID
 SELECT * FROM SCORE WHERE PosterID = :PosterID;
@@ -38,3 +44,6 @@ WHERE
 
 --STATEMENT deleteScorebyPosterID
 DELETE FROM SCORE WHERE PosterID=:PosterID;
+
+--STATEMENT deleteScoreByID
+DELETE FROM SCORE WHERE ScoreID = :ScoreID;

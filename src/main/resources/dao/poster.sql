@@ -2,14 +2,22 @@
 INSERT INTO POSTER (
   PosterID,
   PosterTitle,
+  AuthorEmail,
+  AuthorFirstName,
+  AuthorLastName,
   AuthorStatus,
-  AuthorPin
+  AuthorPin,
+  AuthorDepartment
 )
 VALUES (
   :PosterId,
   :PosterTitle,
-  :PosterStatus,
-  :AuthorPin
+  :AuthorEmail,
+  :AuthorFistName,
+  :AuthorLastName,
+  :AuthorStatus,
+  :AuthorPin,
+  :AuthorDepartment
 );
 
 --STATEMENT getPosters
@@ -23,16 +31,12 @@ WHERE AuthorStatus = :AuthorStatus;
 UPDATE POSTER SET
   PosterID = :PosterID,
   PosterTitle = :PosterTitle,
-  PosterAbstract = :PosterAbstract,
-  PosterDepartment = :PosterDepartment,
-  PosterLink = :PosterLink,
-  PosterFileName = :PosterFileName,
-  PosterPresentationLink = :PosterPresentationLink,
+  AuthorEmail = :AuthorEmail,
   AuthorFirstName = :AuthorFirstName,
   AuthorLastName = :AuthorLastName,
-  AuthorEmail = :AuthorEmail,
   AuthorPin = :AuthorPin,
-  AuthorStatus = :AuthorStatus
+  AuthorStatus = :AuthorStatus,
+  AuthorDepartment = :PosterDepartment
 WHERE
   PosterID = :PosterID;
 
