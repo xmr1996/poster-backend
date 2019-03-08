@@ -37,7 +37,7 @@ public class ScoreRestController {
      * @return {@link Score}
      * @throws IOException if error response cannot be created.
      */
-    @ApiOperation(value = "Create Profile")
+    @ApiOperation(value = "Create Score")
     @PostMapping(value = SCORE_PATH)
     public Score create(@RequestBody Score score, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
