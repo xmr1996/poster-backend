@@ -4,20 +4,26 @@ package edu.uwm.capstone.model.Score;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Score {
+    private Long ScoreID;
     private Poster PosterID;
     private Judge JudgeID;
     private int Round;
     private int Research_Score;
     private int Comm_Score;
     private int Poster_Score;
+    protected LocalDateTime createdDate;
+    protected LocalDateTime updatedDate;
 
-    public Score(Poster posterID, Judge judgeID, int round) {
-        PosterID = posterID;
-        JudgeID = judgeID;
-        Round = round;
+    public Long getScoreID() {
+        return ScoreID;
+    }
+
+    public void setScoreID(Long scoreID) {
+        ScoreID = scoreID;
     }
 
     public Poster getPosterID() {
@@ -66,6 +72,22 @@ public class Score {
 
     public void setPoster_Score(int poster_Score) {
         Poster_Score = poster_Score;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
+    }
+
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     @Override

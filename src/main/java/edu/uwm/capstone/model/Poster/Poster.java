@@ -1,34 +1,22 @@
 package edu.uwm.capstone.model.Poster;
 
-import edu.uwm.capstone.model.Author.Author;
-
 import java.util.Objects;
 
 public class Poster {
-    private int PosterID;
+    private String PosterID;
     private String PosterTitle;
-    private String Abstract;
-    private String PosterDepartment;
-    private String PosterLink;
-    private String FileName;
-    private String PosterPresentationLink;
-    private Author AuthorID;
+    private String AuthorEmail;
+    private String AuthorFirstName;
+    private String AuthorLastName;
+    private String AuthorStatus;
+    private String AuthorPin;
+    private String AuthorDepartment;
 
-    public Poster(String posterTitle, String anAbstract, String posterDepartment, String posterLink, String fileName, String posterPresentationLink) {
-        PosterTitle = posterTitle;
-        Abstract = anAbstract;
-        PosterDepartment = posterDepartment;
-        PosterLink = posterLink;
-        FileName = fileName;
-        PosterPresentationLink = posterPresentationLink;
-
-    }
-
-    public int getPosterID() {
+    public String getPosterID() {
         return PosterID;
     }
 
-    public void setPosterID(int posterID) {
+    public void setPosterID(String posterID) {
         PosterID = posterID;
     }
 
@@ -40,54 +28,52 @@ public class Poster {
         PosterTitle = posterTitle;
     }
 
-    public String getAbstract() {
-        return Abstract;
+    public String getAuthorEmail() {
+        return AuthorEmail;
     }
 
-    public void setAbstract(String anAbstract) {
-        Abstract = anAbstract;
+    public void setAuthorEmail(String authorEmail) {
+        AuthorEmail = authorEmail;
     }
 
-    public String getPosterDepartment() {
-        return PosterDepartment;
+    public String getAuthorFirstName() {
+        return AuthorFirstName;
     }
 
-    public void setPosterDepartment(String posterDepartment) {
-        PosterDepartment = posterDepartment;
+    public void setAuthorFirstName(String authorFirstName) {
+        AuthorFirstName = authorFirstName;
     }
 
-    public String getPosterLink() {
-        return PosterLink;
+    public String getAuthorLastName() {
+        return AuthorLastName;
     }
 
-    public void setPosterLink(String posterLink) {
-        PosterLink = posterLink;
+    public void setAuthorLastName(String authorLastName) {
+        AuthorLastName = authorLastName;
     }
 
-    public String getFileName() {
-        return FileName;
+    public String getAuthorStatus() {
+        return AuthorStatus;
     }
 
-    public void setFileName(String fileName) {
-        FileName = fileName;
+    public void setAuthorStaus(String authorStatus) {
+        AuthorStatus = authorStatus;
     }
 
-    public String getPosterPresentationLink() {
-        return PosterPresentationLink;
+    public String getAuthorPin() {
+        return AuthorPin;
     }
 
-    public void setPosterPresentationLink(String posterPresentationLink) {
-        PosterPresentationLink = posterPresentationLink;
+    public void setAuthorPin(String authorPin) {
+        AuthorPin = authorPin;
     }
 
-
-
-    public Author getAuthorID() {
-        return AuthorID;
+    public String getAuthorDepartment() {
+        return AuthorDepartment;
     }
 
-    public void setAuthorID(Author authorID) {
-        AuthorID = authorID;
+    public void setAuthorDepartment(String authorDepartment) {
+        AuthorDepartment = authorDepartment;
     }
 
     @Override
@@ -95,7 +81,7 @@ public class Poster {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Poster poster = (Poster) o;
-        return PosterID == poster.PosterID;
+        return Objects.equals(PosterID, poster.PosterID);
     }
 
     @Override
@@ -106,13 +92,13 @@ public class Poster {
     @Override
     public String toString() {
         return "Poster{" +
-                "PosterID=" + PosterID +
+                "PosterID='" + PosterID + '\'' +
                 ", PosterTitle='" + PosterTitle + '\'' +
-                ", Abstract='" + Abstract + '\'' +
-                ", PosterDepartment='" + PosterDepartment + '\'' +
-                ", PosterLink='" + PosterLink + '\'' +
-                ", FileName='" + FileName + '\'' +
-                ", PosterPresentationLink='" + PosterPresentationLink + '\'' +
+                ", AuthorEmail='" + AuthorEmail + '\'' +
+                ", AuthorFirstName='" + AuthorFirstName + '\'' +
+                ", AuthorLastName='" + AuthorLastName + '\'' +
+                ", AuthorStatus='" + AuthorStatus + '\'' +
+                ", AuthorDepartment='" + AuthorDepartment + '\'' +
                 '}';
     }
 }

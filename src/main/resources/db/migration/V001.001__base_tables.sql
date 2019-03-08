@@ -9,16 +9,12 @@ CREATE TABLE profiles (
 CREATE TABLE POSTER(
   PosterID VARCHAR(50) PRIMARY KEY,
   PosterTitle VARCHAR(255),
-  PosterAbstract TEXT(700),
-  PosterDepartment VARCHAR(255),
-  PosterLink  VARCHAR(255),
-  PosterFileName VARCHAR(255),
-  PosterPresentationLink VARCHAR(255),
+  AuthorEmail VARCHAR(255),
   AuthorFirstName VARCHAR(255),
   AuthorLastName VARCHAR(255),
-  AuthorEmail VARCHAR(255),
   AuthorStatus VARCHAR(255),
-  AuthorPin INT(255)
+  AuthorPin INT(255),
+  PosterDepartment VARCHAR(255)
 );
 
 CREATE TABLE JUDGE(
@@ -33,6 +29,7 @@ CREATE TABLE JUDGE(
 commit;
 
 CREATE TABLE SCORE(
+  ScoreID INT(255) AUTO_INCREMENT,
   PosterID VARCHAR(50),
   JudgeID INT(255),
   Round INT(10),
@@ -41,5 +38,7 @@ CREATE TABLE SCORE(
   poster_score INT(255),
   FOREIGN KEY(PosterID) REFERENCES POSTER(PosterID),
   FOREIGN KEY(JudgeID) REFERENCES JUDGE(JudgeID),
-  CONSTRAINT PK_Sore PRIMARY KEY(PosterID,JudgeID,Round)
+  CONSTRAINT PK_Sore PRIMARY KEY(PosterID,JudgeID,Round),
+  created_date BIGINT(25) NOT NULL,
+  updated_date BIGINT(25) DEFAULT NULL
 );
