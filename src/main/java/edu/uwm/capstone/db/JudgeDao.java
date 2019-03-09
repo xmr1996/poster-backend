@@ -19,40 +19,41 @@ public class JudgeDao extends BaseDao<Judge> {
      * Create a {@link Judge} object.
      *
      * @param judge {@link Judge}
-     * @return {@link Judge
+     * @return {@link Judge}
      */
-
     @Override
     public Judge create(Judge judge) {
         // validate input
         if (judge == null) {
             throw new RuntimeException("Request to create a new Judge received null");
-        } else if (judge.getJudgeID() != null) {
-            throw new RuntimeException("When creating a new Judge the id should be null, but was set to " + judge.getJudgeID());
+        } else if (judge.getId() != null) {
+            throw new RuntimeException("When creating a new Judge the id should be null, but was set to " + judge.getId());
         }
 
         LOG.trace("Creating judge {}", judge);
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
+        MapSqlParameterSource parameters = new MapSqlParameterSource(rowMapper.mapObject(judge));
+
         int result = this.jdbcTemplate.update(sql("createJudge"),
-                new MapSqlParameterSource(rowMapper.mapObject(judge)), keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
+                parameters, keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
 
         if (result != 1) {
             throw new RuntimeException("Failed attempt to create judge " + judge.toString() + " affected " + result + " rows");
         }
 
         Long id = keyHolder.getKey().longValue();
-        judge.setJudgeID(id);
+        judge.setId(id);
 
         return judge;
     }
 
     /**
-     * Retrieve a {@link Judge} object by its {@link Judge#getJudgeID}.
+     * Retrieve a {@link Judge} object by its {@link Judge#getId}.
      *
      * @param id long
-     * @return {@link Judge}
+     * @return judge {@link Judge}
      */
     @Override
     public Judge read(long id) {
@@ -73,7 +74,7 @@ public class JudgeDao extends BaseDao<Judge> {
     public void update(Judge judge) {
         if (judge == null) {
             throw new RuntimeException("Request to update a Judge received null");
-        } else if (judge.getJudgeID() == null) {
+        } else if (judge.getId() == null) {
             throw new RuntimeException("When updating a Judge the id should not be null");
         }
 
@@ -87,7 +88,7 @@ public class JudgeDao extends BaseDao<Judge> {
     }
 
     /**
-     * Delete a {@link Judge} object by its {@link Judge#getJudgeID}.
+     * Delete a {@link Judge} object by its {@link Judge#getId}.
      *
      * @param id long
      */
