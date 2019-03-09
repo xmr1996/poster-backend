@@ -7,11 +7,8 @@ import java.util.Map;
 
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
-import static edu.uwm.capstone.db.JudgeDaoRowMapper.JudgeColumnType.FIRST_NAME;
-import static edu.uwm.capstone.db.JudgeDaoRowMapper.JudgeColumnType.LAST_NAME;
-import static edu.uwm.capstone.db.JudgeDaoRowMapper.JudgeColumnType.EMAIL;
-import static edu.uwm.capstone.db.JudgeDaoRowMapper.JudgeColumnType.STATUS;
-import static edu.uwm.capstone.db.JudgeDaoRowMapper.JudgeColumnType.PROJECT;
+
+import static edu.uwm.capstone.db.JudgeDaoRowMapper.JudgeColumnType.*;
 import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
@@ -20,7 +17,7 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
         LAST_NAME(),
         EMAIL(),
         STATUS(),
-        PROJECT(),
+        PIN()
         ;
 
         private String columnName;
@@ -41,24 +38,24 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
     @Override
     public Map<String, Object> mapObject(Judge object) {
         Map<String, Object> map = new HashMap<>();
-        map.put(ID.getColumnName(), object.getJudgeID());
-        map.put(FIRST_NAME.getColumnName(), object.getJudgeFirstName());
-        map.put(LAST_NAME.getColumnName(), object.getJudgeLastName());
-        map.put(EMAIL.getColumnName(), object.getJudgeEmail());
-        map.put(STATUS.getColumnName(), object.getJudgeStatus());
-
-
+        map.put(ID.getColumnName(), object.getId());
+        map.put(FIRST_NAME.getColumnName(), object.getFirst_name());
+        map.put(LAST_NAME.getColumnName(), object.getLast_name());
+        map.put(EMAIL.getColumnName(), object.getEmail());
+        map.put(STATUS.getColumnName(), object.getStatus());
+        map.put(PIN.getColumnName(), object.getPin());
         return map;
     }
 
     @Override
     public Judge mapRow(ResultSet rs, int rowNum) throws SQLException {
         Judge folder = new Judge();
-        folder.setJudgeID(rs.getLong(ID.getColumnName()));
-        folder.setJudgeFirstName(rs.getString(FIRST_NAME.getColumnName()));
-        folder.setJudgeLastName(rs.getString(LAST_NAME.getColumnName()));
-        folder.setJudgeEmail(rs.getString(EMAIL.getColumnName()));
-        folder.setJudgeStatus(rs.getString(STATUS.getColumnName()));
+        folder.setId(rs.getLong(ID.getColumnName()));
+        folder.setFirst_name(rs.getString(FIRST_NAME.getColumnName()));
+        folder.setLast_name(rs.getString(LAST_NAME.getColumnName()));
+        folder.setEmail(rs.getString(EMAIL.getColumnName()));
+        folder.setStatus(rs.getString(STATUS.getColumnName()));
+        folder.setPin(rs.getInt(PIN.getColumnName()));
         return folder;
     }
 }

@@ -10,10 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSourceExtensionsKt;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ScoreDao extends BaseDao<Score> {
 
@@ -78,6 +80,18 @@ public class ScoreDao extends BaseDao<Score> {
             parameters.addValue("PosterID", posterID);
             return (Score) this.jdbcTemplate.queryForObject(sql("readScore"),parameters, rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public List<Score> read(Poster poster){
+        LOG.trace("Getting Reading scores {}", poster);
+        try{
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            parameters.addValue("Poster", poster);
+            return (List<Score>) this.jdbcTemplate.queryForObject(sql("getScoreByPosterID"), parameters, rowMapper);
+        }
+        catch (EmptyResultDataAccessException e){
             return null;
         }
     }

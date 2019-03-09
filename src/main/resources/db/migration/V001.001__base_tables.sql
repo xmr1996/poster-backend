@@ -17,13 +17,13 @@ CREATE TABLE POSTER(
   PosterDepartment VARCHAR(255)
 );
 
-CREATE TABLE JUDGE(
-  JudgeID INT(255) AUTO_INCREMENT PRIMARY KEY,
-  JudgeFirstName VARCHAR(255),
-  JudgeLastName VARCHAR(255),
-  JudgeStatus VARCHAR(255),
-  JudgePin INT(255),
-  JudgeEmail VARCHAR(255)
+CREATE TABLE judges (
+  id INT(255) AUTO_INCREMENT PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  status VARCHAR(255),
+  pin INT(255),
+  email VARCHAR(255)
 );
 
 commit;
@@ -37,7 +37,7 @@ CREATE TABLE SCORE(
   comm_score INT(255),
   poster_score INT(255),
   FOREIGN KEY(PosterID) REFERENCES POSTER(PosterID),
-  FOREIGN KEY(JudgeID) REFERENCES JUDGE(JudgeID),
+  FOREIGN KEY(JudgeID) REFERENCES judges(id),
   CONSTRAINT PK_Sore PRIMARY KEY(PosterID,JudgeID,Round),
   created_date BIGINT(25) NOT NULL,
   updated_date BIGINT(25) DEFAULT NULL

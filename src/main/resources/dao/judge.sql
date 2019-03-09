@@ -1,30 +1,38 @@
 --STATEMENT createJudge
-INSERT INTO JUDGE (
-  JudgeFirstName,
-  JudgeLastName,
-  JudgeStatus,
-  JudgePin,
-  JudgeEmail
+INSERT INTO judges (
+  first_name,
+  last_name,
+  status,
+  pin,
+  email
 ) VALUES (
-  :JudgeFirstName,
-  :JudgeLastName,
-  :JudgeStatus,
-  :JudgePin,
-  :JudgeEmail
+  :first_name,
+  :last_name,
+  :status,
+  :pin,
+  :email,
 );
 
---STATEMENT getJudges
-SELECT * FROM JUDGE;
+--STATEMENT readJudges
+SELECT * FROM judges;
 
---STATEMENT getJudgeByID
-SELECT * FROM JUDGE WHERE JudgeID = :JudgeID;
+--STATEMENT readJudge
+SELECT * FROM judges WHERE id = :id;
 
---STATEMENT getJudgesByStatus
-SELECT * FROM JUDGE
-WHERE JudgeStatus = :JudgeStatus;
+--STATEMENT readJudgesByStatus
+SELECT * FROM judges
+WHERE status = :status;
 
---STATEMENT deleteJudgeById
-DELETE FROM JUDGE WHERE JudgeID = :JudgeID;
+--STATEMENT deleteJudge
+DELETE FROM judges WHERE id = :id;
 
-
+--STATEMENT updateJudge
+UPDATE judges SET
+  first_name = :first_name,
+  last_name = :last_name,
+  status = :status,
+  pin = :pin,
+  email = :email
+WHERE
+  id = :id;
 

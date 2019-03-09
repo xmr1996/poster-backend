@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import edu.uwm.capstone.model.Judge.Judge;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.profile.Profile;
@@ -31,6 +32,16 @@ public class TestDataUtility {
         // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
         return profile;
+    }
+
+    public static Judge judgeWithTestValues() {
+        Judge judge = new Judge();
+        judge.setFirst_name(randomAlphabetic(randomInt(1, 100)));
+        judge.setPin(randomInt(1, 1000));
+        judge.setLast_name(randomAlphabetic(randomInt(1, 100)));
+        judge.setStatus("Graduate");
+        judge.setEmail(randomAlphabetic(randomInt(1, 100)));
+        return judge;
     }
 
     /**

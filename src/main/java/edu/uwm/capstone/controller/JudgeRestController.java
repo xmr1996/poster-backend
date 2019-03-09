@@ -39,7 +39,7 @@ public class JudgeRestController {
     public Judge create(@RequestBody Judge judge, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
             Assert.notNull(judge, "Received null Judge object");
-            Assert.isNull(judge.getJudgeID(), "Judge ID must be null");
+            Assert.isNull(judge.getId(), "Judge ID must be null");
             return judgeDao.create(judge);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -63,8 +63,8 @@ public class JudgeRestController {
     @PutMapping(value = JUDGE_PATH)
     public void update(@RequestBody Judge judge, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            Assert.notNull(judge.getJudgeID(), "Judge Id must not be null");
-            Assert.notNull(judgeDao.read(judge.getJudgeID()), "Could not update judge " + judge.getJudgeID() + " - record not found.");
+            Assert.notNull(judge.getId(), "Judge Id must not be null");
+            Assert.notNull(judgeDao.read(judge.getId()), "Could not update judge " + judge.getId() + " - record not found.");
             judgeDao.update(judge);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -78,7 +78,7 @@ public class JudgeRestController {
     /**
      * Get the {@link Judge} by Id
      *
-     * @param judgeId {@link Judge#getJudgeID()} ()}
+     * @param judgeId {@link Judge#getId}
      * @param response  {@link HttpServletResponse}
      * @return {@link Judge} retrieved from the database
      * @throws IOException if error response cannot be created.
@@ -99,7 +99,7 @@ public class JudgeRestController {
     /**
      * Delete the {@link Judge} by Id
      *
-     * @param judgeId {@link Judge#getJudgeID()} ()}
+     * @param judgeId {@link Judge#getId}
      * @param response  {@link HttpServletResponse}
      * @throws IOException if error response cannot be created.
      */
