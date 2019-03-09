@@ -10,7 +10,7 @@ INSERT INTO POSTER (
   AuthorDepartment
 )
 VALUES (
-  :PosterId,
+  :PosterID,
   :PosterTitle,
   :AuthorEmail,
   :AuthorFistName,

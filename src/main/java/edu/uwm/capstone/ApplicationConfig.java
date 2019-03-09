@@ -134,6 +134,19 @@ public class ApplicationConfig {
     @Bean
     public ScoreDaoRowMapper scoreDaoRowMapper() { return new ScoreDaoRowMapper(); }
 
+    @Bean
+    public PosterDao posterDao(){
+        PosterDao posterDao = new PosterDao();
+        posterDao.setDataSource(dataSource());
+        posterDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        posterDao.setRowMapper(posterDaoRowMapper());
+        return posterDao;
+    }
+
+    @Bean
+    public PosterDaoRowMapper posterDaoRowMapper(){
+        return new PosterDaoRowMapper();
+    }
     public String getDbDriverClassName() {
         return dbDriverClassName;
     }

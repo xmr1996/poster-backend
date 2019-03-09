@@ -56,7 +56,7 @@ public class Poster {
         return AuthorStatus;
     }
 
-    public void setAuthorStaus(String authorStatus) {
+    public void setAuthorStatus(String authorStatus) {
         AuthorStatus = authorStatus;
     }
 
