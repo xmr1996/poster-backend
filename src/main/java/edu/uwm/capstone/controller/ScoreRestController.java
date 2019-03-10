@@ -90,7 +90,7 @@ public class ScoreRestController {
         try {
             List<Score> scores = scoreDao.read(poster);
             if(scores.isEmpty()){
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Scores for " + poster.getPosterID() + " were not found.");
+                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Scores for " + poster.getId() + " were not found.");
                 return null;
             }
             return scores;

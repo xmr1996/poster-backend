@@ -6,25 +6,20 @@ import java.util.HashMap;
 import java.util.Map;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
-import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.POSTERTITLE;
-import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.AUTHOREMAIL;
-import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.AUTHORFIRSTNAME;
-import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.AUTHORLASTNAME;
-import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.AUTHORSTATUS;
-import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.AUTHORPIN;
-import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.AUTHORDEPARTMENT;
+import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.*;
 import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
 
     public enum PosterColumnType{
-        POSTERTITLE(),
-        AUTHOREMAIL(),
-        AUTHORFIRSTNAME(),
-        AUTHORLASTNAME(),
-        AUTHORSTATUS(),
-        AUTHORPIN(),
-        AUTHORDEPARTMENT(),
+        POSTER_ID,
+        TITLE(),
+        EMAIL(),
+        FIRST_NAME(),
+        LAST_NAME(),
+        STATUS(),
+        PIN(),
+        DEPARTMENT(),
         ;
 
         private String columnName;
@@ -43,29 +38,31 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
 
     @Override
     public Poster mapRow(ResultSet rs, int rowNum) throws SQLException {
-        Poster post = new Poster();
-        post.setPosterID(rs.getString(ID.getColumnName()));
-        post.setPosterTitle(rs.getString(POSTERTITLE.getColumnName()));
-        post.setAuthorEmail(rs.getString(AUTHOREMAIL.getColumnName()));
-        post.setAuthorFirstName(rs.getString(AUTHORFIRSTNAME.getColumnName()));
-        post.setAuthorLastName(rs.getString(AUTHORLASTNAME.getColumnName()));
-        post.setAuthorStatus(rs.getString(AUTHORSTATUS.getColumnName()));
-        post.setAuthorPin(rs.getString(AUTHORPIN.getColumnName()));
-        post.setAuthorDepartment(AUTHORDEPARTMENT.getColumnName());
-        return post;
+        Poster poster = new Poster();
+        poster.setId(rs.getLong(ID.getColumnName()));
+        poster.setPoster_id(rs.getString(POSTER_ID.getColumnName()));
+        poster.setTitle(rs.getString(TITLE.getColumnName()));
+        poster.setEmail(rs.getString(EMAIL.getColumnName()));
+        poster.setFirst_name(rs.getString(FIRST_NAME.getColumnName()));
+        poster.setLast_name(rs.getString(LAST_NAME.getColumnName()));
+        poster.setStatus(rs.getString(STATUS.getColumnName()));
+        poster.setPin(rs.getInt(PIN.getColumnName()));
+        poster.setDepartment(rs.getString(DEPARTMENT.getColumnName()));
+        return poster;
     }
 
     @Override
     public Map<String, Object> mapObject(Poster object) {
         Map<String,Object> map = new HashMap<>();
-        map.put(ID.getColumnName(),object.getPosterID());
-        map.put(POSTERTITLE.getColumnName(),object.getPosterTitle());
-        map.put(AUTHOREMAIL.getColumnName(),object.getAuthorEmail());
-        map.put(AUTHORFIRSTNAME.getColumnName(),object.getAuthorFirstName());
-        map.put(AUTHORLASTNAME.getColumnName(),object.getAuthorLastName());
-        map.put(AUTHORSTATUS.getColumnName(),object.getAuthorStatus());
-        map.put(AUTHORPIN.getColumnName(),object.getAuthorPin());
-        map.put(AUTHORDEPARTMENT.getColumnName(),object.getAuthorDepartment());
+        map.put(ID.getColumnName(),object.getId());
+        map.put(POSTER_ID.getColumnName(), object.getPoster_id());
+        map.put(TITLE.getColumnName(),object.getTitle());
+        map.put(EMAIL.getColumnName(),object.getEmail());
+        map.put(FIRST_NAME.getColumnName(),object.getFirst_name());
+        map.put(LAST_NAME.getColumnName(),object.getLast_name());
+        map.put(STATUS.getColumnName(),object.getStatus());
+        map.put(PIN.getColumnName(),object.getPin());
+        map.put(DEPARTMENT.getColumnName(),object.getDepartment());
         return map;
     }
 

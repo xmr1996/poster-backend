@@ -3,77 +3,86 @@ package edu.uwm.capstone.model.Poster;
 import java.util.Objects;
 
 public class Poster {
-    private String PosterID;
-    private String PosterTitle;
-    private String AuthorEmail;
-    private String AuthorFirstName;
-    private String AuthorLastName;
-    private String AuthorStatus;
-    private String AuthorPin;
-    private String AuthorDepartment;
+    protected Long id;
+    private String poster_id;
+    private String title;
+    private String email;
+    private String first_name;
+    private String last_name;
+    private String status;
+    private int pin;
+    private String department;
 
-    public String getPosterID() {
-        return PosterID;
+    public Long getId() {
+        return id;
     }
 
-    public void setPosterID(String posterID) {
-        PosterID = posterID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getPosterTitle() {
-        return PosterTitle;
+    public String getPoster_id() {
+        return poster_id;
     }
 
-    public void setPosterTitle(String posterTitle) {
-        PosterTitle = posterTitle;
+    public void setPoster_id(String poster_id) {
+        this.poster_id = poster_id;
     }
 
-    public String getAuthorEmail() {
-        return AuthorEmail;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAuthorEmail(String authorEmail) {
-        AuthorEmail = authorEmail;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAuthorFirstName() {
-        return AuthorFirstName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAuthorFirstName(String authorFirstName) {
-        AuthorFirstName = authorFirstName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getAuthorLastName() {
-        return AuthorLastName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setAuthorLastName(String authorLastName) {
-        AuthorLastName = authorLastName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getAuthorStatus() {
-        return AuthorStatus;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setAuthorStatus(String authorStatus) {
-        AuthorStatus = authorStatus;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
-    public String getAuthorPin() {
-        return AuthorPin;
+    public String getStatus() {
+        return status;
     }
 
-    public void setAuthorPin(String authorPin) {
-        AuthorPin = authorPin;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getAuthorDepartment() {
-        return AuthorDepartment;
+    public int getPin() {
+        return pin;
     }
 
-    public void setAuthorDepartment(String authorDepartment) {
-        AuthorDepartment = authorDepartment;
+    public void setPin(int pin) {
+        this.pin = pin;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     @Override
@@ -81,24 +90,11 @@ public class Poster {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Poster poster = (Poster) o;
-        return Objects.equals(PosterID, poster.PosterID);
+        return Objects.equals(id, poster.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(PosterID);
-    }
-
-    @Override
-    public String toString() {
-        return "Poster{" +
-                "PosterID='" + PosterID + '\'' +
-                ", PosterTitle='" + PosterTitle + '\'' +
-                ", AuthorEmail='" + AuthorEmail + '\'' +
-                ", AuthorFirstName='" + AuthorFirstName + '\'' +
-                ", AuthorLastName='" + AuthorLastName + '\'' +
-                ", AuthorStatus='" + AuthorStatus + '\'' +
-                ", AuthorDepartment='" + AuthorDepartment + '\'' +
-                '}';
+        return Objects.hash(id);
     }
 }
