@@ -95,6 +95,17 @@ public class PosterRestController{
         return poster;
     }
 
+    @ApiOperation(value = "Read poster by Poster_ID")
+    @GetMapping(value = POSTER_PATH + "/poster_id/" + "{poster_id}")
+    public Poster readByPosterID(@PathVariable String poster_id, @ApiIgnore HttpServletResponse response) throws IOException{
+        Poster poster = posterDao.read(poster_id);
+
+        if(poster == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Poster with ID: " + poster_id + "not found.");
+        }
+        return poster;
+    }
+
      /**
      * Delete the {@link Poster} by Id
      *
