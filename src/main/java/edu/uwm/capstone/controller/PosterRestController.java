@@ -39,7 +39,6 @@ public class PosterRestController{
     public Poster create(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
             Assert.notNull(poster, "Received null Poster object");
-            Assert.isNull(poster.getPosterID(), "Poster ID must be null");
             return posterDao.create(poster);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -63,8 +62,8 @@ public class PosterRestController{
     @PutMapping(value = POSTER_PATH)
     public void update(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            Assert.notNull(poster.getPosterID(), "Poster Id must not be null");
-            Assert.notNull(posterDao.read(poster.getPosterID()), "Could not update Poster " + poster.getPosterID()+ " - record not found.");
+            Assert.notNull(poster.getId(), "Poster Id must not be null");
+            Assert.notNull(posterDao.read(poster.getId()), "Could not update Poster " + poster.getId()+ " - record not found.");
             posterDao.update(poster);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -76,20 +75,20 @@ public class PosterRestController{
     }
 
      /**
-     * Get the {@link Poster} by posterID
+     * Get the {@link Poster} by id
      *
-     * @param posterID {@link Poster#getPosterID()}
+     * @param id {@link Poster#getId()}
      * @param response  {@link HttpServletResponse}
      * @return {@link Poster} retrieved from the database
      * @throws IOException if error response cannot be created.
      */
     @ApiOperation(value = "Read Poster by ID")
-    @GetMapping(value = POSTER_PATH + "{posterID}")
-    public Poster readById(@PathVariable String posterID, @ApiIgnore HttpServletResponse response) throws IOException {
-        Poster poster = posterDao.read(posterID);
+    @GetMapping(value = POSTER_PATH + "{id}")
+    public Poster readById(@PathVariable Long id, @ApiIgnore HttpServletResponse response) throws IOException {
+        Poster poster = posterDao.read(id);
 
         if (poster == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Poster with ID: " + posterID + " not found.");
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Poster with ID: " + id + " not found.");
             return null;
         }
 
@@ -99,15 +98,15 @@ public class PosterRestController{
      /**
      * Delete the {@link Poster} by Id
      *
-     * @param PosterID {@link Poster#getPosterID()}
+     * @param id {@link Poster#getId()}
      * @param response  {@link HttpServletResponse}
      * @throws IOException if error response cannot be created.
      */
     @ApiOperation(value = "Delete Poster by ID")
-    @DeleteMapping(value = POSTER_PATH + "{posterID}")
-    public void delete(@PathVariable String posterID, @ApiIgnore HttpServletResponse response) throws IOException {
+    @DeleteMapping(value = POSTER_PATH + "{id}")
+    public void delete(@PathVariable Long id, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            posterDao.delete(posterID);
+            posterDao.delete(id);
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }

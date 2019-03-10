@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import edu.uwm.capstone.model.Judge.Judge;
+import edu.uwm.capstone.model.Poster.Poster;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.profile.Profile;
@@ -42,6 +43,18 @@ public class TestDataUtility {
         judge.setStatus("Graduate");
         judge.setEmail(randomAlphabetic(randomInt(1, 100)));
         return judge;
+    }
+
+    public static Poster posterWithTestValues() {
+        Poster poster = new Poster();
+        poster.setFirst_name(randomAlphabetic(randomInt(1, 100)));
+        poster.setPin(randomInt(1, 1000));
+        poster.setLast_name(randomAlphabetic(randomInt(1, 100)));
+        poster.setStatus("Graduate");
+        poster.setEmail(randomAlphabetic(randomInt(1, 100)));
+        poster.setDepartment(randomAlphabetic(randomInt(1, 100)));
+        poster.setPoster_id(randomAlphabetic(randomInt(1, 100)));
+        return poster;
     }
 
     /**

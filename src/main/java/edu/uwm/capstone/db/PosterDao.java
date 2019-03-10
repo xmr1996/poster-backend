@@ -29,9 +29,7 @@ public class PosterDao extends BaseDao<Poster> {
         // validate input
         if (poster == null) {
             throw new RuntimeException("Request to create a new Poster received null");
-       } else if (poster.getPosterID() != null) {
-           throw new RuntimeException("When creating a new Poster the id should be null, but was set to " + poster.getPosterID());
-        }
+       }
 
         LOG.trace("Creating poster {}", poster);
 
@@ -44,14 +42,14 @@ public class PosterDao extends BaseDao<Poster> {
             throw new RuntimeException("Failed attempt to create poster " + poster.toString() + " affected " + result + " rows");
         }
 
-        String id = keyHolder.getKey().toString();
-        poster.setPosterID(id);
+        Long id = keyHolder.getKey().longValue();
+        poster.setId(id);
 
         return poster;
     }
 
     /**
-     * Retrieve a {@link Poster} object by its {@link Poster#getPosterID}.
+     * Retrieve a {@link Poster} object by its {@link Poster#getId()}.
      *
      * @param id long
      * @return {@link Poster}
@@ -67,7 +65,7 @@ public class PosterDao extends BaseDao<Poster> {
     }
 
     /**
-     * Retrieve a {@link Poster} object by its {@link Poster#getPosterID}.
+     * Retrieve a {@link Poster} object by its {@link Poster#getId()}.
      *
      * @param posterID string
      * @return {@link Poster}
@@ -92,7 +90,7 @@ public class PosterDao extends BaseDao<Poster> {
     public void update(Poster poster) {
         if (poster == null) {
             throw new RuntimeException("Request to update a Poster received null");
-        } else if (poster.getPosterID() == null) {
+        } else if (poster.getId() == null) {
             throw new RuntimeException("When updating a Poster the id should not be null");
         }
 
@@ -106,7 +104,7 @@ public class PosterDao extends BaseDao<Poster> {
     }
 
     /**
-     * Delete a {@link Poster} object by its {@link Poster#getPosterID}.
+     * Delete a {@link Poster} object by its {@link Poster#getId()}.
      *
      * @param id long
      */
@@ -120,7 +118,7 @@ public class PosterDao extends BaseDao<Poster> {
     }
 
     /**
-     * Delete a {@link Poster} object by its {@link Poster#getPosterID}.
+     * Delete a {@link Poster} object by its {@link Poster#getId()}.
      *
      * @param posterID String
      */
