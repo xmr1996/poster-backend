@@ -74,8 +74,8 @@ public class PosterDao extends BaseDao<Poster> {
         LOG.trace("Reading poster {}", posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue("PosterID", posterID);
-            return (Poster) this.jdbcTemplate.queryForObject(sql("readPoster"),parameters, rowMapper);
+            parameters.addValue("poster_id", posterID);
+            return (Poster) this.jdbcTemplate.queryForObject(sql("readPosterByID"),parameters, rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

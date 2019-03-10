@@ -22,6 +22,9 @@ INSERT INTO posters (
 --STATEMENT readPoster
 SELECT * FROM posters WHERE id = :id;
 
+--STATEMENT readPosterByID
+SELECT * FROM posters where poster_id = :poster_id;
+
 --STATEMENT getPosters
 SELECT * FROM posters;
 
