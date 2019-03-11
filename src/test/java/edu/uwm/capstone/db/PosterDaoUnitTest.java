@@ -54,6 +54,10 @@ public class PosterDaoUnitTest {
         posterDao.create(null);
     }
 
+
+    /**
+     * Verify that {@link PosterDao#create} is working correctly when a request for a {@link Poster} with a non-null id is made.
+     */
     @Test
     public void createNonNullPosterId(){
         Poster createPoster = TestDataUtility.posterWithTestValues();
