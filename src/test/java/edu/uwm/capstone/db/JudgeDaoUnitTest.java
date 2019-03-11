@@ -57,7 +57,7 @@ public class JudgeDaoUnitTest {
      * Verify that {@link JudgeDao#create} is working correctly when a request for a {@link Judge} with a non-null id is made.
      */
     @Test(expected = RuntimeException.class)
-    public void createNonNullProfileId() {
+    public void createNonNullJudgeId() {
         Judge createJudge = TestDataUtility.judgeWithTestValues();
         createJudge.setId(new Random().longs(1L, Long.MAX_VALUE).findAny().getAsLong());
         judgeDao.create(createJudge);
@@ -94,8 +94,8 @@ public class JudgeDaoUnitTest {
      * Verify that {@link JudgeDao#read} is working correctly when a request for a non-existent {@link Judge#getId} is made.
      */
     @Test
-    public void readNonExistentProfile() {
-        // create a random profile id that will not be in our local database
+    public void readNonExistentJudge() {
+        // create a random judge id that will not be in our local database
         Long id = new Random().longs(10000L, Long.MAX_VALUE).findAny().getAsLong();
         Judge judge = judgeDao.read(id);
         assertNull(judge);
@@ -150,7 +150,7 @@ public class JudgeDaoUnitTest {
      */
     @Test(expected = RuntimeException.class)
     public void updateJudgeColumnTooLong() {
-        // generate a test profile value with a column that will exceed the database configuration
+        // generate a test judge value with a column that will exceed the database configuration
         Judge createJudge = TestDataUtility.judgeWithTestValues();
         judgeDao.create(createJudge);
         assertNotNull(createJudge.getId());
@@ -182,8 +182,8 @@ public class JudgeDaoUnitTest {
 
         judgeDao.delete(createJudge.getId());
 
-        Judge verifyDeleteProfile = judgeDao.read(createJudge.getId());
-        assertNull(verifyDeleteProfile);
+        Judge verifyDeleteJudge = judgeDao.read(createJudge.getId());
+        assertNull(verifyDeleteJudge);
     }
 
     /**

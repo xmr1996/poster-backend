@@ -8,7 +8,7 @@ CREATE TABLE profiles (
 
 CREATE TABLE posters (
   id BIGINT(20) AUTO_INCREMENT PRIMARY KEY,
-  poster_id VARCHAR(50),
+  poster_id VARCHAR(255),
   title VARCHAR(255),
   email VARCHAR(255),
   first_name VARCHAR(255),
