@@ -186,6 +186,7 @@ public class JudgeDaoUnitTest {
         assertNull(verifyDeleteJudge);
     }
 
+
     /**
      * Verify that {@link JudgeDao#delete} is working correctly when a request for a non-existent {@link Judge#getId} is made.
      */

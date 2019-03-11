@@ -136,8 +136,7 @@ public class PosterDaoUnitTest {
         posterDao.update(null);
     }
 
-
-
+    
 
     /**
      * Verify that {@link PosterDao#update} is working correctly when a request for a non-existent {@link Poster#getId} is made.
