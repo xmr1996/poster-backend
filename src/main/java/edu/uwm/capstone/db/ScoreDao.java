@@ -1,8 +1,6 @@
 package edu.uwm.capstone.db;
 
-import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.model.Score.Score;
-import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.sql.exception.DaoException;
@@ -127,6 +125,20 @@ public class ScoreDao extends BaseDao<Score> {
     public void delete(long id) {
         LOG.trace("Deleting score {}", id);
         int result = this.jdbcTemplate.update(sql("deleteScore"), new MapSqlParameterSource("ScoreID", id));
+        if (result != 1) {
+            throw new DaoException("Failed attempt to delete score " + id + " affected " + result + " rows");
+        }
+    }
+
+    /**
+     * Delete a {@link Score} object by its {@link Score#getId()}.
+     *
+     * @param id long
+     */
+    @Override
+    public void delete(long id) {
+        LOG.trace("Deleting score {}", id);
+        int result = this.jdbcTemplate.update(sql("deleteScore"), new MapSqlParameterSource("id", id));
         if (result != 1) {
             throw new DaoException("Failed attempt to delete score " + id + " affected " + result + " rows");
         }
