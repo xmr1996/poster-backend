@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import java.util.List;
+
 
 public class JudgeDao extends BaseDao<Judge> {
 
@@ -60,6 +62,20 @@ public class JudgeDao extends BaseDao<Judge> {
         LOG.trace("Reading judge {}", id);
         try {
             return (Judge) this.jdbcTemplate.queryForObject(sql("readJudge"), new MapSqlParameterSource("id", id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieve a {@link Judge} object by its {@link Judge#getId}.
+     *
+     * @return judge {@link List<Judge>}
+     */
+    public List<Judge> read() {
+        LOG.trace("Reading judges {}");
+        try {
+            return (List<Judge>) this.jdbcTemplate.query(sql("readJudges"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

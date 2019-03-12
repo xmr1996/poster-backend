@@ -12,6 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class JudgeRestController {
@@ -95,6 +96,25 @@ public class JudgeRestController {
 
         return judge;
     }
+
+   /**
+    * Get the {@link Judge}
+    *
+    * @return {@link List<Judge>} retrieved from the database
+    * @throws IOException if error response cannot be created.
+    */
+   @ApiOperation(value = "Read All Judges")
+   @GetMapping(value = JUDGE_PATH)
+   public List<Judge> readAllJudges(@ApiIgnore HttpServletResponse response) throws IOException {
+       List<Judge> judges = judgeDao.read();
+
+       if (judges.isEmpty()) {
+           response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Judges were not found.");
+           return null;
+       }
+
+       return judges;
+   }
 
     /**
      * Delete the {@link Judge} by Id
