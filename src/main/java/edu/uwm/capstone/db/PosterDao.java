@@ -12,6 +12,8 @@ import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.sql.exception.DaoException;
 
+import java.util.List;
+
 
 public class PosterDao extends BaseDao<Poster> {
 
@@ -59,6 +61,15 @@ public class PosterDao extends BaseDao<Poster> {
         LOG.trace("Reading poster {}", id);
         try {
             return (Poster) this.jdbcTemplate.queryForObject(sql("readPoster"), new MapSqlParameterSource("id", id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public List<Poster> read() {
+        LOG.trace("Reading poster {}");
+        try {
+            return (List<Poster>) this.jdbcTemplate.query(sql("getPosters"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

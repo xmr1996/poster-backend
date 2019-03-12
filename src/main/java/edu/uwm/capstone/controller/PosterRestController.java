@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 public class PosterRestController{
 
-    public static final String POSTER_PATH = "/poster";
+    public static final String POSTER_PATH = "/poster/";
     private static final Logger logger = LoggerFactory.getLogger(PosterRestController.class);
     private final PosterDao posterDao;
 
@@ -89,6 +89,25 @@ public class PosterRestController{
 
         if (poster == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Poster with ID: " + id + " not found.");
+            return null;
+        }
+
+        return poster;
+    }
+
+    /**
+     * Get the {@link Poster}
+     *
+     * @return {@link List<Poster>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Read All Posters")
+    @GetMapping(value = POSTER_PATH)
+    public List<Poster> read(@ApiIgnore HttpServletResponse response) throws IOException {
+        List<Poster> poster = posterDao.read();
+
+        if (poster == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
             return null;
         }
 
