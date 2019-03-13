@@ -1,119 +1,67 @@
 package edu.uwm.capstone.model.Score;
 
-
-import edu.uwm.capstone.model.Judge.Judge;
-import edu.uwm.capstone.model.Poster.Poster;
-
-import java.time.LocalDateTime;
-import java.util.Objects;
-
 public class Score {
-    private Long ScoreID;
-    private Poster PosterID;
-    private Judge JudgeID;
-    private int Round;
-    private int Research_Score;
-    private int Comm_Score;
-    private int Poster_Score;
-    protected LocalDateTime createdDate;
-    protected LocalDateTime updatedDate;
+    private Long id;
+    private String poster_id;
+    private Long judge_id;
+    private int round;
+    private int research_score;
+    private int comm_score;
+    private int poster_score;
 
-    public Long getScoreID() {
-        return ScoreID;
+    public Long getId() {
+        return id;
     }
 
-    public void setScoreID(Long scoreID) {
-        ScoreID = scoreID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Poster getPosterID() {
-        return PosterID;
+    public String getPoster_id() {
+        return poster_id;
     }
 
-    public void setPosterID(Poster posterID) {
-        PosterID = posterID;
+    public void setPoster_id(String poster_id) {
+        this.poster_id = poster_id;
     }
 
-    public Judge getJudgeID() {
-        return JudgeID;
+    public Long getJudge_id() {
+        return judge_id;
     }
 
-    public void setJudgeID(Judge judgeID) {
-        JudgeID = judgeID;
+    public void setJudge_id(Long judge_id) {
+        this.judge_id = judge_id;
     }
 
     public int getRound() {
-        return Round;
+        return round;
     }
 
     public void setRound(int round) {
-        Round = round;
+        this.round = round;
     }
 
-    public int getResearch_Score() {
-        return Research_Score;
+    public int getResearch_score() {
+        return research_score;
     }
 
-    public void setResearch_Score(int research_Score) {
-        Research_Score = research_Score;
+    public void setResearch_score(int research_score) {
+        this.research_score = research_score;
     }
 
-    public int getComm_Score() {
-        return Comm_Score;
+    public int getComm_score() {
+        return comm_score;
     }
 
-    public void setComm_Score(int comm_Score) {
-        Comm_Score = comm_Score;
+    public void setComm_score(int comm_score) {
+        this.comm_score = comm_score;
     }
 
-    public int getPoster_Score() {
-        return Poster_Score;
+    public int getPoster_score() {
+        return poster_score;
     }
 
-    public void setPoster_Score(int poster_Score) {
-        Poster_Score = poster_Score;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public LocalDateTime getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Score score = (Score) o;
-        return Round == score.Round &&
-                PosterID.equals(score.PosterID) &&
-                JudgeID.equals(score.JudgeID);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(PosterID, JudgeID, Round);
-    }
-
-    @Override
-    public String toString() {
-        return "Score{" +
-                "PosterID=" + PosterID +
-                ", JudgeID=" + JudgeID +
-                ", Round=" + Round +
-                ", Research_Score=" + Research_Score +
-                ", Comm_Score=" + Comm_Score +
-                ", Poster_Score=" + Poster_Score +
-                '}';
+    public void setPoster_score(int poster_score) {
+        this.poster_score = poster_score;
     }
 }

@@ -1,49 +1,50 @@
 --STATEMENT createScore
-INSERT INTO SCORE(
-    PosterID,
-    JudgeID,
-    Round,
+INSERT INTO score(
+    poster_id,
+    judge_id,
+    round,
     research_score,
     comm_score,
     poster_score
 )
 VALUES(
-    :PosterID,
-    :JudgeID,
-    :Round,
+    :poster_id,
+    :judge_id,
+    :round,
     :research_score,
     :comm_score,
     :poster_score
 );
 
---STATEMENT getScore
-SELECT * FROM SCORE WHERE ScoreID = :ScoreID;
+--STATEMENT readScore
+SELECT * FROM score WHERE id = :id;
 
 --STATEMENT getAllScores
-SELECT * FROM SCORE;
+SELECT * FROM score;
 
 --STATEMENT getScoreByID
-SELECT * FROM SCORE WHERE PosterID = :PosterID and JudgeID = :JudgeID;
+SELECT * FROM score WHERE poster_id = :poster_id and judge_id = :judge_id;
 
 --STATEMENT getScoreByPosterID
-SELECT * FROM SCORE WHERE PosterID = :PosterID;
+SELECT * FROM score WHERE poster_id = :poster_id;
 
 --STATEMENT getScoreByJudgeID
-SELECT * FROM SCORE WHERE JudgeID = :JudgeID;
+SELECT * FROM score WHERE judge_id = :judge_id;
 
 --STATEMENT getScoreByRound
-SELECT * from SCORE WHERE Round = :Round;
+SELECT * from score WHERE round = :round;
 
 --STATEMENT updateScore
-UPDATE SCORE SET 
+UPDATE score SET
     research_score = :research_score,
     comm_score = :comm_score,
     poster_score = :poster_score
 WHERE
-    PosterID = :PosterID and Round = :Round;
+    poster_id = :poster_id and round = :round;
 
 --STATEMENT deleteScorebyPosterID
-DELETE FROM SCORE WHERE PosterID=:PosterID;
+DELETE FROM score WHERE poster_id = :poster_id;
 
---STATEMENT deleteScoreByID
-DELETE FROM SCORE WHERE ScoreID = :ScoreID;
+
+--STATEMENT deleteScore
+DELETE FROM score where id = :id;

@@ -1,10 +1,10 @@
 package edu.uwm.capstone.db;
 
-import edu.uwm.capstone.model.Poster.Poster;
-import edu.uwm.capstone.model.Score.Score;
-import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
+import edu.uwm.capstone.model.Score.Score;
+import edu.uwm.capstone.model.Poster.Poster;
+import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.sql.exception.DaoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,20 +31,28 @@ public class ScoreDao extends BaseDao<Score> {
         // validate input
         if (score == null) {
             throw new DaoException("Request to create a new Score received null");
-        } else if (score.getJudgeID() != null || score.getPosterID() != null) {
-            throw new DaoException("When creating a new Score the JudgeID and PosterID should be empty.");
+        }
+        else if (score.getPoster_id() == null || score.getJudge_id() == null) {
+            throw new DaoException("When creating a new Score the PosterID and JudgeID should not be empty.");
         }
 
         LOG.trace("Creating score {}", score);
 
-        score.setCreatedDate(LocalDateTime.now());
+        MapSqlParameterSource parameters = new MapSqlParameterSource(rowMapper.mapObject(score));
+
+        // score.setCreatedDate(LocalDateTime.now());
         KeyHolder keyHolder = new GeneratedKeyHolder();
+
         int result = this.jdbcTemplate.update(sql("createScore"),
-                new MapSqlParameterSource(rowMapper.mapObject(score)), keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
+                parameters, keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
+
 
         if (result != 1) {
             throw new DaoException("Failed attempt to create score " + score.toString() + " affected " + result + " rows");
         }
+
+        Long id = keyHolder.getKey().longValue();
+        score.setId(id);
 
         return score;
     }
@@ -105,12 +113,12 @@ public class ScoreDao extends BaseDao<Score> {
     public void update(Score score) {
         if (score == null) {
             throw new DaoException("Request to update a Score received null");
-        } else if (score.getScoreID() == null) {
-            throw new DaoException("When updating a Profile the id should not be null");
+        } else if (score.getId() == null) {
+            throw new DaoException("When updating a Score the id should not be null");
         }
 
         LOG.trace("Updating score {}", score);
-        score.setUpdatedDate(LocalDateTime.now());
+        //score.setUpdatedDate(LocalDateTime.now());
         int result = this.jdbcTemplate.update(sql("updateScore"), new MapSqlParameterSource(rowMapper.mapObject(score)));
 
         if (result != 1) {

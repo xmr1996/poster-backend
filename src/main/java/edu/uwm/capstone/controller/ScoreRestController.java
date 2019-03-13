@@ -20,7 +20,7 @@ public class ScoreRestController {
 
     public static final String SCORE_PATH = "/score/";
 
-    private static final Logger logger = LoggerFactory.getLogger(ProfileRestController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ScoreRestController.class);
     private final ScoreDao scoreDao;
 
     @Autowired
@@ -41,8 +41,8 @@ public class ScoreRestController {
     @PostMapping(value = SCORE_PATH)
     public Score create(@RequestBody Score score, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            Assert.notNull(score, "Received null Profile object");
-            Assert.isNull(score.getScoreID(), "Profile ID must be null");
+            Assert.notNull(score, "Received null Score object");
+            Assert.isNull(score.getId(), "Score ID must be null");
             return scoreDao.create(score);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);

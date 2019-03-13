@@ -127,7 +127,7 @@ public class ApplicationConfig {
         ScoreDao scoreDao = new ScoreDao();
         scoreDao.setDataSource(dataSource());
         scoreDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
-        scoreDao.setRowMapper(judgeDaoRowMapper());
+        scoreDao.setRowMapper(scoreDaoRowMapper());
         return scoreDao;
     }
 
