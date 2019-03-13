@@ -30,16 +30,16 @@ CREATE TABLE judges (
 commit;
 
 CREATE TABLE SCORE(
-  ScoreID INT(255) AUTO_INCREMENT,
-  PosterID VARCHAR(50),
-  JudgeID INT(255),
-  Round INT(10),
+  id INT(255) AUTO_INCREMENT,
+  poster_id VARCHAR(255),
+  judge_id INT(255),
+  round INT(10),
   research_score INT(255),
   comm_score INT(255),
   poster_score INT(255),
-  FOREIGN KEY(PosterID) REFERENCES posters(poster_id),
-  FOREIGN KEY(JudgeID) REFERENCES judges(id),
-  CONSTRAINT PK_Sore PRIMARY KEY(PosterID,JudgeID,Round),
-  created_date BIGINT(25) NOT NULL,
-  updated_date BIGINT(25) DEFAULT NULL
+  FOREIGN KEY(poster_id) REFERENCES posters(poster_id),
+  FOREIGN KEY(judge_id) REFERENCES judges(id),
+  CONSTRAINT PK_Sore PRIMARY KEY(poster_id,judge_id,round),
+ -- created_date BIGINT(25) NOT NULL,
+  --updated_date BIGINT(25) DEFAULT NULL
 );

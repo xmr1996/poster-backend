@@ -9,6 +9,7 @@ import java.util.Random;
 
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
+import edu.uwm.capstone.model.Score.Score;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.profile.Profile;
@@ -55,6 +56,17 @@ public class TestDataUtility {
         poster.setDepartment(randomAlphabetic(randomInt(1, 100)));
         poster.setPoster_id(randomAlphabetic(randomInt(1, 100)));
         return poster;
+    }
+
+    public static Score scoreWithTestValues() {
+        Score score = new Score();
+//        score.setPoster_id(randomAlphabetic(randomInt(1, 100)));
+//        score.setJudge_id(randomLong(1L,100L));
+        score.setRound(randomInt(0,2));
+        score.setResearch_score(randomInt(1,50));
+        score.setComm_score(randomInt(1,30));
+        score.setPoster_score(randomInt(1,20));
+        return score;
     }
 
     /**
