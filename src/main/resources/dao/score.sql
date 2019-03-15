@@ -19,6 +19,11 @@ VALUES(
 --STATEMENT readScore
 SELECT * FROM score WHERE id = :id;
 
+--STATEMENT readScoreByRound
+SELECT judges.id, score.round, score.judge_id
+FROM score
+INNER JOIN judges on judges.id = score.judge_id WHERE score.round = round;
+
 --STATEMENT getAllScores
 SELECT * FROM score;
 
