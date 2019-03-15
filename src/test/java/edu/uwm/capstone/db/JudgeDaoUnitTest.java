@@ -45,6 +45,38 @@ public class JudgeDaoUnitTest {
         assertNotNull(createJudge.getId());
     }
 
+    @Test
+    public void createTestJudges() {
+        Judge u_judge = new Judge();
+        u_judge.setRole("Judge");
+        u_judge.setEmail("undergradjudge@email.com");
+        u_judge.setPin(1234);
+        u_judge.setFirst_name("FirstName");
+        u_judge.setLast_name("LastName");
+        u_judge.setStatus("Undergraduate");
+        judgeDao.create(u_judge);
+        assertNotNull(u_judge.getId());
+
+        Judge g_judge = new Judge();
+        g_judge.setRole("Judge");
+        g_judge.setEmail("gradjudge@email.com");
+        g_judge.setPin(1234);
+        g_judge.setFirst_name("FirstName");
+        g_judge.setLast_name("LastName");
+        g_judge.setStatus("Graduate");
+        judgeDao.create(g_judge);
+        assertNotNull(g_judge.getId());
+
+        Judge admin = new Judge();
+        admin.setRole("Administrator");
+        admin.setEmail("admin@email.com");
+        admin.setPin(1234);
+        admin.setFirst_name("FirstName");
+        admin.setLast_name("LastName");
+        judgeDao.create(admin);
+        assertNotNull(admin.getId());
+    }
+
     /**
      * Verify that {@link JudgeDao#create} is working correctly when a request for creating a null object is made.
      */

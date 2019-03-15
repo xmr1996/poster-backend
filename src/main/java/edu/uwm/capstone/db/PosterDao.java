@@ -36,7 +36,7 @@ public class PosterDao extends BaseDao<Poster> {
         LOG.trace("Creating poster {}", poster);
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-
+        poster.setRole("Student");
         int result = this.jdbcTemplate.update(sql("createPoster"),
                 new MapSqlParameterSource(rowMapper.mapObject(poster)), keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
 
@@ -88,6 +88,18 @@ public class PosterDao extends BaseDao<Poster> {
             parameters.addValue("poster_id", posterID);
             return (Poster) this.jdbcTemplate.queryForObject(sql("readPosterByID"),parameters, rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public Poster read(String email, int pin){
+        LOG.trace("Reading Poster []");
+        try{
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            parameters.addValue("email", email);
+            parameters.addValue("pin", pin);
+            return (Poster) this.jdbcTemplate.queryForObject(sql("readPosterEmailPin"),parameters, rowMapper);
+        } catch (EmptyResultDataAccessException e){
             return null;
         }
     }

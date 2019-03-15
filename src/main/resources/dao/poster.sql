@@ -7,7 +7,8 @@ INSERT INTO posters (
   last_name,
   status,
   pin,
-  department
+  department,
+  role
 ) VALUES (
   :poster_id,
   :title,
@@ -17,6 +18,7 @@ INSERT INTO posters (
   :status,
   :pin,
   :department,
+  :role
 );
 
 --STATEMENT readPoster
@@ -48,4 +50,7 @@ WHERE
 
 --STATEMENT deletePoster
 DELETE FROM posters WHERE id = :id;
+
+--STATEMENT readPosterEmailPin
+SELECT * FROM posters WHERE email = :email and pin = :pin;
 
