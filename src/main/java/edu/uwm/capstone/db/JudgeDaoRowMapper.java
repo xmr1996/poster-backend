@@ -17,7 +17,8 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
         LAST_NAME(),
         EMAIL(),
         STATUS(),
-        PIN()
+        PIN(),
+        ROLE()
         ;
 
         private String columnName;
@@ -44,6 +45,7 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
         map.put(EMAIL.getColumnName(), object.getEmail());
         map.put(STATUS.getColumnName(), object.getStatus());
         map.put(PIN.getColumnName(), object.getPin());
+        map.put(ROLE.getColumnName(), object.getRole());
         return map;
     }
 
@@ -56,6 +58,7 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
         folder.setEmail(rs.getString(EMAIL.getColumnName()));
         folder.setStatus(rs.getString(STATUS.getColumnName()));
         folder.setPin(rs.getInt(PIN.getColumnName()));
+        folder.setRole(rs.getString(ROLE.getColumnName()));
         return folder;
     }
 }

@@ -81,6 +81,18 @@ public class JudgeDao extends BaseDao<Judge> {
         }
     }
 
+    public Judge read(String email, int pin){
+        LOG.trace("Reading Judge {}");
+        try{
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            parameters.addValue("email", email);
+            parameters.addValue("pin", pin);
+            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudgeEmailPin"),parameters, rowMapper);
+        }catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
     /**
      * Update the provided {@link Judge} object.
      *

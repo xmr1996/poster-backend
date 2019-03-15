@@ -15,7 +15,8 @@ CREATE TABLE posters (
   last_name VARCHAR(255),
   status VARCHAR(255),
   pin INT(255),
-  department VARCHAR(255)
+  department VARCHAR(255),
+  role VARCHAR(255)
 );
 
 CREATE TABLE judges (
@@ -24,7 +25,8 @@ CREATE TABLE judges (
   last_name VARCHAR(255),
   status VARCHAR(255),
   pin INT(255),
-  email VARCHAR(255)
+  email VARCHAR(255),
+  role VARCHAR(255)
 );
 
 commit;

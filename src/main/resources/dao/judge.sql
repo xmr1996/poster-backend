@@ -4,13 +4,15 @@ INSERT INTO judges (
   last_name,
   status,
   pin,
-  email
+  email,
+  role
 ) VALUES (
   :first_name,
   :last_name,
   :status,
   :pin,
   :email,
+  :role
 );
 
 --STATEMENT readJudges
@@ -35,4 +37,7 @@ UPDATE judges SET
   email = :email
 WHERE
   id = :id;
+
+--STATEMENT readJudgeEmailPin
+SELECT * FROM judges WHERE email = :email and pin = :pin;
 

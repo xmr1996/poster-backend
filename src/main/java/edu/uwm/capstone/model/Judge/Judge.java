@@ -9,6 +9,7 @@ public class Judge {
     private String status;
     private String email;
     private int pin;
+    private String role;
 
     public Long getId() {
         return id;
@@ -56,6 +57,14 @@ public class Judge {
 
     public void setPin(int pin) {
         this.pin = pin;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

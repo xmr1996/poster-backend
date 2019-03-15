@@ -20,6 +20,7 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         STATUS(),
         PIN(),
         DEPARTMENT(),
+        ROLE()
         ;
 
         private String columnName;
@@ -48,6 +49,7 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         poster.setStatus(rs.getString(STATUS.getColumnName()));
         poster.setPin(rs.getInt(PIN.getColumnName()));
         poster.setDepartment(rs.getString(DEPARTMENT.getColumnName()));
+        poster.setRole(rs.getString(ROLE.getColumnName()));
         return poster;
     }
 
@@ -63,6 +65,7 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         map.put(STATUS.getColumnName(),object.getStatus());
         map.put(PIN.getColumnName(),object.getPin());
         map.put(DEPARTMENT.getColumnName(),object.getDepartment());
+        map.put(ROLE.getColumnName(), object.getRole());
         return map;
     }
 

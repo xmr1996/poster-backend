@@ -12,6 +12,7 @@ public class Poster {
     private String status;
     private int pin;
     private String department;
+    private String role;
 
     public Long getId() {
         return id;
@@ -84,6 +85,12 @@ public class Poster {
     public void setDepartment(String department) {
         this.department = department;
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role){ this.role = role; }
 
     @Override
     public boolean equals(Object o) {
