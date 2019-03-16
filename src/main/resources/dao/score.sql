@@ -40,7 +40,7 @@ UPDATE score SET
     comm_score = :comm_score,
     poster_score = :poster_score
 WHERE
-    poster_id = :poster_id and round = :round;
+    poster_id = :poster_id and round = :round and judge_id = :judge_id;
 
 --STATEMENT deleteScorebyPosterID
 DELETE FROM score WHERE poster_id = :poster_id;
