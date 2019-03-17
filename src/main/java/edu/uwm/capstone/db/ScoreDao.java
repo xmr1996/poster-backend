@@ -73,17 +73,6 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
-    public List<Poster> readByRound(long round, long judgeID){
-        LOG.trace("Reading Score {}", round, judgeID);
-        try{
-            MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue("round", round);
-            parameters.addValue("judge_id", judgeID);
-            return (List<Poster>) this.jdbcTemplate.query(sql("readScoreByRound"), rowMapper);
-        }catch(EmptyResultDataAccessException e){
-            return null;
-        }
-    }
 
 
     /**
