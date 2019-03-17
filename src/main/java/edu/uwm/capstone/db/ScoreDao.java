@@ -79,7 +79,7 @@ public class ScoreDao extends BaseDao<Score> {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("round", round);
             parameters.addValue("judge_id", judgeID);
-            return (List<Poster>) this.jdbcTemplate.queryForObject(sql("readScoreByRound"),parameters, rowMapper);
+            return (List<Poster>) this.jdbcTemplate.query(sql("readScoreByRound"), rowMapper);
         }catch(EmptyResultDataAccessException e){
             return null;
         }
