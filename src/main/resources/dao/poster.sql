@@ -8,6 +8,8 @@ INSERT INTO posters (
   status,
   pin,
   department,
+  votes,
+  has_voted,
   role
 ) VALUES (
   :poster_id,
@@ -18,6 +20,8 @@ INSERT INTO posters (
   :status,
   :pin,
   :department,
+  :votes,
+  :has_voted,
   :role
 );
 
@@ -26,6 +30,12 @@ SELECT * FROM posters WHERE id = :id;
 
 --STATEMENT readPosterByID
 SELECT * FROM posters where poster_id = :poster_id;
+
+--STATEMENT readGradWinners
+SELECT * FROM posters where status = 'Graduate' and votes = (SELECT MAX(votes) FROM posters);
+
+--STATEMENT readUndergradWinners
+SELECT * FROM posters where status = 'Undergraduate' and votes = (SELECT MAX(votes) FROM posters);
 
 --STATEMENT getPosters
 SELECT * FROM posters;
@@ -44,7 +54,10 @@ UPDATE posters SET
   last_name = :last_name,
   pin = :pin,
   status = :status,
-  department = :department
+  department = :department,
+  votes = :votes,
+  has_voted = :has_voted,
+  role = :role
 WHERE
   id = :id;
 
