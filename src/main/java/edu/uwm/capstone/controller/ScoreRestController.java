@@ -144,4 +144,23 @@ public class ScoreRestController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }
     }
+
+    /**
+     * Get the {@link Score}
+     *
+     * @return {@link List<Score>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Read All Scores")
+    @GetMapping(value = SCORE_PATH)
+    public List<Score> readAllScore(@ApiIgnore HttpServletResponse response) throws IOException {
+        List<Score> scores = scoreDao.read();
+
+        if (scores.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Scores were not found.");
+            return null;
+        }
+
+        return scores;
+    }
 }
