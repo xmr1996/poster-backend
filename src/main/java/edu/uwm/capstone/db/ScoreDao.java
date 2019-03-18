@@ -136,7 +136,7 @@ public class ScoreDao extends BaseDao<Score> {
     @Override
     public void delete(long id) {
         LOG.trace("Deleting score {}", id);
-        int result = this.jdbcTemplate.update(sql("deleteScore"), new MapSqlParameterSource("ScoreID", id));
+        int result = this.jdbcTemplate.update(sql("deleteScore"), new MapSqlParameterSource("id", id));
         if (result != 1) {
             throw new DaoException("Failed attempt to delete score " + id + " affected " + result + " rows");
         }

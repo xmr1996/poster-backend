@@ -24,13 +24,13 @@ import java.util.List;
 public class PosterScoreDao extends BaseDao<PosterScore> {
     private static final Logger LOG = LoggerFactory.getLogger(PosterScoreDao.class);
 
-    public List<PosterScore> readByRound(long round, long judgeID){
+    public List<PosterScore> readByRoundandJudge(long round, long judgeID){
         LOG.trace("Reading Score {}", round, judgeID);
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("round", round);
             parameters.addValue("judge_id", judgeID);
-            return (List<PosterScore>) this.jdbcTemplate.query(sql("readScoreByRound"), parameters, rowMapper);
+            return (List<PosterScore>) this.jdbcTemplate.query(sql("readScoreByRoundandJudge"), parameters, rowMapper);
         }catch(EmptyResultDataAccessException e){
             return null;
         }
@@ -44,7 +44,7 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
      */
     @Override
     public PosterScore read(long id) {
-
+        return null;
     }
 
 
@@ -56,7 +56,7 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
      */
     @Override
     public void update(PosterScore score) {
-
+        return;
     }
 
     /**
@@ -66,13 +66,13 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
      */
     @Override
     public void delete(long id) {
-
+        return;
     }
 
 
     @Override
     public PosterScore create(PosterScore score) {
-
+        return null;
     }
 
 
