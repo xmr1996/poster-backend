@@ -8,7 +8,7 @@ import java.util.Map;
 import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 
-import static edu.uwm.capstone.db.PosterScoreDaoRowMapper.PosterScoreColumnType.*;
+import static edu.uwm.capstone.db.PosterScoreRowMapper.PosterScoreColumnType.*;
 
 public class PosterScoreRowMapper extends BaseRowMapper<PosterScore> {
     public enum PosterScoreColumnType{
