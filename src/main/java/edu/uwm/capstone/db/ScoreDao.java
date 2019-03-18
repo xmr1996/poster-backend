@@ -107,7 +107,7 @@ public class ScoreDao extends BaseDao<Score> {
     public List<Score> read(){
         LOG.trace("Read Score{}");
         try {
-            return (List<Score>) this.jdbcTemplate.query(sql("getAllScores"), rowMapper);
+            return (List<Score>) this.jdbcTemplate.query(sql("readAllScores"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

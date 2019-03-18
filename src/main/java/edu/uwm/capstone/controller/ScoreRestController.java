@@ -77,35 +77,6 @@ public class ScoreRestController {
     }
 
     /**
-     * Get the provided {@link List<Score>}
-     *
-     * @param poster   {@link Poster}
-     * @param response {@link HttpServletResponse}
-     * @return {@link List<Score>}
-     * @throws IOException if error response cannot be created.
-     */
-    @ApiOperation(value = "Get Poster Scores")
-    @GetMapping(value = SCORE_PATH)
-    public List<Score> read(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
-        try {
-            List<Score> scores = scoreDao.read(poster);
-            if (scores.isEmpty()) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Scores for " + poster.getId() + " were not found.");
-                return null;
-            }
-            return scores;
-        } catch (IllegalArgumentException e) {
-            logger.error(e.getMessage(), e);
-            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
-            return null;
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-            return null;
-        }
-    }
-
-    /**
      * Updates the provided {@link Score}
      *
      * @param score    {@link Score}

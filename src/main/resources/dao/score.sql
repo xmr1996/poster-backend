@@ -19,7 +19,7 @@ VALUES(
 --STATEMENT readScore
 SELECT * FROM score WHERE id = :id;
 
---STATEMENT getAllScores
+--STATEMENT readAllScores
 SELECT * FROM score;
 
 --STATEMENT getScoreByID
