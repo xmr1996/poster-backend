@@ -36,8 +36,7 @@ Build:
     - docker build -t registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_PATH:$CI_COMMIT_SHA -t registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_PATH:latest .
     - docker push registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_PATH:$CI_COMMIT_SHA
     - docker push registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_PATH:latest
-    - docker rmi registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_PATH:latest registry.uwm-nm-te-capstone.com:8083/$CI_PROJECT_PATH:$CI_COMMIT_SHA
-    - docker rmi $(docker images | grep '<none>' | awk '{{ print $3 }}')
+    
   only:
     - master
   when: on_success
