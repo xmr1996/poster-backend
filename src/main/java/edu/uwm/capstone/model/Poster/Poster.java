@@ -12,6 +12,8 @@ public class Poster {
     private String status;
     private int pin;
     private String department;
+    private String has_voted;
+    private int votes;
     private String role;
 
     public Long getId() {
@@ -91,6 +93,22 @@ public class Poster {
     }
 
     public void setRole(String role){ this.role = role; }
+
+    public String getHas_voted() {
+        return has_voted;
+    }
+
+    public void setHas_voted(String has_voted) {
+        this.has_voted = has_voted;
+    }
+
+    public int getVotes() {
+        return votes;
+    }
+
+    public void setVotes(int votes) {
+        this.votes = votes;
+    }
 
     @Override
     public boolean equals(Object o) {
