@@ -58,7 +58,7 @@ public class ScoreDao extends BaseDao<Score> {
     }
 
     /**
-     * Retrieve a {@link Score} object by its {@link Score#getScoreID()}.
+     * Retrieve a {@link Score} object by its {@link Score#getId()}.
      *
      * @param id long
      * @return {@link Score}
@@ -73,8 +73,10 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
+
+
     /**
-     * Retrieve a {@link Score} object by its {@link Score#getJudgeID#getPosterID}.
+     * Retrieve a {@link Score} object by its {@link Score#getId#getPosterID}.
      *
      * @param judgeID long
      * @param posterID long
@@ -127,14 +129,14 @@ public class ScoreDao extends BaseDao<Score> {
     }
 
     /**
-     * Delete a {@link Score} object by its {@link Score#getScoreID()}.
+     * Delete a {@link Score} object by its {@link Score#getId()} ()}.
      *
      * @param id long
      */
     @Override
     public void delete(long id) {
         LOG.trace("Deleting score {}", id);
-        int result = this.jdbcTemplate.update(sql("deleteScore"), new MapSqlParameterSource("ScoreID", id));
+        int result = this.jdbcTemplate.update(sql("deleteScore"), new MapSqlParameterSource("id", id));
         if (result != 1) {
             throw new DaoException("Failed attempt to delete score " + id + " affected " + result + " rows");
         }

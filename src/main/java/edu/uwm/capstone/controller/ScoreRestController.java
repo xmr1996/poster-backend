@@ -1,5 +1,7 @@
 package edu.uwm.capstone.controller;
 
+import edu.uwm.capstone.db.PosterScoreDao;
+import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.db.ScoreDao;
 import edu.uwm.capstone.model.Score.Score;
@@ -22,17 +24,18 @@ public class ScoreRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(ScoreRestController.class);
     private final ScoreDao scoreDao;
+    private final PosterScoreDao posterScoreDao;
 
     @Autowired
-    public ScoreRestController(ScoreDao scoreDao) {
+    public ScoreRestController(ScoreDao scoreDao,PosterScoreDao posterScoreDao) {
         this.scoreDao = scoreDao;
+        this.posterScoreDao = posterScoreDao;
     }
-
 
     /**
      * Creates the provided {@link Score}
      *
-     * @param score  {@link Score}
+     * @param score    {@link Score}
      * @param response {@link HttpServletResponse}
      * @return {@link Score}
      * @throws IOException if error response cannot be created.
@@ -55,11 +58,21 @@ public class ScoreRestController {
         }
     }
 
+    @ApiOperation(value = "Read score by round and judge_id")
+    @GetMapping(value = SCORE_PATH + "{round}/{judge_id}")
+    public List<PosterScore> readByRoundandJudge(@PathVariable String round, @PathVariable String judge_id, @ApiIgnore HttpServletResponse response) throws IOException {
+        List<PosterScore> posters = posterScoreDao.readByRoundandJudge(Long.parseLong(round),Long.parseLong(judge_id));
+        if(posters == null){
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Score round number" + round + " and judge id: " + judge_id + " not found.");
+            return null;
+        }
+        return posters;
+    }
     /**
      * Get the {@link Score} by Id
      *
-     * @param scoreId {@link Score#getScoreID()}
-     * @param response  {@link HttpServletResponse}
+     * @param scoreId  {@link Score#getId()}
+     * @param response {@link HttpServletResponse}
      * @return {@link Score} retrieved from the database
      * @throws IOException if error response cannot be created.
      */
@@ -79,7 +92,7 @@ public class ScoreRestController {
     /**
      * Get the provided {@link List<Score>}
      *
-     * @param poster  {@link Poster}
+     * @param poster   {@link Poster}
      * @param response {@link HttpServletResponse}
      * @return {@link List<Score>}
      * @throws IOException if error response cannot be created.
@@ -89,7 +102,7 @@ public class ScoreRestController {
     public List<Score> read(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
             List<Score> scores = scoreDao.read(poster);
-            if(scores.isEmpty()){
+            if (scores.isEmpty()) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Scores for " + poster.getId() + " were not found.");
                 return null;
             }
@@ -102,6 +115,46 @@ public class ScoreRestController {
             logger.error(e.getMessage(), e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
             return null;
+        }
+    }
+
+    /**
+     * Updates the provided {@link Score}
+     *
+     * @param score    {@link Score}
+     * @param response {@link HttpServletResponse}
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Update Score")
+    @PutMapping(value = SCORE_PATH)
+    public void update(@RequestBody Score score, @ApiIgnore HttpServletResponse response) throws IOException {
+        try {
+            Assert.notNull(score.getId(), "Score Id must not be null");
+            Assert.notNull(scoreDao.read(score.getId()), "Could not update score " + score.getId() + " - record not found.");
+            scoreDao.update(score);
+        } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        }
+    }
+
+    /**
+     * Delete the {@link Score} by Id
+     *
+     * @param scoreId {@link Score#getId}
+     * @param response  {@link HttpServletResponse}
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Delete Score by ID")
+    @DeleteMapping(value = SCORE_PATH + "{scoreId}")
+    public void delete(@PathVariable Long scoreId, @ApiIgnore HttpServletResponse response) throws IOException {
+        try {
+            scoreDao.delete(scoreId);
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }
     }
 }

@@ -47,15 +47,15 @@ public class ScoreDaoUnitTest {
     }
 
 
-//    /**
-//     * Verify that {@link ScoreDao#create} is working correctly.
-//     */
-//    @Test
-//    public void create() {
+    /**
+     * Verify that {@link ScoreDao#create} is working correctly.
+     */
+    @Test
+    public void create() {
 //        Poster createPoster = TestDataUtility.posterWithTestValues();
 //        String id1 = createPoster.getPoster_id();
-////        assertNotNull(id1);
-////        Judge createJudge = TestDataUtility.judgeWithTestValues();
+//        assertNotNull(id1);
+//        Judge createJudge = TestDataUtility.judgeWithTestValues();
 //        Long id2 = createJudge.getId();
 //        assertNotNull(id2);
 //        Score createScore = TestDataUtility.scoreWithTestValues();
@@ -63,6 +63,6 @@ public class ScoreDaoUnitTest {
 //        createScore.setJudge_id(id2);
 //        scoreDao.create(createScore);
 //        assertNotNull(createScore.getId());
-    //}
+    }
 
 }

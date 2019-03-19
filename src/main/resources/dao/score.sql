@@ -16,10 +16,17 @@ VALUES(
     :poster_score
 );
 
---STATEMENT readScore
-SELECT * FROM score WHERE id = :id;
+--STATEMENT readById
+SELECT * FROM score where id = :id;
 
---STATEMENT getAllScores
+--STATEMENT readScoreByRoundandJudge
+SELECT posters.*, score.*
+FROM score
+INNER JOIN posters
+ON score.poster_id = posters.poster_id
+WHERE score.round = :round and score.judge_id = :judge_id;
+
+--STATEMENT readScore
 SELECT * FROM score;
 
 --STATEMENT getScoreByID
@@ -40,7 +47,7 @@ UPDATE score SET
     comm_score = :comm_score,
     poster_score = :poster_score
 WHERE
-    poster_id = :poster_id and round = :round;
+    poster_id = :poster_id and round = :round and judge_id = :judge_id;
 
 --STATEMENT deleteScorebyPosterID
 DELETE FROM score WHERE poster_id = :poster_id;
