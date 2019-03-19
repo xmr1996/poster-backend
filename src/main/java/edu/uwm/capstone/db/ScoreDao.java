@@ -43,7 +43,7 @@ public class ScoreDao extends BaseDao<Score> {
         // score.setCreatedDate(LocalDateTime.now());
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        int result = this.jdbcTemplate.update(sql("createScore"),
+        int result = this.jdbcTemplate.update(sql("upsertScore"),
                 parameters, keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
 
 
@@ -67,7 +67,7 @@ public class ScoreDao extends BaseDao<Score> {
     public Score read(long id) {
         LOG.trace("Reading score {}", id);
         try {
-            return (Score) this.jdbcTemplate.queryForObject(sql("readScore"), new MapSqlParameterSource("id", id), rowMapper);
+            return (Score) this.jdbcTemplate.queryForObject(sql("readById"), new MapSqlParameterSource("id", id), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -121,7 +121,7 @@ public class ScoreDao extends BaseDao<Score> {
 
         LOG.trace("Updating score {}", score);
         //score.setUpdatedDate(LocalDateTime.now());
-        int result = this.jdbcTemplate.update(sql("updateScore"), new MapSqlParameterSource(rowMapper.mapObject(score)));
+        int result = this.jdbcTemplate.update(sql("upsertScore"), new MapSqlParameterSource(rowMapper.mapObject(score)));
 
         if (result != 1) {
             throw new DaoException("Failed attempt to update score " + score.toString() + " affected " + result + " rows");
