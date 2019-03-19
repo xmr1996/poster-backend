@@ -135,6 +135,19 @@ public class ApplicationConfig {
     public ScoreDaoRowMapper scoreDaoRowMapper() { return new ScoreDaoRowMapper(); }
 
     @Bean
+    public AssignmentDao assignmentDao() {
+        AssignmentDao assignmentDao = new AssignmentDao();
+        assignmentDao.setDataSource(dataSource());
+        assignmentDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        assignmentDao.setRowMapper(assignmentDaoRowMapper());
+        return assignmentDao;
+    }
+
+    @Bean
+    public AssignmentDaoRowMapper assignmentDaoRowMapper() { return new AssignmentDaoRowMapper(); }
+
+
+    @Bean
     public PosterDao posterDao(){
         PosterDao posterDao = new PosterDao();
         posterDao.setDataSource(dataSource());

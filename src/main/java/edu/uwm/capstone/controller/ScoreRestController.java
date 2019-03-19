@@ -1,8 +1,9 @@
 package edu.uwm.capstone.controller;
 
-import edu.uwm.capstone.model.Poster.Poster;
+import edu.uwm.capstone.db.AssignmentDao;
 import edu.uwm.capstone.db.ScoreDao;
 import edu.uwm.capstone.model.Score.Score;
+import edu.uwm.capstone.model.Assignment.Assignment;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,10 +23,12 @@ public class ScoreRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(ScoreRestController.class);
     private final ScoreDao scoreDao;
+    private final AssignmentDao assignmentDao;
 
     @Autowired
-    public ScoreRestController(ScoreDao scoreDao) {
+    public ScoreRestController(ScoreDao scoreDao, AssignmentDao assignmentDao) {
         this.scoreDao = scoreDao;
+        this.assignmentDao = assignmentDao;
     }
 
 
@@ -133,5 +136,25 @@ public class ScoreRestController {
         }
 
         return scores;
+    }
+
+
+    /**
+     * Get the {@link Assignment}
+     *
+     * @return {@link List<Assignment>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Read All Assignments")
+    @GetMapping(value = SCORE_PATH + "assignments")
+    public List<Assignment> readAllAssignments(@ApiIgnore HttpServletResponse response) throws IOException {
+        List<Assignment> assignments = assignmentDao.read();
+
+        if (assignments.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No assignments were found.");
+            return null;
+        }
+
+        return assignments;
     }
 }

@@ -48,3 +48,6 @@ DELETE FROM score WHERE poster_id = :poster_id;
 
 --STATEMENT deleteScore
 DELETE FROM score where id = :id;
+
+--STATEMENT getAllAssignments
+SELECT id, poster_id, judge_id from score;
