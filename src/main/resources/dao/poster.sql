@@ -32,10 +32,10 @@ SELECT * FROM posters WHERE id = :id;
 SELECT * FROM posters where poster_id = :poster_id;
 
 --STATEMENT readGradWinners
-SELECT * FROM posters where status = 'Graduate' and votes = (SELECT MAX(votes) FROM posters);
+SELECT * FROM posters where status = 'Graduate' and votes = (SELECT MAX(votes) FROM posters where status = 'Graduate');
 
 --STATEMENT readUndergradWinners
-SELECT * FROM posters where status = 'Undergraduate' and votes = (SELECT MAX(votes) FROM posters);
+SELECT * FROM posters where status = 'Undergraduate' and votes = (SELECT MAX(votes) FROM posters where status = 'Undergraduate');
 
 --STATEMENT getPosters
 SELECT * FROM posters;
