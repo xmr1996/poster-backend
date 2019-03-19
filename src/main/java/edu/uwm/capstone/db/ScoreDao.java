@@ -73,6 +73,8 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
+
+
     /**
      * Retrieve a {@link Score} object by its {@link Score#getId#getPosterID}.
      *
