@@ -27,12 +27,13 @@ public class ScoreRestController {
     private static final Logger logger = LoggerFactory.getLogger(ScoreRestController.class);
     private final ScoreDao scoreDao;
     private final AssignmentDao assignmentDao;
+    private final PosterScoreDao posterScoreDao;
 
     @Autowired
     public ScoreRestController(ScoreDao scoreDao, AssignmentDao assignmentDao) {
         this.scoreDao = scoreDao;
         this.assignmentDao = assignmentDao;
-    private final PosterScoreDao posterScoreDao;
+    }
 
     @Autowired
     public ScoreRestController(ScoreDao scoreDao,PosterScoreDao posterScoreDao) {
