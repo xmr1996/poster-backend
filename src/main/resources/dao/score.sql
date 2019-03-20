@@ -86,4 +86,5 @@ VALUES(
 ON DUPLICATE KEY UPDATE
     research_score = :research_score,
     comm_score = :comm_score,
-    poster_score = :poster_score;
+    poster_score = :poster_score,
+    total_score = :total_score;
