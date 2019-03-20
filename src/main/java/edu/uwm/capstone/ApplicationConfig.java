@@ -146,6 +146,16 @@ public class ApplicationConfig {
     @Bean
     public AssignmentDaoRowMapper assignmentDaoRowMapper() { return new AssignmentDaoRowMapper(); }
 
+    public PosterScoreDao posterscoreDao() {
+        PosterScoreDao posterscoreDao = new PosterScoreDao();
+        posterscoreDao.setDataSource(dataSource());
+        posterscoreDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        posterscoreDao.setRowMapper(posterscoreDaoRowMapper());
+        return posterscoreDao;
+    }
+
+    @Bean
+    public PosterScoreRowMapper posterscoreDaoRowMapper() { return new PosterScoreRowMapper(); }
 
     @Bean
     public PosterDao posterDao(){

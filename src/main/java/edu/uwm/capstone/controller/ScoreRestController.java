@@ -1,6 +1,9 @@
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.db.AssignmentDao;
+import edu.uwm.capstone.db.PosterScoreDao;
+import edu.uwm.capstone.model.PosterScore.PosterScore;
+import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.db.ScoreDao;
 import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.model.Assignment.Assignment;
@@ -29,8 +32,13 @@ public class ScoreRestController {
     public ScoreRestController(ScoreDao scoreDao, AssignmentDao assignmentDao) {
         this.scoreDao = scoreDao;
         this.assignmentDao = assignmentDao;
-    }
+    private final PosterScoreDao posterScoreDao;
 
+    @Autowired
+    public ScoreRestController(ScoreDao scoreDao,PosterScoreDao posterScoreDao) {
+        this.scoreDao = scoreDao;
+        this.posterScoreDao = posterScoreDao;
+    }
 
     /**
      * Creates the provided {@link Score}
@@ -58,6 +66,16 @@ public class ScoreRestController {
         }
     }
 
+    @ApiOperation(value = "Read score by round and judge_id")
+    @GetMapping(value = SCORE_PATH + "{round}/{judge_id}")
+    public List<PosterScore> readByRoundandJudge(@PathVariable String round, @PathVariable String judge_id, @ApiIgnore HttpServletResponse response) throws IOException {
+        List<PosterScore> posters = posterScoreDao.readByRoundandJudge(Long.parseLong(round),Long.parseLong(judge_id));
+        if(posters == null){
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Score round number" + round + " and judge id: " + judge_id + " not found.");
+            return null;
+        }
+        return posters;
+    }
     /**
      * Get the {@link Score} by Id
      *

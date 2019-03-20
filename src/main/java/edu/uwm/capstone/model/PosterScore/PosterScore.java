@@ -1,10 +1,9 @@
-package edu.uwm.capstone.model.Poster;
+package edu.uwm.capstone.model.PosterScore;
 
 import java.util.Objects;
 
-public class Poster {
+public class PosterScore {
     protected Long id;
-    private String poster_id;
     private String title;
     private String email;
     private String first_name;
@@ -12,9 +11,14 @@ public class Poster {
     private String status;
     private int pin;
     private String department;
-    private String has_voted;
-    private int votes;
     private String role;
+    private Long score_id;
+    private String poster_id;
+    private Long judge_id;
+    private int round;
+    private int research_score;
+    private int comm_score;
+    private int poster_score;
 
     public Long getId() {
         return id;
@@ -22,14 +26,6 @@ public class Poster {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getPoster_id() {
-        return poster_id;
-    }
-
-    public void setPoster_id(String poster_id) {
-        this.poster_id = poster_id;
     }
 
     public String getTitle() {
@@ -92,34 +88,65 @@ public class Poster {
         return role;
     }
 
-    public void setRole(String role){ this.role = role; }
-
-    public String getHas_voted() {
-        return has_voted;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public void setHas_voted(String has_voted) {
-        this.has_voted = has_voted;
+    public Long getScore_id() {
+        return score_id;
     }
 
-    public int getVotes() {
-        return votes;
+    public void setScore_id(Long score_id) {
+        this.score_id = score_id;
     }
 
-    public void setVotes(int votes) {
-        this.votes = votes;
+    public String getPoster_id() {
+        return poster_id;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Poster poster = (Poster) o;
-        return Objects.equals(id, poster.id);
+    public void setPoster_id(String poster_id) {
+        this.poster_id = poster_id;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
+    public Long getJudge_id() {
+        return judge_id;
     }
+
+    public void setJudge_id(Long judge_id) {
+        this.judge_id = judge_id;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+    public void setRound(int round) {
+        this.round = round;
+    }
+
+    public int getResearch_score() {
+        return research_score;
+    }
+
+    public void setResearch_score(int research_score) {
+        this.research_score = research_score;
+    }
+
+    public int getComm_score() {
+        return comm_score;
+    }
+
+    public void setComm_score(int comm_score) {
+        this.comm_score = comm_score;
+    }
+
+    public int getPoster_score() {
+        return poster_score;
+    }
+
+    public void setPoster_score(int poster_score) {
+        this.poster_score = poster_score;
+    }
+
+
 }
