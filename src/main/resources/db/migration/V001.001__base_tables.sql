@@ -16,6 +16,8 @@ CREATE TABLE posters (
   status VARCHAR(255),
   pin INT(255),
   department VARCHAR(255),
+  votes INT(255),
+  has_voted VARCHAR(255),
   role VARCHAR(255)
 );
 
