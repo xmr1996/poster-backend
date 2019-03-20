@@ -9,6 +9,9 @@ public class Score {
     private int comm_score;
     private int poster_score;
 
+
+    private int total_score;
+
     public Long getId() {
         return id;
     }
@@ -64,4 +67,13 @@ public class Score {
     public void setPoster_score(int poster_score) {
         this.poster_score = poster_score;
     }
+
+    public int getTotal_score() {
+        return total_score;
+    }
+
+    public void setTotal_score(int total_score) {
+        this.total_score = total_score;
+    }
+
 }

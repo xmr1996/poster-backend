@@ -124,6 +124,7 @@ public class ScoreDaoUnitTest {
         g_score1.setResearch_score(randomInt(1,50));
         g_score1.setComm_score(randomInt(1,30));
         g_score1.setPoster_score(randomInt(1,20));
+        g_score1.setTotal_score(g_score1.getResearch_score()+ g_score1.getComm_score()+g_score1.getPoster_score());
         scoreDao.create(g_score1);
         assertNotNull(g_score1.getId());
 
@@ -134,6 +135,7 @@ public class ScoreDaoUnitTest {
         g_score2.setResearch_score(randomInt(1,50));
         g_score2.setComm_score(randomInt(1,30));
         g_score2.setPoster_score(randomInt(1,20));
+        g_score2.setTotal_score(g_score2.getResearch_score()+ g_score2.getComm_score()+g_score2.getPoster_score());
         scoreDao.create(g_score2);
         assertNotNull(g_score2.getId());
 
@@ -144,6 +146,7 @@ public class ScoreDaoUnitTest {
         g_score3.setResearch_score(randomInt(1,50));
         g_score3.setComm_score(randomInt(1,30));
         g_score3.setPoster_score(randomInt(1,20));
+        g_score3.setTotal_score(g_score3.getResearch_score()+ g_score3.getComm_score()+g_score3.getPoster_score());
         scoreDao.create(g_score3);
         assertNotNull(g_score3.getId());
 
@@ -212,6 +215,7 @@ public class ScoreDaoUnitTest {
         u_score1.setResearch_score(randomInt(1,50));
         u_score1.setComm_score(randomInt(1,30));
         u_score1.setPoster_score(randomInt(1,20));
+        u_score1.setTotal_score(u_score1.getResearch_score()+ u_score1.getComm_score()+u_score1.getPoster_score());
         scoreDao.create(u_score1);
         assertNotNull(u_score1.getId());
 
@@ -222,6 +226,7 @@ public class ScoreDaoUnitTest {
         u_score2.setResearch_score(randomInt(1,50));
         u_score2.setComm_score(randomInt(1,30));
         u_score2.setPoster_score(randomInt(1,20));
+        u_score2.setTotal_score(u_score2.getResearch_score()+ u_score2.getComm_score()+u_score2.getPoster_score());
         scoreDao.create(u_score2);
         assertNotNull(u_score2.getId());
 
@@ -232,6 +237,7 @@ public class ScoreDaoUnitTest {
         u_score3.setResearch_score(randomInt(1,50));
         u_score3.setComm_score(randomInt(1,30));
         u_score3.setPoster_score(randomInt(1,20));
+        u_score3.setTotal_score(u_score3.getResearch_score()+ u_score3.getComm_score()+u_score3.getPoster_score());
         scoreDao.create(u_score3);
         assertNotNull(u_score3.getId());
 
@@ -242,6 +248,7 @@ public class ScoreDaoUnitTest {
         u_score4.setResearch_score(randomInt(1,50));
         u_score4.setComm_score(randomInt(1,30));
         u_score4.setPoster_score(randomInt(1,20));
+        u_score4.setTotal_score(u_score4.getResearch_score()+ u_score4.getComm_score()+u_score4.getPoster_score());
         scoreDao.create(u_score4);
         assertNotNull(u_score4.getId());
 
@@ -252,6 +259,7 @@ public class ScoreDaoUnitTest {
         u_score5.setResearch_score(randomInt(1,50));
         u_score5.setComm_score(randomInt(1,30));
         u_score5.setPoster_score(randomInt(1,20));
+        u_score5.setTotal_score(u_score5.getResearch_score()+ u_score5.getComm_score()+u_score5.getPoster_score());
         scoreDao.create(u_score5);
         assertNotNull(u_score5.getId());
 
@@ -262,6 +270,7 @@ public class ScoreDaoUnitTest {
         u_score6.setResearch_score(randomInt(1,50));
         u_score6.setComm_score(randomInt(1,30));
         u_score6.setPoster_score(randomInt(1,20));
+        u_score6.setTotal_score(u_score6.getResearch_score()+ u_score6.getComm_score()+u_score6.getPoster_score());
         scoreDao.create(u_score6);
         assertNotNull(u_score6.getId());
     }
