@@ -30,14 +30,9 @@ public class ScoreRestController {
     private final PosterScoreDao posterScoreDao;
 
     @Autowired
-    public ScoreRestController(ScoreDao scoreDao, AssignmentDao assignmentDao) {
+    public ScoreRestController(ScoreDao scoreDao, AssignmentDao assignmentDao, PosterScoreDao posterScoreDao) {
         this.scoreDao = scoreDao;
         this.assignmentDao = assignmentDao;
-    }
-
-    @Autowired
-    public ScoreRestController(ScoreDao scoreDao,PosterScoreDao posterScoreDao) {
-        this.scoreDao = scoreDao;
         this.posterScoreDao = posterScoreDao;
     }
 
