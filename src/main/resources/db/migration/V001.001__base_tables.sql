@@ -41,6 +41,7 @@ CREATE TABLE SCORE(
   research_score INT(255),
   comm_score INT(255),
   poster_score INT(255),
+  total_score INT(255),
   FOREIGN KEY(poster_id) REFERENCES posters(poster_id),
   FOREIGN KEY(judge_id) REFERENCES judges(id),
   CONSTRAINT PK_Sore PRIMARY KEY(poster_id,judge_id,round),
