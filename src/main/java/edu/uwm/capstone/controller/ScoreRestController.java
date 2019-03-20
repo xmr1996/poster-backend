@@ -1,10 +1,12 @@
 package edu.uwm.capstone.controller;
 
+import edu.uwm.capstone.db.AssignmentDao;
 import edu.uwm.capstone.db.PosterScoreDao;
 import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.db.ScoreDao;
 import edu.uwm.capstone.model.Score.Score;
+import edu.uwm.capstone.model.Assignment.Assignment;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,11 +26,13 @@ public class ScoreRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(ScoreRestController.class);
     private final ScoreDao scoreDao;
+    private final AssignmentDao assignmentDao;
     private final PosterScoreDao posterScoreDao;
 
     @Autowired
-    public ScoreRestController(ScoreDao scoreDao,PosterScoreDao posterScoreDao) {
+    public ScoreRestController(ScoreDao scoreDao, AssignmentDao assignmentDao, PosterScoreDao posterScoreDao) {
         this.scoreDao = scoreDao;
+        this.assignmentDao = assignmentDao;
         this.posterScoreDao = posterScoreDao;
     }
 
@@ -90,35 +94,6 @@ public class ScoreRestController {
     }
 
     /**
-     * Get the provided {@link List<Score>}
-     *
-     * @param poster   {@link Poster}
-     * @param response {@link HttpServletResponse}
-     * @return {@link List<Score>}
-     * @throws IOException if error response cannot be created.
-     */
-    @ApiOperation(value = "Get Poster Scores")
-    @GetMapping(value = SCORE_PATH)
-    public List<Score> read(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
-        try {
-            List<Score> scores = scoreDao.read(poster);
-            if (scores.isEmpty()) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND, "Scores for " + poster.getId() + " were not found.");
-                return null;
-            }
-            return scores;
-        } catch (IllegalArgumentException e) {
-            logger.error(e.getMessage(), e);
-            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
-            return null;
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
-            return null;
-        }
-    }
-
-    /**
      * Updates the provided {@link Score}
      *
      * @param score    {@link Score}
@@ -156,5 +131,44 @@ public class ScoreRestController {
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }
+    }
+
+    /**
+     * Get the {@link Score}
+     *
+     * @return {@link List<Score>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Read All Scores")
+    @GetMapping(value = SCORE_PATH)
+    public List<Score> readAllScore(@ApiIgnore HttpServletResponse response) throws IOException {
+        List<Score> scores = scoreDao.read();
+
+        if (scores.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Scores were not found.");
+            return null;
+        }
+
+        return scores;
+    }
+
+
+    /**
+     * Get the {@link Assignment}
+     *
+     * @return {@link List<Assignment>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Read All Assignments")
+    @GetMapping(value = SCORE_PATH + "assignments")
+    public List<Assignment> readAllAssignments(@ApiIgnore HttpServletResponse response) throws IOException {
+        List<Assignment> assignments = assignmentDao.read();
+
+        if (assignments.isEmpty()) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No assignments were found.");
+            return null;
+        }
+
+        return assignments;
     }
 }

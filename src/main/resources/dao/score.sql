@@ -26,8 +26,11 @@ INNER JOIN posters
 ON score.poster_id = posters.poster_id
 WHERE score.round = :round and score.judge_id = :judge_id;
 
---STATEMENT readScore
+--STATEMENT readAllScores
 SELECT * FROM score;
+
+--STATEMENT readScore
+SELECT * FROM score WHERE id = :id;
 
 --STATEMENT getScoreByID
 SELECT * FROM score WHERE poster_id = :poster_id and judge_id = :judge_id;
@@ -55,6 +58,9 @@ DELETE FROM score WHERE poster_id = :poster_id;
 
 --STATEMENT deleteScore
 DELETE FROM score where id = :id;
+
+--STATEMENT getAllAssignments
+SELECT id, poster_id, judge_id from score;
 
 --STATEMENT upsertScore
 INSERT INTO score(
