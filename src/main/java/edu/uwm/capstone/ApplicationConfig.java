@@ -146,6 +146,7 @@ public class ApplicationConfig {
     @Bean
     public AssignmentDaoRowMapper assignmentDaoRowMapper() { return new AssignmentDaoRowMapper(); }
 
+    @Bean
     public PosterScoreDao posterscoreDao() {
         PosterScoreDao posterscoreDao = new PosterScoreDao();
         posterscoreDao.setDataSource(dataSource());
