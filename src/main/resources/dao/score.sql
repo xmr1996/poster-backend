@@ -55,3 +55,25 @@ DELETE FROM score WHERE poster_id = :poster_id;
 
 --STATEMENT deleteScore
 DELETE FROM score where id = :id;
+
+--STATEMENT upsertScore
+INSERT INTO score(
+    poster_id,
+    judge_id,
+    round,
+    research_score,
+    comm_score,
+    poster_score
+)
+VALUES(
+    :poster_id,
+    :judge_id,
+    :round,
+    :research_score,
+    :comm_score,
+    :poster_score
+)
+ON DUPLICATE KEY UPDATE
+    research_score = :research_score,
+    comm_score = :comm_score,
+    poster_score = :poster_score;
