@@ -15,6 +15,8 @@ public class Poster {
     private String has_voted;
     private int votes;
     private String role;
+    private double avg_r1;
+    private double avg_r2;
 
     public Long getId() {
         return id;
@@ -108,6 +110,23 @@ public class Poster {
 
     public void setVotes(int votes) {
         this.votes = votes;
+    }
+
+    public double getAvg_r2() {
+        return avg_r2;
+    }
+
+    public void setAvg_r2(double avg_r2) {
+        this.avg_r2 = avg_r2;
+    }
+
+
+    public double getAvg_r1() {
+        return avg_r1;
+    }
+
+    public void setAvg_r1(double avg_r1) {
+        this.avg_r1 = avg_r1;
     }
 
     @Override
