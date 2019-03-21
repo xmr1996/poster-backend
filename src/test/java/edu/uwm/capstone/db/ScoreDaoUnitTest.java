@@ -73,7 +73,7 @@ public class ScoreDaoUnitTest {
         //grad stuff
         Judge g_judge = new Judge();
         g_judge.setRole("judge");
-        g_judge.setEmail("gj1@email.com");
+        g_judge.setEmail("gradjudge10@email.com");
         g_judge.setPin(1234);
         g_judge.setFirst_name("gradJudge1");
         g_judge.setLast_name("gradJudge1");
@@ -89,7 +89,7 @@ public class ScoreDaoUnitTest {
         g_poster1.setTitle("This is the Graduate Poster Title");
         g_poster1.setStatus("Graduate");
         g_poster1.setDepartment("Computer Science");
-        g_poster1.setEmail("gradposter@email.com");
+        g_poster1.setEmail("gradposterG10@email.com");
         posterDao.create(g_poster1);
         assertNotNull(g_poster1.getId());
 
@@ -101,7 +101,7 @@ public class ScoreDaoUnitTest {
         g_poster2.setTitle("This is the Graduate Poster Title");
         g_poster2.setStatus("Graduate");
         g_poster2.setDepartment("Computer Science");
-        g_poster2.setEmail("gradposter@email.com");
+        g_poster2.setEmail("gradposterG11@email.com");
         posterDao.create(g_poster2);
         assertNotNull(g_poster2.getId());
 
@@ -113,7 +113,7 @@ public class ScoreDaoUnitTest {
         g_poster3.setTitle("This is the Graduate Poster Title");
         g_poster3.setStatus("Graduate");
         g_poster3.setDepartment("Computer Science");
-        g_poster3.setEmail("gradposter@email.com");
+        g_poster3.setEmail("gradposterG12@email.com");
         posterDao.create(g_poster3);
         assertNotNull(g_poster3.getId());
 
@@ -154,7 +154,7 @@ public class ScoreDaoUnitTest {
         //undergrad stuff
         Judge u_judge = new Judge();
         u_judge.setRole("judge");
-        u_judge.setEmail("uj1@email.com");
+        u_judge.setEmail("undergradjudge11@email.com");
         u_judge.setPin(1234);
         u_judge.setFirst_name("undergradJudge1");
         u_judge.setLast_name("undergradJudge1");
@@ -164,7 +164,7 @@ public class ScoreDaoUnitTest {
 
         Judge u_judge2 = new Judge();
         u_judge2.setRole("judge");
-        u_judge2.setEmail("uj2@email.com");
+        u_judge2.setEmail("undergradjudge12@email.com");
         u_judge2.setPin(1234);
         u_judge2.setFirst_name("undergradJudge2");
         u_judge2.setLast_name("undergradJudge2");
@@ -180,7 +180,7 @@ public class ScoreDaoUnitTest {
         u_poster1.setTitle("This is the Undergraduate Poster Title");
         u_poster1.setStatus("Undergraduate");
         u_poster1.setDepartment("Computer Science");
-        u_poster1.setEmail("undergradposter@email.com");
+        u_poster1.setEmail("undergradposterU10@email.com");
         posterDao.create(u_poster1);
         assertNotNull(u_poster1.getId());
 
@@ -192,7 +192,7 @@ public class ScoreDaoUnitTest {
         u_poster2.setTitle("This is the Undergraduate Poster Title");
         u_poster2.setStatus("Undergraduate");
         u_poster2.setDepartment("Computer Science");
-        u_poster2.setEmail("undergradposter@email.com");
+        u_poster2.setEmail("undergradposterU11@email.com");
         posterDao.create(u_poster2);
         assertNotNull(u_poster2.getId());
 
@@ -204,7 +204,7 @@ public class ScoreDaoUnitTest {
         u_poster3.setTitle("This is the Undergraduate Poster Title");
         u_poster3.setStatus("Undergraduate");
         u_poster3.setDepartment("Computer Science");
-        u_poster3.setEmail("undergradposter@email.com");
+        u_poster3.setEmail("undergradposterU12@email.com");
         posterDao.create(u_poster3);
         assertNotNull(u_poster3.getId());
 
