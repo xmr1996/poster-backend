@@ -18,7 +18,9 @@ CREATE TABLE posters (
   department VARCHAR(255),
   votes INT(255),
   has_voted VARCHAR(255),
-  role VARCHAR(255)
+  role VARCHAR(255),
+  avg_r1 DOUBLE(255) DEFAULT NULL,
+  avg_r2 DOUBLE(255) DEFAULT NULL
 );
 
 CREATE TABLE judges (
@@ -28,7 +30,7 @@ CREATE TABLE judges (
   status VARCHAR(255),
   pin INT(255),
   email VARCHAR(255),
-  role VARCHAR(255)
+  role VARCHAR(255),
 );
 
 commit;
