@@ -67,3 +67,9 @@ DELETE FROM posters WHERE id = :id;
 --STATEMENT readPosterEmailPin
 SELECT * FROM posters WHERE email = :email and pin = :pin;
 
+--STATEMENT insertAvgR1
+INSERT INTO posters (
+  avg_r1
+)value(
+   select avg(total_score) FROM score where poster_id = :poster_id
+);
