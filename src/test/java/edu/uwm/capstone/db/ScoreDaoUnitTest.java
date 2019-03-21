@@ -73,7 +73,7 @@ public class ScoreDaoUnitTest {
         //grad stuff
         Judge g_judge = new Judge();
         g_judge.setRole("judge");
-        g_judge.setEmail("gradjudge@email.com");
+        g_judge.setEmail("gj1@email.com");
         g_judge.setPin(1234);
         g_judge.setFirst_name("gradJudge1");
         g_judge.setLast_name("gradJudge1");
@@ -154,7 +154,7 @@ public class ScoreDaoUnitTest {
         //undergrad stuff
         Judge u_judge = new Judge();
         u_judge.setRole("judge");
-        u_judge.setEmail("undergradjudge@email.com");
+        u_judge.setEmail("uj1@email.com");
         u_judge.setPin(1234);
         u_judge.setFirst_name("undergradJudge1");
         u_judge.setLast_name("undergradJudge1");
@@ -164,7 +164,7 @@ public class ScoreDaoUnitTest {
 
         Judge u_judge2 = new Judge();
         u_judge2.setRole("judge");
-        u_judge2.setEmail("undergradjudge2@email.com");
+        u_judge2.setEmail("uj2@email.com");
         u_judge2.setPin(1234);
         u_judge2.setFirst_name("undergradJudge2");
         u_judge2.setLast_name("undergradJudge2");
