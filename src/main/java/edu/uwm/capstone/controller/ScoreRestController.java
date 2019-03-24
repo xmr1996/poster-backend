@@ -1,10 +1,9 @@
 package edu.uwm.capstone.controller;
 
-import edu.uwm.capstone.db.AssignmentDao;
-import edu.uwm.capstone.db.PosterScoreDao;
+import edu.uwm.capstone.db.*;
+import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.model.Poster.Poster;
-import edu.uwm.capstone.db.ScoreDao;
 import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.model.Assignment.Assignment;
 import io.swagger.annotations.ApiOperation;
@@ -28,12 +27,16 @@ public class ScoreRestController {
     private final ScoreDao scoreDao;
     private final AssignmentDao assignmentDao;
     private final PosterScoreDao posterScoreDao;
+    private final JudgeDao judgeDao;
+    private final PosterDao posterDao;
 
     @Autowired
-    public ScoreRestController(ScoreDao scoreDao, AssignmentDao assignmentDao, PosterScoreDao posterScoreDao) {
+    public ScoreRestController(ScoreDao scoreDao, AssignmentDao assignmentDao, PosterScoreDao posterScoreDao, JudgeDao judgeDao, PosterDao posterDao) {
         this.scoreDao = scoreDao;
         this.assignmentDao = assignmentDao;
         this.posterScoreDao = posterScoreDao;
+        this.judgeDao = judgeDao;
+        this.posterDao = posterDao;
     }
 
     /**
@@ -59,6 +62,40 @@ public class ScoreRestController {
             logger.error(e.getMessage(), e);
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
             return null;
+        }
+    }
+
+    /**
+     * Creates the provided {@link Score}
+     *
+     * @param response {@link HttpServletResponse}
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Generate Round 2 Assignments")
+    @PostMapping(value = SCORE_PATH + "generateRound2")
+    public void create(@ApiIgnore HttpServletResponse response) throws IOException{
+        List<Poster> undergradPosters = posterDao.readUndergradWinners();
+        List<Poster> gradPosters = posterDao.readGradWinners();
+        List<Judge> undergradJudges  = judgeDao.readAllJudges("undergraduate");
+        List<Judge> gradJudges = judgeDao.readAllJudges("graduate");
+
+        for (Poster poster : undergradPosters){
+            for (Judge judge : undergradJudges){
+                Score score = new Score();
+                score.setJudge_id(judge.getId());
+                score.setPoster_id(poster.getPoster_id());
+                score.setRound(2);
+                scoreDao.create(score);
+            }
+        }
+        for (Poster poster : gradPosters){
+            for (Judge judge : gradJudges){
+                Score score = new Score();
+                score.setJudge_id(judge.getId());
+                score.setPoster_id(poster.getPoster_id());
+                score.setRound(2);
+                scoreDao.create(score);
+            }
         }
     }
 
