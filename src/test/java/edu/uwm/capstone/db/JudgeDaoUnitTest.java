@@ -48,7 +48,7 @@ public class JudgeDaoUnitTest {
     @Test
     public void createTestJudges() {
         Judge u_judge = new Judge();
-        u_judge.setRole("Judge");
+        u_judge.setRole("judge");
         u_judge.setEmail("undergradjudge@email.com");
         u_judge.setPin(1234);
         u_judge.setFirst_name("FirstName");
@@ -58,7 +58,7 @@ public class JudgeDaoUnitTest {
         assertNotNull(u_judge.getId());
 
         Judge g_judge = new Judge();
-        g_judge.setRole("Judge");
+        g_judge.setRole("judge");
         g_judge.setEmail("gradjudge@email.com");
         g_judge.setPin(1234);
         g_judge.setFirst_name("FirstName");
@@ -68,7 +68,7 @@ public class JudgeDaoUnitTest {
         assertNotNull(g_judge.getId());
 
         Judge admin = new Judge();
-        admin.setRole("Administrator");
+        admin.setRole("admin");
         admin.setEmail("admin@email.com");
         admin.setPin(1234);
         admin.setFirst_name("FirstName");
