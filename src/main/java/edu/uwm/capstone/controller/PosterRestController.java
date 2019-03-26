@@ -142,6 +142,24 @@ public class PosterRestController{
         }
     }
 
+    /**
+     * Get the {@link Poster} by Round and Status
+     *
+     * @param status
+     * @param response  {@link HttpServletResponse}
+     * @return {@link List<Poster>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Get top 6 posters")
+    @GetMapping(value = POSTER_PATH + "{status}")
+    public List<Poster> getTop6(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
+        List<Poster> posters = posterDao.getTop6(status);
+        if (posters == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
+            return null;
+        }
+        return posters;
+    }
     
 
 
