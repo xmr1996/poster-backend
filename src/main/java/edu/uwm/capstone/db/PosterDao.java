@@ -171,7 +171,6 @@ public class PosterDao extends BaseDao<Poster> {
         }
     }
 
-
     public List<Poster> getTop6(String status){
         try{
             return (List<Poster>) this.jdbcTemplate.query(sql("getTop6Posters"),rowMapper);
