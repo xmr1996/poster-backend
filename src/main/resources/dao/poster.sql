@@ -68,6 +68,6 @@ DELETE FROM posters WHERE id = :id;
 SELECT * FROM posters WHERE email = :email and pin = :pin;
 
 --STATEMENT insertAvgR1
-INSERT INTO posters (avg_r1)
-   select avg(total_score) FROM score
-   where poster_id = :poster_id group by poster_id;
+UPDATE posters
+SET posters.avg_r1 = (SELECT AVG(CAST(total_score AS DOUBLE)) FROM score WHERE SCORE.poster_id = :poster_id)
+Where posters.poster_id = :poster_id;
