@@ -170,4 +170,14 @@ public class PosterDao extends BaseDao<Poster> {
             throw new DaoException("Failed attempt to delete poster " + posterID + " affected " + result + " rows");
         }
     }
+
+
+    public List<Poster> getTop6(String status){
+        try{
+            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6Posters"),rowMapper);
+        } catch(EmptyResultDataAccessException e){
+            return null;
+        }
+
+    }
 }

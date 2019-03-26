@@ -67,3 +67,5 @@ DELETE FROM posters WHERE id = :id;
 --STATEMENT readPosterEmailPin
 SELECT * FROM posters WHERE email = :email and pin = :pin;
 
+--STATEMENT getTop6Posters
+SELECT * FROM posters WHERE status = :status ORDER BY avg_r1 DESC LIMIT 6;
