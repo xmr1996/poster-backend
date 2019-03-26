@@ -36,7 +36,7 @@ public class PosterDao extends BaseDao<Poster> {
         LOG.trace("Creating poster {}", poster);
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        poster.setRole("Student");
+        poster.setRole("student");
         poster.setHas_voted("No");
         poster.setVotes(0);
         int result = this.jdbcTemplate.update(sql("createPoster"),
@@ -179,5 +179,14 @@ public class PosterDao extends BaseDao<Poster> {
         if(result != 1){
             throw new DaoException("Failed attempt to delete poster " + posterID + " affected " + result + " rows");
         }
+    }
+
+    public List<Poster> getTop6(String status){
+        try{
+            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6Posters"),rowMapper);
+        } catch(EmptyResultDataAccessException e){
+            return null;
+        }
+
     }
 }
