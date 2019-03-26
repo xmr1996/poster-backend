@@ -53,4 +53,3 @@ Deploy:
 
 after_script:
   - 'echo "Image SHA Tag : $CI_COMMIT_SHA"'
-
