@@ -122,6 +122,16 @@ public class PosterDao extends BaseDao<Poster> {
         }
     }
 
+    public void calculateAvg(String poster_id){
+        LOG.trace("calculateAvg{}",poster_id);
+        int result = this.jdbcTemplate.update(sql("insertAvgR1"), new MapSqlParameterSource("poster_id", poster_id));
+        if(result != 1){
+            throw new DaoException("Failed attempt to insert average ");
+        }
+    }
+
+
+
     /**
      * Update the provided {@link Poster} object.
      *

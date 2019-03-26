@@ -74,6 +74,22 @@ public class PosterRestController{
         }
     }
 
+    /**
+     * calculate {@link Poster#getAvg_r1()}
+     * @param response {@link HttpServletResponse}
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Calculate the average for all poster")
+    @PutMapping(value = POSTER_PATH+ "average")
+    public void calculateAverage( @ApiIgnore HttpServletResponse response) throws IOException {
+
+        List<Poster> posters = posterDao.read();
+        for(Poster poster: posters){
+            posterDao.calculateAvg(poster.getPoster_id());
+        }
+
+    }
+
      /**
      * Get the {@link Poster} by id
      *
