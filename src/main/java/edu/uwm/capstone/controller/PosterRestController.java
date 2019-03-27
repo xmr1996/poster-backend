@@ -167,7 +167,7 @@ public class PosterRestController{
      * @throws IOException if error response cannot be created.
      **/
     @ApiOperation(value = "Get top 6 posters")
-    @GetMapping(value = POSTER_PATH + "{status}")
+    @GetMapping(value = POSTER_PATH + "top/{status}")
     public List<Poster> getTop6(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
         List<Poster> posters = posterDao.getTop6(status);
         if (posters == null) {

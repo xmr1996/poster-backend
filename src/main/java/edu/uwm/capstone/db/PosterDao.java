@@ -183,7 +183,9 @@ public class PosterDao extends BaseDao<Poster> {
 
     public List<Poster> getTop6(String status){
         try{
-            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6Posters"),rowMapper);
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            parameters.addValue("status", status);
+            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6Posters"),parameters,rowMapper);
         } catch(EmptyResultDataAccessException e){
             return null;
         }
