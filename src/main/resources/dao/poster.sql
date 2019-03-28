@@ -9,7 +9,7 @@ INSERT INTO posters (
   pin,
   department,
   votes,
-  has_voted,
+  voted_for,
   role
 ) VALUES (
   :poster_id,
@@ -21,7 +21,7 @@ INSERT INTO posters (
   :pin,
   :department,
   :votes,
-  :has_voted,
+  :voted_for,
   :role
 );
 
@@ -56,7 +56,7 @@ UPDATE posters SET
   status = :status,
   department = :department,
   votes = :votes,
-  has_voted = :has_voted,
+  voted_for = :voted_for,
   role = :role
 WHERE
   id = :id;

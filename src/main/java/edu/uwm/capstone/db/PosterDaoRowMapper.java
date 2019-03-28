@@ -20,7 +20,7 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         STATUS(),
         PIN(),
         DEPARTMENT(),
-        HAS_VOTED(),
+        VOTED_FOR(),
         VOTES(),
         ROLE(),
         AVG_R1(),
@@ -53,7 +53,7 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         poster.setStatus(rs.getString(STATUS.getColumnName()));
         poster.setPin(rs.getInt(PIN.getColumnName()));
         poster.setDepartment(rs.getString(DEPARTMENT.getColumnName()));
-        poster.setHas_voted(rs.getString(HAS_VOTED.getColumnName()));
+        poster.setVoted_for(rs.getString(VOTED_FOR.getColumnName()));
         poster.setVotes(rs.getInt(VOTES.getColumnName()));
         poster.setRole(rs.getString(ROLE.getColumnName()));
         poster.setAvg_r1(rs.getDouble(AVG_R1.getColumnName()));
@@ -73,7 +73,7 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         map.put(STATUS.getColumnName(),object.getStatus());
         map.put(PIN.getColumnName(),object.getPin());
         map.put(DEPARTMENT.getColumnName(),object.getDepartment());
-        map.put(HAS_VOTED.getColumnName(), object.getHas_voted());
+        map.put(VOTED_FOR.getColumnName(), object.getVoted_for());
         map.put(VOTES.getColumnName(), object.getVotes());
         map.put(ROLE.getColumnName(), object.getRole());
         map.put(AVG_R1.getColumnName(),object.getAvg_r1());

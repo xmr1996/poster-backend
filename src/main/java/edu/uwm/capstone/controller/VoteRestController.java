@@ -27,24 +27,25 @@ public class VoteRestController {
     @PutMapping(value = VOTE_PATH + "{vote}")
     public Poster vote(@RequestBody Poster poster, @PathVariable String vote){
 
-        if(poster.getHas_voted().equals("Yes"))
-            return poster;
+        if(poster.getVoted_for() != null) {
+            String oldVote = poster.getVoted_for();
+            Poster oldPoster = posterDao.read(oldVote);
+            oldPoster.setVotes(oldPoster.getVotes() - 1);
+            posterDao.update(oldPoster);
+        }
 
         if(poster.getPoster_id().equals(vote)){
             poster.setVotes(poster.getVotes() + 1);
-            poster.setHas_voted("Yes");
+            poster.setVoted_for(vote);
             posterDao.update(poster);
             return poster;
         }
 
         Poster poster_voted = posterDao.read(vote);
 
-        if(!poster_voted.getStatus().equals(poster.getStatus()))
-            return poster;
-
         poster_voted.setVotes(poster_voted.getVotes() + 1);
         posterDao.update(poster_voted);
-        poster.setHas_voted("Yes");
+        poster.setVoted_for(vote);
         posterDao.update(poster);
 
         return poster;
