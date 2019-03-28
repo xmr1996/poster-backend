@@ -81,6 +81,7 @@ SET posters.avg_r1 =
 (SELECT AVG(CAST(total_score AS DOUBLE)) as AVG
   FROM score
   WHERE total_score is not NULL
+  AND round = :round
   AND poster_id =  posters.poster_id
   group by poster_id
 );

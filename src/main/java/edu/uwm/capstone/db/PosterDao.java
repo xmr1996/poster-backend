@@ -122,7 +122,7 @@ public class PosterDao extends BaseDao<Poster> {
         }
     }
 
-    public void calculateAvg(String poster_id){
+    public void calculateAvgSingle(String poster_id){
         LOG.trace("calculateAvg{}",poster_id);
         int result = this.jdbcTemplate.update(sql("insertAvgR1"), new MapSqlParameterSource("poster_id", poster_id));
         if(result != 1){
@@ -194,8 +194,11 @@ public class PosterDao extends BaseDao<Poster> {
 
     }
 
-    public void test() {
+    public void calculateAvg(int round ) {
         LOG.trace("calculateAvgForAll{}");
-        this.jdbcTemplate.query(sql("test"), rowMapper);
+        int result = this.jdbcTemplate.update(sql("test"), new MapSqlParameterSource("round", round));
+        if(result != 1){
+            throw new DaoException("Failed attempt to insert average ");
+        }
     }
 }
