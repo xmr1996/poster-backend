@@ -80,14 +80,19 @@ public class PosterRestController{
      * @throws IOException if error response cannot be created.
      */
     @ApiOperation(value = "Calculate the average for all poster")
-    @PutMapping(value = POSTER_PATH+ "average")
-    public void calculateAverage( @ApiIgnore HttpServletResponse response) throws IOException {
+    @PutMapping(value = POSTER_PATH+ "average{round}")
+    public void calculateAverage(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
+        try{
 
-        List<Poster> posters = posterDao.read();
-        for(Poster poster: posters){
-            posterDao.calculateAvg(poster.getPoster_id());
+            posterDao.calculateAvg(round);
+
+        } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
-
     }
 
      /**
