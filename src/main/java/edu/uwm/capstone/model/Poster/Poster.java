@@ -12,7 +12,7 @@ public class Poster {
     private String status;
     private int pin;
     private String department;
-    private String has_voted;
+    private String voted_for;
     private int votes;
     private String role;
     private double avg_r1;
@@ -96,14 +96,6 @@ public class Poster {
 
     public void setRole(String role){ this.role = role; }
 
-    public String getHas_voted() {
-        return has_voted;
-    }
-
-    public void setHas_voted(String has_voted) {
-        this.has_voted = has_voted;
-    }
-
     public int getVotes() {
         return votes;
     }
@@ -120,13 +112,20 @@ public class Poster {
         this.avg_r2 = avg_r2;
     }
 
-
     public double getAvg_r1() {
         return avg_r1;
     }
 
     public void setAvg_r1(double avg_r1) {
         this.avg_r1 = avg_r1;
+    }
+
+    public String getVoted_for() {
+        return voted_for;
+    }
+
+    public void setVoted_for(String voted_for) {
+        this.voted_for = voted_for;
     }
 
     @Override

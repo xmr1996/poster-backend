@@ -37,7 +37,6 @@ public class PosterDao extends BaseDao<Poster> {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         poster.setRole("student");
-        poster.setHas_voted("No");
         poster.setVotes(0);
         int result = this.jdbcTemplate.update(sql("createPoster"),
                 new MapSqlParameterSource(rowMapper.mapObject(poster)), keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
