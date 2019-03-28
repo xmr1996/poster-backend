@@ -83,10 +83,12 @@ public class PosterRestController{
     @PutMapping(value = POSTER_PATH+ "average")
     public void calculateAverage( @ApiIgnore HttpServletResponse response) throws IOException {
 
-        List<Poster> posters = posterDao.read();
-        for(Poster poster: posters){
-            posterDao.calculateAvg(poster.getPoster_id());
-        }
+        posterDao.test();
+
+//        List<Poster> posters = posterDao.read();
+//        for(Poster poster: posters){
+//            posterDao.calculateAvg(poster.getPoster_id());
+//        }
 
     }
 
