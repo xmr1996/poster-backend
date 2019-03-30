@@ -8,7 +8,6 @@ INSERT INTO posters (
   status,
   pin,
   department,
-  votes,
   voted_for,
   role
 ) VALUES (
@@ -20,7 +19,6 @@ INSERT INTO posters (
   :status,
   :pin,
   :department,
-  :votes,
   :voted_for,
   :role
 );
@@ -31,11 +29,6 @@ SELECT * FROM posters WHERE id = :id;
 --STATEMENT readPosterByID
 SELECT * FROM posters where poster_id = :poster_id;
 
---STATEMENT readGradWinners
-SELECT * FROM posters where status = 'Graduate' and votes = (SELECT MAX(votes) FROM posters where status = 'Graduate');
-
---STATEMENT readUndergradWinners
-SELECT * FROM posters where status = 'Undergraduate' and votes = (SELECT MAX(votes) FROM posters where status = 'Undergraduate');
 
 --STATEMENT getPosters
 SELECT * FROM posters;
@@ -55,11 +48,16 @@ UPDATE posters SET
   pin = :pin,
   status = :status,
   department = :department,
-  votes = :votes,
   voted_for = :voted_for,
   role = :role
 WHERE
   id = :id;
+
+--STATEMENT setVote
+UPDATE posters SET
+  voted_for = :vote
+WHERE
+  poster_id = :poster_id;
 
 --STATEMENT deletePoster
 DELETE FROM posters WHERE id = :id;
@@ -85,3 +83,11 @@ SET posters.avg_r1 =
   AND poster_id =  posters.poster_id
   group by poster_id
 );
+
+--STATEMENT readVotesByStatus
+SELECT    voted_for AS poster_id, COUNT(*) AS votes
+FROM      posters
+WHERE     status = :status
+          AND  voted_for is not null
+GROUP BY  voted_for
+ORDER BY  votes DESC;

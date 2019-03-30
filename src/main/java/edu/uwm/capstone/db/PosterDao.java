@@ -37,7 +37,6 @@ public class PosterDao extends BaseDao<Poster> {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         poster.setRole("student");
-        poster.setVotes(0);
         int result = this.jdbcTemplate.update(sql("createPoster"),
                 new MapSqlParameterSource(rowMapper.mapObject(poster)), keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
 
@@ -152,6 +151,17 @@ public class PosterDao extends BaseDao<Poster> {
 
         if (result != 1) {
             throw new RuntimeException("Failed attempt to update poster " + poster.toString() + " affected " + result + " rows");
+        }
+    }
+
+    public void setVote(String poster_id, String vote){
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("poster_id", poster_id);
+        parameters.addValue("vote", vote);
+        int result = this.jdbcTemplate.update(sql("setVote"), parameters);
+
+        if (result != 1){
+            throw new RuntimeException("Failed to cast vote");
         }
     }
 
