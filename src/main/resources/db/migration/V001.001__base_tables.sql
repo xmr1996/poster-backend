@@ -16,7 +16,6 @@ CREATE TABLE posters (
   status VARCHAR(255),
   pin INT(255),
   department VARCHAR(255),
-  votes INT(255),
   voted_for VARCHAR(255),
   role VARCHAR(255),
   avg_r1 DOUBLE(255) DEFAULT NULL,

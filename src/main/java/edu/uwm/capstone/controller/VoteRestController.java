@@ -1,7 +1,9 @@
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.db.PosterDao;
+import edu.uwm.capstone.db.VoteDao;
 import edu.uwm.capstone.model.Poster.Poster;
+import edu.uwm.capstone.model.Vote.Vote;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,51 +17,26 @@ public class VoteRestController {
 
     public static final String VOTE_PATH = "/vote/";
     private final PosterDao posterDao;
+    private final VoteDao voteDao;
 
     private static final Logger logger = LoggerFactory.getLogger(ScoreRestController.class);
 
     @Autowired
-    public VoteRestController(PosterDao posterDao) {
+    public VoteRestController(PosterDao posterDao, VoteDao voteDao) {
         this.posterDao = posterDao;
+        this.voteDao = voteDao;
     }
 
     @ApiOperation(value = "Submit vote")
-    @PutMapping(value = VOTE_PATH + "{vote}")
-    public Poster vote(@RequestBody Poster poster, @PathVariable String vote){
-
-        if(poster.getVoted_for() != null) {
-            String oldVote = poster.getVoted_for();
-            Poster oldPoster = posterDao.read(oldVote);
-            oldPoster.setVotes(oldPoster.getVotes() - 1);
-            posterDao.update(oldPoster);
-        }
-
-        if(poster.getPoster_id().equals(vote)){
-            poster.setVotes(poster.getVotes() + 1);
-            poster.setVoted_for(vote);
-            posterDao.update(poster);
-            return poster;
-        }
-
-        Poster poster_voted = posterDao.read(vote);
-
-        poster_voted.setVotes(poster_voted.getVotes() + 1);
-        posterDao.update(poster_voted);
-        poster.setVoted_for(vote);
-        posterDao.update(poster);
-
-        return poster;
+    @PutMapping(value = VOTE_PATH + "{poster_id}" + "/{vote}")
+    public void vote(@PathVariable String poster_id, @PathVariable String vote){
+        posterDao.setVote(poster_id, vote);
     }
 
-    @ApiOperation(value = "Get Graduate Vote Winner")
-    @GetMapping(value = VOTE_PATH + "graduate")
-    public List<Poster> getGradWinner(){
-        return posterDao.readGradWinners();
+    @ApiOperation(value = "Get Vote Info")
+    @GetMapping(value = VOTE_PATH + "{status}")
+    public List<Vote> getGradWinner(@PathVariable String status){
+        return voteDao.read(status);
     }
 
-    @ApiOperation(value = "Get Undergrad Vote Winner")
-    @GetMapping(value = VOTE_PATH + "undergrad")
-    public List<Poster> getUndergradWinner(){
-        return posterDao.readUndergradWinners();
-    }
 }
