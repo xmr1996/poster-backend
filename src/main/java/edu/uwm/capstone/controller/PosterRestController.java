@@ -80,7 +80,7 @@ public class PosterRestController{
      * @throws IOException if error response cannot be created.
      */
     @ApiOperation(value = "Calculate the average for all poster")
-    @PutMapping(value = POSTER_PATH+ "average{round}")
+    @PutMapping(value = POSTER_PATH+ "average/{round}")
     public void calculateAverage(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
         try{
 

@@ -195,9 +195,6 @@ public class PosterDao extends BaseDao<Poster> {
 
     public void calculateAvg(int round ) {
         LOG.trace("calculateAvgForAll{}");
-        int result = this.jdbcTemplate.update(sql("test"), new MapSqlParameterSource("round", round));
-        if(result != 1){
-            throw new DaoException("Failed attempt to insert average ");
-        }
+        this.jdbcTemplate.update(sql("test"), new MapSqlParameterSource("round", round));
     }
 }
