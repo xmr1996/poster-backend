@@ -132,4 +132,14 @@ public class JudgeRestController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }
     }
+
+    @ApiOperation(value = "Clear judges table")
+    @DeleteMapping(value = JUDGE_PATH + "/all")
+    public void clearTable(@ApiIgnore HttpServletResponse response) throws IOException{
+        try{
+            judgeDao.clearTable();
+        } catch(Exception e){
+            response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
+        }
+    }
 }

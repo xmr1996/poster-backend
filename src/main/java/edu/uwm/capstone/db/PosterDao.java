@@ -12,7 +12,11 @@ import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.sql.exception.DaoException;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
 
 
 public class PosterDao extends BaseDao<Poster> {
@@ -198,6 +202,14 @@ public class PosterDao extends BaseDao<Poster> {
         int result = this.jdbcTemplate.update(sql("test"), new MapSqlParameterSource("round", round));
         if(result != 1){
             throw new DaoException("Failed attempt to insert average ");
+        }
+    }
+
+    public void clearTable(){
+        LOG.trace("Clearing posters table{}");
+        int result = this.jdbcTemplate.update(sql("clearPosters"), Collections.emptyMap());
+        if(result < 0){
+            throw new DaoException("Failed attempt to clear posters table");
         }
     }
 }

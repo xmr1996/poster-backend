@@ -182,4 +182,14 @@ public class PosterRestController{
         return posters;
     }
 
+    @ApiOperation(value = "Clear posters table")
+    @DeleteMapping(value = POSTER_PATH + "/all")
+    public void clearTable(@ApiIgnore HttpServletResponse response) throws IOException{
+        try{
+            posterDao.clearTable();
+        } catch(Exception e){
+            response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
+        }
+    }
+
 }

@@ -44,8 +44,8 @@ CREATE TABLE SCORE(
   comm_score INT(255) DEFAULT NULL,
   poster_score INT(255) DEFAULT NULL,
   total_score INT(255) DEFAULT NULL,
-  FOREIGN KEY(poster_id) REFERENCES posters(poster_id),
-  FOREIGN KEY(judge_id) REFERENCES judges(id),
+  FOREIGN KEY(poster_id) REFERENCES posters(poster_id) ON DELETE CASCADE,
+  FOREIGN KEY(judge_id) REFERENCES judges(id) ON DELETE CASCADE,
   CONSTRAINT PK_Sore PRIMARY KEY(poster_id,judge_id,round),
  -- created_date BIGINT(25) NOT NULL,
   --updated_date BIGINT(25) DEFAULT NULL

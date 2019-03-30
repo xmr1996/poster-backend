@@ -208,4 +208,14 @@ public class ScoreRestController {
 
         return assignments;
     }
+
+    @ApiOperation(value = "Clear score table")
+    @DeleteMapping(value = SCORE_PATH + "/all")
+    public void clearTable(@ApiIgnore HttpServletResponse response) throws IOException{
+        try{
+            scoreDao.clearTable();
+        } catch(Exception e){
+            response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
+        }
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ScoreDao extends BaseDao<Score> {
@@ -156,6 +157,14 @@ public class ScoreDao extends BaseDao<Score> {
         int result = this.jdbcTemplate.update(sql("deleteScore"), new MapSqlParameterSource("id", id));
         if (result != 1) {
             throw new DaoException("Failed attempt to delete score " + id + " affected " + result + " rows");
+        }
+    }
+
+    public void clearTable(){
+        LOG.trace("Clearing score table{}");
+        int result = this.jdbcTemplate.update(sql("clearScore"), Collections.emptyMap());
+        if(result < 0){
+            throw new DaoException("Failed attempt to clear score table");
         }
     }
 }

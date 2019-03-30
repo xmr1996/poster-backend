@@ -10,7 +10,10 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import java.util.Collections;
+import edu.uwm.capstone.sql.exception.DaoException;
 import java.util.List;
+import java.util.Map;
 
 
 public class JudgeDao extends BaseDao<Judge> {
@@ -137,6 +140,14 @@ public class JudgeDao extends BaseDao<Judge> {
         int result = this.jdbcTemplate.update(sql("deleteJudge"), new MapSqlParameterSource("id", id));
         if (result != 1) {
             throw new RuntimeException("Failed attempt to update judge " + id + " affected " + result + " rows");
+        }
+    }
+
+    public void clearTable(){
+        LOG.trace("Clearing judges table{}");
+        int result = this.jdbcTemplate.update(sql("clearJudges"), Collections.emptyMap());
+        if(result < 0){
+            throw new DaoException("Failed attempt to clear judges table");
         }
     }
 }
