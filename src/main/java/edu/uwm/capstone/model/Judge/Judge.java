@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Judge {
     protected Long id;
+    private Long judge_id;
     private String first_name;
     private String last_name;
     private String status;
@@ -17,6 +18,14 @@ public class Judge {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getJudge_id() {
+        return judge_id;
+    }
+
+    public void setJudge_id(Long judge_id) {
+        this.judge_id = judge_id;
     }
 
     public String getFirst_name() {
