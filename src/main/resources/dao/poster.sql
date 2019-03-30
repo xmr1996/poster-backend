@@ -85,3 +85,6 @@ SET posters.avg_r1 =
   AND poster_id =  posters.poster_id
   group by poster_id
 );
+
+--STATEMENT clearPosters
+DELETE FROM posters;

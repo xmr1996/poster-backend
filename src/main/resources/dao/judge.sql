@@ -41,3 +41,5 @@ WHERE
 --STATEMENT readJudgeEmailPin
 SELECT * FROM judges WHERE email = :email and pin = :pin;
 
+--STATEMENT clearJudges
+DELETE FROM judges;

@@ -88,3 +88,6 @@ ON DUPLICATE KEY UPDATE
     comm_score = :comm_score,
     poster_score = :poster_score,
     total_score = :total_score;
+
+--STATEMENT clearScore
+DELETE FROM score;
