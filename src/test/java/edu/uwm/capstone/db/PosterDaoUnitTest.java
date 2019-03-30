@@ -52,31 +52,31 @@ public class PosterDaoUnitTest {
      */
     @Test
     public void createTestPosters() {
-        Poster g_poster = new Poster();
-        g_poster.setPoster_id("G01");
-        g_poster.setPin(1234);
-        g_poster.setFirst_name("FirstName");
-        g_poster.setLast_name("LastName");
-        g_poster.setTitle("This is the Graduate Poster Title");
-        g_poster.setStatus("Graduate");
-        g_poster.setDepartment("Computer Science");
-        g_poster.setEmail("gradposter@email.com");
-
-        posterDao.create(g_poster);
-        assertNotNull(g_poster.getId());
-
-        Poster u_poster = new Poster();
-        u_poster.setPoster_id("U01");
-        u_poster.setPin(1234);
-        u_poster.setFirst_name("FirstName");
-        u_poster.setLast_name("LastName");
-        u_poster.setTitle("This is the Undergraduate Poster Title");
-        u_poster.setStatus("Undergraduate");
-        u_poster.setDepartment("Electrical Engineering");
-        u_poster.setEmail("undergradposter@email.com");
-
-        posterDao.create(u_poster);
-        assertNotNull(u_poster.getId());
+//        Poster g_poster = new Poster();
+//        g_poster.setPoster_id("G01");
+//        g_poster.setPin(1234);
+//        g_poster.setFirst_name("FirstName");
+//        g_poster.setLast_name("LastName");
+//        g_poster.setTitle("This is the Graduate Poster Title");
+//        g_poster.setStatus("Graduate");
+//        g_poster.setDepartment("Computer Science");
+//        g_poster.setEmail("gradposter@email.com");
+//
+//        posterDao.create(g_poster);
+//        assertNotNull(g_poster.getId());
+//
+//        Poster u_poster = new Poster();
+//        u_poster.setPoster_id("U01");
+//        u_poster.setPin(1234);
+//        u_poster.setFirst_name("FirstName");
+//        u_poster.setLast_name("LastName");
+//        u_poster.setTitle("This is the Undergraduate Poster Title");
+//        u_poster.setStatus("Undergraduate");
+//        u_poster.setDepartment("Electrical Engineering");
+//        u_poster.setEmail("undergradposter@email.com");
+//
+//        posterDao.create(u_poster);
+//        assertNotNull(u_poster.getId());
     }
 
     /**

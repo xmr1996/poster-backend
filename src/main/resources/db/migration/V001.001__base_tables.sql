@@ -31,6 +31,7 @@ CREATE TABLE judges (
   pin INT(255),
   email VARCHAR(255),
   role VARCHAR(255),
+  judge_id INT(255),
 );
 
 commit;
@@ -45,7 +46,7 @@ CREATE TABLE SCORE(
   poster_score INT(255) DEFAULT NULL,
   total_score INT(255) DEFAULT NULL,
   FOREIGN KEY(poster_id) REFERENCES posters(poster_id) ON DELETE CASCADE,
-  FOREIGN KEY(judge_id) REFERENCES judges(id) ON DELETE CASCADE,
+  FOREIGN KEY(judge_id) REFERENCES judges(judge_id) ON DELETE CASCADE,
   CONSTRAINT PK_Sore PRIMARY KEY(poster_id,judge_id,round),
  -- created_date BIGINT(25) NOT NULL,
   --updated_date BIGINT(25) DEFAULT NULL
