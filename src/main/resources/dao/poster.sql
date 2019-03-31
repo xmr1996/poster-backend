@@ -84,6 +84,9 @@ SET posters.avg_r1 =
   group by poster_id
 );
 
+--STATEMENT readPostersByStatus
+SELECT * FROM posters where status = :status;
+
 --STATEMENT readVotesByStatus
 SELECT    voted_for AS poster_id, COUNT(*) AS votes
 FROM      posters
