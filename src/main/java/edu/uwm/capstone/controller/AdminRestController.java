@@ -131,4 +131,22 @@ public class AdminRestController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }
     }
+
+    @ApiOperation(value = "Clear Admin table")
+    @DeleteMapping(value = ADMIN_PATH + "/all")
+    public void clearTable(@ApiIgnore HttpServletResponse response) throws IOException{
+        try{
+            adminDao.clearTable();
+        } catch(Exception e){
+            response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "Insert from csv")
+    @PostMapping(value = ADMIN_PATH + "/all")
+    public void importCSV(@RequestBody List<Admin> admins, @ApiIgnore HttpServletResponse response) throws IOException{
+        for(Admin admin : admins){
+            adminDao.create(admin);
+        }
+    }
 }

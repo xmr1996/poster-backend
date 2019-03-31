@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
+import java.util.Collections;
 import java.util.List;
 
 public class AdminDao extends BaseDao<Admin> {
@@ -98,6 +99,14 @@ public class AdminDao extends BaseDao<Admin> {
         int result = this.jdbcTemplate.update(sql("deleteAdmin"), new MapSqlParameterSource("email", email));
         if (result != 1) {
             throw new DaoException("Failed attempt to delete account " + email + " affected " + result + " rows");
+        }
+    }
+
+    public void clearTable(){
+        LOG.trace("Clearing judges table{}");
+        int result = this.jdbcTemplate.update(sql("clearAdmins"), Collections.emptyMap());
+        if(result < 0){
+            throw new DaoException("Failed attempt to clear judges table");
         }
     }
 

@@ -37,3 +37,6 @@ WHERE
 
 --STATEMENT deleteAdmin
 DELETE FROM admin WHERE email = :email;
+
+--STATEMENT clearAdmins
+DELETE FROM admin;
