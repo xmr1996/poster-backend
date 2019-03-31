@@ -60,7 +60,7 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
         folder.setLast_name(rs.getString(LAST_NAME.getColumnName()));
         folder.setEmail(rs.getString(EMAIL.getColumnName()));
         folder.setStatus(rs.getString(STATUS.getColumnName()));
-        folder.setPin(rs.getInt(PIN.getColumnName()));
+        folder.setPin(rs.getString(PIN.getColumnName()));
         folder.setRole(rs.getString(ROLE.getColumnName()));
         return folder;
     }

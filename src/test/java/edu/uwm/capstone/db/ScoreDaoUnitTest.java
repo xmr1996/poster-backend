@@ -75,7 +75,7 @@ public class ScoreDaoUnitTest {
         judgeU1.setJudge_id(1L);
         judgeU1.setRole("judge");
         judgeU1.setEmail("judgeU1@email.com");
-        judgeU1.setPin(1234);
+        judgeU1.setPin("1234");
         judgeU1.setFirst_name("FName");
         judgeU1.setLast_name("LName");
         judgeU1.setStatus("Undergraduate");
@@ -86,7 +86,7 @@ public class ScoreDaoUnitTest {
         judgeU2.setJudge_id(2L);
         judgeU2.setRole("judge");
         judgeU2.setEmail("judgeU2@email.com");
-        judgeU2.setPin(1234);
+        judgeU2.setPin("1234");
         judgeU2.setFirst_name("FName");
         judgeU2.setLast_name("LName");
         judgeU2.setStatus("Undergraduate");
@@ -97,7 +97,7 @@ public class ScoreDaoUnitTest {
         judgeU3.setJudge_id(3L);
         judgeU3.setRole("judge");
         judgeU3.setEmail("judgeU3@email.com");
-        judgeU3.setPin(1234);
+        judgeU3.setPin("1234");
         judgeU3.setFirst_name("FName");
         judgeU3.setLast_name("LName");
         judgeU3.setStatus("Undergraduate");
@@ -108,7 +108,7 @@ public class ScoreDaoUnitTest {
         judgeU4.setJudge_id(4L);
         judgeU4.setRole("judge");
         judgeU4.setEmail("judgeU4@email.com");
-        judgeU4.setPin(1234);
+        judgeU4.setPin("1234");
         judgeU4.setFirst_name("FName");
         judgeU4.setLast_name("LName");
         judgeU4.setStatus("Undergraduate");
@@ -119,7 +119,7 @@ public class ScoreDaoUnitTest {
         judgeU5.setJudge_id(5L);
         judgeU5.setRole("judge");
         judgeU5.setEmail("judgeU5@email.com");
-        judgeU5.setPin(1234);
+        judgeU5.setPin("1234");
         judgeU5.setFirst_name("FName");
         judgeU5.setLast_name("LName");
         judgeU5.setStatus("Undergraduate");
@@ -130,7 +130,7 @@ public class ScoreDaoUnitTest {
         judgeU6.setJudge_id(6L);
         judgeU6.setRole("judge");
         judgeU6.setEmail("judgeU6@email.com");
-        judgeU6.setPin(1234);
+        judgeU6.setPin("1234");
         judgeU6.setFirst_name("FName");
         judgeU6.setLast_name("LName");
         judgeU6.setStatus("Undergraduate");
@@ -141,7 +141,7 @@ public class ScoreDaoUnitTest {
         judgeU7.setJudge_id(7L);
         judgeU7.setRole("judge");
         judgeU7.setEmail("judgeU7@email.com");
-        judgeU7.setPin(1234);
+        judgeU7.setPin("1234");
         judgeU7.setFirst_name("FName");
         judgeU7.setLast_name("LName");
         judgeU7.setStatus("Undergraduate");
@@ -152,7 +152,7 @@ public class ScoreDaoUnitTest {
         judgeU8.setJudge_id(8L);
         judgeU8.setRole("judge");
         judgeU8.setEmail("judgeU8@email.com");
-        judgeU8.setPin(1234);
+        judgeU8.setPin("1234");
         judgeU8.setFirst_name("FName");
         judgeU8.setLast_name("LName");
         judgeU8.setStatus("Undergraduate");
@@ -163,7 +163,7 @@ public class ScoreDaoUnitTest {
         judgeU9.setJudge_id(9L);
         judgeU9.setRole("judge");
         judgeU9.setEmail("judgeU9@email.com");
-        judgeU9.setPin(1234);
+        judgeU9.setPin("1234");
         judgeU9.setFirst_name("FName");
         judgeU9.setLast_name("LName");
         judgeU9.setStatus("Undergraduate");
@@ -174,7 +174,7 @@ public class ScoreDaoUnitTest {
         judgeU10.setJudge_id(10L);
         judgeU10.setRole("judge");
         judgeU10.setEmail("judgeU10@email.com");
-        judgeU10.setPin(1234);
+        judgeU10.setPin("1234");
         judgeU10.setFirst_name("FName");
         judgeU10.setLast_name("LName");
         judgeU10.setStatus("Undergraduate");
@@ -185,7 +185,7 @@ public class ScoreDaoUnitTest {
         judgeG11.setJudge_id(11L);
         judgeG11.setRole("judge");
         judgeG11.setEmail("judgeG11@email.com");
-        judgeG11.setPin(5678);
+        judgeG11.setPin("5678");
         judgeG11.setFirst_name("FName");
         judgeG11.setLast_name("LName");
         judgeG11.setStatus("Graduate");
@@ -196,7 +196,7 @@ public class ScoreDaoUnitTest {
         judgeG12.setJudge_id(12L);
         judgeG12.setRole("judge");
         judgeG12.setEmail("judgeG12@email.com");
-        judgeG12.setPin(5678);
+        judgeG12.setPin("5678");
         judgeG12.setFirst_name("FName");
         judgeG12.setLast_name("LName");
         judgeG12.setStatus("Graduate");
@@ -207,7 +207,7 @@ public class ScoreDaoUnitTest {
         judgeG13.setJudge_id(13L);
         judgeG13.setRole("judge");
         judgeG13.setEmail("judgeG13@email.com");
-        judgeG13.setPin(5678);
+        judgeG13.setPin("5678");
         judgeG13.setFirst_name("FName");
         judgeG13.setLast_name("LName");
         judgeG13.setStatus("Graduate");
@@ -218,7 +218,7 @@ public class ScoreDaoUnitTest {
         judgeG14.setJudge_id(14L);
         judgeG14.setRole("judge");
         judgeG14.setEmail("judgeG14@email.com");
-        judgeG14.setPin(5678);
+        judgeG14.setPin("5678");
         judgeG14.setFirst_name("FName");
         judgeG14.setLast_name("LName");
         judgeG14.setStatus("Graduate");
@@ -229,7 +229,7 @@ public class ScoreDaoUnitTest {
         judgeG15.setJudge_id(15L);
         judgeG15.setRole("judge");
         judgeG15.setEmail("judgeG15@email.com");
-        judgeG15.setPin(5678);
+        judgeG15.setPin("5678");
         judgeG15.setFirst_name("FName");
         judgeG15.setLast_name("LName");
         judgeG15.setStatus("Graduate");
@@ -240,7 +240,7 @@ public class ScoreDaoUnitTest {
         judgeG16.setJudge_id(16L);
         judgeG16.setRole("judge");
         judgeG16.setEmail("judgeG16@email.com");
-        judgeG16.setPin(5678);
+        judgeG16.setPin("5678");
         judgeG16.setFirst_name("FName");
         judgeG16.setLast_name("LName");
         judgeG16.setStatus("Graduate");
@@ -251,7 +251,7 @@ public class ScoreDaoUnitTest {
         judgeG17.setJudge_id(17L);
         judgeG17.setRole("judge");
         judgeG17.setEmail("judgeG17@email.com");
-        judgeG17.setPin(5678);
+        judgeG17.setPin("5678");
         judgeG17.setFirst_name("FName");
         judgeG17.setLast_name("LName");
         judgeG17.setStatus("Graduate");
@@ -262,7 +262,7 @@ public class ScoreDaoUnitTest {
         judgeG18.setJudge_id(18L);
         judgeG18.setRole("judge");
         judgeG18.setEmail("judgeG18@email.com");
-        judgeG18.setPin(5678);
+        judgeG18.setPin("5678");
         judgeG18.setFirst_name("FName");
         judgeG18.setLast_name("LName");
         judgeG18.setStatus("Graduate");
@@ -273,7 +273,7 @@ public class ScoreDaoUnitTest {
         judgeG19.setJudge_id(19L);
         judgeG19.setRole("judge");
         judgeG19.setEmail("judgeG19@email.com");
-        judgeG19.setPin(5678);
+        judgeG19.setPin("5678");
         judgeG19.setFirst_name("FName");
         judgeG19.setLast_name("LName");
         judgeG19.setStatus("Graduate");
@@ -284,7 +284,7 @@ public class ScoreDaoUnitTest {
         judgeG20.setJudge_id(20L);
         judgeG20.setRole("judge");
         judgeG20.setEmail("judgeG20@email.com");
-        judgeG20.setPin(5678);
+        judgeG20.setPin("5678");
         judgeG20.setFirst_name("FName");
         judgeG20.setLast_name("LName");
         judgeG20.setStatus("Graduate");
@@ -295,7 +295,7 @@ public class ScoreDaoUnitTest {
 
         Poster posterU01 = new Poster();
         posterU01.setPoster_id("U01");
-        posterU01.setPin(1234);
+        posterU01.setPin("1234");
         posterU01.setRole("student");
         posterU01.setFirst_name("FName U01");
         posterU01.setLast_name("LName U01");
@@ -308,7 +308,7 @@ public class ScoreDaoUnitTest {
 
         Poster U02 = new Poster();
         U02.setPoster_id("U02");
-        U02.setPin(1234);
+        U02.setPin("1234");
         U02.setRole("student");
         U02.setFirst_name("FName U02");
         U02.setLast_name("LName U02");
@@ -321,7 +321,7 @@ public class ScoreDaoUnitTest {
 
         Poster U03 = new Poster();
         U03.setPoster_id("U03");
-        U03.setPin(1234);
+        U03.setPin("1234");
         U03.setRole("student");
         U03.setFirst_name("FName U03");
         U03.setLast_name("LName U03");
@@ -334,7 +334,7 @@ public class ScoreDaoUnitTest {
 
         Poster U04 = new Poster();
         U04.setPoster_id("U04");
-        U04.setPin(1234);
+        U04.setPin("1234");
         U04.setRole("student");
         U04.setFirst_name("FName U04");
         U04.setLast_name("LName U04");
@@ -347,7 +347,7 @@ public class ScoreDaoUnitTest {
 
         Poster U05 = new Poster();
         U05.setPoster_id("U05");
-        U05.setPin(1234);
+        U05.setPin("1234");
         U05.setRole("student");
         U05.setFirst_name("FName U05");
         U05.setLast_name("LName U05");
@@ -360,7 +360,7 @@ public class ScoreDaoUnitTest {
 
         Poster U06 = new Poster();
         U06.setPoster_id("U06");
-        U06.setPin(1234);
+        U06.setPin("1234");
         U06.setRole("student");
         U06.setFirst_name("FName U06");
         U06.setLast_name("LName U06");
@@ -373,7 +373,7 @@ public class ScoreDaoUnitTest {
 
         Poster U07 = new Poster();
         U07.setPoster_id("U07");
-        U07.setPin(1234);
+        U07.setPin("1234");
         U07.setRole("student");
         U07.setFirst_name("FName U07");
         U07.setLast_name("LName U07");
@@ -386,7 +386,7 @@ public class ScoreDaoUnitTest {
 
         Poster U08 = new Poster();
         U08.setPoster_id("U08");
-        U08.setPin(1234);
+        U08.setPin("1234");
         U08.setRole("student");
         U08.setFirst_name("FName U08");
         U08.setLast_name("LName U08");
@@ -399,7 +399,7 @@ public class ScoreDaoUnitTest {
 
         Poster U09 = new Poster();
         U09.setPoster_id("U09");
-        U09.setPin(1234);
+        U09.setPin("1234");
         U09.setRole("student");
         U09.setFirst_name("FName U09");
         U09.setLast_name("LName U09");
@@ -412,7 +412,7 @@ public class ScoreDaoUnitTest {
 
         Poster U10 = new Poster();
         U10.setPoster_id("U10");
-        U10.setPin(1234);
+        U10.setPin("1234");
         U10.setRole("student");
         U10.setFirst_name("FName U10");
         U10.setLast_name("LName U10");
@@ -425,7 +425,7 @@ public class ScoreDaoUnitTest {
 
         Poster G01 = new Poster();
         G01.setPoster_id("G01");
-        G01.setPin(5678);
+        G01.setPin("5678");
         G01.setRole("student");
         G01.setFirst_name("FName G01");
         G01.setLast_name("LName G01");
@@ -438,7 +438,7 @@ public class ScoreDaoUnitTest {
 
         Poster G02 = new Poster();
         G02.setPoster_id("G02");
-        G02.setPin(5678);
+        G02.setPin("5678");
         G02.setRole("student");
         G02.setFirst_name("FName G02");
         G02.setLast_name("LName G02");
@@ -451,7 +451,7 @@ public class ScoreDaoUnitTest {
 
         Poster G03 = new Poster();
         G03.setPoster_id("G03");
-        G03.setPin(5678);
+        G03.setPin("5678");
         G03.setRole("student");
         G03.setFirst_name("FName G03");
         G03.setLast_name("LName G03");
@@ -464,7 +464,7 @@ public class ScoreDaoUnitTest {
 
         Poster G04 = new Poster();
         G04.setPoster_id("G04");
-        G04.setPin(5678);
+        G04.setPin("5678");
         G04.setRole("student");
         G04.setFirst_name("FName G04");
         G04.setLast_name("LName G04");
@@ -477,7 +477,7 @@ public class ScoreDaoUnitTest {
 
         Poster G05 = new Poster();
         G05.setPoster_id("G05");
-        G05.setPin(5678);
+        G05.setPin("5678");
         G05.setRole("student");
         G05.setFirst_name("FName G05");
         G05.setLast_name("LName G05");
@@ -490,7 +490,7 @@ public class ScoreDaoUnitTest {
 
         Poster G06 = new Poster();
         G06.setPoster_id("G06");
-        G06.setPin(5678);
+        G06.setPin("5678");
         G06.setRole("student");
         G06.setFirst_name("FName G06");
         G06.setLast_name("LName G06");
@@ -503,7 +503,7 @@ public class ScoreDaoUnitTest {
 
         Poster G07 = new Poster();
         G07.setPoster_id("G07");
-        G07.setPin(5678);
+        G07.setPin("5678");
         G07.setRole("student");
         G07.setFirst_name("FName G07");
         G07.setLast_name("LName G07");
@@ -516,7 +516,7 @@ public class ScoreDaoUnitTest {
 
         Poster G08 = new Poster();
         G08.setPoster_id("G08");
-        G08.setPin(5678);
+        G08.setPin("5678");
         G08.setRole("student");
         G08.setFirst_name("FName G08");
         G08.setLast_name("LName G08");
@@ -529,7 +529,7 @@ public class ScoreDaoUnitTest {
 
         Poster G09 = new Poster();
         G09.setPoster_id("G09");
-        G09.setPin(5678);
+        G09.setPin("5678");
         G09.setRole("student");
         G09.setFirst_name("FName G09");
         G09.setLast_name("LName G09");
@@ -542,7 +542,7 @@ public class ScoreDaoUnitTest {
 
         Poster G10 = new Poster();
         G10.setPoster_id("G10");
-        G10.setPin(5678);
+        G10.setPin("5678");
         G10.setRole("student");
         G10.setFirst_name("FName G10");
         G10.setLast_name("LName G10");
@@ -557,7 +557,7 @@ public class ScoreDaoUnitTest {
         Score s1 = new Score();
         s1.setPoster_id(posterU01.getPoster_id());
         s1.setJudge_id(judgeU1.getJudge_id());
-        s1.setRound(1);;
+        s1.setRound(1);
         scoreDao.create(s1);
         assertNotNull(s1.getId());
 

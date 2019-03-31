@@ -99,7 +99,7 @@ public class PosterDao extends BaseDao<Poster> {
         }
     }
 
-    public Poster read(String email, int pin){
+    public Poster read(String email, String pin){
         LOG.trace("Reading Poster []");
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();

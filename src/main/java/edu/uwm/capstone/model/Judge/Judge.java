@@ -9,7 +9,7 @@ public class Judge {
     private String last_name;
     private String status;
     private String email;
-    private int pin;
+    private String pin;
     private String role;
 
     public Long getId() {
@@ -60,11 +60,11 @@ public class Judge {
         this.email = email;
     }
 
-    public int getPin() {
+    public String getPin() {
         return pin;
     }
 
-    public void setPin(int pin) {
+    public void setPin(String pin) {
         this.pin = pin;
     }
 

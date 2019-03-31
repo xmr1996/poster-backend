@@ -46,11 +46,11 @@ public class LoginRestController {
     @GetMapping(value = LOGIN_PATH)
     public Object create(@PathVariable String email, @PathVariable String pin, @ApiIgnore HttpServletResponse response) throws IOException {
 
-            Judge judge = judgeDao.read(email, Integer.parseInt(pin));
+            Judge judge = judgeDao.read(email, pin);
             if(judge != null)
                 return judge;
 
-            Poster poster = posterDao.read(email, Integer.parseInt(pin));
+            Poster poster = posterDao.read(email, pin);
             if(poster != null)
                 return poster;
 

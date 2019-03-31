@@ -39,7 +39,7 @@ public class TestDataUtility {
     public static Judge judgeWithTestValues() {
         Judge judge = new Judge();
         judge.setFirst_name(randomAlphabetic(randomInt(1, 100)));
-        judge.setPin(randomInt(1, 1000));
+        judge.setPin(randomAlphabetic(randomInt(1, 100)));
         judge.setLast_name(randomAlphabetic(randomInt(1, 100)));
         judge.setStatus("Graduate");
         judge.setEmail(randomAlphabetic(randomInt(1, 100)));
@@ -49,7 +49,7 @@ public class TestDataUtility {
     public static Poster posterWithTestValues() {
         Poster poster = new Poster();
         poster.setFirst_name(randomAlphabetic(randomInt(1, 100)));
-        poster.setPin(randomInt(1, 1000));
+        poster.setPin(randomAlphabetic(randomInt(1, 100)));
         poster.setLast_name(randomAlphabetic(randomInt(1, 100)));
         poster.setStatus("Graduate");
         poster.setEmail(randomAlphabetic(randomInt(1, 100)));
