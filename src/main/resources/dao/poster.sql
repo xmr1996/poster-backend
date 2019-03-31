@@ -94,3 +94,6 @@ WHERE     status = :status
           AND  voted_for is not null
 GROUP BY  voted_for
 ORDER BY  votes DESC;
+
+--STATEMENT clearPosters
+DELETE FROM posters;

@@ -1,7 +1,11 @@
 package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.db.AdminDao;
+import edu.uwm.capstone.db.JudgeDao;
+import edu.uwm.capstone.db.PosterDao;
+import edu.uwm.capstone.db.ScoreDao;
 import edu.uwm.capstone.model.Admin.Admin;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +25,16 @@ public class AdminRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProfileRestController.class);
     private final AdminDao adminDao;
+    private final ScoreDao scoreDao;
+    private final PosterDao posterDao;
+    private final JudgeDao judgeDao;
 
     @Autowired
-    public AdminRestController(AdminDao adminDao) {
+    public AdminRestController(AdminDao adminDao,ScoreDao scoreDao, PosterDao posterDao,JudgeDao judgeDao) {
         this.adminDao = adminDao;
+        this.scoreDao = scoreDao;
+        this.posterDao = posterDao;
+        this.judgeDao = judgeDao;
     }
 
     /**
@@ -148,5 +158,13 @@ public class AdminRestController {
         for(Admin admin : admins){
             adminDao.create(admin);
         }
+    }
+
+    @ApiOperation(value = "Reset all tables")
+    @PostMapping(value = ADMIN_PATH + "/reset")
+    public void resetTables(@ApiIgnore HttpServletResponse response)throws IOException{
+        scoreDao.clearTable();
+        posterDao.clearTable();
+        judgeDao.clearTable();
     }
 }
