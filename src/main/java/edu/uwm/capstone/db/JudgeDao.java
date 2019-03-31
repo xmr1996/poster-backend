@@ -70,6 +70,15 @@ public class JudgeDao extends BaseDao<Judge> {
         }
     }
 
+    public Judge readByJudgeID(long judge_id) {
+        LOG.trace("Reading judge {}", judge_id);
+        try {
+            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudgeByJudgeId"), new MapSqlParameterSource("judge_id", judge_id), rowMapper);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
     /**
      * Retrieve a {@link Judge} object by its {@link Judge#getId}.
      *
@@ -129,6 +138,7 @@ public class JudgeDao extends BaseDao<Judge> {
         }
     }
 
+
     /**
      * Delete a {@link Judge} object by its {@link Judge#getId}.
      *
@@ -140,6 +150,14 @@ public class JudgeDao extends BaseDao<Judge> {
         int result = this.jdbcTemplate.update(sql("deleteJudge"), new MapSqlParameterSource("id", id));
         if (result != 1) {
             throw new RuntimeException("Failed attempt to update judge " + id + " affected " + result + " rows");
+        }
+    }
+
+    public void deleteByJudgeId(long judge_id) {
+        LOG.trace("Deleting judge by judge_id{}", judge_id);
+        int result = this.jdbcTemplate.update(sql("deleteJudgeByJudgeId"), new MapSqlParameterSource("judge_id", judge_id));
+        if (result != 1) {
+            throw new RuntimeException("Failed attempt to update judge " + judge_id + " affected " + result + " rows");
         }
     }
 

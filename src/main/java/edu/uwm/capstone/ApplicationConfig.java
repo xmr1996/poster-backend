@@ -171,6 +171,19 @@ public class ApplicationConfig {
     public PosterDaoRowMapper posterDaoRowMapper(){
         return new PosterDaoRowMapper();
     }
+
+    @Bean
+    public VoteDaoRowMapper voteDaoRowMapper() {return new VoteDaoRowMapper(); }
+
+    @Bean
+    public VoteDao voteDao(){
+        VoteDao voteDao = new VoteDao();
+        voteDao.setDataSource(dataSource());
+        voteDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        voteDao.setRowMapper(voteDaoRowMapper());
+        return voteDao;
+    }
+
     public String getDbDriverClassName() {
         return dbDriverClassName;
     }

@@ -74,10 +74,10 @@ public class ScoreRestController {
     @ApiOperation(value = "Generate Round 2 Assignments")
     @PostMapping(value = SCORE_PATH + "generateRound2")
     public void create(@ApiIgnore HttpServletResponse response) throws IOException{
-        List<Poster> undergradPosters = posterDao.readUndergradWinners();
-        List<Poster> gradPosters = posterDao.readGradWinners();
-        List<Judge> undergradJudges  = judgeDao.readAllJudges("undergraduate");
-        List<Judge> gradJudges = judgeDao.readAllJudges("graduate");
+        List<Poster> undergradPosters = posterDao.getTop6("Graduate");
+        List<Poster> gradPosters = posterDao.getTop6("Undergraduate");
+        List<Judge> undergradJudges  = judgeDao.readAllJudges("Undergraduate");
+        List<Judge> gradJudges = judgeDao.readAllJudges("Graduate");
 
         for (Poster poster : undergradPosters){
             for (Judge judge : undergradJudges){

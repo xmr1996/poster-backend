@@ -13,7 +13,6 @@ public class Poster {
     private int pin;
     private String department;
     private String voted_for;
-    private int votes;
     private String role;
     private double avg_r1;
     private double avg_r2;
@@ -95,14 +94,6 @@ public class Poster {
     }
 
     public void setRole(String role){ this.role = role; }
-
-    public int getVotes() {
-        return votes;
-    }
-
-    public void setVotes(int votes) {
-        this.votes = votes;
-    }
 
     public double getAvg_r2() {
         return avg_r2;
