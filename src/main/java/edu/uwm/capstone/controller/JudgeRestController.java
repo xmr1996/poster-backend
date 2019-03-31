@@ -142,4 +142,13 @@ public class JudgeRestController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
         }
     }
+
+    @ApiOperation(value = "Insert from csv")
+    @PostMapping(value = JUDGE_PATH + "/all")
+    public void importCSV(@RequestBody List<Judge> judges, @ApiIgnore HttpServletResponse response) throws IOException{
+        for(Judge judge : judges){
+            judgeDao.create(judge);
+        }
+    }
+
 }

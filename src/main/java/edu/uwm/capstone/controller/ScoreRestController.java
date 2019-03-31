@@ -218,4 +218,13 @@ public class ScoreRestController {
             response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
         }
     }
+
+    @ApiOperation(value = "Insert from csv")
+    @PostMapping(value = SCORE_PATH + "/all")
+    public void importCSV(@RequestBody List<Score> scores, @ApiIgnore HttpServletResponse response) throws IOException{
+        for(Score score : scores){
+            scoreDao.create(score);
+        }
+    }
+
 }
