@@ -39,6 +39,8 @@ public class JudgeDao extends BaseDao<Judge> {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
+        judge.setRole("judge");
+
         MapSqlParameterSource parameters = new MapSqlParameterSource(rowMapper.mapObject(judge));
 
         int result = this.jdbcTemplate.update(sql("createJudge"),

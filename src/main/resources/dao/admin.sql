@@ -24,6 +24,9 @@ SELECT * FROM admin;
 SELECT * FROM admin
 WHERE email = :email;
 
+--STATEMENT readAdminEmailPin
+SELECT * FROM admin WHERE email = :email and pin = :pin;
+
 --STATEMENT updateAdmin
 UPDATE admin
 SET

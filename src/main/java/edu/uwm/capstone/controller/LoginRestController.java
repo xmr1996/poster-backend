@@ -1,7 +1,9 @@
 package edu.uwm.capstone.controller;
 
+import edu.uwm.capstone.db.AdminDao;
 import edu.uwm.capstone.db.JudgeDao;
 import edu.uwm.capstone.db.PosterDao;
+import edu.uwm.capstone.model.Admin.Admin;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
 import io.swagger.annotations.ApiOperation;
@@ -26,11 +28,13 @@ public class LoginRestController {
     private static final Logger logger = LoggerFactory.getLogger(LoginRestController.class);
     private final JudgeDao judgeDao;
     private final PosterDao posterDao;
+    private final AdminDao adminDao;
 
     @Autowired
-    public LoginRestController(JudgeDao judgeDao, PosterDao posterDao) {
+    public LoginRestController(JudgeDao judgeDao, PosterDao posterDao, AdminDao adminDao) {
         this.judgeDao = judgeDao;
         this.posterDao = posterDao;
+        this.adminDao = adminDao;
     }
 
     /**
@@ -53,6 +57,10 @@ public class LoginRestController {
             Poster poster = posterDao.read(email, pin);
             if(poster != null)
                 return poster;
+
+            Admin admin = adminDao.read(email, pin);
+            if(admin != null)
+                return admin;
 
             return null;
     }

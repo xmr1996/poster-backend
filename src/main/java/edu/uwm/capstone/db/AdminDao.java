@@ -28,7 +28,7 @@ public class AdminDao extends BaseDao<Admin> {
             throw new DaoException("Request to create a new Profile received null");
         }
 
-        admin.setRole("Administrator");
+        admin.setRole("admin");
 
         LOG.trace("Creating Admin {}", admin);
 
@@ -66,6 +66,18 @@ public class AdminDao extends BaseDao<Admin> {
         try {
             return (Admin) this.jdbcTemplate.queryForObject(sql("readAdmin"), new MapSqlParameterSource("email", email), rowMapper);
         } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public Admin read(String email, String pin){
+        LOG.trace("Reading admin {}");
+        try{
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            parameters.addValue("email", email);
+            parameters.addValue("pin", pin);
+            return (Admin) this.jdbcTemplate.queryForObject(sql("readAdminEmailPin"),parameters, rowMapper);
+        }catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
