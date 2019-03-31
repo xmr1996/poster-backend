@@ -196,6 +196,18 @@ public class ApplicationConfig {
         return adminDao;
     }
 
+    @Bean
+    public RoundDaoRowMapper roundDaoRowMapper() {return new RoundDaoRowMapper();}
+
+    @Bean
+    public RoundDao roundDao(){
+        RoundDao roundDao = new RoundDao();
+        roundDao.setDataSource(dataSource());
+        roundDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        roundDao.setRowMapper(roundDaoRowMapper());
+        return roundDao;
+    }
+
     public String getDbDriverClassName() {
         return dbDriverClassName;
     }
