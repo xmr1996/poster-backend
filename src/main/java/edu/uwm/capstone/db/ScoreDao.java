@@ -114,15 +114,7 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
-    //read all assignments
-    public List<Assignment> readAssignments(){
-        LOG.trace("Read Assignment{}");
-        try {
-            return (List<Assignment>) this.jdbcTemplate.query(sql("getAllAssignments"), rowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
+
 
     /**
      * Update the provided {@link Score} object.

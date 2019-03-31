@@ -32,10 +32,13 @@ public class AssignmentDao extends BaseDao<Assignment> {
     }
     //  Get All Assignments
 
-    public List<Assignment> read(){
-        LOG.trace("Read Assignment{}");
+    //read all assignments
+    public List<Assignment> readAssignments(int round){
+        LOG.trace("Read Assignment by round{}");
         try {
-            return (List<Assignment>) this.jdbcTemplate.query(sql("getAllAssignments"), rowMapper);
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            parameters.addValue("round", round);
+            return (List<Assignment>) this.jdbcTemplate.query(sql("getAllAssignments"),parameters,rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

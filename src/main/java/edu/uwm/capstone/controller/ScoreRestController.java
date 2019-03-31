@@ -197,9 +197,9 @@ public class ScoreRestController {
      * @throws IOException if error response cannot be created.
      */
     @ApiOperation(value = "Read All Assignments")
-    @GetMapping(value = SCORE_PATH + "assignments")
-    public List<Assignment> readAllAssignments(@ApiIgnore HttpServletResponse response) throws IOException {
-        List<Assignment> assignments = assignmentDao.read();
+    @GetMapping(value = SCORE_PATH + "assignments/{round}")
+    public List<Assignment> readAllAssignments(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
+        List<Assignment> assignments = assignmentDao.readAssignments(round);
 
         if (assignments.isEmpty()) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No assignments were found.");
