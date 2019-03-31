@@ -16,6 +16,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -73,29 +74,33 @@ public class ScoreRestController {
      */
     @ApiOperation(value = "Generate Round 2 Assignments")
     @PostMapping(value = SCORE_PATH + "generateRound2")
-    public void create(@ApiIgnore HttpServletResponse response) throws IOException{
-        List<Poster> undergradPosters = posterDao.getTop6("Graduate");
-        List<Poster> gradPosters = posterDao.getTop6("Undergraduate");
-        List<Judge> undergradJudges  = judgeDao.readAllJudges("Undergraduate");
-        List<Judge> gradJudges = judgeDao.readAllJudges("Graduate");
-
-        for (Poster poster : undergradPosters){
-            for (Judge judge : undergradJudges){
-                Score score = new Score();
-                score.setJudge_id(judge.getId());
-                score.setPoster_id(poster.getPoster_id());
-                score.setRound(2);
-                scoreDao.create(score);
-            }
+    public void create(@RequestBody List<String> posters, @ApiIgnore HttpServletResponse response) throws IOException{
+        for(String poster_id : posters){
+            Poster poster = posterDao.read(poster_id);
+            assignJudges(poster_id, poster.getStatus());
         }
-        for (Poster poster : gradPosters){
-            for (Judge judge : gradJudges){
-                Score score = new Score();
-                score.setJudge_id(judge.getId());
-                score.setPoster_id(poster.getPoster_id());
-                score.setRound(2);
-                scoreDao.create(score);
-            }
+    }
+
+    private void assignJudges(String poster_id, String status){
+        List<Judge> judges = new ArrayList<Judge>();
+
+        if(status.equals("Graduate")) {
+            judges = judgeDao.readAllJudges("Graduate");
+        }
+        else if(status.equals("Undergraduate")) {
+            judges = judgeDao.readAllJudges("Undergraduate");
+        }
+        createScores(poster_id, judges);
+
+    }
+
+    private void createScores(String poster_id, List<Judge> judges){
+        for(Judge judge : judges){
+            Score score = new Score();
+            score.setJudge_id(judge.getJudge_id());
+            score.setPoster_id(poster_id);
+            score.setRound(2);
+            scoreDao.create(score);
         }
     }
 
