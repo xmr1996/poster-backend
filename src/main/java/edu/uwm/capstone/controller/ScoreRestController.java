@@ -196,7 +196,7 @@ public class ScoreRestController {
      * @return {@link List<Assignment>} retrieved from the database
      * @throws IOException if error response cannot be created.
      */
-    @ApiOperation(value = "Read All Assignments")
+    @ApiOperation(value = "Read All Assignments by round number")
     @GetMapping(value = SCORE_PATH + "assignments/{round}")
     public List<Assignment> readAllAssignments(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
         List<Assignment> assignments = assignmentDao.readAssignments(round);

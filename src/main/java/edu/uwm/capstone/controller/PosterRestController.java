@@ -149,6 +149,17 @@ public class PosterRestController{
         return poster;
     }
 
+    @ApiOperation(value = "Read poster by student status")
+    @GetMapping(value = POSTER_PATH + "/status/" + "{status}")
+    public List<Poster> getPostersByStatus(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
+        List<Poster> posters = posterDao.getPosterByStatus(status);
+        if (posters == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
+            return null;
+        }
+        return posters;
+    }
+
      /**
      * Delete the {@link Poster} by Id
      *
