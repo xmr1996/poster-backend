@@ -111,20 +111,15 @@ public class PosterDao extends BaseDao<Poster> {
         }
     }
 
-    public List<Poster> readGradWinners(){
-        try {
-            return (List<Poster>) this.jdbcTemplate.query(sql("readGradWinners"), rowMapper);
-        } catch (EmptyResultDataAccessException e) {
+    public List<Poster> getPosterByStatus(String status){
+        try{
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            parameters.addValue("status", status);
+            return (List<Poster>) this.jdbcTemplate.query(sql("readPostersByStatus"),parameters,rowMapper);
+        } catch(EmptyResultDataAccessException e){
             return null;
         }
-    }
 
-    public List<Poster> readUndergradWinners(){
-        try {
-            return (List<Poster>) this.jdbcTemplate.query(sql("readUndergradWinners"), rowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
     }
 
     public void calculateAvgSingle(String poster_id){
