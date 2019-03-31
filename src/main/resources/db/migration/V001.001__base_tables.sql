@@ -50,3 +50,13 @@ CREATE TABLE SCORE(
  -- created_date BIGINT(25) NOT NULL,
   --updated_date BIGINT(25) DEFAULT NULL
 );
+
+CREATE TABLE admin(
+  email VARCHAR(255) PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+  read BOOLEAN,
+  write BOOLEAN,
+  pin VARCHAR(255),
+  role VARCHAR(255)
+);
