@@ -90,7 +90,7 @@ public class PosterDaoRowMapperUnitTest {
         when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.FIRST_NAME.getColumnName())).thenReturn(poster.getFirst_name());
         when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.LAST_NAME.getColumnName())).thenReturn(poster.getLast_name());
         when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.DEPARTMENT.getColumnName())).thenReturn(poster.getDepartment());
-        when(resultSet.getInt(PosterDaoRowMapper.PosterColumnType.PIN.getColumnName())).thenReturn(poster.getPin());
+        when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.PIN.getColumnName())).thenReturn(poster.getPin());
         when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.TITLE.getColumnName())).thenReturn(poster.getTitle());
         when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.EMAIL.getColumnName())).thenReturn(poster.getEmail());
 

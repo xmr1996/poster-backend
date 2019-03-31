@@ -93,7 +93,7 @@ public class JudgeDao extends BaseDao<Judge> {
         }
     }
 
-    public Judge read(String email, int pin){
+    public Judge read(String email, String pin){
         LOG.trace("Reading Judge {}");
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();

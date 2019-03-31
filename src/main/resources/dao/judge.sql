@@ -6,8 +6,7 @@ INSERT INTO judges (
   status,
   pin,
   email,
-  role,
-
+  role
 ) VALUES (
   :judge_id,
   :first_name,

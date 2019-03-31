@@ -50,7 +50,7 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         poster.setFirst_name(rs.getString(FIRST_NAME.getColumnName()));
         poster.setLast_name(rs.getString(LAST_NAME.getColumnName()));
         poster.setStatus(rs.getString(STATUS.getColumnName()));
-        poster.setPin(rs.getInt(PIN.getColumnName()));
+        poster.setPin(rs.getString(PIN.getColumnName()));
         poster.setDepartment(rs.getString(DEPARTMENT.getColumnName()));
         poster.setVoted_for(rs.getString(VOTED_FOR.getColumnName()));
         poster.setRole(rs.getString(ROLE.getColumnName()));

@@ -10,7 +10,7 @@ public class Poster {
     private String first_name;
     private String last_name;
     private String status;
-    private int pin;
+    private String pin;
     private String department;
     private String voted_for;
     private String role;
@@ -73,11 +73,11 @@ public class Poster {
         this.status = status;
     }
 
-    public int getPin() {
+    public String getPin() {
         return pin;
     }
 
-    public void setPin(int pin) {
+    public void setPin(String pin) {
         this.pin = pin;
     }
 
