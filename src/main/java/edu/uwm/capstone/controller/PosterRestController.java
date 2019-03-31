@@ -3,6 +3,8 @@ package edu.uwm.capstone.controller;
 import edu.uwm.capstone.db.PosterDao;
 import edu.uwm.capstone.model.Poster.Poster;
 import io.swagger.annotations.ApiOperation;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -189,6 +192,14 @@ public class PosterRestController{
             posterDao.clearTable();
         } catch(Exception e){
             response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "Insert from csv")
+    @PostMapping(value = POSTER_PATH + "/all")
+    public void importCSV(@RequestBody List<Poster> posters, @ApiIgnore HttpServletResponse response) throws IOException{
+        for(Poster poster : posters){
+            posterDao.create(poster);
         }
     }
 

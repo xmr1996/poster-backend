@@ -3,6 +3,7 @@ package edu.uwm.capstone.db;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -12,6 +13,8 @@ import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.sql.exception.DaoException;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -219,4 +222,12 @@ public class PosterDao extends BaseDao<Poster> {
             throw new DaoException("Failed attempt to clear posters table");
         }
     }
+
+//    public void importCSV(List<Poster> posters){
+//        LOG.trace("Importing from CSV");
+//        KeyHolder keyHolder = new GeneratedKeyHolder();
+//        for(int i=0;i<posters.size();i++) {
+//            jdbcTemplate.update(sql("importCSV"), new MapSqlParameterSource(rowMapper.mapObject(posters)), keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
+//        }
+//    }
 }
