@@ -184,6 +184,18 @@ public class ApplicationConfig {
         return voteDao;
     }
 
+    @Bean
+    public AdminDaoRowMapper adminDaoRowMapper() { return new AdminDaoRowMapper(); }
+
+    @Bean
+    public AdminDao adminDao(){
+        AdminDao adminDao = new AdminDao();
+        adminDao.setDataSource(dataSource());
+        adminDao.setSqlStatementsFileLoader(sqlStatementsFileLoader());
+        adminDao.setRowMapper(adminDaoRowMapper());
+        return adminDao;
+    }
+
     public String getDbDriverClassName() {
         return dbDriverClassName;
     }
