@@ -1,6 +1,17 @@
 #!/bin/bash
 
 ###############################################################################
+# Variables required by this script:
+#  - CI_PROJECT_PATH
+#  - CI_PROJECT_NAME
+#  - CI_COMMIT_SHA
+#  - DOCKER_REPO_USER
+#  - DOCKER_REPO_PASS
+#  - RDS_USERNAME
+#  - RDS_PASSWORD
+###############################################################################
+
+###############################################################################
 # Project-specific variables, these should be updated per-project             
 CONTAINER_PORT=8333
 HOST_PORT=8333
@@ -9,13 +20,6 @@ HOST_PORT=8333
 
 # Any future command that fails will exit the script
 set -e
-
-# Script arguments
-CI_PROJECT_PATH=$1
-CI_PROJECT_NAME=$2
-CI_COMMIT_SHA=$3
-DOCKER_REPO_USER=$4
-DOCKER_REPO_PASS=$5
 
 # Helper variables
 DOCKER_REGISTRY="registry.uwm-nm-te-capstone.com:8083"
@@ -47,4 +51,9 @@ docker pull $IMAGE_NAME:$IMAGE_TAG
 
 # Run the docker image
 echo "Running '$CONTAINER_NAME' on port $CONTAINER_PORT from '$FULL_IMAGE_REF'"
-docker run -d -p $HOST_PORT:$CONTAINER_PORT --name $CONTAINER_NAME $FULL_IMAGE_REF
+docker run -d \
+    -p $HOST_PORT:$CONTAINER_PORT \
+    --name $CONTAINER_NAME \
+    -e RDS_USERNAME \
+    -e RDS_PASSWORD \
+    $FULL_IMAGE_REF
