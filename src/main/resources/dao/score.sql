@@ -82,3 +82,7 @@ ON DUPLICATE KEY UPDATE
 
 --STATEMENT clearScore
 DELETE FROM score;
+
+--STATEMENT clearScoreByRound
+DELETE FROM score
+WHERE round = :round;

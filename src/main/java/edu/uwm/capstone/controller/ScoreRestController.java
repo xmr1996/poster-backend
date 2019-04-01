@@ -73,7 +73,9 @@ public class ScoreRestController {
      */
     @ApiOperation(value = "Generate Round 2 Assignments")
     @PostMapping(value = SCORE_PATH + "generateRound2")
-    public void create(@RequestBody List<String> posters, @ApiIgnore HttpServletResponse response) throws IOException{
+    public void GenerateRound2Assignments(@RequestBody List<String> posters, @ApiIgnore HttpServletResponse response) throws IOException{
+        scoreDao.deleteScoreByRound(2);
+
         for(String poster_id : posters){
             Poster poster = posterDao.read(poster_id);
             assignJudges(poster_id, poster.getStatus());
