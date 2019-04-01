@@ -18,9 +18,6 @@ VALUES(
     :total_score
 );
 
---STATEMENT readById
-SELECT * FROM score where id = :id;
-
 --STATEMENT readScoreByRoundandJudge
 SELECT posters.*, score.*
 FROM score
@@ -30,9 +27,6 @@ WHERE score.round = :round and score.judge_id = :judge_id;
 
 --STATEMENT readAllScores
 SELECT * FROM score;
-
---STATEMENT readScore
-SELECT * FROM score WHERE id = :id;
 
 --STATEMENT getScoreByID
 SELECT * FROM score WHERE poster_id = :poster_id and judge_id = :judge_id;
@@ -56,10 +50,6 @@ WHERE
 
 --STATEMENT deleteScorebyPosterID
 DELETE FROM score WHERE poster_id = :poster_id;
-
-
---STATEMENT deleteScore
-DELETE FROM score where id = :id;
 
 --STATEMENT getAllAssignments
 SELECT id, poster_id, judge_id from score where round = :round;

@@ -30,9 +30,6 @@ SELECT * FROM judges WHERE judge_id = :judge_id;
 SELECT * FROM judges
 WHERE status = :status;
 
---STATEMENT deleteJudge
-DELETE FROM judges WHERE id = :id;
-
 --STATEMENT deleteJudgeByJudgeId
 DELETE FROM judges WHERE judge_id = :judge_id;
 
@@ -45,8 +42,6 @@ UPDATE judges SET
   email = :email
 WHERE
   judge_id = :judge_id;
-
-
 
 --STATEMENT readJudgeEmailPin
 SELECT * FROM judges WHERE email = :email and pin = :pin;

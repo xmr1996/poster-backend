@@ -23,20 +23,18 @@ CREATE TABLE posters (
 );
 
 CREATE TABLE judges (
-  id INT(255) AUTO_INCREMENT PRIMARY KEY,
+  judge_id INT(255) PRIMARY KEY,
   first_name VARCHAR(255),
   last_name VARCHAR(255),
   status VARCHAR(255),
   pin VARCHAR(255),
   email VARCHAR(255),
   role VARCHAR(255),
-  judge_id INT(255),
 );
 
 commit;
 
 CREATE TABLE SCORE(
-  id INT(255) AUTO_INCREMENT,
   poster_id VARCHAR(255),
   judge_id INT(255),
   round INT(10) DEFAULT NULL,

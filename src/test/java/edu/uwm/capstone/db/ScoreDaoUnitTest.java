@@ -50,9 +50,7 @@ public class ScoreDaoUnitTest {
     public void setUp() {
         assertNotNull(scoreDao);
         assertNotNull(scoreDao.sql("createScore"));
-        assertNotNull(scoreDao.sql("readScore"));
         assertNotNull(scoreDao.sql("updateScore"));
-        assertNotNull(scoreDao.sql("deleteScore"));
     }
 
 
@@ -80,7 +78,7 @@ public class ScoreDaoUnitTest {
         judgeU1.setLast_name("LName");
         judgeU1.setStatus("Undergraduate");
         judgeDao.create(judgeU1);
-        assertNotNull(judgeU1.getId());
+        assertNotNull(judgeU1.getJudge_id());
 
         Judge judgeU2 = new Judge();
         judgeU2.setJudge_id(2L);
@@ -91,7 +89,7 @@ public class ScoreDaoUnitTest {
         judgeU2.setLast_name("LName");
         judgeU2.setStatus("Undergraduate");
         judgeDao.create(judgeU2);
-        assertNotNull(judgeU2.getId());
+        assertNotNull(judgeU2.getJudge_id());
 
         Judge judgeU3 = new Judge();
         judgeU3.setJudge_id(3L);
@@ -102,7 +100,7 @@ public class ScoreDaoUnitTest {
         judgeU3.setLast_name("LName");
         judgeU3.setStatus("Undergraduate");
         judgeDao.create(judgeU3);
-        assertNotNull(judgeU3.getId());
+        assertNotNull(judgeU3.getJudge_id());
 
         Judge judgeU4 = new Judge();
         judgeU4.setJudge_id(4L);
@@ -113,7 +111,7 @@ public class ScoreDaoUnitTest {
         judgeU4.setLast_name("LName");
         judgeU4.setStatus("Undergraduate");
         judgeDao.create(judgeU4);
-        assertNotNull(judgeU4.getId());
+        assertNotNull(judgeU4.getJudge_id());
 
         Judge judgeU5 = new Judge();
         judgeU5.setJudge_id(5L);
@@ -124,7 +122,7 @@ public class ScoreDaoUnitTest {
         judgeU5.setLast_name("LName");
         judgeU5.setStatus("Undergraduate");
         judgeDao.create(judgeU5);
-        assertNotNull(judgeU5.getId());
+        assertNotNull(judgeU5.getJudge_id());
 
         Judge judgeU6 = new Judge();
         judgeU6.setJudge_id(6L);
@@ -135,7 +133,7 @@ public class ScoreDaoUnitTest {
         judgeU6.setLast_name("LName");
         judgeU6.setStatus("Undergraduate");
         judgeDao.create(judgeU6);
-        assertNotNull(judgeU6.getId());
+        assertNotNull(judgeU6.getJudge_id());
 
         Judge judgeU7 = new Judge();
         judgeU7.setJudge_id(7L);
@@ -146,7 +144,7 @@ public class ScoreDaoUnitTest {
         judgeU7.setLast_name("LName");
         judgeU7.setStatus("Undergraduate");
         judgeDao.create(judgeU7);
-        assertNotNull(judgeU7.getId());
+        assertNotNull(judgeU7.getJudge_id());
 
         Judge judgeU8 = new Judge();
         judgeU8.setJudge_id(8L);
@@ -157,7 +155,7 @@ public class ScoreDaoUnitTest {
         judgeU8.setLast_name("LName");
         judgeU8.setStatus("Undergraduate");
         judgeDao.create(judgeU8);
-        assertNotNull(judgeU8.getId());
+        assertNotNull(judgeU8.getJudge_id());
 
         Judge judgeU9 = new Judge();
         judgeU9.setJudge_id(9L);
@@ -168,7 +166,7 @@ public class ScoreDaoUnitTest {
         judgeU9.setLast_name("LName");
         judgeU9.setStatus("Undergraduate");
         judgeDao.create(judgeU9);
-        assertNotNull(judgeU9.getId());
+        assertNotNull(judgeU9.getJudge_id());
 
         Judge judgeU10 = new Judge();
         judgeU10.setJudge_id(10L);
@@ -179,7 +177,7 @@ public class ScoreDaoUnitTest {
         judgeU10.setLast_name("LName");
         judgeU10.setStatus("Undergraduate");
         judgeDao.create(judgeU10);
-        assertNotNull(judgeU10.getId());
+        assertNotNull(judgeU10.getJudge_id());
 
         Judge judgeG11 = new Judge();
         judgeG11.setJudge_id(11L);
@@ -190,7 +188,7 @@ public class ScoreDaoUnitTest {
         judgeG11.setLast_name("LName");
         judgeG11.setStatus("Graduate");
         judgeDao.create(judgeG11);
-        assertNotNull(judgeG11.getId());
+        assertNotNull(judgeG11.getJudge_id());
 
         Judge judgeG12 = new Judge();
         judgeG12.setJudge_id(12L);
@@ -201,7 +199,7 @@ public class ScoreDaoUnitTest {
         judgeG12.setLast_name("LName");
         judgeG12.setStatus("Graduate");
         judgeDao.create(judgeG12);
-        assertNotNull(judgeG12.getId());
+        assertNotNull(judgeG12.getJudge_id());
 
         Judge judgeG13 = new Judge();
         judgeG13.setJudge_id(13L);
@@ -212,7 +210,7 @@ public class ScoreDaoUnitTest {
         judgeG13.setLast_name("LName");
         judgeG13.setStatus("Graduate");
         judgeDao.create(judgeG13);
-        assertNotNull(judgeG13.getId());
+        assertNotNull(judgeG13.getJudge_id());
 
         Judge judgeG14 = new Judge();
         judgeG14.setJudge_id(14L);
@@ -223,7 +221,7 @@ public class ScoreDaoUnitTest {
         judgeG14.setLast_name("LName");
         judgeG14.setStatus("Graduate");
         judgeDao.create(judgeG14);
-        assertNotNull(judgeG14.getId());
+        assertNotNull(judgeG14.getJudge_id());
 
         Judge judgeG15 = new Judge();
         judgeG15.setJudge_id(15L);
@@ -234,7 +232,7 @@ public class ScoreDaoUnitTest {
         judgeG15.setLast_name("LName");
         judgeG15.setStatus("Graduate");
         judgeDao.create(judgeG15);
-        assertNotNull(judgeG15.getId());
+        assertNotNull(judgeG15.getJudge_id());
 
         Judge judgeG16 = new Judge();
         judgeG16.setJudge_id(16L);
@@ -245,7 +243,7 @@ public class ScoreDaoUnitTest {
         judgeG16.setLast_name("LName");
         judgeG16.setStatus("Graduate");
         judgeDao.create(judgeG16);
-        assertNotNull(judgeG16.getId());
+        assertNotNull(judgeG16.getJudge_id());
 
         Judge judgeG17 = new Judge();
         judgeG17.setJudge_id(17L);
@@ -256,7 +254,7 @@ public class ScoreDaoUnitTest {
         judgeG17.setLast_name("LName");
         judgeG17.setStatus("Graduate");
         judgeDao.create(judgeG17);
-        assertNotNull(judgeG17.getId());
+        assertNotNull(judgeG17.getJudge_id());
 
         Judge judgeG18 = new Judge();
         judgeG18.setJudge_id(18L);
@@ -267,7 +265,7 @@ public class ScoreDaoUnitTest {
         judgeG18.setLast_name("LName");
         judgeG18.setStatus("Graduate");
         judgeDao.create(judgeG18);
-        assertNotNull(judgeG18.getId());
+        assertNotNull(judgeG18.getJudge_id());
 
         Judge judgeG19 = new Judge();
         judgeG19.setJudge_id(19L);
@@ -278,7 +276,7 @@ public class ScoreDaoUnitTest {
         judgeG19.setLast_name("LName");
         judgeG19.setStatus("Graduate");
         judgeDao.create(judgeG19);
-        assertNotNull(judgeG19.getId());
+        assertNotNull(judgeG19.getJudge_id());
 
         Judge judgeG20 = new Judge();
         judgeG20.setJudge_id(20L);
@@ -289,7 +287,7 @@ public class ScoreDaoUnitTest {
         judgeG20.setLast_name("LName");
         judgeG20.setStatus("Graduate");
         judgeDao.create(judgeG20);
-        assertNotNull(judgeG20.getId());
+        assertNotNull(judgeG20.getJudge_id());
 
 
 
@@ -559,203 +557,174 @@ public class ScoreDaoUnitTest {
         s1.setJudge_id(judgeU1.getJudge_id());
         s1.setRound(1);
         scoreDao.create(s1);
-        assertNotNull(s1.getId());
 
         Score s2 = new Score();
         s2.setPoster_id(posterU01.getPoster_id());
         s2.setJudge_id(judgeU2.getJudge_id());
         s2.setRound(1);
         scoreDao.create(s2);
-        assertNotNull(s2.getId());
 
         Score s3 = new Score();
         s3.setPoster_id(posterU01.getPoster_id());
         s3.setJudge_id(judgeU3.getJudge_id());
         s3.setRound(1);
         scoreDao.create(s3);
-        assertNotNull(s3.getId());
 
         Score s4 = new Score();
         s4.setPoster_id(posterU01.getPoster_id());
         s4.setJudge_id(judgeU4.getJudge_id());
         s4.setRound(1);
         scoreDao.create(s4);
-        assertNotNull(s4.getId());
 
         Score s5 = new Score();
         s5.setPoster_id(U02.getPoster_id());
         s5.setJudge_id(judgeU5.getJudge_id());
         s5.setRound(1);
         scoreDao.create(s5);
-        assertNotNull(s5.getId());
 
         Score s6 = new Score();
         s6.setPoster_id(U02.getPoster_id());
         s6.setJudge_id(judgeU6.getJudge_id());
         s6.setRound(1);
         scoreDao.create(s6);
-        assertNotNull(s6.getId());
 
         Score s7 = new Score();
         s7.setPoster_id(U02.getPoster_id());
         s7.setJudge_id(judgeU7.getJudge_id());
         s7.setRound(1);
         scoreDao.create(s7);
-        assertNotNull(s7.getId());
 
         Score s8 = new Score();
         s8.setPoster_id(U03.getPoster_id());
         s8.setJudge_id(judgeU8.getJudge_id());
         s8.setRound(1);
         scoreDao.create(s8);
-        assertNotNull(s8.getId());
 
         Score s9 = new Score();
         s9.setPoster_id(U03.getPoster_id());
         s9.setJudge_id(judgeU9.getJudge_id());
         s9.setRound(1);
         scoreDao.create(s9);
-        assertNotNull(s9.getId());
 
         Score s10 = new Score();
         s10.setPoster_id(U03.getPoster_id());
         s10.setJudge_id(judgeU10.getJudge_id());
         s10.setRound(1);
         scoreDao.create(s10);
-        assertNotNull(s10.getId());
 
         Score s11 = new Score();
         s11.setPoster_id(U04.getPoster_id());
         s11.setJudge_id(judgeU1.getJudge_id());
         s11.setRound(1);
         scoreDao.create(s11);
-        assertNotNull(s11.getId());
 
         Score s12 = new Score();
         s12.setPoster_id(U04.getPoster_id());
         s12.setJudge_id(judgeU2.getJudge_id());
         s12.setRound(1);
         scoreDao.create(s12);
-        assertNotNull(s12.getId());
 
         Score s13 = new Score();
         s13.setPoster_id(U04.getPoster_id());
         s13.setJudge_id(judgeU3.getJudge_id());
         s13.setRound(1);
         scoreDao.create(s13);
-        assertNotNull(s13.getId());
 
         Score s14 = new Score();
         s14.setPoster_id(U05.getPoster_id());
         s14.setJudge_id(judgeU4.getJudge_id());
         s14.setRound(1);
         scoreDao.create(s14);
-        assertNotNull(s14.getId());
 
         Score s15 = new Score();
         s15.setPoster_id(U05.getPoster_id());
         s15.setJudge_id(judgeU5.getJudge_id());
         s15.setRound(1);
         scoreDao.create(s15);
-        assertNotNull(s15.getId());
 
         Score s16 = new Score();
         s16.setPoster_id(U05.getPoster_id());
         s16.setJudge_id(judgeU6.getJudge_id());
         s16.setRound(1);
         scoreDao.create(s16);
-        assertNotNull(s16.getId());
 
         Score s17 = new Score();
         s17.setPoster_id(U06.getPoster_id());
         s17.setJudge_id(judgeU7.getJudge_id());
         s17.setRound(1);
         scoreDao.create(s17);
-        assertNotNull(s17.getId());
 
         Score s18 = new Score();
         s18.setPoster_id(U06.getPoster_id());
         s18.setJudge_id(judgeU8.getJudge_id());
         s18.setRound(1);
         scoreDao.create(s18);
-        assertNotNull(s18.getId());
 
         Score s19 = new Score();
         s19.setPoster_id(U06.getPoster_id());
         s19.setJudge_id(judgeU9.getJudge_id());
         s19.setRound(1);
         scoreDao.create(s19);
-        assertNotNull(s19.getId());
 
         Score s20 = new Score();
         s20.setPoster_id(U07.getPoster_id());
         s20.setJudge_id(judgeU9.getJudge_id());
         s20.setRound(1);
         scoreDao.create(s20);
-        assertNotNull(s20.getId());
 
         Score s21 = new Score();
         s21.setPoster_id(U07.getPoster_id());
         s21.setJudge_id(judgeU1.getJudge_id());
         s21.setRound(1);
         scoreDao.create(s21);
-        assertNotNull(s21.getId());
 
         Score s22 = new Score();
         s22.setPoster_id(U07.getPoster_id());
         s22.setJudge_id(judgeU2.getJudge_id());
         s22.setRound(1);
         scoreDao.create(s22);
-        assertNotNull(s22.getId());
 
         Score s24 = new Score();
         s24.setPoster_id(U08.getPoster_id());
         s24.setJudge_id(judgeU3.getJudge_id());
         s24.setRound(1);
         scoreDao.create(s24);
-        assertNotNull(s24.getId());
 
         Score s25 = new Score();
         s25.setPoster_id(U08.getPoster_id());
         s25.setJudge_id(judgeU4.getJudge_id());
         s25.setRound(1);
         scoreDao.create(s25);
-        assertNotNull(s25.getId());
 
         Score s26 = new Score();
         s26.setPoster_id(U08.getPoster_id());
         s26.setJudge_id(judgeU5.getJudge_id());
         s26.setRound(1);
         scoreDao.create(s26);
-        assertNotNull(s26.getId());
 
         Score s27 = new Score();
         s27.setPoster_id(U09.getPoster_id());
         s27.setJudge_id(judgeU6.getJudge_id());
         s27.setRound(1);
         scoreDao.create(s27);
-        assertNotNull(s27.getId());
 
         Score s28 = new Score();
         s28.setPoster_id(U09.getPoster_id());
         s28.setJudge_id(judgeU9.getJudge_id());
         s28.setRound(1);
         scoreDao.create(s28);
-        assertNotNull(s28.getId());
 
         Score s29 = new Score();
         s29.setPoster_id(U10.getPoster_id());
         s29.setJudge_id(judgeU10.getJudge_id());
         s29.setRound(1);
         scoreDao.create(s29);
-        assertNotNull(s29.getId());
 
         Score s30 = new Score();
         s30.setPoster_id(G01.getPoster_id());
         s30.setJudge_id(judgeG11.getJudge_id());
         s30.setRound(1);
         scoreDao.create(s30);
-        assertNotNull(s30.getId());
 
 
         Score s31 = new Score();
@@ -763,189 +732,162 @@ public class ScoreDaoUnitTest {
         s31.setJudge_id(judgeG12.getJudge_id());
         s31.setRound(1);
         scoreDao.create(s31);
-        assertNotNull(s31.getId());
 
         Score s32 = new Score();
         s32.setPoster_id(G02.getPoster_id());
         s32.setJudge_id(judgeG13.getJudge_id());
         s32.setRound(1);
         scoreDao.create(s32);
-        assertNotNull(s32.getId());
 
         Score s33 = new Score();
         s33.setPoster_id(G03.getPoster_id());
         s33.setJudge_id(judgeG14.getJudge_id());
         s33.setRound(1);
         scoreDao.create(s33);
-        assertNotNull(s33.getId());
 
         Score s34 = new Score();
         s34.setPoster_id(G03.getPoster_id());
         s34.setJudge_id(judgeG15.getJudge_id());
         s34.setRound(1);
         scoreDao.create(s34);
-        assertNotNull(s34.getId());
 
         Score s35 = new Score();
         s35.setPoster_id(G03.getPoster_id());
         s35.setJudge_id(judgeG16.getJudge_id());
         s35.setRound(1);
         scoreDao.create(s35);
-        assertNotNull(s35.getId());
 
         Score s36 = new Score();
         s36.setPoster_id(G04.getPoster_id());
         s36.setJudge_id(judgeG17.getJudge_id());
         s36.setRound(1);
         scoreDao.create(s36);
-        assertNotNull(s36.getId());
 
         Score s37 = new Score();
         s37.setPoster_id(G04.getPoster_id());
         s37.setJudge_id(judgeG18.getJudge_id());
         s37.setRound(1);
         scoreDao.create(s37);
-        assertNotNull(s37.getId());
 
         Score s38 = new Score();
         s38.setPoster_id(G04.getPoster_id());
         s38.setJudge_id(judgeG19.getJudge_id());
         s38.setRound(1);
         scoreDao.create(s38);
-        assertNotNull(s38.getId());
 
         Score s39 = new Score();
         s39.setPoster_id(G04.getPoster_id());
         s39.setJudge_id(judgeG20.getJudge_id());
         s39.setRound(1);
         scoreDao.create(s39);
-        assertNotNull(s39.getId());
 
         Score s40 = new Score();
         s40.setPoster_id(G05.getPoster_id());
         s40.setJudge_id(judgeG12.getJudge_id());
         s40.setRound(1);
         scoreDao.create(s40);
-        assertNotNull(s40.getId());
 
         Score s41 = new Score();
         s41.setPoster_id(G05.getPoster_id());
         s41.setJudge_id(judgeG13.getJudge_id());
         s41.setRound(1);
         scoreDao.create(s41);
-        assertNotNull(s41.getId());
 
         Score s42 = new Score();
         s42.setPoster_id(G05.getPoster_id());
         s42.setJudge_id(judgeG14.getJudge_id());
         s42.setRound(1);
         scoreDao.create(s42);
-        assertNotNull(s42.getId());
 
         Score s43 = new Score();
         s43.setPoster_id(G06.getPoster_id());
         s43.setJudge_id(judgeG15.getJudge_id());
         s43.setRound(1);
         scoreDao.create(s43);
-        assertNotNull(s43.getId());
 
         Score s44 = new Score();
         s44.setPoster_id(G06.getPoster_id());
         s44.setJudge_id(judgeG16.getJudge_id());
         s44.setRound(1);
         scoreDao.create(s44);
-        assertNotNull(s44.getId());
 
         Score s45 = new Score();
         s45.setPoster_id(G06.getPoster_id());
         s45.setJudge_id(judgeG17.getJudge_id());
         s45.setRound(1);
         scoreDao.create(s45);
-        assertNotNull(s45.getId());
 
         Score s46 = new Score();
         s46.setPoster_id(G07.getPoster_id());
         s46.setJudge_id(judgeG18.getJudge_id());
         s46.setRound(1);
         scoreDao.create(s46);
-        assertNotNull(s46.getId());
 
         Score s47 = new Score();
         s47.setPoster_id(G07.getPoster_id());
         s47.setJudge_id(judgeG12.getJudge_id());
         s47.setRound(1);
         scoreDao.create(s47);
-        assertNotNull(s47.getId());
 
         Score s48 = new Score();
         s48.setPoster_id(G07.getPoster_id());
         s48.setJudge_id(judgeG13.getJudge_id());
         s48.setRound(1);
         scoreDao.create(s48);
-        assertNotNull(s48.getId());
 
         Score s49 = new Score();
         s49.setPoster_id(G08.getPoster_id());
         s49.setJudge_id(judgeG14.getJudge_id());
         s49.setRound(1);
         scoreDao.create(s49);
-        assertNotNull(s49.getId());
 
         Score s50 = new Score();
         s50.setPoster_id(G08.getPoster_id());
         s50.setJudge_id(judgeG15.getJudge_id());
         s50.setRound(1);
         scoreDao.create(s50);
-        assertNotNull(s50.getId());
 
         Score s51 = new Score();
         s51.setPoster_id(G08.getPoster_id());
         s51.setJudge_id(judgeG16.getJudge_id());
         s51.setRound(1);
         scoreDao.create(s51);
-        assertNotNull(s51.getId());
 
         Score s52 = new Score();
         s52.setPoster_id(G09.getPoster_id());
         s52.setJudge_id(judgeG17.getJudge_id());
         s52.setRound(1);
         scoreDao.create(s52);
-        assertNotNull(s52.getId());
 
         Score s53 = new Score();
         s53.setPoster_id(G09.getPoster_id());
         s53.setJudge_id(judgeG18.getJudge_id());
         s53.setRound(1);
         scoreDao.create(s53);
-        assertNotNull(s53.getId());
 
         Score s54 = new Score();
         s54.setPoster_id(G09.getPoster_id());
         s54.setJudge_id(judgeG19.getJudge_id());
         s54.setRound(1);
         scoreDao.create(s54);
-        assertNotNull(s54.getId());
 
         Score s55 = new Score();
         s55.setPoster_id(G10.getPoster_id());
         s55.setJudge_id(judgeG20.getJudge_id());
         s55.setRound(1);
         scoreDao.create(s55);
-        assertNotNull(s55.getId());
 
         Score s56 = new Score();
         s56.setPoster_id(G10.getPoster_id());
         s56.setJudge_id(judgeG12.getJudge_id());
         s56.setRound(1);
         scoreDao.create(s56);
-        assertNotNull(s56.getId());
 
         Score s57 = new Score();
         s57.setPoster_id(G10.getPoster_id());
         s57.setJudge_id(judgeG13.getJudge_id());
         s57.setRound(1);
         scoreDao.create(s57);
-        assertNotNull(s57.getId());
 
 
 

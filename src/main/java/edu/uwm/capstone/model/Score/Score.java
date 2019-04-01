@@ -1,7 +1,6 @@
 package edu.uwm.capstone.model.Score;
 
 public class Score {
-    private Long id;
     private String poster_id;
     private Long judge_id;
     private int round;
@@ -11,14 +10,6 @@ public class Score {
 
 
     private int total_score;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getPoster_id() {
         return poster_id;

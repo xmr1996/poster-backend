@@ -24,8 +24,6 @@ public class ScoreDaoRowMapper extends BaseRowMapper<Score> {
         COMM_SCORE(),
         POSTER_SCORE(),
         TOTAL_SCORE()
-//        CREATED_DATE(),
-//        UPDATED_DATE()
         ;
 
         private String columnName;
@@ -46,7 +44,6 @@ public class ScoreDaoRowMapper extends BaseRowMapper<Score> {
     @Override
     public Map<String, Object> mapObject(Score object) {
         Map<String, Object> map = new HashMap<>();
-        map.put(ID.getColumnName(), object.getId());
         map.put(POSTER_ID.getColumnName(), object.getPoster_id());
         map.put(JUDGE_ID.getColumnName(), object.getJudge_id());
         map.put(ROUND.getColumnName(), object.getRound());
@@ -54,15 +51,12 @@ public class ScoreDaoRowMapper extends BaseRowMapper<Score> {
         map.put(COMM_SCORE.getColumnName(), object.getComm_score());
         map.put(POSTER_SCORE.getColumnName(), object.getPoster_score());
         map.put(TOTAL_SCORE.getColumnName(),object.getTotal_score());
-//        map.put(CREATED_DATE.getColumnName(), javaTimeFromDate(object.getCreatedDate()));
-//        map.put(UPDATED_DATE.getColumnName(), javaTimeFromDate(object.getUpdatedDate()));
         return map;
     }
 
     @Override
     public Score mapRow(ResultSet rs, int rowNum) throws SQLException {
         Score folder = new Score();
-        folder.setId(rs.getLong(ID.getColumnName()));
         folder.setPoster_id(rs.getString(POSTER_ID.getColumnName()));
         folder.setJudge_id(rs.getLong(JUDGE_ID.getColumnName()));
         folder.setRound(rs.getInt(ROUND.getColumnName()));
@@ -70,8 +64,6 @@ public class ScoreDaoRowMapper extends BaseRowMapper<Score> {
         folder.setComm_score(rs.getInt(COMM_SCORE.getColumnName()));
         folder.setPoster_score(rs.getInt(POSTER_SCORE.getColumnName()));
         folder.setTotal_score(rs.getInt(TOTAL_SCORE.getColumnName()));
-//        folder.setCreatedDate(dateFromJavaTime(rs.getObject(CREATED_DATE.getColumnName())));
-//        folder.setUpdatedDate(dateFromJavaTime(rs.getObject(UPDATED_DATE.getColumnName())));
         return folder;
     }
 

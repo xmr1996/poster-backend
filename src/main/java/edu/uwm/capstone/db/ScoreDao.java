@@ -39,49 +39,30 @@ public class ScoreDao extends BaseDao<Score> {
 
         MapSqlParameterSource parameters = new MapSqlParameterSource(rowMapper.mapObject(score));
 
-        // score.setCreatedDate(LocalDateTime.now());
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-
         int result = this.jdbcTemplate.update(sql("upsertScore"),
-                parameters, keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
+                parameters);
 
 
         if (result != 1) {
             throw new DaoException("Failed attempt to create score " + score.toString() + " affected " + result + " rows");
         }
 
-        Long id = keyHolder.getKey().longValue();
-        score.setId(id);
-
         return score;
     }
 
-    /**
-     * Retrieve a {@link Score} object by its {@link Score#getId()}.
-     *
-     * @param id long
-     * @return {@link Score}
-     */
     @Override
     public Score read(long id) {
-        LOG.trace("Reading score {}", id);
-        try {
-            return (Score) this.jdbcTemplate.queryForObject(sql("readById"), new MapSqlParameterSource("id", id), rowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
+        return null;
     }
 
-
-
     /**
-     * Retrieve a {@link Score} object by its {@link Score#getId#getPosterID}.
+     * Retrieve a {@link Score} object by its {@link Score#getJudge_id() #getPoster_id()}.
      *
      * @param judgeID long
      * @param posterID long
      * @return {@link Score}
      */
-    public Score read(long judgeID, long posterID) {
+    public Score read(long judgeID, String posterID) {
         LOG.trace("Reading Score {}", judgeID, posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
@@ -114,8 +95,6 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
-
-
     /**
      * Update the provided {@link Score} object.
      *
@@ -125,8 +104,6 @@ public class ScoreDao extends BaseDao<Score> {
     public void update(Score score) {
         if (score == null) {
             throw new DaoException("Request to update a Score received null");
-        } else if (score.getId() == null) {
-            throw new DaoException("When updating a Score the id should not be null");
         }
 
         LOG.trace("Updating score {}", score);
@@ -138,18 +115,9 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
-    /**
-     * Delete a {@link Score} object by its {@link Score#getId()} ()}.
-     *
-     * @param id long
-     */
     @Override
     public void delete(long id) {
-        LOG.trace("Deleting score {}", id);
-        int result = this.jdbcTemplate.update(sql("deleteScore"), new MapSqlParameterSource("id", id));
-        if (result != 1) {
-            throw new DaoException("Failed attempt to delete score " + id + " affected " + result + " rows");
-        }
+
     }
 
     public void clearTable(){
