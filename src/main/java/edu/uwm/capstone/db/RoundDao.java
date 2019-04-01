@@ -29,10 +29,11 @@ public class RoundDao extends BaseDao<Round> {
     @Override
     public void update(Round object) {}
 
-    public List<Round> read(){
+    public Round read(){
         LOG.trace("Reading by round");
         try{
-            return (List<Round>)this.jdbcTemplate.query(sql("readAllRounds"),rowMapper);
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            return (Round)this.jdbcTemplate.queryForObject(sql("readAllRounds"),parameters, rowMapper);
         }catch(EmptyResultDataAccessException e){
             return null;
         }
