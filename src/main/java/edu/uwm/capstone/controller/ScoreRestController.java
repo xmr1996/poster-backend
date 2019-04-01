@@ -53,7 +53,6 @@ public class ScoreRestController {
     public Score create(@RequestBody Score score, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
             Assert.notNull(score, "Received null Score object");
-            Assert.isNull(score.getId(), "Score ID must be null");
             return scoreDao.create(score);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -114,26 +113,6 @@ public class ScoreRestController {
         }
         return posters;
     }
-    /**
-     * Get the {@link Score} by Id
-     *
-     * @param scoreId  {@link Score#getId()}
-     * @param response {@link HttpServletResponse}
-     * @return {@link Score} retrieved from the database
-     * @throws IOException if error response cannot be created.
-     */
-    @ApiOperation(value = "Read Score by ID")
-    @GetMapping(value = SCORE_PATH + "{scoreId}")
-    public Score readById(@PathVariable Long scoreId, @ApiIgnore HttpServletResponse response) throws IOException {
-        Score score = scoreDao.read(scoreId);
-
-        if (score == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Score with ID: " + scoreId + " not found.");
-            return null;
-        }
-
-        return score;
-    }
 
     /**
      * Updates the provided {@link Score}
@@ -146,8 +125,9 @@ public class ScoreRestController {
     @PutMapping(value = SCORE_PATH)
     public void update(@RequestBody Score score, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            Assert.notNull(score.getId(), "Score Id must not be null");
-            Assert.notNull(scoreDao.read(score.getId()), "Could not update score " + score.getId() + " - record not found.");
+            Assert.notNull(score.getPoster_id(), "Poster Id must not be null");
+            Assert.notNull(score.getJudge_id(), "Judge Id must not be null");
+            Assert.notNull(scoreDao.read(score.getJudge_id(), score.getPoster_id()), "Could not update score " + score.getPoster_id()+ " " + score.getJudge_id() + " - record not found.");
             scoreDao.update(score);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -158,22 +138,6 @@ public class ScoreRestController {
         }
     }
 
-    /**
-     * Delete the {@link Score} by Id
-     *
-     * @param scoreId {@link Score#getId}
-     * @param response  {@link HttpServletResponse}
-     * @throws IOException if error response cannot be created.
-     */
-    @ApiOperation(value = "Delete Score by ID")
-    @DeleteMapping(value = SCORE_PATH + "{scoreId}")
-    public void delete(@PathVariable Long scoreId, @ApiIgnore HttpServletResponse response) throws IOException {
-        try {
-            scoreDao.delete(scoreId);
-        } catch (Exception e) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
-        }
-    }
 
     /**
      * Get the {@link Score}

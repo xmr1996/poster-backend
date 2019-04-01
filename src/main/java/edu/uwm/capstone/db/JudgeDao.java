@@ -2,18 +2,13 @@ package edu.uwm.capstone.db;
 
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.sql.dao.BaseDao;
-import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
-
 import java.util.Collections;
 import edu.uwm.capstone.sql.exception.DaoException;
 import java.util.List;
-import java.util.Map;
 
 
 public class JudgeDao extends BaseDao<Judge> {
@@ -31,45 +26,27 @@ public class JudgeDao extends BaseDao<Judge> {
         // validate input
         if (judge == null) {
             throw new RuntimeException("Request to create a new Judge received null");
-        } else if (judge.getId() != null) {
-            throw new RuntimeException("When creating a new Judge the id should be null, but was set to " + judge.getId());
         }
 
         LOG.trace("Creating judge {}", judge);
-
-        KeyHolder keyHolder = new GeneratedKeyHolder();
 
         judge.setRole("judge");
 
         MapSqlParameterSource parameters = new MapSqlParameterSource(rowMapper.mapObject(judge));
 
         int result = this.jdbcTemplate.update(sql("createJudge"),
-                parameters, keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
+                parameters);
 
         if (result != 1) {
             throw new RuntimeException("Failed attempt to create judge " + judge.toString() + " affected " + result + " rows");
         }
 
-        Long id = keyHolder.getKey().longValue();
-        judge.setId(id);
-
         return judge;
     }
 
-    /**
-     * Retrieve a {@link Judge} object by its {@link Judge#getId}.
-     *
-     * @param id long
-     * @return judge {@link Judge}
-     */
     @Override
     public Judge read(long id) {
-        LOG.trace("Reading judge {}", id);
-        try {
-            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudge"), new MapSqlParameterSource("id", id), rowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
+        return null;
     }
 
     public Judge readByJudgeID(long judge_id) {
@@ -81,13 +58,8 @@ public class JudgeDao extends BaseDao<Judge> {
         }
     }
 
-    /**
-     * Retrieve a {@link Judge} object by its {@link Judge#getId}.
-     *
-     * @return judge {@link List<Judge>}
-     */
     public List<Judge> read() {
-        LOG.trace("Reading judges {}");
+        LOG.trace("Reading All Judges {}");
         try {
             return (List<Judge>) this.jdbcTemplate.query(sql("readJudges"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -127,7 +99,7 @@ public class JudgeDao extends BaseDao<Judge> {
     public void update(Judge judge) {
         if (judge == null) {
             throw new RuntimeException("Request to update a Judge received null");
-        } else if (judge.getId() == null) {
+        } else if (judge.getJudge_id() == null) {
             throw new RuntimeException("When updating a Judge the id should not be null");
         }
 
@@ -140,19 +112,9 @@ public class JudgeDao extends BaseDao<Judge> {
         }
     }
 
-
-    /**
-     * Delete a {@link Judge} object by its {@link Judge#getId}.
-     *
-     * @param id long
-     */
     @Override
     public void delete(long id) {
-        LOG.trace("Deleting judge {}", id);
-        int result = this.jdbcTemplate.update(sql("deleteJudge"), new MapSqlParameterSource("id", id));
-        if (result != 1) {
-            throw new RuntimeException("Failed attempt to update judge " + id + " affected " + result + " rows");
-        }
+
     }
 
     public void deleteByJudgeId(long judge_id) {

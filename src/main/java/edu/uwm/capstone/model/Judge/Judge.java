@@ -3,7 +3,6 @@ package edu.uwm.capstone.model.Judge;
 import java.util.Objects;
 
 public class Judge {
-    protected Long id;
     private Long judge_id;
     private String first_name;
     private String last_name;
@@ -11,14 +10,6 @@ public class Judge {
     private String email;
     private String pin;
     private String role;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getJudge_id() {
         return judge_id;
@@ -81,11 +72,11 @@ public class Judge {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Judge judge = (Judge) o;
-        return Objects.equals(id, judge.id);
+        return Objects.equals(judge_id, judge.judge_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(judge_id);
     }
 }
