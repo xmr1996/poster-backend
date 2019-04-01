@@ -556,12 +556,20 @@ public class ScoreDaoUnitTest {
         s1.setPoster_id(posterU01.getPoster_id());
         s1.setJudge_id(judgeU1.getJudge_id());
         s1.setRound(1);
+//        s1.setPoster_score(20);
+//        s1.setResearch_score(20);
+//        s1.setComm_score(30);
+//        s1.setTotal_score(100);
         scoreDao.create(s1);
 
         Score s2 = new Score();
         s2.setPoster_id(posterU01.getPoster_id());
         s2.setJudge_id(judgeU2.getJudge_id());
         s2.setRound(1);
+//        s2.setPoster_score(10);
+//        s2.setResearch_score(10);
+//        s2.setComm_score(15);
+//        s2.setTotal_score(50);
         scoreDao.create(s2);
 
         Score s3 = new Score();
@@ -580,6 +588,10 @@ public class ScoreDaoUnitTest {
         s5.setPoster_id(U02.getPoster_id());
         s5.setJudge_id(judgeU5.getJudge_id());
         s5.setRound(1);
+//        s5.setPoster_score(20);
+//        s5.setResearch_score(20);
+//        s5.setComm_score(30);
+//        s5.setTotal_score(100);
         scoreDao.create(s5);
 
         Score s6 = new Score();

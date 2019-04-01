@@ -82,17 +82,76 @@ public class PosterRestController{
      * @param response {@link HttpServletResponse}
      * @throws IOException if error response cannot be created.
      */
-    @ApiOperation(value = "Calculate the average for all poster")
-    @PutMapping(value = POSTER_PATH+ "average/{round}")
+    @ApiOperation(value = "Calculate the average for total score of all poster")
+    @PutMapping(value = POSTER_PATH+ "average/total/{round}")
     public void calculateAverage(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
         try{
             if(round ==1){
-                posterDao.calculateAvgRound1(round);
+                posterDao.calculateAvgRound1();
             }
             else if(round ==2){
-                posterDao.calculateAvgRound2(round);
+                posterDao.calculateAvgRound2();
             }
 
+        } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        }
+    }
+
+
+    @ApiOperation(value = "Calculate the average for comm_score of all poster")
+    @PutMapping(value = POSTER_PATH+ "average/comm/{round}")
+    public void calculateCommAvgR1(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
+        try{
+            if(round ==1){
+                posterDao.avgCommR1();
+            }
+            else if(round ==2){
+                posterDao.avgCommR2();
+            }
+
+        } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "Calculate the average for research_score of all poster")
+    @PutMapping(value = POSTER_PATH+ "average/research/{round}")
+    public void calculateResearchAvgR1(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
+        try{
+            if(round ==1){
+                posterDao.avgResearchR1();
+            }
+            else if(round ==2){
+                posterDao.avgResearchR2();
+            }
+        } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        }
+    }
+
+    @ApiOperation(value = "Calculate the average for pres_score of all poster")
+    @PutMapping(value = POSTER_PATH+ "average/pres/{round}")
+    public void calculatePresAvgR1(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
+        try{
+            if(round ==1){
+                posterDao.avgPresR1();
+            }
+            else if(round ==2){
+                posterDao.avgPresR2();
+            }
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
             response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
