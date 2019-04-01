@@ -44,7 +44,6 @@ public class AssignmentDaoRowMapper extends BaseRowMapper<Assignment> {
     @Override
     public Assignment mapRow(ResultSet rs, int rowNum) throws SQLException {
         Assignment folder = new Assignment();
-        folder.setId(rs.getLong(ID.getColumnName()));
         folder.setPoster_id(rs.getString(POSTER_ID.getColumnName()));
         folder.setJudge_id(rs.getLong(JUDGE_ID.getColumnName()));
 
