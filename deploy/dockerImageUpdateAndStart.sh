@@ -25,10 +25,14 @@ FULL_IMAGE_REF="$IMAGE_NAME:$IMAGE_TAG"
 CONTAINER_NAME=$CI_PROJECT_NAME
 
 # Delete previously existing docker image(s) and container
-echo "Removing previously existing container $CONTAINER_NAME ..."
 if [ "$(docker ps -aq -f status=running -f name=$CONTAINER_NAME)" ]; then
+    echo "Stopping previously existing container $CONTAINER_NAME ..."
     docker kill $CONTAINER_NAME
-    docker rm  $CONTAINER_NAME
+fi
+
+if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
+    echo "Removing previously existing container $CONTAINER_NAME ..."
+    docker rm -f $CONTAINER_NAME
 fi
 
 echo "Removing existing docker images for $IMAGE_NAME ..."
