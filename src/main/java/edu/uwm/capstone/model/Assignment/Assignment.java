@@ -1,17 +1,8 @@
 package edu.uwm.capstone.model.Assignment;
 
 public class Assignment {
-    private Long id;
     private String poster_id;
     private Long judge_id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getPoster_id() {
         return poster_id;
