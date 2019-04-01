@@ -556,7 +556,6 @@ public class ScoreDaoUnitTest {
         s1.setPoster_id(posterU01.getPoster_id());
         s1.setJudge_id(judgeU1.getJudge_id());
         s1.setRound(1);
-        s1.setTotal_score(100);
         scoreDao.create(s1);
 
         Score s2 = new Score();
