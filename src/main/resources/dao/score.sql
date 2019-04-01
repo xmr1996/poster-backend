@@ -52,7 +52,7 @@ WHERE
 DELETE FROM score WHERE poster_id = :poster_id;
 
 --STATEMENT getAllAssignments
-SELECT id, poster_id, judge_id from score where round = :round;
+SELECT poster_id, judge_id from score where round = :round;
 
 --STATEMENT upsertScore
 INSERT INTO score(

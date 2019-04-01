@@ -95,7 +95,16 @@ SET posters.avg_r2 =
   group by poster_id
 );
 
-
+--STATEMENT insertAvgCommR1
+UPDATE posters
+SET posters.avg_comm_r1 =
+(SELECT AVG(CAST(comm_score AS DOUBLE)) as AVG
+  FROM score
+  WHERE comm_score is not null
+  AND round = 1
+  AND poster_id =  posters.poster_id
+  group by poster_id
+);
 
 --STATEMENT readPostersByStatus
 SELECT * FROM posters where status = :status;

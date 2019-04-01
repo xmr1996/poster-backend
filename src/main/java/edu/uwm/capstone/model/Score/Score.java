@@ -7,8 +7,6 @@ public class Score {
     private Integer research_score;
     private Integer comm_score;
     private Integer poster_score;
-
-
     private Integer total_score;
 
     public String getPoster_id() {
