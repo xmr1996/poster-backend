@@ -150,7 +150,7 @@ public class ScoreRestController {
     public List<Score> readAllScore(@ApiIgnore HttpServletResponse response) throws IOException {
         List<Score> scores = scoreDao.read();
 
-        if (scores.isEmpty()) {
+        if (scores == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Scores were not found.");
             return null;
         }

@@ -108,7 +108,7 @@ public class JudgeRestController {
    public List<Judge> readAllJudges(@ApiIgnore HttpServletResponse response) throws IOException {
        List<Judge> judges = judgeDao.read();
 
-       if (judges.isEmpty()) {
+       if (judges == null) {
            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Judges were not found.");
            return null;
        }
