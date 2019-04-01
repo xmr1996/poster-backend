@@ -106,6 +106,61 @@ SET posters.avg_comm_r1 =
   group by poster_id
 );
 
+--STATEMENT insertAvgCommR2
+UPDATE posters
+SET posters.avg_comm_r2 =
+(SELECT AVG(CAST(comm_score AS DOUBLE)) as AVG
+  FROM score
+  WHERE comm_score is not null
+  AND round = 2
+  AND poster_id =  posters.poster_id
+  group by poster_id
+);
+
+--STATEMENT insertAvgResearchR1
+UPDATE posters
+SET posters.avg_research_r1 =
+(SELECT AVG(CAST(research_score AS DOUBLE)) as AVG
+  FROM score
+  WHERE research_score is not null
+  AND round = 1
+  AND poster_id =  posters.poster_id
+  group by poster_id
+);
+
+--STATEMENT insertAvgResearchR2
+UPDATE posters
+SET posters.avg_research_r2 =
+(SELECT AVG(CAST(research_score AS DOUBLE)) as AVG
+  FROM score
+  WHERE research_score is not null
+  AND round = 2
+  AND poster_id =  posters.poster_id
+  group by poster_id
+);
+
+--STATEMENT insertAvgPresR1
+UPDATE posters
+SET posters.avg_pres_r1 =
+(SELECT AVG(CAST(poster_score AS DOUBLE)) as AVG
+  FROM score
+  WHERE poster_score is not null
+  AND round = 1
+  AND poster_id =  posters.poster_id
+  group by poster_id
+);
+
+--STATEMENT insertAvgPresR2
+UPDATE posters
+SET posters.avg_pres_r2 =
+(SELECT AVG(CAST(poster_score AS DOUBLE)) as AVG
+  FROM score
+  WHERE poster_score is not null
+  AND round = 2
+  AND poster_id =  posters.poster_id
+  group by poster_id
+);
+
 --STATEMENT readPostersByStatus
 SELECT * FROM posters where status = :status;
 
