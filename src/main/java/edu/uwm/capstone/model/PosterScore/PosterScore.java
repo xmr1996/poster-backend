@@ -3,7 +3,6 @@ package edu.uwm.capstone.model.PosterScore;
 import java.util.Objects;
 
 public class PosterScore {
-    protected Long id;
     private String title;
     private String email;
     private String first_name;
@@ -12,21 +11,12 @@ public class PosterScore {
     private int pin;
     private String department;
     private String role;
-    private Long score_id;
     private String poster_id;
     private Long judge_id;
     private int round;
     private int research_score;
     private int comm_score;
     private int poster_score;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -90,14 +80,6 @@ public class PosterScore {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public Long getScore_id() {
-        return score_id;
-    }
-
-    public void setScore_id(Long score_id) {
-        this.score_id = score_id;
     }
 
     public String getPoster_id() {

@@ -12,7 +12,6 @@ import static edu.uwm.capstone.db.PosterScoreRowMapper.PosterScoreColumnType.*;
 
 public class PosterScoreRowMapper extends BaseRowMapper<PosterScore> {
     public enum PosterScoreColumnType{
-        ID(),
         TITLE(),
         EMAIL(),
         FIRST_NAME(),
@@ -47,7 +46,6 @@ public class PosterScoreRowMapper extends BaseRowMapper<PosterScore> {
     @Override
     public Map<String, Object> mapObject(PosterScore object) {
         Map<String, Object> map = new HashMap<>();
-        map.put(ID.getColumnName(), object.getId());
         map.put(JUDGE_ID.getColumnName(), object.getJudge_id());
         map.put(ROUND.getColumnName(), object.getRound());
         map.put(RESEARCH_SCORE.getColumnName(), object.getResearch_score());
@@ -68,13 +66,11 @@ public class PosterScoreRowMapper extends BaseRowMapper<PosterScore> {
     @Override
     public PosterScore mapRow(ResultSet rs, int rowNum) throws SQLException {
         PosterScore folder = new PosterScore();
-        folder.setId(rs.getLong(ID.getColumnName()));
         folder.setJudge_id(rs.getLong(JUDGE_ID.getColumnName()));
         folder.setRound(rs.getInt(ROUND.getColumnName()));
         folder.setResearch_score(rs.getInt(RESEARCH_SCORE.getColumnName()));
         folder.setComm_score(rs.getInt(COMM_SCORE.getColumnName()));
         folder.setPoster_score(rs.getInt(POSTER_SCORE.getColumnName()));
-        folder.setId(rs.getLong(ID.getColumnName()));
         folder.setPoster_id(rs.getString(PosterDaoRowMapper.PosterColumnType.POSTER_ID.getColumnName()));
         folder.setTitle(rs.getString(TITLE.getColumnName()));
         folder.setEmail(rs.getString(EMAIL.getColumnName()));
