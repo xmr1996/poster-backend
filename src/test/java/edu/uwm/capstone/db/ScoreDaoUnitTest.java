@@ -302,7 +302,7 @@ public class ScoreDaoUnitTest {
         posterU01.setDepartment("Computer Science");
         posterU01.setEmail("posterU01@email.com");
         posterDao.create(posterU01);
-        assertNotNull(posterU01.getId());
+        assertNotNull(posterU01.getPoster_id());
 
         Poster U02 = new Poster();
         U02.setPoster_id("U02");
@@ -315,7 +315,7 @@ public class ScoreDaoUnitTest {
         U02.setDepartment("Computer Science");
         U02.setEmail("posterU02@email.com");
         posterDao.create(U02);
-        assertNotNull(U02.getId());
+        assertNotNull(U02.getPoster_id());
 
         Poster U03 = new Poster();
         U03.setPoster_id("U03");
@@ -328,7 +328,7 @@ public class ScoreDaoUnitTest {
         U03.setDepartment("Computer Science");
         U03.setEmail("posterU03@email.com");
         posterDao.create(U03);
-        assertNotNull(U03.getId());
+        assertNotNull(U03.getPoster_id());
 
         Poster U04 = new Poster();
         U04.setPoster_id("U04");
@@ -341,7 +341,7 @@ public class ScoreDaoUnitTest {
         U04.setDepartment("Computer Science");
         U04.setEmail("posterU04@email.com");
         posterDao.create(U04);
-        assertNotNull(U04.getId());
+        assertNotNull(U04.getPoster_id());
 
         Poster U05 = new Poster();
         U05.setPoster_id("U05");
@@ -354,7 +354,7 @@ public class ScoreDaoUnitTest {
         U05.setDepartment("Computer Science");
         U05.setEmail("posterU05@email.com");
         posterDao.create(U05);
-        assertNotNull(U05.getId());
+        assertNotNull(U05.getPoster_id());
 
         Poster U06 = new Poster();
         U06.setPoster_id("U06");
@@ -367,7 +367,7 @@ public class ScoreDaoUnitTest {
         U06.setDepartment("Computer Science");
         U06.setEmail("posterU06@email.com");
         posterDao.create(U06);
-        assertNotNull(U06.getId());
+        assertNotNull(U06.getPoster_id());
 
         Poster U07 = new Poster();
         U07.setPoster_id("U07");
@@ -380,7 +380,7 @@ public class ScoreDaoUnitTest {
         U07.setDepartment("Computer Science");
         U07.setEmail("posterU07@email.com");
         posterDao.create(U07);
-        assertNotNull(U07.getId());
+        assertNotNull(U07.getPoster_id());
 
         Poster U08 = new Poster();
         U08.setPoster_id("U08");
@@ -393,7 +393,7 @@ public class ScoreDaoUnitTest {
         U08.setDepartment("Computer Science");
         U08.setEmail("posterU08@email.com");
         posterDao.create(U08);
-        assertNotNull(U08.getId());
+        assertNotNull(U08.getPoster_id());
 
         Poster U09 = new Poster();
         U09.setPoster_id("U09");
@@ -406,7 +406,7 @@ public class ScoreDaoUnitTest {
         U09.setDepartment("Computer Science");
         U09.setEmail("posterU09@email.com");
         posterDao.create(U09);
-        assertNotNull(U09.getId());
+        assertNotNull(U09.getPoster_id());
 
         Poster U10 = new Poster();
         U10.setPoster_id("U10");
@@ -419,7 +419,7 @@ public class ScoreDaoUnitTest {
         U10.setDepartment("Computer Science");
         U10.setEmail("posterU10@email.com");
         posterDao.create(U10);
-        assertNotNull(U10.getId());
+        assertNotNull(U10.getPoster_id());
 
         Poster G01 = new Poster();
         G01.setPoster_id("G01");
@@ -432,7 +432,7 @@ public class ScoreDaoUnitTest {
         G01.setDepartment("Computer Science");
         G01.setEmail("posterG01@email.com");
         posterDao.create(G01);
-        assertNotNull(G01.getId());
+        assertNotNull(G01.getPoster_id());
 
         Poster G02 = new Poster();
         G02.setPoster_id("G02");
@@ -445,7 +445,7 @@ public class ScoreDaoUnitTest {
         G02.setDepartment("Computer Science");
         G02.setEmail("posterG02@email.com");
         posterDao.create(G02);
-        assertNotNull(G02.getId());
+        assertNotNull(G02.getPoster_id());
 
         Poster G03 = new Poster();
         G03.setPoster_id("G03");
@@ -458,7 +458,7 @@ public class ScoreDaoUnitTest {
         G03.setDepartment("Computer Science");
         G03.setEmail("posterG03@email.com");
         posterDao.create(G03);
-        assertNotNull(G03.getId());
+        assertNotNull(G03.getPoster_id());
 
         Poster G04 = new Poster();
         G04.setPoster_id("G04");
@@ -471,7 +471,7 @@ public class ScoreDaoUnitTest {
         G04.setDepartment("Computer Science");
         G04.setEmail("posterG04@email.com");
         posterDao.create(G04);
-        assertNotNull(G04.getId());
+        assertNotNull(G04.getPoster_id());
 
         Poster G05 = new Poster();
         G05.setPoster_id("G05");
@@ -484,7 +484,7 @@ public class ScoreDaoUnitTest {
         G05.setDepartment("Computer Science");
         G05.setEmail("posterG05@email.com");
         posterDao.create(G05);
-        assertNotNull(G05.getId());
+        assertNotNull(G05.getPoster_id());
 
         Poster G06 = new Poster();
         G06.setPoster_id("G06");
@@ -497,7 +497,7 @@ public class ScoreDaoUnitTest {
         G06.setDepartment("Computer Science");
         G06.setEmail("posterG06@email.com");
         posterDao.create(G06);
-        assertNotNull(G06.getId());
+        assertNotNull(G06.getPoster_id());
 
         Poster G07 = new Poster();
         G07.setPoster_id("G07");
@@ -510,7 +510,7 @@ public class ScoreDaoUnitTest {
         G07.setDepartment("Computer Science");
         G07.setEmail("posterG07@email.com");
         posterDao.create(G07);
-        assertNotNull(G07.getId());
+        assertNotNull(G07.getPoster_id());
 
         Poster G08 = new Poster();
         G08.setPoster_id("G08");
@@ -523,7 +523,7 @@ public class ScoreDaoUnitTest {
         G08.setDepartment("Computer Science");
         G08.setEmail("posterG08@email.com");
         posterDao.create(G08);
-        assertNotNull(G08.getId());
+        assertNotNull(G08.getPoster_id());
 
         Poster G09 = new Poster();
         G09.setPoster_id("G09");
@@ -536,7 +536,7 @@ public class ScoreDaoUnitTest {
         G09.setDepartment("Computer Science");
         G09.setEmail("posterG09@email.com");
         posterDao.create(G09);
-        assertNotNull(G09.getId());
+        assertNotNull(G09.getPoster_id());
 
         Poster G10 = new Poster();
         G10.setPoster_id("G10");
@@ -549,7 +549,7 @@ public class ScoreDaoUnitTest {
         G10.setDepartment("Computer Science");
         G10.setEmail("posterG10@email.com");
         posterDao.create(G10);
-        assertNotNull(G10.getId());
+        assertNotNull(G10.getPoster_id());
 
 
         Score s1 = new Score();

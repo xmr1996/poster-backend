@@ -65,8 +65,8 @@ public class PosterRestController{
     @PutMapping(value = POSTER_PATH)
     public void update(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            Assert.notNull(poster.getId(), "Poster Id must not be null");
-            Assert.notNull(posterDao.read(poster.getId()), "Could not update Poster " + poster.getId()+ " - record not found.");
+            Assert.notNull(poster.getPoster_id(), "Poster Id must not be null");
+            Assert.notNull(posterDao.read(poster.getPoster_id()), "Could not update Poster " + poster.getPoster_id()+ " - record not found.");
             posterDao.update(poster);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -161,27 +161,6 @@ public class PosterRestController{
         }
     }
 
-     /**
-     * Get the {@link Poster} by id
-     *
-     * @param id {@link Poster#getId()}
-     * @param response  {@link HttpServletResponse}
-     * @return {@link Poster} retrieved from the database
-     * @throws IOException if error response cannot be created.
-     */
-    @ApiOperation(value = "Read Poster by ID")
-    @GetMapping(value = POSTER_PATH + "{id}")
-    public Poster readById(@PathVariable Long id, @ApiIgnore HttpServletResponse response) throws IOException {
-        Poster poster = posterDao.read(id);
-
-        if (poster == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Poster with ID: " + id + " not found.");
-            return null;
-        }
-
-        return poster;
-    }
-
     /**
      * Get the {@link Poster}
      *
@@ -223,23 +202,6 @@ public class PosterRestController{
         return posters;
     }
 
-     /**
-     * Delete the {@link Poster} by Id
-     *
-     * @param id {@link Poster#getId()}
-     * @param response  {@link HttpServletResponse}
-     * @throws IOException if error response cannot be created.
-     */
-    @ApiOperation(value = "Delete Poster by ID")
-    @DeleteMapping(value = POSTER_PATH + "{id}")
-    public void delete(@PathVariable Long id, @ApiIgnore HttpServletResponse response) throws IOException {
-        try {
-            posterDao.delete(id);
-        } catch (Exception e) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
-        }
-    }
-
     /**
      * Get the {@link Poster} by Round and Status
      *
@@ -266,6 +228,23 @@ public class PosterRestController{
             posterDao.clearTable();
         } catch(Exception e){
             response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
+        }
+    }
+
+    /**
+     * Delete the {@link Poster} by poster_id
+     *
+     * @param poster_id {@link Poster#getPoster_id()}
+     * @param response  {@link HttpServletResponse}
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Delete Poster by poster_id")
+    @DeleteMapping(value = POSTER_PATH + "{poster_id}")
+    public void deleteByJudgeId(@PathVariable String poster_id, @ApiIgnore HttpServletResponse response) throws IOException {
+        try {
+            posterDao.delete(poster_id);
+        } catch (Exception e) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }
     }
 

@@ -49,7 +49,6 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
     @Override
     public Poster mapRow(ResultSet rs, int rowNum) throws SQLException {
         Poster poster = new Poster();
-        poster.setId(rs.getLong(ID.getColumnName()));
         poster.setPoster_id(rs.getString(POSTER_ID.getColumnName()));
         poster.setTitle(rs.getString(TITLE.getColumnName()));
         poster.setEmail(rs.getString(EMAIL.getColumnName()));
@@ -74,7 +73,6 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
     @Override
     public Map<String, Object> mapObject(Poster object) {
         Map<String,Object> map = new HashMap<>();
-        map.put(ID.getColumnName(),object.getId());
         map.put(POSTER_ID.getColumnName(), object.getPoster_id());
         map.put(TITLE.getColumnName(),object.getTitle());
         map.put(EMAIL.getColumnName(),object.getEmail());

@@ -3,7 +3,6 @@ package edu.uwm.capstone.model.Poster;
 import java.util.Objects;
 
 public class Poster {
-    protected Long id;
     private String poster_id;
     private String title;
     private String email;
@@ -22,15 +21,6 @@ public class Poster {
     private double avg_research_r2;
     private double avg_pres_r1;
     private double avg_pres_r2;
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getPoster_id() {
         return poster_id;
@@ -179,11 +169,11 @@ public class Poster {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Poster poster = (Poster) o;
-        return Objects.equals(id, poster.id);
+        return Objects.equals(poster_id, poster.poster_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(poster_id);
     }
 }

@@ -42,35 +42,21 @@ public class PosterDao extends BaseDao<Poster> {
 
         LOG.trace("Creating poster {}", poster);
 
-        KeyHolder keyHolder = new GeneratedKeyHolder();
         poster.setRole("student");
+
         int result = this.jdbcTemplate.update(sql("createPoster"),
-                new MapSqlParameterSource(rowMapper.mapObject(poster)), keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
+                new MapSqlParameterSource(rowMapper.mapObject(poster)));
 
         if (result != 1) {
             throw new RuntimeException("Failed attempt to create poster " + poster.toString() + " affected " + result + " rows");
         }
 
-        Long id = keyHolder.getKey().longValue();
-        poster.setId(id);
-
         return poster;
     }
 
-    /**
-     * Retrieve a {@link Poster} object by its {@link Poster#getId()}.
-     *
-     * @param id long
-     * @return {@link Poster}
-     */
     @Override
     public Poster read(long id) {
-        LOG.trace("Reading poster {}", id);
-        try {
-            return (Poster) this.jdbcTemplate.queryForObject(sql("readPoster"), new MapSqlParameterSource("id", id), rowMapper);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
+        return null;
     }
 
     public List<Poster> read() {
@@ -83,7 +69,7 @@ public class PosterDao extends BaseDao<Poster> {
     }
 
     /**
-     * Retrieve a {@link Poster} object by its {@link Poster#getId()}.
+     * Retrieve a {@link Poster} object by its {@link Poster#getPoster_id()}.
      *
      * @param posterID string
      * @return {@link Poster}
@@ -143,7 +129,7 @@ public class PosterDao extends BaseDao<Poster> {
     public void update(Poster poster) {
         if (poster == null) {
             throw new RuntimeException("Request to update a Poster received null");
-        } else if (poster.getId() == null) {
+        } else if (poster.getPoster_id() == null) {
             throw new RuntimeException("When updating a Poster the id should not be null");
         }
 
@@ -167,28 +153,19 @@ public class PosterDao extends BaseDao<Poster> {
         }
     }
 
-    /**
-     * Delete a {@link Poster} object by its {@link Poster#getId()}.
-     *
-     * @param id long
-     */
     @Override
     public void delete(long id) {
-        LOG.trace("Deleting poster {}", id);
-        int result = this.jdbcTemplate.update(sql("deletePoster"), new MapSqlParameterSource("id", id));
-        if (result != 1) {
-            throw new RuntimeException("Failed attempt to update poster " + id + " affected " + result + " rows");
-        }
+
     }
 
     /**
-     * Delete a {@link Poster} object by its {@link Poster#getId()}.
+     * Delete a {@link Poster} object by its {@link Poster#getPoster_id()}.
      *
      * @param posterID String
      */
     public void delete(String posterID){
         LOG.trace("Deleting poster{}",posterID);
-        int result = this.jdbcTemplate.update(sql("deletePoster"), new MapSqlParameterSource("PosterID", posterID));
+        int result = this.jdbcTemplate.update(sql("deletePoster"), new MapSqlParameterSource("poster_id", posterID));
         if(result != 1){
             throw new DaoException("Failed attempt to delete poster " + posterID + " affected " + result + " rows");
         }

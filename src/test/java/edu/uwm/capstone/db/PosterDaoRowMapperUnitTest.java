@@ -57,13 +57,11 @@ public class PosterDaoRowMapperUnitTest {
     public void mapObject() {
         // generate a profile object with test values
         Poster poster = TestDataUtility.posterWithTestValues();
-        poster.setId(TestDataUtility.randomLong());
         assertNotNull(poster);
 
         Map<String, Object> mapObject = posterDaoRowMapper.mapObject(poster);
         assertNotNull(mapObject);
 
-        assertEquals(poster.getId(), mapObject.get(BaseRowMapper.BaseColumnType.ID.getColumnName()));
         assertEquals(poster.getPoster_id(), mapObject.get(PosterDaoRowMapper.PosterColumnType.POSTER_ID.getColumnName()));
         assertEquals(poster.getFirst_name(), mapObject.get(PosterDaoRowMapper.PosterColumnType.FIRST_NAME.getColumnName()));
         assertEquals(poster.getLast_name(), mapObject.get(PosterDaoRowMapper.PosterColumnType.LAST_NAME.getColumnName()));
@@ -81,11 +79,9 @@ public class PosterDaoRowMapperUnitTest {
     public void mapRow() throws SQLException {
         // generate a profile object with test values
         Poster poster = TestDataUtility.posterWithTestValues();
-        poster.setId(TestDataUtility.randomLong());
         assertNotNull(poster);
 
         // define the behavior of the resultSet that is being mocked
-        when(resultSet.getLong(BaseRowMapper.BaseColumnType.ID.getColumnName())).thenReturn(poster.getId());
         when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.POSTER_ID.getColumnName())).thenReturn(poster.getPoster_id());
         when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.FIRST_NAME.getColumnName())).thenReturn(poster.getFirst_name());
         when(resultSet.getString(PosterDaoRowMapper.PosterColumnType.LAST_NAME.getColumnName())).thenReturn(poster.getLast_name());
@@ -98,7 +94,6 @@ public class PosterDaoRowMapperUnitTest {
         Poster verifyProfile = posterDaoRowMapper.mapRow(resultSet, 0);
         assertNotNull(verifyProfile);
 
-        assertEquals(poster.getId(), verifyProfile.getId());
         assertEquals(poster.getPoster_id(), verifyProfile.getPoster_id());
         assertEquals(poster.getFirst_name(), verifyProfile.getFirst_name());
         assertEquals(poster.getLast_name(), verifyProfile.getLast_name());
