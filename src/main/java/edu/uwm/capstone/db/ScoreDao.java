@@ -115,6 +115,14 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
+    public void deleteScoreByRound(int round){
+        LOG.trace("Clearing score by round {}", round);
+        int result = this.jdbcTemplate.update(sql("clearScoreByRound"), new MapSqlParameterSource("round", round));
+        if(result < 0){
+            throw new DaoException("Failed to delete scores");
+        }
+    }
+
     @Override
     public void delete(long id) {
 
