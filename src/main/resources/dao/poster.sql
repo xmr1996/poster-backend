@@ -23,9 +23,6 @@ INSERT INTO posters (
   :role
 );
 
---STATEMENT readPoster
-SELECT * FROM posters WHERE id = :id;
-
 --STATEMENT readPosterByID
 SELECT * FROM posters where poster_id = :poster_id;
 
@@ -39,8 +36,6 @@ WHERE status = :status;
 
 --STATEMENT updatePoster
 UPDATE posters SET
-  id = :id,
-  poster_id = :poster_id,
   title = :title,
   email = :email,
   first_name = :first_name,
@@ -51,16 +46,13 @@ UPDATE posters SET
   voted_for = :voted_for,
   role = :role
 WHERE
-  id = :id;
+  poster_id = :poster_id;
 
 --STATEMENT setVote
 UPDATE posters SET
   voted_for = :vote
 WHERE
   poster_id = :poster_id;
-
---STATEMENT deletePoster
-DELETE FROM posters WHERE id = :id;
 
 --STATEMENT readPosterEmailPin
 SELECT * FROM posters WHERE email = :email and pin = :pin;
@@ -174,3 +166,7 @@ ORDER BY  votes DESC;
 
 --STATEMENT clearPosters
 DELETE FROM posters;
+
+--STATEMENT deletePoster
+DELETE FROM posters
+WHERE poster_id = :poster_id;
