@@ -59,16 +59,16 @@ public class ScoreDao extends BaseDao<Score> {
      * Retrieve a {@link Score} object by its {@link Score#getJudge_id() #getPoster_id()}.
      *
      * @param judgeID long
-     * @param posterID long
+     * @param posterID String
      * @return {@link Score}
      */
     public Score read(long judgeID, String posterID) {
         LOG.trace("Reading Score {}", judgeID, posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue("JudgeID", judgeID);
-            parameters.addValue("PosterID", posterID);
-            return (Score) this.jdbcTemplate.queryForObject(sql("readScore"),parameters, rowMapper);
+            parameters.addValue("judge_id", judgeID);
+            parameters.addValue("poster_id", posterID);
+            return (Score) this.jdbcTemplate.queryForObject(sql("getScoreByID"),parameters, rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

@@ -23,7 +23,8 @@ SELECT posters.*, score.*
 FROM score
 INNER JOIN posters
 ON score.poster_id = posters.poster_id
-WHERE score.round = :round and score.judge_id = :judge_id;
+WHERE score.round = :round and score.judge_id = :judge_id
+ORDER BY score.poster_id;
 
 --STATEMENT readAllScores
 SELECT * FROM score;
