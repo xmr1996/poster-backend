@@ -205,9 +205,14 @@ public class PosterDao extends BaseDao<Poster> {
 
     }
 
-    public void calculateAvg(int round ) {
+    public void calculateAvgRound1(int round ) {
         LOG.trace("calculateAvgForAll{}");
-        this.jdbcTemplate.update(sql("test"), new MapSqlParameterSource("round", round));
+        this.jdbcTemplate.update(sql("insertAvgTotalR1"), new MapSqlParameterSource("round", round));
+    }
+
+    public void calculateAvgRound2(int round ) {
+        LOG.trace("calculateAvgForAll{}");
+        this.jdbcTemplate.update(sql("insertAvgTotalR2"), new MapSqlParameterSource("round", round));
     }
 
     public void clearTable(){

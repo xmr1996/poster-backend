@@ -86,8 +86,12 @@ public class PosterRestController{
     @PutMapping(value = POSTER_PATH+ "average/{round}")
     public void calculateAverage(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
         try{
-
-            posterDao.calculateAvg(round);
+            if(round ==1){
+                posterDao.calculateAvgRound1(round);
+            }
+            else if(round ==2){
+                posterDao.calculateAvgRound2(round);
+            }
 
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);

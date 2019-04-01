@@ -231,5 +231,4 @@ public class ScoreRestController {
             scoreDao.create(score);
         }
     }
-
 }

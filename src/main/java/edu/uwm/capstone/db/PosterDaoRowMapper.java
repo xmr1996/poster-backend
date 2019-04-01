@@ -23,7 +23,13 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         VOTED_FOR(),
         ROLE(),
         AVG_R1(),
-        AVG_R2()
+        AVG_R2(),
+        AVG_COMM_R1(),
+        AVG_COMM_R2(),
+        AVG_RESEARCH_R1(),
+        AVG_RESEARCH_R2(),
+        AVG_PRES_R1(),
+        AVG_PRES_R2()
         ;
 
         private String columnName;
@@ -56,6 +62,12 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         poster.setRole(rs.getString(ROLE.getColumnName()));
         poster.setAvg_r1(rs.getDouble(AVG_R1.getColumnName()));
         poster.setAvg_r2(rs.getDouble(AVG_R2.getColumnName()));
+        poster.setAvg_comm_r1(rs.getDouble(AVG_COMM_R1.getColumnName()));
+        poster.setAvg_comm_r2(rs.getDouble(AVG_COMM_R2.getColumnName()));
+        poster.setAvg_research_r1(rs.getDouble(AVG_RESEARCH_R1.getColumnName()));
+        poster.setAvg_research_r2(rs.getDouble(AVG_RESEARCH_R2.getColumnName()));
+        poster.setAvg_pres_r1(rs.getDouble(AVG_PRES_R1.getColumnName()));
+        poster.setAvg_pres_r2(rs.getDouble(AVG_PRES_R2.getColumnName()));
         return poster;
     }
 
@@ -75,6 +87,13 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         map.put(ROLE.getColumnName(), object.getRole());
         map.put(AVG_R1.getColumnName(),object.getAvg_r1());
         map.put(AVG_R2.getColumnName(),object.getAvg_r2());
+        map.put(AVG_COMM_R1.getColumnName(),object.getAvg_comm_r1());
+        map.put(AVG_COMM_R2.getColumnName(),object.getAvg_comm_r2());
+        map.put(AVG_RESEARCH_R1.getColumnName(),object.getAvg_research_r1());
+        map.put(AVG_RESEARCH_R2.getColumnName(),object.getAvg_research_r2());
+        map.put(AVG_PRES_R1.getColumnName(),object.getAvg_pres_r1());
+        map.put(AVG_PRES_R2.getColumnName(),object.getAvg_pres_r2());
+
 
         return map;
     }

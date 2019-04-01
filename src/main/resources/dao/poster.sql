@@ -73,16 +73,29 @@ Where posters.poster_id = :poster_id;
 --STATEMENT getTop6Posters
 SELECT * FROM posters WHERE status = :status ORDER BY avg_r1 DESC LIMIT 6;
 
---STATEMENT test
+--STATEMENT insertAvgTotalR1
 UPDATE posters
 SET posters.avg_r1 =
 (SELECT AVG(CAST(total_score AS DOUBLE)) as AVG
   FROM score
-  WHERE total_score is not NULL
-  AND round = :round
+  WHERE total_score is not null
+  AND round = 1
   AND poster_id =  posters.poster_id
   group by poster_id
 );
+
+--STATEMENT insertAvgTotalR2
+UPDATE posters
+SET posters.avg_r2 =
+(SELECT AVG(CAST(total_score AS DOUBLE)) as AVG
+  FROM score
+  WHERE total_score is not null
+  AND round = 2
+  AND poster_id =  posters.poster_id
+  group by poster_id
+);
+
+
 
 --STATEMENT readPostersByStatus
 SELECT * FROM posters where status = :status;
