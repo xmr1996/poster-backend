@@ -95,6 +95,15 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
+    public List<Score> readByRound(int round){
+        LOG.trace("Reading Scores by round ", round);
+        try{
+            return (List<Score>) this.jdbcTemplate.query(sql("readScoreByRound"), new MapSqlParameterSource("round", round), rowMapper);
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
     /**
      * Update the provided {@link Score} object.
      *
