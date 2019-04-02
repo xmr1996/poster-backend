@@ -171,11 +171,21 @@ public class PosterDao extends BaseDao<Poster> {
         }
     }
 
-    public List<Poster> getTop6(String status){
+    public List<Poster> getTop6R1(String status){
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("status", status);
-            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6Posters"),parameters,rowMapper);
+            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR1"),parameters,rowMapper);
+        } catch(EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
+    public List<Poster> getTop6R2(String status){
+        try{
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            parameters.addValue("status", status);
+            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR2"),parameters,rowMapper);
         } catch(EmptyResultDataAccessException e){
             return null;
         }
@@ -219,7 +229,7 @@ public class PosterDao extends BaseDao<Poster> {
 
     public void avgPresR2() {
         LOG.trace("calculate Avg For All round2 pres_score{}");
-        this.jdbcTemplate.update(sql("insertAvgPresR1"), Collections.emptyMap());
+        this.jdbcTemplate.update(sql("insertAvgPresR2"), Collections.emptyMap());
     }
 
     public void clearTable(){

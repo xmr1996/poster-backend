@@ -566,10 +566,11 @@ public class ScoreDaoUnitTest {
         s2.setPoster_id(posterU01.getPoster_id());
         s2.setJudge_id(judgeU2.getJudge_id());
         s2.setRound(1);
-//        s2.setPoster_score(10);
-//        s2.setResearch_score(10);
-//        s2.setComm_score(15);
-//        s2.setTotal_score(50);
+//        s2.setRound(2);
+//        s2.setPoster_score(20);
+//        s2.setResearch_score(20);
+//        s2.setComm_score(30);
+//        s2.setTotal_score(100);
         scoreDao.create(s2);
 
         Score s3 = new Score();
@@ -588,7 +589,8 @@ public class ScoreDaoUnitTest {
         s5.setPoster_id(U02.getPoster_id());
         s5.setJudge_id(judgeU5.getJudge_id());
         s5.setRound(1);
-//        s5.setPoster_score(20);
+//        s5.setRound(2);
+//        s5.setPoster_score(15);
 //        s5.setResearch_score(20);
 //        s5.setComm_score(30);
 //        s5.setTotal_score(100);
@@ -598,7 +600,12 @@ public class ScoreDaoUnitTest {
         s6.setPoster_id(U02.getPoster_id());
         s6.setJudge_id(judgeU6.getJudge_id());
         s6.setRound(1);
-        scoreDao.create(s6);
+//        s6.setRound(2);
+//        s6.setPoster_score(20);
+//        s6.setResearch_score(20);
+//        s6.setComm_score(50);
+//        s6.setTotal_score(100);
+//        scoreDao.create(s6);
 
         Score s7 = new Score();
         s7.setPoster_id(U02.getPoster_id());

@@ -210,10 +210,29 @@ public class PosterRestController{
      * @return {@link List<Poster>} retrieved from the database
      * @throws IOException if error response cannot be created.
      **/
-    @ApiOperation(value = "Get top 6 posters")
-    @GetMapping(value = POSTER_PATH + "top/{status}")
-    public List<Poster> getTop6(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
-        List<Poster> posters = posterDao.getTop6(status);
+    @ApiOperation(value = "Get top 6 posters for round1")
+    @GetMapping(value = POSTER_PATH + "top/round1/{status}")
+    public List<Poster> getTop6R1(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
+        List<Poster> posters = posterDao.getTop6R1(status);
+        if (posters == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
+            return null;
+        }
+        return posters;
+    }
+
+    /**
+     * Get the {@link Poster} by Round and Status
+     *
+     * @param status
+     * @param response  {@link HttpServletResponse}
+     * @return {@link List<Poster>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     **/
+    @ApiOperation(value = "Get top 6 posters for round2")
+    @GetMapping(value = POSTER_PATH + "top/round2/{status}")
+    public List<Poster> getTop6R2(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
+        List<Poster> posters = posterDao.getTop6R2(status);
         if (posters == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
             return null;
