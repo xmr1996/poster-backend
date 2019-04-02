@@ -116,6 +116,17 @@ public class ScoreRestController {
         return posters;
     }
 
+    @ApiOperation(value = "Read scores by round")
+    @GetMapping(value = SCORE_PATH + "{round}")
+    public List<Score> readByRound(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
+        List<Score> scores = scoreDao.readByRound(round);
+        if(scores == null){
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No scores for round " + round);
+            return null;
+        }
+        return scores;
+    }
+
     /**
      * Updates the provided {@link Score}
      *
