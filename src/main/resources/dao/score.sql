@@ -90,3 +90,7 @@ WHERE round = :round;
 --STATEMENT readScoreByRound
 SELECT * FROM score
 WHERE round = :round;
+
+--STATEMENT deleteScoreByID
+DELETE FROM score
+WHERE judge_id = :judge_id AND poster_id = :poster_id;

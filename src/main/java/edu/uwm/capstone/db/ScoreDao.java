@@ -132,6 +132,18 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
+    public void deleteScoreByID(Long judge_id, String poster_id){
+        LOG.trace("Removing score for judge_id: ", judge_id, " poster_id ", poster_id);
+
+        MapSqlParameterSource parameters = new MapSqlParameterSource();
+        parameters.addValue("judge_id", judge_id);
+        parameters.addValue("poster_id", poster_id);
+        int result = this.jdbcTemplate.update(sql("deleteScoreByID"), parameters);
+        if(result < 0){
+            throw new DaoException("Failed to delete score.");
+        }
+    }
+
     @Override
     public void delete(long id) {
 
