@@ -139,8 +139,8 @@ public class ScoreDao extends BaseDao<Score> {
         parameters.addValue("judge_id", judge_id);
         parameters.addValue("poster_id", poster_id);
         int result = this.jdbcTemplate.update(sql("deleteScoreByID"), parameters);
-        if(result < 0){
-            throw new DaoException("Failed to delete score.");
+        if(result != 1){
+            throw new RuntimeException("Unable to delete score");
         }
     }
 

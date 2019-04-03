@@ -93,4 +93,4 @@ WHERE round = :round;
 
 --STATEMENT deleteScoreByID
 DELETE FROM score
-WHERE judge_id = :judge_id AND poster_id = :poster_id;
+WHERE judge_id = :judge_id AND poster_id = :poster_id AND round = 1;
