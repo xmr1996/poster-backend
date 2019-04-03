@@ -50,6 +50,8 @@ Deploy:
     - bash deploy/deploy.sh
   only:
     - master
+  variables:
+    SPRING_PROFILE: "int"
 
 after_script:
   - 'echo "Image SHA Tag : $CI_COMMIT_SHA"'

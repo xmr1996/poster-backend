@@ -24,5 +24,6 @@ ssh ubuntu@$DEPLOY_SERVER \
     DOCKER_REPO_PASS=$DOCKER_REPO_PASS \
     RDS_USERNAME=$RDS_USERNAME \
     RDS_PASSWORD=$RDS_PASSWORD \
+    SPRING_PROFILE=$SPRING_PROFILE \
     bash -s \
     ./deploy/dockerImageUpdateAndStart.sh

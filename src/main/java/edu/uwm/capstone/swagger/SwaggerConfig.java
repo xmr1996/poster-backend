@@ -54,6 +54,7 @@ public class SwaggerConfig {
     private Predicate<String> paths() {
         return or(
                 regex("/" + ".*"),
+                regex("/*/" + ".*"),
                 regex("/admin" + ".*"));
     }
 
