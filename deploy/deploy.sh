@@ -25,5 +25,4 @@ ssh ubuntu@$DEPLOY_SERVER \
     RDS_USERNAME=$RDS_USERNAME \
     RDS_PASSWORD=$RDS_PASSWORD \
     SPRING_PROFILE=$SPRING_PROFILE \
-    bash -s \
-    ./deploy/dockerImageUpdateAndStart.sh
+    bash -s < ./deploy/dockerImageUpdateAndStart.sh
