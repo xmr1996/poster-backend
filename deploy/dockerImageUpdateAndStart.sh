@@ -9,6 +9,7 @@
 #  - DOCKER_REPO_PASS
 #  - RDS_USERNAME
 #  - RDS_PASSWORD
+#  - SPRING_PROFILE
 ###############################################################################
 
 ###############################################################################
@@ -56,4 +57,5 @@ docker run -d \
     --name $CONTAINER_NAME \
     -e RDS_USERNAME \
     -e RDS_PASSWORD \
+    -e SPRING_PROFILE \
     $FULL_IMAGE_REF

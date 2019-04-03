@@ -8,8 +8,4 @@ COPY target/*.jar backend.jar
 EXPOSE 8333
 
 # provide entry-point
-CMD java -jar backend.jar
-
-
-
-
+CMD java -jar -Dspring.profiles.active=${SPRING_PROFILE:-""} backend.jar
