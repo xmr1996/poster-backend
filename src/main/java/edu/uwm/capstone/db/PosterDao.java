@@ -44,7 +44,7 @@ public class PosterDao extends BaseDao<Poster> {
 
         poster.setRole("student");
 
-        int result = this.jdbcTemplate.update(sql("createPoster"),
+        int result = this.jdbcTemplate.update(sql("upsertPoster"),
                 new MapSqlParameterSource(rowMapper.mapObject(poster)));
 
         if (result != 1) {

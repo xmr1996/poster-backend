@@ -23,6 +23,41 @@ INSERT INTO posters (
   :role
 );
 
+--STATEMENT upsertPoster
+INSERT INTO posters (
+  poster_id,
+  title,
+  email,
+  first_name,
+  last_name,
+  status,
+  pin,
+  department,
+  voted_for,
+  role
+) VALUES (
+  :poster_id,
+  :title,
+  :email,
+  :first_name,
+  :last_name,
+  :status,
+  :pin,
+  :department,
+  :voted_for,
+  :role
+)
+ON DUPLICATE KEY UPDATE
+  title = :title,
+  email = :email,
+  first_name = :first_name,
+  last_name = :last_name,
+  status = :status,
+  pin = :pin,
+  department = :department,
+  voted_for = :voted_for,
+  role = :role;
+
 --STATEMENT readPosterByID
 SELECT * FROM posters where poster_id = :poster_id;
 

@@ -34,7 +34,7 @@ public class JudgeDao extends BaseDao<Judge> {
 
         MapSqlParameterSource parameters = new MapSqlParameterSource(rowMapper.mapObject(judge));
 
-        int result = this.jdbcTemplate.update(sql("createJudge"),
+        int result = this.jdbcTemplate.update(sql("upsertJudge"),
                 parameters);
 
         if (result != 1) {

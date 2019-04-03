@@ -17,6 +17,33 @@ INSERT INTO judges (
   :role
 );
 
+--STATEMENT upsertJudge
+INSERT INTO judges (
+  judge_id,
+  first_name,
+  last_name,
+  status,
+  pin,
+  email,
+  role
+) VALUES (
+  :judge_id,
+  :first_name,
+  :last_name,
+  :status,
+  :pin,
+  :email,
+  :role
+)
+ON DUPLICATE KEY UPDATE
+  first_name = :first_name,
+  last_name = :last_name,
+  status = :status,
+  pin = :pin,
+  email = :email,
+  role = :role;
+
+
 --STATEMENT readJudges
 SELECT * FROM judges;
 
