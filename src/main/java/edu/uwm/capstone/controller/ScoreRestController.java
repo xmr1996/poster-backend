@@ -183,7 +183,7 @@ public class ScoreRestController {
     public List<Assignment> readAllAssignments(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
         List<Assignment> assignments = assignmentDao.readAssignments(round);
 
-        if (assignments.isEmpty()) {
+        if (assignments == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No assignments were found.");
             return null;
         }
