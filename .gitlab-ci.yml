@@ -1,12 +1,10 @@
-before_script:
-  - docker info
-
 image: registry.uwm-nm-te-capstone.com:8083/general/maven-docker:latest
 
 stages:
-  - test
-  - build
-  - deploy
+  - Test
+  - Pre-Build
+  - Build
+  - Deploy
 
 variables:
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
@@ -18,18 +16,24 @@ cache:
     - target/
 
 Unit Tests:
-  stage: test
+  stage: Test
   script:
     - mvn $MAVEN_CLI_OPTS install
 
 Component Tests:
-  stage: test
+  stage: Test
   script:
     - mvn $MAVEN_CLI_OPTS -P test-component test
   when: on_success
 
+SonarQube Analyze:
+  stage: Pre-Build
+  script:
+  - mvn verify sonar:sonar
+  when: on_success
+
 Build:
-  stage: build
+  stage: Build
   script:
     - mvn clean -B -T 4 package
     - docker login registry.uwm-nm-te-capstone.com:8083 --username $DOCKER_REPO_USER --password $DOCKER_REPO_PASS
@@ -45,7 +49,7 @@ Build:
       - target/*.jar
 
 Deploy:
-  stage: deploy
+  stage: Deploy
   script:
     - bash deploy/deploy.sh
   only:
