@@ -215,6 +215,7 @@ public class ScoreRestController {
     @PostMapping(value = SCORE_PATH + "/all")
     public void importCSV(@RequestBody List<Score> scores, @ApiIgnore HttpServletResponse response) throws IOException{
         for(Score score : scores){
+            score.setRound(1);
             scoreDao.create(score);
         }
     }
