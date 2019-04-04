@@ -85,7 +85,7 @@ public class JudgeRestController {
      * @throws IOException if error response cannot be created.
      */
     @ApiOperation(value = "Read Judge by judge_id")
-    @GetMapping(value = JUDGE_PATH + "/judge_id/{judgeId}")
+    @GetMapping(value = JUDGE_PATH + "/judge_id/{judge_id}")
     public Judge readByJudgeId(@PathVariable Long judge_id, @ApiIgnore HttpServletResponse response) throws IOException {
         Judge judge = judgeDao.readByJudgeID(judge_id);
 
