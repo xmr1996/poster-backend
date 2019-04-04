@@ -29,9 +29,7 @@ Component Tests:
 SonarQube Analyze:
   stage: Pre-Build
   script:
-  - mvn sonar:sonar
-#  only:
-#  - master
+  - mvn verify sonar:sonar -Dsonar.branch.name=$CI_COMMIT_REF_NAME
   when: on_success
 
 Build:
