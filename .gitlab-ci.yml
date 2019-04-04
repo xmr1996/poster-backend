@@ -28,7 +28,7 @@ Component Tests:
 
 SonarQube Analyze:
   stage: Pre-Build
-  image: sonarqube:latest
+  image: romani/sonarqube-maven-git:latest
   script:
   - mvn sonar:sonar
 #  only:
