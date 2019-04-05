@@ -1,45 +1,45 @@
 --STATEMENT createAdmin
-INSERT INTO admin (
+INSERT INTO administrator (
   email,
   first_name,
   last_name,
-  read,
-  write,
+  read_r,
+  write_w,
   pin,
   role
 ) VALUES (
   :email,
   :first_name,
   :last_name,
-  :read,
-  :write,
+  :read_r,
+  :write_w,
   :pin,
   :role
 );
 
 --STATEMENT readAllAdmins
-SELECT * FROM admin;
+SELECT * FROM administrator;
 
 --STATEMENT readAdmin
-SELECT * FROM admin
+SELECT * FROM administrator
 WHERE email = :email;
 
 --STATEMENT readAdminEmailPin
-SELECT * FROM admin WHERE email = :email and pin = :pin;
+SELECT * FROM administrator WHERE email = :email and pin = :pin;
 
 --STATEMENT updateAdmin
-UPDATE admin
+UPDATE administrator
 SET
   first_name = :first_name,
   last_name = :last_name,
-  read = :read,
-  write = :write,
+  read_r = :read_r,
+  write_w = :write_w,
   pin = :pin
 WHERE
   email = :email;
 
 --STATEMENT deleteAdmin
-DELETE FROM admin WHERE email = :email;
+DELETE FROM administrator WHERE email = :email;
 
 --STATEMENT clearAdmins
-DELETE FROM admin;
+DELETE FROM administrator;

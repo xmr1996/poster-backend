@@ -4,8 +4,8 @@ public class Admin {
     private String email;
     private String first_name;
     private String last_name;
-    private boolean read;
-    private boolean write;
+    private boolean read_r;
+    private boolean write_w;
     private String pin;
     private String role;
 
@@ -33,20 +33,20 @@ public class Admin {
         this.last_name = last_name;
     }
 
-    public boolean isRead() {
-        return read;
+    public boolean isRead_r() {
+        return read_r;
     }
 
-    public void setRead(boolean read) {
-        this.read = read;
+    public void setRead_r(boolean read_r) {
+        this.read_r = read_r;
     }
 
-    public boolean isWrite() {
-        return write;
+    public boolean isWrite_w() {
+        return write_w;
     }
 
-    public void setWrite(boolean write) {
-        this.write = write;
+    public void setWrite_w(boolean write_w) {
+        this.write_w = write_w;
     }
 
     public String getPin() {
