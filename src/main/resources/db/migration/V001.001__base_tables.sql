@@ -28,20 +28,20 @@ CREATE TABLE posters (
 );
 
 CREATE TABLE judges (
-  judge_id INT(255) PRIMARY KEY NOT NULL ,
+  judge_id INT(255) PRIMARY KEY NOT NULL,
   first_name VARCHAR(255),
   last_name VARCHAR(255),
   status VARCHAR(255),
   pin VARCHAR(255),
   email VARCHAR(255),
-  role VARCHAR(255),
+  role VARCHAR(255)
 );
 
 commit;
 
 CREATE TABLE SCORE(
-  poster_id VARCHAR(255) NOT NULL ,
-  judge_id INT(255) NOT NULL ,
+  poster_id VARCHAR(255) NOT NULL,
+  judge_id INT(255) NOT NULL,
   round INT(10) DEFAULT 1,
   research_score INT(255) DEFAULT NULL,
   comm_score INT(255) DEFAULT NULL,
@@ -49,17 +49,15 @@ CREATE TABLE SCORE(
   total_score INT(255) DEFAULT NULL,
   FOREIGN KEY(poster_id) REFERENCES posters(poster_id) ON DELETE CASCADE ,
   FOREIGN KEY(judge_id) REFERENCES judges(judge_id) ON DELETE CASCADE,
-  CONSTRAINT PK_Sore PRIMARY KEY(poster_id,judge_id,round),
- -- created_date BIGINT(25) NOT NULL,
-  --updated_date BIGINT(25) DEFAULT NULL
+  CONSTRAINT PK_Sore PRIMARY KEY(poster_id,judge_id,round)
 );
 
-CREATE TABLE admin(
+CREATE TABLE administrator(
   email VARCHAR(255) PRIMARY KEY not null ,
   first_name VARCHAR(255),
   last_name VARCHAR(255),
-  read BOOLEAN,
-  write BOOLEAN,
+  read_r BOOLEAN,
+  write_w BOOLEAN,
   pin VARCHAR(255),
   role VARCHAR(255)
 );
