@@ -211,7 +211,11 @@ public class ScoreRestController {
     public void importCSV(@RequestBody List<Score> scores, @ApiIgnore HttpServletResponse response) throws IOException{
         for(Score score : scores){
             score.setRound(1);
-            scoreDao.create(score);
+            try {
+                scoreDao.create(score);
+            }catch (Exception e){
+                logger.error(e.getMessage(), e);
+            }
         }
     }
 }

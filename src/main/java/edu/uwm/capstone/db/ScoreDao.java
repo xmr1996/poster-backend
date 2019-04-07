@@ -39,15 +39,18 @@ public class ScoreDao extends BaseDao<Score> {
 
         MapSqlParameterSource parameters = new MapSqlParameterSource(rowMapper.mapObject(score));
 
-        int result = this.jdbcTemplate.update(sql("upsertScore"),
-                parameters);
+        try {
+            int result = this.jdbcTemplate.update(sql("upsertScore"),
+                    parameters);
 
-
-        if (result != 1) {
-            throw new DaoException("Failed attempt to create score " + score.toString() + " affected " + result + " rows");
+            if (result != 1) {
+                throw new DaoException("Failed attempt to create score " + score.toString() + " affected " + result + " rows");
+            }
+        } catch(Exception e){
+            return null;
         }
 
-        return score;
+            return score;
     }
 
     @Override
