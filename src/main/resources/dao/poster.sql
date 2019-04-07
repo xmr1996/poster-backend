@@ -94,7 +94,7 @@ SELECT * FROM posters WHERE email = :email and pin = :pin;
 
 --STATEMENT insertAvgR1
 UPDATE posters
-SET posters.avg_r1 = (SELECT AVG(CAST(total_score AS DOUBLE)) FROM score WHERE SCORE.poster_id = :poster_id)
+SET posters.avg_r1 = (SELECT AVG(CAST(total_score AS DOUBLE)) FROM score WHERE score.poster_id = :poster_id)
 Where posters.poster_id = :poster_id;
 
 --STATEMENT getTop6PostersR1
