@@ -42,7 +42,6 @@ public class PosterRestController{
     public Poster create(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
             Assert.notNull(poster, "Received null Poster object");
-            Assert.isTrue(poster.getPoster_id().length()>0, "Received empty poster_id");
             return posterDao.create(poster);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);

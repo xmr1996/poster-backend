@@ -12,7 +12,9 @@ import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.sql.exception.DaoException;
+import org.springframework.util.Assert;
 
+import javax.servlet.http.HttpServletResponse;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -38,7 +40,12 @@ public class PosterDao extends BaseDao<Poster> {
         // validate input
         if (poster == null) {
             throw new RuntimeException("Request to create a new Poster received null");
-       }
+        }
+        try {
+            Assert.isTrue(poster.getPoster_id().length() > 0, "Received empty poster_id");
+        }catch (Exception e) {
+            return null;
+        }
 
         LOG.trace("Creating poster {}", poster);
 
