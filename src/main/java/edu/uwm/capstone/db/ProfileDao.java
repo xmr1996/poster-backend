@@ -66,7 +66,7 @@ public class ProfileDao extends BaseDao<Profile> {
     }
 
     public List<Profile> read() {
-        LOG.trace("Reading profile {}");
+        LOG.trace("Reading profile");
         try {
             return (List<Profile>) this.jdbcTemplate.query(sql("getProfiles"), rowMapper);
         } catch (EmptyResultDataAccessException e) {

@@ -90,7 +90,7 @@ public class ScoreDao extends BaseDao<Score> {
     }
     //read all scores
     public List<Score> read(){
-        LOG.trace("Read Score{}");
+        LOG.trace("Read Score");
         try {
             return (List<Score>) this.jdbcTemplate.query(sql("readAllScores"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -153,7 +153,7 @@ public class ScoreDao extends BaseDao<Score> {
     }
 
     public void clearTable(){
-        LOG.trace("Clearing score table{}");
+        LOG.trace("Clearing score table");
         int result = this.jdbcTemplate.update(sql("clearScore"), Collections.emptyMap());
         if(result < 0){
             throw new DaoException("Failed attempt to clear score table");

@@ -59,7 +59,7 @@ public class JudgeDao extends BaseDao<Judge> {
     }
 
     public List<Judge> read() {
-        LOG.trace("Reading All Judges {}");
+        LOG.trace("Reading All Judges");
         try {
             return (List<Judge>) this.jdbcTemplate.query(sql("readJudges"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -68,7 +68,7 @@ public class JudgeDao extends BaseDao<Judge> {
     }
 
     public Judge read(String email, String pin){
-        LOG.trace("Reading Judge {}");
+        LOG.trace("Reading Judge {}", email);
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("email", email);
@@ -126,7 +126,7 @@ public class JudgeDao extends BaseDao<Judge> {
     }
 
     public void clearTable(){
-        LOG.trace("Clearing judges table{}");
+        LOG.trace("Clearing judges table");
         int result = this.jdbcTemplate.update(sql("clearJudges"), Collections.emptyMap());
         if(result < 0){
             throw new DaoException("Failed attempt to clear judges table");

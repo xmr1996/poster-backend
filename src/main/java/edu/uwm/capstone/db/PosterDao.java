@@ -67,7 +67,7 @@ public class PosterDao extends BaseDao<Poster> {
     }
 
     public List<Poster> read() {
-        LOG.trace("Reading poster {}");
+        LOG.trace("Reading poster");
         try {
             return (List<Poster>) this.jdbcTemplate.query(sql("getPosters"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -200,47 +200,47 @@ public class PosterDao extends BaseDao<Poster> {
     }
 
     public void calculateAvgRound1() {
-        LOG.trace("calculateAvgForAllR1{}");
+        LOG.trace("calculateAvgForAllR1");
         this.jdbcTemplate.update(sql("insertAvgTotalR1"), Collections.emptyMap());
     }
 
     public void calculateAvgRound2() {
-        LOG.trace("calculateAvgForAllR2{}");
+        LOG.trace("calculateAvgForAllR2");
         this.jdbcTemplate.update(sql("insertAvgTotalR2"), Collections.emptyMap());
     }
 
     public void avgCommR1() {
-        LOG.trace("calculate Avg For All round1 comm_score{}");
+        LOG.trace("calculate Avg For All round1 comm_score");
         this.jdbcTemplate.update(sql("insertAvgCommR1"), Collections.emptyMap());
     }
 
     public void avgCommR2() {
-        LOG.trace("calculate Avg For All round2 comm_score{}");
+        LOG.trace("calculate Avg For All round2 comm_score");
         this.jdbcTemplate.update(sql("insertAvgCommR2"), Collections.emptyMap());
     }
 
     public void avgResearchR1() {
-        LOG.trace("calculate Avg For All round1 research_score{}");
+        LOG.trace("calculate Avg For All round1 research_score");
         this.jdbcTemplate.update(sql("insertAvgResearchR1"), Collections.emptyMap());
     }
 
     public void avgResearchR2() {
-        LOG.trace("calculate Avg For All round2 research_score{}");
+        LOG.trace("calculate Avg For All round2 research_score");
         this.jdbcTemplate.update(sql("insertAvgResearchR2"), Collections.emptyMap());
     }
 
     public void avgPresR1() {
-        LOG.trace("calculate Avg For All round1 pres_score{}");
+        LOG.trace("calculate Avg For All round1 pres_score");
         this.jdbcTemplate.update(sql("insertAvgPresR1"), Collections.emptyMap());
     }
 
     public void avgPresR2() {
-        LOG.trace("calculate Avg For All round2 pres_score{}");
+        LOG.trace("calculate Avg For All round2 pres_score");
         this.jdbcTemplate.update(sql("insertAvgPresR2"), Collections.emptyMap());
     }
 
     public void clearTable(){
-        LOG.trace("Clearing posters table{}");
+        LOG.trace("Clearing posters table");
         int result = this.jdbcTemplate.update(sql("clearPosters"), Collections.emptyMap());
         if(result < 0){
             throw new DaoException("Failed attempt to clear posters table");
