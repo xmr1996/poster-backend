@@ -47,7 +47,7 @@ public class AdminDao extends BaseDao<Admin> {
      * @return {@link List<Admin>}
      */
     public List<Admin> readAll(){
-        LOG.trace("Reading all admins {}");
+        LOG.trace("Reading all admins");
         try {
             return (List<Admin>) this.jdbcTemplate.query(sql("readAllAdmins"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -71,7 +71,7 @@ public class AdminDao extends BaseDao<Admin> {
     }
 
     public Admin read(String email, String pin){
-        LOG.trace("Reading admin {}");
+        LOG.trace("Reading admin");
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("email", email);
@@ -115,7 +115,7 @@ public class AdminDao extends BaseDao<Admin> {
     }
 
     public void clearTable(){
-        LOG.trace("Clearing judges table{}");
+        LOG.trace("Clearing judges table");
         int result = this.jdbcTemplate.update(sql("clearAdmins"), Collections.emptyMap());
         if(result < 0){
             throw new DaoException("Failed attempt to clear judges table");

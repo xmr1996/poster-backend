@@ -27,7 +27,7 @@ public class VoteDao extends BaseDao<Vote> {
 
     //Get Votes by Status
     public List<Vote> read(String status){
-        LOG.trace("Read Votes{}");
+        LOG.trace("Read Votes");
         try {
 
             return (List<Vote>) this.jdbcTemplate.query(sql("readVotesByStatus"), new MapSqlParameterSource("status", status), rowMapper);
