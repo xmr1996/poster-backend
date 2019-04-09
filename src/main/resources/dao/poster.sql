@@ -108,13 +108,11 @@ ORDER BY avg_r2 DESC, avg_research_r2 DESC, avg_comm_r2 DESC, avg_pres_r2 DESC L
 --STATEMENT insertAvgTotalR1
 UPDATE posters
 SET posters.avg_r1 =
-(SELECT AVG(CAST(total_score AS DOUBLE)) as AVG
-  FROM score
-  WHERE total_score is not null
-  AND round = 1
-  AND poster_id =  posters.poster_id
-  group by poster_id
-);
+      (SELECT AVG(CAST(total_score as DECIMAL (12, 2))) AS AVG
+       FROM score
+       WHERE total_score is not null AND round = 1 AND score.poster_id = posters.poster_id
+       group by score.poster_id
+        );
 
 --STATEMENT insertAvgTotalR2
 UPDATE posters
