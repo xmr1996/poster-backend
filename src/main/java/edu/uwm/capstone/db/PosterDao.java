@@ -142,7 +142,7 @@ public class PosterDao extends BaseDao<Poster> {
 
         LOG.trace("Updating poster {}", poster);
 
-        int result = this.jdbcTemplate.update(sql("updatePoster"), new MapSqlParameterSource(rowMapper.mapObject(poster)));
+        int result = this.jdbcTemplate.update(sql("upsertPoster"), new MapSqlParameterSource(rowMapper.mapObject(poster)));
 
         if (result != 1) {
             throw new RuntimeException("Failed attempt to update poster " + poster.toString() + " affected " + result + " rows");
