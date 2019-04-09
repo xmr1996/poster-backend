@@ -117,7 +117,7 @@ SET posters.avg_r1 =
 --STATEMENT insertAvgTotalR2
 UPDATE posters
 SET posters.avg_r2 =
-(SELECT AVG(CAST(total_score AS DOUBLE)) as AVG
+(SELECT AVG(CAST(total_score AS DECIMAL (12, 2))) as AVG
   FROM score
   WHERE total_score is not null
   AND round = 2
@@ -128,7 +128,7 @@ SET posters.avg_r2 =
 --STATEMENT insertAvgCommR1
 UPDATE posters
 SET posters.avg_comm_r1 =
-(SELECT AVG(CAST(comm_score AS DOUBLE)) as AVG
+(SELECT AVG(CAST(comm_score AS DECIMAL (12, 2))) as AVG
   FROM score
   WHERE comm_score is not null
   AND round = 1
@@ -139,7 +139,7 @@ SET posters.avg_comm_r1 =
 --STATEMENT insertAvgCommR2
 UPDATE posters
 SET posters.avg_comm_r2 =
-(SELECT AVG(CAST(comm_score AS DOUBLE)) as AVG
+(SELECT AVG(CAST(comm_score AS DECIMAL (12, 2))) as AVG
   FROM score
   WHERE comm_score is not null
   AND round = 2
@@ -150,7 +150,7 @@ SET posters.avg_comm_r2 =
 --STATEMENT insertAvgResearchR1
 UPDATE posters
 SET posters.avg_research_r1 =
-(SELECT AVG(CAST(research_score AS DOUBLE)) as AVG
+(SELECT AVG(CAST(research_score AS DECIMAL (12, 2))) as AVG
   FROM score
   WHERE research_score is not null
   AND round = 1
@@ -161,7 +161,7 @@ SET posters.avg_research_r1 =
 --STATEMENT insertAvgResearchR2
 UPDATE posters
 SET posters.avg_research_r2 =
-(SELECT AVG(CAST(research_score AS DOUBLE)) as AVG
+(SELECT AVG(CAST(research_score AS DECIMAL (12, 2))) as AVG
   FROM score
   WHERE research_score is not null
   AND round = 2
@@ -172,7 +172,7 @@ SET posters.avg_research_r2 =
 --STATEMENT insertAvgPresR1
 UPDATE posters
 SET posters.avg_pres_r1 =
-(SELECT AVG(CAST(poster_score AS DOUBLE)) as AVG
+(SELECT AVG(CAST(poster_score AS DECIMAL (12, 2))) as AVG
   FROM score
   WHERE poster_score is not null
   AND round = 1
@@ -183,7 +183,7 @@ SET posters.avg_pres_r1 =
 --STATEMENT insertAvgPresR2
 UPDATE posters
 SET posters.avg_pres_r2 =
-(SELECT AVG(CAST(poster_score AS DOUBLE)) as AVG
+(SELECT AVG(CAST(poster_score AS DECIMAL (12, 2))) as AVG
   FROM score
   WHERE poster_score is not null
   AND round = 2
