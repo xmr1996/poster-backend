@@ -68,9 +68,9 @@ public class PosterScoreRowMapper extends BaseRowMapper<PosterScore> {
         PosterScore folder = new PosterScore();
         folder.setJudge_id(rs.getLong(JUDGE_ID.getColumnName()));
         folder.setRound(rs.getInt(ROUND.getColumnName()));
-        folder.setResearch_score(rs.getInt(RESEARCH_SCORE.getColumnName()));
-        folder.setComm_score(rs.getInt(COMM_SCORE.getColumnName()));
-        folder.setPoster_score(rs.getInt(POSTER_SCORE.getColumnName()));
+        folder.setResearch_score(getNullableInt(RESEARCH_SCORE.getColumnName(), rs));
+        folder.setComm_score(getNullableInt(COMM_SCORE.getColumnName(), rs));
+        folder.setPoster_score(getNullableInt(POSTER_SCORE.getColumnName(), rs));
         folder.setPoster_id(rs.getString(PosterDaoRowMapper.PosterColumnType.POSTER_ID.getColumnName()));
         folder.setTitle(rs.getString(TITLE.getColumnName()));
         folder.setEmail(rs.getString(EMAIL.getColumnName()));
@@ -81,5 +81,13 @@ public class PosterScoreRowMapper extends BaseRowMapper<PosterScore> {
         folder.setDepartment(rs.getString(DEPARTMENT.getColumnName()));
         folder.setRole(rs.getString(ROLE.getColumnName()));
         return folder;
+    }
+
+    private Integer getNullableInt(String colName, ResultSet rs) throws SQLException {
+        int colValue = rs.getInt(colName);
+        if(rs.wasNull()){
+            return null;
+        }
+        return colValue;
     }
 }

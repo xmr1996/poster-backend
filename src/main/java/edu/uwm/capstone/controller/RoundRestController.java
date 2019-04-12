@@ -28,10 +28,10 @@ public class RoundRestController {
 
     @ApiOperation(value = "Active rounds")
     @GetMapping(value = ROUND_PATH)
-    public List<Round> getRounds(@ApiIgnore HttpServletResponse response) throws IOException {
+    public Round getRounds(@ApiIgnore HttpServletResponse response) throws IOException {
         //Round round = roundDao.read();
-        List<Round> round = roundDao.read();
-        if (round.isEmpty()) {
+        Round round = roundDao.read();
+        if (round == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Rounds were not found.");
             return null;
         }

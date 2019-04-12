@@ -14,9 +14,9 @@ public class PosterScore {
     private String poster_id;
     private Long judge_id;
     private int round;
-    private int research_score;
-    private int comm_score;
-    private int poster_score;
+    private Integer research_score;
+    private Integer comm_score;
+    private Integer poster_score;
 
     public String getTitle() {
         return title;
@@ -106,29 +106,27 @@ public class PosterScore {
         this.round = round;
     }
 
-    public int getResearch_score() {
+    public Integer getResearch_score() {
         return research_score;
     }
 
-    public void setResearch_score(int research_score) {
+    public void setResearch_score(Integer research_score) {
         this.research_score = research_score;
     }
 
-    public int getComm_score() {
+    public Integer getComm_score() {
         return comm_score;
     }
 
-    public void setComm_score(int comm_score) {
+    public void setComm_score(Integer comm_score) {
         this.comm_score = comm_score;
     }
 
-    public int getPoster_score() {
+    public Integer getPoster_score() {
         return poster_score;
     }
 
-    public void setPoster_score(int poster_score) {
+    public void setPoster_score(Integer poster_score) {
         this.poster_score = poster_score;
     }
-
-
 }

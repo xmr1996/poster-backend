@@ -13,14 +13,14 @@ public class Poster {
     private String department;
     private String voted_for;
     private String role;
-    private double avg_r1;
-    private double avg_r2;
-    private double avg_comm_r1;
-    private double avg_comm_r2;
-    private double avg_research_r1;
-    private double avg_research_r2;
-    private double avg_pres_r1;
-    private double avg_pres_r2;
+    private Double avg_r1;
+    private Double avg_r2;
+    private Double avg_comm_r1;
+    private Double avg_comm_r2;
+    private Double avg_research_r1;
+    private Double avg_research_r2;
+    private Double avg_pres_r1;
+    private Double avg_pres_r2;
 
     public String getPoster_id() {
         return poster_id;
@@ -92,22 +92,6 @@ public class Poster {
 
     public void setRole(String role){ this.role = role; }
 
-    public double getAvg_r2() {
-        return avg_r2;
-    }
-
-    public void setAvg_r2(double avg_r2) {
-        this.avg_r2 = avg_r2;
-    }
-
-    public double getAvg_r1() {
-        return avg_r1;
-    }
-
-    public void setAvg_r1(double avg_r1) {
-        this.avg_r1 = avg_r1;
-    }
-
     public String getVoted_for() {
         return voted_for;
     }
@@ -116,51 +100,67 @@ public class Poster {
         this.voted_for = voted_for;
     }
 
-    public double getAvg_comm_r1() {
+    public Double getAvg_r1() {
+        return avg_r1;
+    }
+
+    public void setAvg_r1(Double avg_r1) {
+        this.avg_r1 = avg_r1;
+    }
+
+    public Double getAvg_r2() {
+        return avg_r2;
+    }
+
+    public void setAvg_r2(Double avg_r2) {
+        this.avg_r2 = avg_r2;
+    }
+
+    public Double getAvg_comm_r1() {
         return avg_comm_r1;
     }
 
-    public void setAvg_comm_r1(double avg_comm_r1) {
+    public void setAvg_comm_r1(Double avg_comm_r1) {
         this.avg_comm_r1 = avg_comm_r1;
     }
 
-    public double getAvg_comm_r2() {
+    public Double getAvg_comm_r2() {
         return avg_comm_r2;
     }
 
-    public void setAvg_comm_r2(double avg_comm_r2) {
+    public void setAvg_comm_r2(Double avg_comm_r2) {
         this.avg_comm_r2 = avg_comm_r2;
     }
 
-    public double getAvg_research_r1() {
+    public Double getAvg_research_r1() {
         return avg_research_r1;
     }
 
-    public void setAvg_research_r1(double avg_research_r1) {
+    public void setAvg_research_r1(Double avg_research_r1) {
         this.avg_research_r1 = avg_research_r1;
     }
 
-    public double getAvg_research_r2() {
+    public Double getAvg_research_r2() {
         return avg_research_r2;
     }
 
-    public void setAvg_research_r2(double avg_research_r2) {
+    public void setAvg_research_r2(Double avg_research_r2) {
         this.avg_research_r2 = avg_research_r2;
     }
 
-    public double getAvg_pres_r1() {
+    public Double getAvg_pres_r1() {
         return avg_pres_r1;
     }
 
-    public void setAvg_pres_r1(double avg_pres_r1) {
+    public void setAvg_pres_r1(Double avg_pres_r1) {
         this.avg_pres_r1 = avg_pres_r1;
     }
 
-    public double getAvg_pres_r2() {
+    public Double getAvg_pres_r2() {
         return avg_pres_r2;
     }
 
-    public void setAvg_pres_r2(double avg_pres_r2) {
+    public void setAvg_pres_r2(Double avg_pres_r2) {
         this.avg_pres_r2 = avg_pres_r2;
     }
 
