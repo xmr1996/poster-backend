@@ -166,7 +166,7 @@ public class PosterDao extends BaseDao<Poster> {
      */
     public void delete(String posterID){
         LOG.trace("Deleting poster{}",posterID);
-        int result = this.jdbcTemplate.update(sql("deletePoster"), new MapSqlParameterSource("poster_id", posterID));
+        int result = this.jdbcTemplate.update(sql("deletePoster"), new MapSqlParameterSource(POSTER_ID, posterID));
         if(result != 1){
             throw new DaoException("Failed attempt to delete poster " + posterID + " affected " + result + " rows");
         }
@@ -185,7 +185,7 @@ public class PosterDao extends BaseDao<Poster> {
     public List<Poster> getTop6R2(String status){
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue("status", status);
+            parameters.addValue(STATUS, status);
             return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR2"),parameters,rowMapper);
         } catch(EmptyResultDataAccessException e){
             return new ArrayList<>();
@@ -241,12 +241,4 @@ public class PosterDao extends BaseDao<Poster> {
             throw new DaoException("Failed attempt to clear posters table");
         }
     }
-
-//    public void importCSV(List<Poster> posters){
-//        LOG.trace("Importing from CSV");
-//        KeyHolder keyHolder = new GeneratedKeyHolder();
-//        for(int i=0;i<posters.size();i++) {
-//            jdbcTemplate.update(sql("importCSV"), new MapSqlParameterSource(rowMapper.mapObject(posters)), keyHolder, new String[]{BaseRowMapper.BaseColumnType.ID.name()});
-//        }
-//    }
 }
