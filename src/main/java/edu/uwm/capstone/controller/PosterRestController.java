@@ -12,6 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -194,28 +195,22 @@ public class PosterRestController{
      * Get the {@link Poster}
      *
      * @return {@link List<Poster>} retrieved from the database
-     * @throws IOException if error response cannot be created.
      */
     @ApiOperation(value = "Read All Posters")
     @GetMapping(value = POSTER_PATH)
-    public List<Poster> read(@ApiIgnore HttpServletResponse response) throws IOException {
+    public List<Poster> read(@ApiIgnore HttpServletResponse response){
         return posterDao.read();
     }
 
     @ApiOperation(value = "Read poster by Poster_ID")
-    @GetMapping(value = POSTER_PATH + "/poster_id/" + "{poster_id}")
-    public Poster readByPosterID(@PathVariable String poster_id, @ApiIgnore HttpServletResponse response) throws IOException{
-        Poster poster = posterDao.read(poster_id);
-
-        if(poster == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Poster with ID: " + poster_id + "not found.");
-        }
-        return poster;
+    @GetMapping(value = POSTER_PATH + "/poster_id/" + "{posterId}")
+    public Poster readByPosterID(@PathVariable String posterId, @ApiIgnore HttpServletResponse response) throws IOException{
+        return posterDao.read(posterId);
     }
 
     @ApiOperation(value = "Read poster by student status")
     @GetMapping(value = POSTER_PATH + "/status/" + "{status}")
-    public List<Poster> getPostersByStatus(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
+    public List<Poster> getPostersByStatus(@PathVariable String status, @ApiIgnore HttpServletResponse response){
         return posterDao.getPosterByStatus(status);
     }
 
@@ -225,11 +220,10 @@ public class PosterRestController{
      * @param status
      * @param response  {@link HttpServletResponse}
      * @return {@link List<Poster>} retrieved from the database
-     * @throws IOException if error response cannot be created.
      **/
     @ApiOperation(value = "Get top 6 posters for round1")
     @GetMapping(value = POSTER_PATH + "top/round1/{status}")
-    public List<Poster> getTop6R1(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
+    public List<Poster> getTop6R1(@PathVariable String status, @ApiIgnore HttpServletResponse response){
         return posterDao.getTop6R1(status);
     }
 
@@ -239,11 +233,10 @@ public class PosterRestController{
      * @param status
      * @param response  {@link HttpServletResponse}
      * @return {@link List<Poster>} retrieved from the database
-     * @throws IOException if error response cannot be created.
      **/
     @ApiOperation(value = "Get top 6 posters for round2")
     @GetMapping(value = POSTER_PATH + "top/round2/{status}")
-    public List<Poster> getTop6R2(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
+    public List<Poster> getTop6R2(@PathVariable String status, @ApiIgnore HttpServletResponse response){
         return posterDao.getTop6R2(status);
     }
 
@@ -275,7 +268,7 @@ public class PosterRestController{
         }
         else{
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "invalid round number,No Posters Were Found.");
-            return null;
+            return new ArrayList<>();
         }
         return uPoster;
     }
@@ -293,15 +286,15 @@ public class PosterRestController{
     /**
      * Delete the {@link Poster} by poster_id
      *
-     * @param poster_id {@link Poster#getPoster_id()}
+     * @param posterId {@link Poster#getPoster_id()}
      * @param response  {@link HttpServletResponse}
      * @throws IOException if error response cannot be created.
      */
     @ApiOperation(value = "Delete Poster by poster_id")
-    @DeleteMapping(value = POSTER_PATH + "{poster_id}")
-    public void deleteByJudgeId(@PathVariable String poster_id, @ApiIgnore HttpServletResponse response) throws IOException {
+    @DeleteMapping(value = POSTER_PATH + "{posterId}")
+    public void deleteByJudgeId(@PathVariable String posterId, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            posterDao.delete(poster_id);
+            posterDao.delete(posterId);
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }
@@ -309,7 +302,7 @@ public class PosterRestController{
 
     @ApiOperation(value = "Insert from csv")
     @PostMapping(value = POSTER_PATH + "/all")
-    public void importCSV(@RequestBody List<Poster> posters, @ApiIgnore HttpServletResponse response) throws IOException{
+    public void importCSV(@RequestBody List<Poster> posters, @ApiIgnore HttpServletResponse response){
         for(Poster poster : posters){
             posterDao.create(poster);
         }
