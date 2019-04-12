@@ -282,9 +282,9 @@ public class PosterRestController{
      * @return {@link List<Poster>} retrieved from the database
      * @throws IOException if error response cannot be created.
      **/
-    @ApiOperation(value = "Get top 6 posters for round1")
+    @ApiOperation(value = "Get top 6 posters by round")
     @GetMapping(value = POSTER_PATH + "top/{round}")
-    public List<Poster> getTop6R1(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException{
+    public List<Poster> getTop6ByRound(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException{
 
         List<Poster> uPoster =null;
         List<Poster> gPoster =null;
