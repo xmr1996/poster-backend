@@ -3,8 +3,6 @@ package edu.uwm.capstone.controller;
 import edu.uwm.capstone.db.PosterDao;
 import edu.uwm.capstone.model.Poster.Poster;
 import io.swagger.annotations.ApiOperation;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -202,14 +199,7 @@ public class PosterRestController{
     @ApiOperation(value = "Read All Posters")
     @GetMapping(value = POSTER_PATH)
     public List<Poster> read(@ApiIgnore HttpServletResponse response) throws IOException {
-        List<Poster> poster = posterDao.read();
-
-        if (poster == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
-            return null;
-        }
-
-        return poster;
+        return posterDao.read();
     }
 
     @ApiOperation(value = "Read poster by Poster_ID")
@@ -226,12 +216,7 @@ public class PosterRestController{
     @ApiOperation(value = "Read poster by student status")
     @GetMapping(value = POSTER_PATH + "/status/" + "{status}")
     public List<Poster> getPostersByStatus(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
-        List<Poster> posters = posterDao.getPosterByStatus(status);
-        if (posters == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
-            return null;
-        }
-        return posters;
+        return posterDao.getPosterByStatus(status);
     }
 
     /**
@@ -245,12 +230,7 @@ public class PosterRestController{
     @ApiOperation(value = "Get top 6 posters for round1")
     @GetMapping(value = POSTER_PATH + "top/round1/{status}")
     public List<Poster> getTop6R1(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
-        List<Poster> posters = posterDao.getTop6R1(status);
-        if (posters == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
-            return null;
-        }
-        return posters;
+        return posterDao.getTop6R1(status);
     }
 
     /**
@@ -264,12 +244,7 @@ public class PosterRestController{
     @ApiOperation(value = "Get top 6 posters for round2")
     @GetMapping(value = POSTER_PATH + "top/round2/{status}")
     public List<Poster> getTop6R2(@PathVariable String status, @ApiIgnore HttpServletResponse response) throws IOException{
-        List<Poster> posters = posterDao.getTop6R2(status);
-        if (posters == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Posters Were Found.");
-            return null;
-        }
-        return posters;
+        return posterDao.getTop6R2(status);
     }
 
 
