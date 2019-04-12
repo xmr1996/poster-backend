@@ -103,6 +103,38 @@ public class PosterRestController{
     }
 
 
+    /**
+     * calculate all avg fields
+     * @param response {@link HttpServletResponse}
+     * @throws IOException if error response cannot be created.
+     */
+    @ApiOperation(value = "Calculate all average fields for poster")
+    @PutMapping(value = POSTER_PATH+ "average/all/{round}")
+    public void calculateAllAverage(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
+        try{
+            if(round ==1){
+                posterDao.calculateAvgRound1();
+                posterDao.avgResearchR1();
+                posterDao.avgPresR1();
+                posterDao.avgCommR1();
+
+            }
+            else if(round ==2){
+                posterDao.calculateAvgRound2();
+                posterDao.avgResearchR1();
+                posterDao.avgPresR1();
+                posterDao.avgCommR1();
+            }
+
+        } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_PRECONDITION_FAILED, e.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
+        }
+    }
+
     @ApiOperation(value = "Calculate the average for comm_score of all poster")
     @PutMapping(value = POSTER_PATH+ "average/comm/{round}")
     public void calculateCommAvgR1(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
@@ -238,6 +270,39 @@ public class PosterRestController{
             return null;
         }
         return posters;
+    }
+
+
+
+    /**
+     * Get the top 6 {@link Poster} by Round
+     *
+     * @param round
+     * @param response  {@link HttpServletResponse}
+     * @return {@link List<Poster>} retrieved from the database
+     * @throws IOException if error response cannot be created.
+     **/
+    @ApiOperation(value = "Get top 6 posters for round1")
+    @GetMapping(value = POSTER_PATH + "top/{round}")
+    public List<Poster> getTop6R1(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException{
+
+        List<Poster> uPoster =null;
+        List<Poster> gPoster =null;
+        if(round ==1){
+            uPoster = posterDao.getTop6R1("Undergraduate");
+            gPoster = posterDao.getTop6R1("Graduate");
+            uPoster.addAll(gPoster);
+        }
+        else if(round ==2) {
+            uPoster = posterDao.getTop6R2("Undergraduate");
+            gPoster = posterDao.getTop6R2("Graduate");
+            uPoster.addAll(gPoster);
+        }
+        else{
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "invalid round number,No Posters Were Found.");
+            return null;
+        }
+        return uPoster;
     }
 
     @ApiOperation(value = "Clear posters table")

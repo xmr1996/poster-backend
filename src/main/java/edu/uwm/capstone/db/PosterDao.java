@@ -199,6 +199,7 @@ public class PosterDao extends BaseDao<Poster> {
 
     }
 
+
     public void calculateAvgRound1() {
         LOG.trace("calculateAvgForAllR1");
         this.jdbcTemplate.update(sql("insertAvgTotalR1"), Collections.emptyMap());
