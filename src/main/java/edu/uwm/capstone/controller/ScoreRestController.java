@@ -17,6 +17,7 @@ import springfox.documentation.annotations.ApiIgnore;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -83,7 +84,7 @@ public class ScoreRestController {
     }
 
     private void assignJudges(String poster_id, String status){
-        List<Judge> judges = new ArrayList<Judge>();
+        List<Judge> judges = new ArrayList<>();
 
         if(status.equals("Graduate")) {
             judges = judgeDao.readAllJudges("Graduate");
@@ -111,14 +112,14 @@ public class ScoreRestController {
         List<PosterScore> posters = posterScoreDao.readByRoundandJudge(Long.parseLong(round),Long.parseLong(judge_id));
         if(posters == null){
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Score round number" + round + " and judge id: " + judge_id + " not found.");
-            return null;
+            return Collections.emptyList();
         }
         return posters;
     }
 
     @ApiOperation(value = "Read scores by round")
     @GetMapping(value = SCORE_PATH + "{round}")
-    public List<Score> readByRound(@PathVariable int round, @ApiIgnore HttpServletResponse response) throws IOException {
+    public List<Score> readByRound(@PathVariable int round){
         return scoreDao.readByRound(round);
     }
 
@@ -160,7 +161,7 @@ public class ScoreRestController {
 
         if (scores == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Scores were not found.");
-            return null;
+            return Collections.emptyList();
         }
 
         return scores;
@@ -180,7 +181,7 @@ public class ScoreRestController {
 
         if (assignments == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No assignments were found.");
-            return null;
+            return Collections.emptyList();
         }
 
         return assignments;
@@ -208,7 +209,7 @@ public class ScoreRestController {
 
     @ApiOperation(value = "Insert from csv")
     @PostMapping(value = SCORE_PATH + "/all")
-    public void importCSV(@RequestBody List<Score> scores, @ApiIgnore HttpServletResponse response) throws IOException{
+    public void importCSV(@RequestBody List<Score> scores){
         for(Score score : scores){
             score.setRound(1);
             try {

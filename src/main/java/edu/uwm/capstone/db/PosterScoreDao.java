@@ -3,20 +3,13 @@ package edu.uwm.capstone.db;
 import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import edu.uwm.capstone.model.Score.Score;
-import edu.uwm.capstone.model.Poster.Poster;
-import edu.uwm.capstone.model.Judge.Judge;
-import edu.uwm.capstone.sql.dao.BaseDao;
-import edu.uwm.capstone.sql.dao.BaseRowMapper;
 
-import edu.uwm.capstone.sql.exception.DaoException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSourceExtensionsKt;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
+
 
 
 import java.util.List;

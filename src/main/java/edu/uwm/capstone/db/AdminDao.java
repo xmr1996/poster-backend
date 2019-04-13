@@ -130,6 +130,7 @@ public class AdminDao extends BaseDao<Admin> {
 
     @Override
     public void delete(long id) {
+        return;
 
     }
 }

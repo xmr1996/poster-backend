@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.ID;
 
 public class VoteDaoRowMapper extends BaseRowMapper<Vote> {
 

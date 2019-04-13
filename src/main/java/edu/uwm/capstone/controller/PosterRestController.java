@@ -198,19 +198,19 @@ public class PosterRestController{
      */
     @ApiOperation(value = "Read All Posters")
     @GetMapping(value = POSTER_PATH)
-    public List<Poster> read(@ApiIgnore HttpServletResponse response){
+    public List<Poster> read(){
         return posterDao.read();
     }
 
     @ApiOperation(value = "Read poster by Poster_ID")
     @GetMapping(value = POSTER_PATH + "/poster_id/" + "{posterId}")
-    public Poster readByPosterID(@PathVariable String posterId, @ApiIgnore HttpServletResponse response) throws IOException{
+    public Poster readByPosterID(@PathVariable String posterId){
         return posterDao.read(posterId);
     }
 
     @ApiOperation(value = "Read poster by student status")
     @GetMapping(value = POSTER_PATH + "/status/" + "{status}")
-    public List<Poster> getPostersByStatus(@PathVariable String status, @ApiIgnore HttpServletResponse response){
+    public List<Poster> getPostersByStatus(@PathVariable String status){
         return posterDao.getPosterByStatus(status);
     }
 
@@ -218,12 +218,11 @@ public class PosterRestController{
      * Get the {@link Poster} by Round and Status
      *
      * @param status
-     * @param response  {@link HttpServletResponse}
      * @return {@link List<Poster>} retrieved from the database
      **/
     @ApiOperation(value = "Get top 6 posters for round1")
     @GetMapping(value = POSTER_PATH + "top/round1/{status}")
-    public List<Poster> getTop6R1(@PathVariable String status, @ApiIgnore HttpServletResponse response){
+    public List<Poster> getTop6R1(@PathVariable String status){
         return posterDao.getTop6R1(status);
     }
 
@@ -231,12 +230,11 @@ public class PosterRestController{
      * Get the {@link Poster} by Round and Status
      *
      * @param status
-     * @param response  {@link HttpServletResponse}
      * @return {@link List<Poster>} retrieved from the database
      **/
     @ApiOperation(value = "Get top 6 posters for round2")
     @GetMapping(value = POSTER_PATH + "top/round2/{status}")
-    public List<Poster> getTop6R2(@PathVariable String status, @ApiIgnore HttpServletResponse response){
+    public List<Poster> getTop6R2(@PathVariable String status){
         return posterDao.getTop6R2(status);
     }
 
@@ -302,7 +300,7 @@ public class PosterRestController{
 
     @ApiOperation(value = "Insert from csv")
     @PostMapping(value = POSTER_PATH + "/all")
-    public void importCSV(@RequestBody List<Poster> posters, @ApiIgnore HttpServletResponse response){
+    public void importCSV(@RequestBody List<Poster> posters){
         for(Poster poster : posters){
             posterDao.create(poster);
         }
