@@ -18,7 +18,7 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
     private static final Logger LOG = LoggerFactory.getLogger(PosterScoreDao.class);
 
     public List<PosterScore> readByRoundandJudge(long round, long judgeID){
-        LOG.trace("Reading Score {}", round, judgeID);
+        LOG.trace("Reading Score {}", round + " " +judgeID);
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("round", round);
@@ -48,7 +48,7 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
      */
     @Override
     public void update(PosterScore score) {
-        return;
+        //update method with PosterScore object parameter is not needed
     }
 
     /**
@@ -57,7 +57,7 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
      */
     @Override
     public void delete(long id) {
-        return;
+        //delete method with long parameter is not needed
     }
 
 

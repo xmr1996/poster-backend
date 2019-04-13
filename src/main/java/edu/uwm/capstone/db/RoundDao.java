@@ -23,10 +23,14 @@ public class RoundDao extends BaseDao<Round> {
     }
 
     @Override
-    public void delete(long id) {}
+    public void delete(long id) {
+        //Delete method with long parameter is not used
+    }
 
     @Override
-    public void update(Round object) {}
+    public void update(Round object) {
+        //update method with Round object parameter is not used - different update method is used below
+    }
 
     public Round read(){
         LOG.trace("Reading by round");

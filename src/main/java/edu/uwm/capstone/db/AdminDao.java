@@ -130,7 +130,6 @@ public class AdminDao extends BaseDao<Admin> {
 
     @Override
     public void delete(long id) {
-        return;
-
+        //delete method with long parameter is not needed/used
     }
 }

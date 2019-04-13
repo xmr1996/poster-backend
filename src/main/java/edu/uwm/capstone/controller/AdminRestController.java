@@ -23,7 +23,7 @@ public class AdminRestController {
 
     public static final String ADMIN_PATH = "/admin/";
 
-    private static final Logger logger = LoggerFactory.getLogger(ProfileRestController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AdminRestController.class);
     private final AdminDao adminDao;
     private final ScoreDao scoreDao;
     private final PosterDao posterDao;

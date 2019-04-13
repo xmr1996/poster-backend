@@ -62,7 +62,7 @@ public class ScoreDao extends BaseDao<Score> {
      * @return {@link Score}
      */
     public Score read(long judgeID, String posterID) {
-        LOG.trace("Reading Score {}", judgeID, posterID);
+        LOG.trace("Reading Score {}", judgeID + " " + posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("judge_id", judgeID);
@@ -145,7 +145,7 @@ public class ScoreDao extends BaseDao<Score> {
 
     @Override
     public void delete(long id) {
-
+        //delete method with long parameter is not needed
     }
 
     public void clearTable(){
