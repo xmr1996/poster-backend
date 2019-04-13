@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-
+import java.util.Collections;
 import java.util.List;
 
 public class PosterScoreDao extends BaseDao<PosterScore> {
@@ -25,12 +25,11 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
             parameters.addValue("judge_id", judgeID);
             return (List<PosterScore>) this.jdbcTemplate.query(sql("readScoreByRoundandJudge"), parameters, rowMapper);
         }catch(EmptyResultDataAccessException e){
-            return null;
+            return Collections.emptyList();
         }
     }
 
     /**
-     * Retrieve a {@link Score} object by its {@link Score#getScoreID()}.
      *
      * @param id long
      * @return {@link Score}
@@ -53,7 +52,6 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
     }
 
     /**
-     * Delete a {@link Score} object by its {@link Score#getScoreID()}.
      *
      * @param id long
      */

@@ -81,7 +81,7 @@ public class ScoreDao extends BaseDao<Score> {
             return (List<Score>) this.jdbcTemplate.queryForObject(sql("getScoreByPosterID"), parameters, rowMapper);
         }
         catch (EmptyResultDataAccessException e){
-            return null;
+            return Collections.emptyList();
         }
     }
     //read all scores
@@ -90,7 +90,7 @@ public class ScoreDao extends BaseDao<Score> {
         try {
             return (List<Score>) this.jdbcTemplate.query(sql("readAllScores"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -99,7 +99,7 @@ public class ScoreDao extends BaseDao<Score> {
         try{
             return (List<Score>) this.jdbcTemplate.query(sql("readScoreByRound"), new MapSqlParameterSource("round", round), rowMapper);
         }catch (EmptyResultDataAccessException e){
-            return null;
+            return Collections.emptyList();
         }
     }
 

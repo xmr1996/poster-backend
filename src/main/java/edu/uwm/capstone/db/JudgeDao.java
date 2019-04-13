@@ -57,7 +57,7 @@ public class JudgeDao extends BaseDao<Judge> {
         try {
             return (List<Judge>) this.jdbcTemplate.query(sql("readJudges"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -80,7 +80,7 @@ public class JudgeDao extends BaseDao<Judge> {
             else
                 return (List<Judge>) this.jdbcTemplate.query(sql("readJudgesByStatus"), new MapSqlParameterSource("status", "Undergraduate"), rowMapper);
         }catch (EmptyResultDataAccessException e){
-            return null;
+            return Collections.emptyList();
         }
     }
 

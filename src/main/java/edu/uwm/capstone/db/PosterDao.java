@@ -178,7 +178,7 @@ public class PosterDao extends BaseDao<Poster> {
             parameters.addValue(STATUS, status);
             return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR1"),parameters,rowMapper);
         } catch(EmptyResultDataAccessException e){
-            return new ArrayList<>();
+            return Collections.emptyList();
         }
     }
 
@@ -188,7 +188,7 @@ public class PosterDao extends BaseDao<Poster> {
             parameters.addValue(STATUS, status);
             return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR2"),parameters,rowMapper);
         } catch(EmptyResultDataAccessException e){
-            return new ArrayList<>();
+            return Collections.emptyList();
         }
 
     }

@@ -9,6 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
 
+import java.util.Collections;
 import java.util.List;
 
 public class AssignmentDao extends BaseDao<Assignment> {
@@ -36,7 +37,7 @@ public class AssignmentDao extends BaseDao<Assignment> {
             //parameters.addValue("round", round);
             return (List<Assignment>) this.jdbcTemplate.query(sql("getAllAssignments"), new MapSqlParameterSource("round", round), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 }
