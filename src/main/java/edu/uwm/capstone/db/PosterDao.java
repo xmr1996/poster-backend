@@ -156,7 +156,7 @@ public class PosterDao extends BaseDao<Poster> {
 
     @Override
     public void delete(long id) {
-
+        //delete methoed with string paramtere is used down bellow
     }
 
     /**

@@ -108,7 +108,7 @@ public class JudgeDao extends BaseDao<Judge> {
 
     @Override
     public void delete(long id) {
-
+        //Delete method with long paramenter is not used
     }
 
     public void deleteByJudgeId(long judge_id) {
