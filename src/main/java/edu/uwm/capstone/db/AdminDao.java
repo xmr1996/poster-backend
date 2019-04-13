@@ -51,7 +51,7 @@ public class AdminDao extends BaseDao<Admin> {
         try {
             return (List<Admin>) this.jdbcTemplate.query(sql("readAllAdmins"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -130,6 +130,7 @@ public class AdminDao extends BaseDao<Admin> {
 
     @Override
     public void delete(long id) {
+        return;
 
     }
 }

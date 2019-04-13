@@ -2,24 +2,19 @@ package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.model.Round.Round;
 import edu.uwm.capstone.db.RoundDao;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @RestController
 public class RoundRestController {
     public static final String ROUND_PATH = "/round/";
     private final RoundDao roundDao;
 
-    private static final Logger logger = LoggerFactory.getLogger(RoundRestController.class);
 
     @Autowired
     public RoundRestController(RoundDao roundDao){
@@ -29,7 +24,6 @@ public class RoundRestController {
     @ApiOperation(value = "Active rounds")
     @GetMapping(value = ROUND_PATH)
     public Round getRounds(@ApiIgnore HttpServletResponse response) throws IOException {
-        //Round round = roundDao.read();
         Round round = roundDao.read();
         if (round == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Rounds were not found.");

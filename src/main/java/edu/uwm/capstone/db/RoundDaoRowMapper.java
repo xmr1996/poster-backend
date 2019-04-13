@@ -3,7 +3,6 @@ package edu.uwm.capstone.db;
 import edu.uwm.capstone.model.Round.Round;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 
-import java.awt.geom.RoundRectangle2D;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;

@@ -7,7 +7,6 @@ import java.util.Map;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.*;
-import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
 

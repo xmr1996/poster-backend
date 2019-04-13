@@ -1,9 +1,6 @@
 package edu.uwm.capstone.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.uwm.capstone.util.Concatenation;
 import io.swagger.annotations.ApiOperation;
@@ -20,7 +17,7 @@ public class ConcatenationRestController {
      * @return {@link String} value of the provided strings concatenated together
      */
     @ApiOperation(value = "Take two separate values and combines them together")
-    @RequestMapping(value = CONCATENATE_PATH, method = RequestMethod.GET)
+    @GetMapping(value = CONCATENATE_PATH)
     public String concatenate(@PathVariable String firstString, @PathVariable String secondString) {
         return new Concatenation().concatenate(firstString, secondString);
     }

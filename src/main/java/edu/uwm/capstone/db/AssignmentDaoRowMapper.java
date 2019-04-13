@@ -3,16 +3,13 @@ package edu.uwm.capstone.db;
 
 import edu.uwm.capstone.model.Assignment.Assignment;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
-import edu.uwm.capstone.model.Assignment.Assignment;
 import static edu.uwm.capstone.db.AssignmentDaoRowMapper.AssignmentColumnType.POSTER_ID;
 import static edu.uwm.capstone.db.AssignmentDaoRowMapper.AssignmentColumnType.JUDGE_ID;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
 
-import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class AssignmentDaoRowMapper extends BaseRowMapper<Assignment> {
 

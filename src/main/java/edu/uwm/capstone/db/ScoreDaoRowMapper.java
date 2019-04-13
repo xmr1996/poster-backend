@@ -3,8 +3,7 @@ package edu.uwm.capstone.db;
 
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.model.Score.Score;
-//import static edu.uwm.capstone.db.ScoreDaoRowMapper.ScoreColumnType.CREATED_DATE;
-//import static edu.uwm.capstone.db.ScoreDaoRowMapper.ScoreColumnType.UPDATED_DATE;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static edu.uwm.capstone.db.ScoreDaoRowMapper.ScoreColumnType.*;
-import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class ScoreDaoRowMapper extends BaseRowMapper<Score> {
 

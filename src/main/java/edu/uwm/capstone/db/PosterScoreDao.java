@@ -3,22 +3,15 @@ package edu.uwm.capstone.db;
 import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import edu.uwm.capstone.model.Score.Score;
-import edu.uwm.capstone.model.Poster.Poster;
-import edu.uwm.capstone.model.Judge.Judge;
-import edu.uwm.capstone.sql.dao.BaseDao;
-import edu.uwm.capstone.sql.dao.BaseRowMapper;
 
-import edu.uwm.capstone.sql.exception.DaoException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSourceExtensionsKt;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
 
+import java.util.Collections;
 import java.util.List;
 
 public class PosterScoreDao extends BaseDao<PosterScore> {
@@ -32,12 +25,11 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
             parameters.addValue("judge_id", judgeID);
             return (List<PosterScore>) this.jdbcTemplate.query(sql("readScoreByRoundandJudge"), parameters, rowMapper);
         }catch(EmptyResultDataAccessException e){
-            return null;
+            return Collections.emptyList();
         }
     }
 
     /**
-     * Retrieve a {@link Score} object by its {@link Score#getScoreID()}.
      *
      * @param id long
      * @return {@link Score}
@@ -60,7 +52,6 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
     }
 
     /**
-     * Delete a {@link Score} object by its {@link Score#getScoreID()}.
      *
      * @param id long
      */
