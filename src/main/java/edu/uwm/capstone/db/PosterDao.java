@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.sql.dao.BaseDao;
 import edu.uwm.capstone.sql.exception.DaoException;
-import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,15 +29,12 @@ public class PosterDao extends BaseDao<Poster> {
      */
 
     @Override
-    public Poster create(Poster poster) {
+    public Poster create(Poster poster) throws DaoException {
         // validate input
         if (poster == null) {
             throw new DaoException("Request to create a new Poster received null");
-        }
-        try {
-            Assert.isTrue(poster.getPoster_id().length() > 0, "Received empty poster_id");
-        }catch (Exception e) {
-            return null;
+        } else if(poster.getPoster_id().length() < 1){
+            throw new DaoException("Request to create a new Poster receieved an empty poster_id");
         }
 
         LOG.trace("Creating poster {}", poster);
@@ -75,14 +71,14 @@ public class PosterDao extends BaseDao<Poster> {
      * @param posterID string
      * @return {@link Poster}
      */
-    public Poster read(String posterID){
+    public Poster read(String posterID) throws DaoException {
         LOG.trace("Reading poster {}", posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue(POSTER_ID, posterID);
             return (Poster) this.jdbcTemplate.queryForObject(sql("readPosterByID"),parameters, rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            throw new DaoException("No poster matches the given poster_id");
         }
     }
 
@@ -108,18 +104,6 @@ public class PosterDao extends BaseDao<Poster> {
         }
 
     }
-
-    public void calculateAvgSingle(String posterId){
-        LOG.trace("calculateAvg{}",posterId);
-        int result = this.jdbcTemplate.update(sql("insertAvgR1"), new MapSqlParameterSource(POSTER_ID, posterId));
-        if(result != 1){
-            throw new DaoException("Failed attempt to insert average ");
-        }
-    }
-
-
-
-
 
     /**
      * Update the provided {@link Poster} object.
