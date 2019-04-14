@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import edu.uwm.capstone.model.Admin.Admin;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.model.Score.Score;
@@ -35,6 +36,19 @@ public class TestDataUtility {
         // intentionally left blank -- profile.setCreatedDate(randomLocalDateTime());
         // intentionally left blank -- profile.setUpdatedDate(randomLocalDateTime());
         return profile;
+    }
+
+    public static Admin adminWithTestValues()
+    {
+        Admin admin = new Admin();
+        admin.setEmail(randomAlphabetic(randomInt(1,100)));
+        admin.setFirst_name(randomAlphabetic(randomInt(1,100)));
+        admin.setLast_name(randomAlphabetic(randomInt(1,100)));
+        admin.setPin(randomAlphabetic(randomInt(1,100)));
+        admin.setRead_r(true);
+        admin.setWrite_w(true);
+        admin.setRole("admin");
+        return admin;
     }
 
     public static Judge judgeWithTestValues() {
