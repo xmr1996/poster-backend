@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileDao extends BaseDao<Profile> {
@@ -70,7 +71,7 @@ public class ProfileDao extends BaseDao<Profile> {
         try {
             return (List<Profile>) this.jdbcTemplate.query(sql("getProfiles"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return new ArrayList<>();
         }
     }
 

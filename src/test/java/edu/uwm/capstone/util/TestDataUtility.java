@@ -53,11 +53,13 @@ public class TestDataUtility {
 
     public static Judge judgeWithTestValues() {
         Judge judge = new Judge();
+        judge.setJudge_id(TestDataUtility.randomLong());
         judge.setFirst_name(randomAlphabetic(randomInt(1, 100)));
         judge.setPin(randomAlphabetic(randomInt(1, 100)));
         judge.setLast_name(randomAlphabetic(randomInt(1, 100)));
         judge.setStatus("Graduate");
         judge.setEmail(randomAlphabetic(randomInt(1, 100)));
+        judge.setRole("judge");
         return judge;
     }
 
@@ -70,6 +72,15 @@ public class TestDataUtility {
         poster.setEmail(randomAlphabetic(randomInt(1, 100)));
         poster.setDepartment(randomAlphabetic(randomInt(1, 100)));
         poster.setPoster_id(randomAlphabetic(randomInt(1, 100)));
+        poster.setAvg_r1(randomDouble());
+        poster.setAvg_r2(randomDouble());
+        poster.setAvg_research_r1(randomDouble());
+        poster.setAvg_research_r2(randomDouble());
+        poster.setAvg_comm_r1(randomDouble());
+        poster.setAvg_comm_r2(randomDouble());
+        poster.setAvg_pres_r1(randomDouble());
+        poster.setAvg_pres_r2(randomDouble());
+
         return poster;
     }
 
@@ -85,12 +96,15 @@ public class TestDataUtility {
         return score;
     }
 
+
     public static Assignment assignmentWithTestValues(){
         Assignment assignment = new Assignment();
         assignment.setJudge_id(randomLong(1L,100L));
         assignment.setPoster_id(randomAlphabetic(randomInt(1,100)));
         return assignment;
     }
+
+    public static Double randomDouble() { return new Random().nextDouble(); }
 
     /**
      * Generate a random {@link Long} using a minimum value of 1L and a maximum value of {@link Long#MAX_VALUE}.

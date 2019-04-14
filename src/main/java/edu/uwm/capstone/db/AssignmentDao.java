@@ -17,12 +17,14 @@ public class AssignmentDao extends BaseDao<Assignment> {
     private static final Logger LOG = LoggerFactory.getLogger(AssignmentDao.class);
 
 
-    public Assignment create(Assignment Assignment) {
+    public Assignment create(Assignment assignment) {
         return null;
     }
+
     public Assignment read(long id) {
             return null;
     }
+
     public void delete(long id) {
         //Delete method with long parameter is not needed
     }
@@ -35,8 +37,6 @@ public class AssignmentDao extends BaseDao<Assignment> {
     public List<Assignment> readAssignments(int round){
         LOG.trace("Read Assignment by round");
         try {
-            //MapSqlParameterSource parameters = new MapSqlParameterSource();
-            //parameters.addValue("round", round);
             return (List<Assignment>) this.jdbcTemplate.query(sql("getAllAssignments"), new MapSqlParameterSource("round", round), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return Collections.emptyList();

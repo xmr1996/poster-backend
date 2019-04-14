@@ -95,7 +95,7 @@ public class ScoreDao extends BaseDao<Score> {
     }
 
     public List<Score> readByRound(int round){
-        LOG.trace("Reading Scores by round ", round);
+        LOG.trace("Reading Scores by round {}", round);
         try{
             return (List<Score>) this.jdbcTemplate.query(sql("readScoreByRound"), new MapSqlParameterSource("round", round), rowMapper);
         }catch (EmptyResultDataAccessException e){
@@ -130,15 +130,15 @@ public class ScoreDao extends BaseDao<Score> {
         }
     }
 
-    public void deleteScoreByID(Long judge_id, String poster_id){
-        LOG.trace("Removing score for judge_id: ", judge_id, " poster_id ", poster_id);
+    public void deleteScoreByID(Long judgeId, String posterId){
+        LOG.trace("Removing score for judge_id: ", judgeId, " poster_id ", posterId);
 
         MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue("judge_id", judge_id);
-        parameters.addValue("poster_id", poster_id);
+        parameters.addValue("judge_id", judgeId);
+        parameters.addValue("poster_id", posterId);
         int result = this.jdbcTemplate.update(sql("deleteScoreByID"), parameters);
         if(result != 1){
-            throw new RuntimeException("Unable to delete score");
+            throw new DaoException("Unable to delete score");
         }
     }
 

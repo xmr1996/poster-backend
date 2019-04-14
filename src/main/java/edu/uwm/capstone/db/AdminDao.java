@@ -14,6 +14,7 @@ import java.util.List;
 public class AdminDao extends BaseDao<Admin> {
 
     private static final Logger LOG = LoggerFactory.getLogger(AdminDao.class);
+    private static final String EMAIL = "email";
 
     /**
      * Create a {@link Admin object.
@@ -64,7 +65,7 @@ public class AdminDao extends BaseDao<Admin> {
     public Admin read(String email){
         LOG.trace("Reading Admin Account {}", email);
         try {
-            return (Admin) this.jdbcTemplate.queryForObject(sql("readAdmin"), new MapSqlParameterSource("email", email), rowMapper);
+            return (Admin) this.jdbcTemplate.queryForObject(sql("readAdmin"), new MapSqlParameterSource(EMAIL, email), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -74,7 +75,7 @@ public class AdminDao extends BaseDao<Admin> {
         LOG.trace("Reading admin");
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue("email", email);
+            parameters.addValue(EMAIL, email);
             parameters.addValue("pin", pin);
             return (Admin) this.jdbcTemplate.queryForObject(sql("readAdminEmailPin"),parameters, rowMapper);
         }catch (EmptyResultDataAccessException e) {
@@ -108,7 +109,7 @@ public class AdminDao extends BaseDao<Admin> {
      */
     public void delete(String email) {
         LOG.trace("Deleting Admin Account {}", email);
-        int result = this.jdbcTemplate.update(sql("deleteAdmin"), new MapSqlParameterSource("email", email));
+        int result = this.jdbcTemplate.update(sql("deleteAdmin"), new MapSqlParameterSource(EMAIL, email));
         if (result != 1) {
             throw new DaoException("Failed attempt to delete account " + email + " affected " + result + " rows");
         }
