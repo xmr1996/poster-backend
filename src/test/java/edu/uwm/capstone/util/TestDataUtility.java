@@ -55,6 +55,15 @@ public class TestDataUtility {
         poster.setEmail(randomAlphabetic(randomInt(1, 100)));
         poster.setDepartment(randomAlphabetic(randomInt(1, 100)));
         poster.setPoster_id(randomAlphabetic(randomInt(1, 100)));
+        poster.setAvg_r1(randomDouble());
+        poster.setAvg_r2(randomDouble());
+        poster.setAvg_research_r1(randomDouble());
+        poster.setAvg_research_r2(randomDouble());
+        poster.setAvg_comm_r1(randomDouble());
+        poster.setAvg_comm_r2(randomDouble());
+        poster.setAvg_pres_r1(randomDouble());
+        poster.setAvg_pres_r2(randomDouble());
+
         return poster;
     }
 
@@ -69,6 +78,8 @@ public class TestDataUtility {
         score.setTotal_score(score.getComm_score() + score.getResearch_score() + score.getPoster_score());
         return score;
     }
+
+    public static Double randomDouble() { return new Random().nextDouble(); }
 
     /**
      * Generate a random {@link Long} using a minimum value of 1L and a maximum value of {@link Long#MAX_VALUE}.
