@@ -75,7 +75,7 @@ public class JudgeDao extends BaseDao<Judge> {
 
     public List<Judge> readAllJudges(String status){
         try{
-            if(status.toLowerCase().equals("graduate"))
+            if(status.equalsIgnoreCase("graduate"))
                 return (List<Judge>) this.jdbcTemplate.query(sql("readJudgesByStatus"), new MapSqlParameterSource("status", "Graduate"), rowMapper);
             else
                 return (List<Judge>) this.jdbcTemplate.query(sql("readJudgesByStatus"), new MapSqlParameterSource("status", "Undergraduate"), rowMapper);
