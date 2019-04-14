@@ -1,6 +1,5 @@
 package edu.uwm.capstone.model.PosterScore;
 
-import java.util.Objects;
 
 public class PosterScore {
     private String title;

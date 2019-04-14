@@ -10,6 +10,7 @@ import java.util.Random;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.model.Score.Score;
+import edu.uwm.capstone.model.Assignment.Assignment;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.profile.Profile;
@@ -77,6 +78,14 @@ public class TestDataUtility {
         score.setPoster_score(randomInt(1,20));
         score.setTotal_score(score.getComm_score() + score.getResearch_score() + score.getPoster_score());
         return score;
+    }
+
+
+    public static Assignment assignmentWithTestValues(){
+        Assignment assignment = new Assignment();
+        assignment.setJudge_id(randomLong(1L,100L));
+        assignment.setPoster_id(randomAlphabetic(randomInt(1,100)));
+        return assignment;
     }
 
     public static Double randomDouble() { return new Random().nextDouble(); }

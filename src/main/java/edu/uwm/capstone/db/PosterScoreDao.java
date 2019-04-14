@@ -18,7 +18,7 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
     private static final Logger LOG = LoggerFactory.getLogger(PosterScoreDao.class);
 
     public List<PosterScore> readByRoundandJudge(long round, long judgeID){
-        LOG.trace("Reading Score {}", round + " " +judgeID);
+        LOG.trace("Reading Score {}", round);
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("round", round);
