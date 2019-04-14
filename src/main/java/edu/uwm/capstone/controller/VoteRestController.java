@@ -24,9 +24,9 @@ public class VoteRestController {
     }
 
     @ApiOperation(value = "Submit vote")
-    @PutMapping(value = VOTE_PATH + "{poster_id}" + "/{vote}")
-    public void vote(@PathVariable String poster_id, @PathVariable String vote){
-        posterDao.setVote(poster_id, vote);
+    @PutMapping(value = VOTE_PATH + "{posterId}" + "/{vote}")
+    public void vote(@PathVariable String posterId, @PathVariable String vote){
+        posterDao.setVote(posterId, vote);
     }
 
     @ApiOperation(value = "Get Vote Info")

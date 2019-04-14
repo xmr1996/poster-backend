@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class VoteDao extends BaseDao<Vote> {
@@ -34,7 +36,7 @@ public class VoteDao extends BaseDao<Vote> {
 
             return (List<Vote>) this.jdbcTemplate.query(sql("readVotesByStatus"), new MapSqlParameterSource("status", status), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 }

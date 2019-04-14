@@ -74,7 +74,7 @@ public class ScoreRestController {
      */
     @ApiOperation(value = "Generate Round 2 Assignments")
     @PostMapping(value = SCORE_PATH + "generateRound2")
-    public void GenerateRound2Assignments(@RequestBody List<String> posters, @ApiIgnore HttpServletResponse response) throws IOException{
+    public void GenerateRoundTwoAssignments(@RequestBody List<String> posters, @ApiIgnore HttpServletResponse response) throws IOException{
         scoreDao.deleteScoreByRound(2);
 
         for(String poster_id : posters){
@@ -83,7 +83,7 @@ public class ScoreRestController {
         }
     }
 
-    private void assignJudges(String poster_id, String status){
+    private void assignJudges(String posterId, String status){
         List<Judge> judges = new ArrayList<>();
 
         if(status.equals("Graduate")) {
@@ -92,26 +92,26 @@ public class ScoreRestController {
         else if(status.equals("Undergraduate")) {
             judges = judgeDao.readAllJudges("Undergraduate");
         }
-        createScores(poster_id, judges);
+        createScores(posterId, judges);
 
     }
 
-    private void createScores(String poster_id, List<Judge> judges){
+    private void createScores(String posterId, List<Judge> judges){
         for(Judge judge : judges){
             Score score = new Score();
             score.setJudge_id(judge.getJudge_id());
-            score.setPoster_id(poster_id);
+            score.setPoster_id(posterId);
             score.setRound(2);
             scoreDao.create(score);
         }
     }
 
     @ApiOperation(value = "Read score by round and judge_id")
-    @GetMapping(value = SCORE_PATH + "{round}/{judge_id}")
-    public List<PosterScore> readByRoundandJudge(@PathVariable String round, @PathVariable String judge_id, @ApiIgnore HttpServletResponse response) throws IOException {
-        List<PosterScore> posters = posterScoreDao.readByRoundandJudge(Long.parseLong(round),Long.parseLong(judge_id));
+    @GetMapping(value = SCORE_PATH + "{round}/{judgeId}")
+    public List<PosterScore> readByRoundandJudge(@PathVariable String round, @PathVariable String judgeId, @ApiIgnore HttpServletResponse response) throws IOException {
+        List<PosterScore> posters = posterScoreDao.readByRoundandJudge(Long.parseLong(round),Long.parseLong(judgeId));
         if(posters == null){
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Score round number" + round + " and judge id: " + judge_id + " not found.");
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Score round number" + round + " and judge id: " + judgeId + " not found.");
             return Collections.emptyList();
         }
         return posters;
@@ -199,9 +199,9 @@ public class ScoreRestController {
 
     @ApiOperation(value = "Delete score by judge_id and poster_id")
     @DeleteMapping(value = SCORE_PATH + "{judge_id}/{poster_id}")
-    public void delete(@PathVariable Long judge_id, @PathVariable String poster_id, @ApiIgnore HttpServletResponse response) throws IOException {
+    public void delete(@PathVariable Long judgeId, @PathVariable String posterId, @ApiIgnore HttpServletResponse response) throws IOException {
         try{
-            scoreDao.deleteScoreByID(judge_id, poster_id);
+            scoreDao.deleteScoreByID(judgeId, posterId);
         } catch(Exception e){
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }

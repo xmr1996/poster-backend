@@ -29,7 +29,7 @@ public class PosterDao extends BaseDao<Poster> {
      */
 
     @Override
-    public Poster create(Poster poster) throws DaoException {
+    public Poster create(Poster poster) {
         // validate input
         if (poster == null) {
             throw new DaoException("Request to create a new Poster received null");
@@ -71,7 +71,7 @@ public class PosterDao extends BaseDao<Poster> {
      * @param posterID string
      * @return {@link Poster}
      */
-    public Poster read(String posterID) throws DaoException {
+    public Poster read(String posterID) {
         LOG.trace("Reading poster {}", posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();

@@ -43,10 +43,10 @@ public class JudgeDao extends BaseDao<Judge> {
         return null;
     }
 
-    public Judge readByJudgeID(long judge_id) {
-        LOG.trace("Reading judge {}", judge_id);
+    public Judge readByJudgeID(long judgeId) {
+        LOG.trace("Reading judge {}", judgeId);
         try {
-            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudgeByJudgeId"), new MapSqlParameterSource("judge_id", judge_id), rowMapper);
+            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudgeByJudgeId"), new MapSqlParameterSource("judge_id", judgeId), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -92,9 +92,9 @@ public class JudgeDao extends BaseDao<Judge> {
     @Override
     public void update(Judge judge) {
         if (judge == null) {
-            throw new RuntimeException("Request to update a Judge received null");
+            throw new DaoException("Request to update a Judge received null");
         } else if (judge.getJudge_id() == null) {
-            throw new RuntimeException("When updating a Judge the id should not be null");
+            throw new DaoException("When updating a Judge the id should not be null");
         }
 
         LOG.trace("Updating judge {}", judge);
@@ -102,7 +102,7 @@ public class JudgeDao extends BaseDao<Judge> {
         int result = this.jdbcTemplate.update(sql("updateJudge"), new MapSqlParameterSource(rowMapper.mapObject(judge)));
 
         if (result != 1) {
-            throw new RuntimeException("Failed attempt to update judge " + judge.toString() + " affected " + result + " rows");
+            throw new DaoException("Failed attempt to update judge " + judge.toString() + " affected " + result + " rows");
         }
     }
 
@@ -111,11 +111,11 @@ public class JudgeDao extends BaseDao<Judge> {
         //Delete method with long paramenter is not used
     }
 
-    public void deleteByJudgeId(long judge_id) {
-        LOG.trace("Deleting judge by judge_id{}", judge_id);
-        int result = this.jdbcTemplate.update(sql("deleteJudgeByJudgeId"), new MapSqlParameterSource("judge_id", judge_id));
+    public void deleteByJudgeId(long judgeId) {
+        LOG.trace("Deleting judge by judge_id{}", judgeId);
+        int result = this.jdbcTemplate.update(sql("deleteJudgeByJudgeId"), new MapSqlParameterSource("judge_id", judgeId));
         if (result != 1) {
-            throw new RuntimeException("Failed attempt to update judge " + judge_id + " affected " + result + " rows");
+            throw new DaoException("Failed attempt to update judge " + judgeId + " affected " + result + " rows");
         }
     }
 
