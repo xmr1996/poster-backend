@@ -39,11 +39,13 @@ public class TestDataUtility {
 
     public static Judge judgeWithTestValues() {
         Judge judge = new Judge();
+        judge.setJudge_id(TestDataUtility.randomLong());
         judge.setFirst_name(randomAlphabetic(randomInt(1, 100)));
         judge.setPin(randomAlphabetic(randomInt(1, 100)));
         judge.setLast_name(randomAlphabetic(randomInt(1, 100)));
         judge.setStatus("Graduate");
         judge.setEmail(randomAlphabetic(randomInt(1, 100)));
+        judge.setRole("judge");
         return judge;
     }
 
