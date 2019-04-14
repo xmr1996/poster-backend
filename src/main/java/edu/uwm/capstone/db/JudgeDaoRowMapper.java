@@ -9,7 +9,6 @@ import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 
 import static edu.uwm.capstone.db.JudgeDaoRowMapper.JudgeColumnType.*;
-import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
     public enum JudgeColumnType {

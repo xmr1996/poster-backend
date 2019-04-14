@@ -60,12 +60,13 @@ public class TestDataUtility {
 
     public static Score scoreWithTestValues() {
         Score score = new Score();
-//        score.setPoster_id(randomAlphabetic(randomInt(1, 100)));
-//        score.setJudge_id(randomLong(1L,100L));
-        score.setRound(randomInt(0,2));
+        score.setPoster_id(randomAlphabetic(randomInt(1, 100)));
+        score.setJudge_id(randomLong(1L,100L));
+        score.setRound(randomInt(1,2));
         score.setResearch_score(randomInt(1,50));
         score.setComm_score(randomInt(1,30));
         score.setPoster_score(randomInt(1,20));
+        score.setTotal_score(score.getComm_score() + score.getResearch_score() + score.getPoster_score());
         return score;
     }
 

@@ -3,8 +3,7 @@ package edu.uwm.capstone.db;
 
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.model.Score.Score;
-//import static edu.uwm.capstone.db.ScoreDaoRowMapper.ScoreColumnType.CREATED_DATE;
-//import static edu.uwm.capstone.db.ScoreDaoRowMapper.ScoreColumnType.UPDATED_DATE;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static edu.uwm.capstone.db.ScoreDaoRowMapper.ScoreColumnType.*;
-import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class ScoreDaoRowMapper extends BaseRowMapper<Score> {
 
@@ -60,11 +58,20 @@ public class ScoreDaoRowMapper extends BaseRowMapper<Score> {
         folder.setPoster_id(rs.getString(POSTER_ID.getColumnName()));
         folder.setJudge_id(rs.getLong(JUDGE_ID.getColumnName()));
         folder.setRound(rs.getInt(ROUND.getColumnName()));
-        folder.setResearch_score(rs.getInt(RESEARCH_SCORE.getColumnName()));
-        folder.setComm_score(rs.getInt(COMM_SCORE.getColumnName()));
-        folder.setPoster_score(rs.getInt(POSTER_SCORE.getColumnName()));
-        folder.setTotal_score(rs.getInt(TOTAL_SCORE.getColumnName()));
+        folder.setResearch_score(getNullableInt(RESEARCH_SCORE.getColumnName(), rs));
+        folder.setComm_score(getNullableInt(COMM_SCORE.getColumnName(), rs));
+        folder.setPoster_score(getNullableInt(POSTER_SCORE.getColumnName(), rs));
+        folder.setTotal_score(getNullableInt(TOTAL_SCORE.getColumnName(), rs));
         return folder;
     }
+
+    private Integer getNullableInt(String colName, ResultSet rs) throws SQLException {
+        int colValue = rs.getInt(colName);
+        if(rs.wasNull()){
+            return null;
+        }
+        return colValue;
+    }
+
 
 }

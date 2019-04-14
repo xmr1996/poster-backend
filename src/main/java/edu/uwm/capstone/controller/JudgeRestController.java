@@ -12,6 +12,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -110,7 +111,7 @@ public class JudgeRestController {
 
        if (judges == null) {
            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Judges were not found.");
-           return null;
+           return Collections.emptyList();
        }
 
        return judges;
@@ -146,7 +147,7 @@ public class JudgeRestController {
 
     @ApiOperation(value = "Insert from csv")
     @PostMapping(value = JUDGE_PATH + "/all")
-    public void importCSV(@RequestBody List<Judge> judges, @ApiIgnore HttpServletResponse response) throws IOException{
+    public void importCSV(@RequestBody List<Judge> judges){
         for(Judge judge : judges){
             judgeDao.create(judge);
         }

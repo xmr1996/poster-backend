@@ -105,6 +105,8 @@ ORDER BY avg_r1 DESC, avg_research_r1 DESC, avg_comm_r1 DESC, avg_pres_r1 DESC L
 SELECT * FROM posters WHERE status = :status
 ORDER BY avg_r2 DESC, avg_research_r2 DESC, avg_comm_r2 DESC, avg_pres_r2 DESC LIMIT 6;
 
+
+
 --STATEMENT insertAvgTotalR1
 UPDATE posters
 SET posters.avg_r1 =

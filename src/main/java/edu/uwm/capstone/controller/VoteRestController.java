@@ -2,11 +2,8 @@ package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.db.PosterDao;
 import edu.uwm.capstone.db.VoteDao;
-import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.model.Vote.Vote;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +16,6 @@ public class VoteRestController {
     private final PosterDao posterDao;
     private final VoteDao voteDao;
 
-    private static final Logger logger = LoggerFactory.getLogger(ScoreRestController.class);
 
     @Autowired
     public VoteRestController(PosterDao posterDao, VoteDao voteDao) {

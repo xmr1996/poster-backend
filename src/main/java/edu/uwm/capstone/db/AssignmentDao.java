@@ -6,13 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 
-import edu.uwm.capstone.sql.dao.BaseRowMapper;
-import edu.uwm.capstone.sql.exception.DaoException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
+
+import java.util.Collections;
 import java.util.List;
 
 public class AssignmentDao extends BaseDao<Assignment> {
@@ -27,8 +24,10 @@ public class AssignmentDao extends BaseDao<Assignment> {
             return null;
     }
     public void delete(long id) {
+        //Delete method with long parameter is not needed
     }
     public void update(Assignment score) {
+        //Update method with Assignment parameter is not needed
     }
     //  Get All Assignments
 
@@ -40,7 +39,7 @@ public class AssignmentDao extends BaseDao<Assignment> {
             //parameters.addValue("round", round);
             return (List<Assignment>) this.jdbcTemplate.query(sql("getAllAssignments"), new MapSqlParameterSource("round", round), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 }

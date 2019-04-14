@@ -5,7 +5,6 @@ import edu.uwm.capstone.db.JudgeDao;
 import edu.uwm.capstone.db.PosterDao;
 import edu.uwm.capstone.db.ScoreDao;
 import edu.uwm.capstone.model.Admin.Admin;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +15,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -23,7 +23,7 @@ public class AdminRestController {
 
     public static final String ADMIN_PATH = "/admin/";
 
-    private static final Logger logger = LoggerFactory.getLogger(ProfileRestController.class);
+    private static final Logger logger = LoggerFactory.getLogger(AdminRestController.class);
     private final AdminDao adminDao;
     private final ScoreDao scoreDao;
     private final PosterDao posterDao;
@@ -97,7 +97,7 @@ public class AdminRestController {
 
         if (admins == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Admins Were Found.");
-            return null;
+            return Collections.emptyList();
         }
 
         return admins;
@@ -154,7 +154,7 @@ public class AdminRestController {
 
     @ApiOperation(value = "Insert from csv")
     @PostMapping(value = ADMIN_PATH + "/all")
-    public void importCSV(@RequestBody List<Admin> admins, @ApiIgnore HttpServletResponse response) throws IOException{
+    public void importCSV(@RequestBody List<Admin> admins){
         for(Admin admin : admins){
             adminDao.create(admin);
         }
@@ -162,7 +162,7 @@ public class AdminRestController {
 
     @ApiOperation(value = "Reset all tables")
     @PostMapping(value = ADMIN_PATH + "/reset")
-    public void resetTables(@ApiIgnore HttpServletResponse response)throws IOException{
+    public void resetTables(){
         scoreDao.clearTable();
         posterDao.clearTable();
         judgeDao.clearTable();

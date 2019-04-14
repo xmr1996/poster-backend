@@ -7,7 +7,6 @@ import java.util.Map;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.*;
-import static edu.uwm.capstone.sql.dao.BaseRowMapper.BaseColumnType.*;
 
 public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
 
@@ -59,15 +58,23 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
         poster.setDepartment(rs.getString(DEPARTMENT.getColumnName()));
         poster.setVoted_for(rs.getString(VOTED_FOR.getColumnName()));
         poster.setRole(rs.getString(ROLE.getColumnName()));
-        poster.setAvg_r1(rs.getDouble(AVG_R1.getColumnName()));
-        poster.setAvg_r2(rs.getDouble(AVG_R2.getColumnName()));
-        poster.setAvg_comm_r1(rs.getDouble(AVG_COMM_R1.getColumnName()));
-        poster.setAvg_comm_r2(rs.getDouble(AVG_COMM_R2.getColumnName()));
-        poster.setAvg_research_r1(rs.getDouble(AVG_RESEARCH_R1.getColumnName()));
-        poster.setAvg_research_r2(rs.getDouble(AVG_RESEARCH_R2.getColumnName()));
-        poster.setAvg_pres_r1(rs.getDouble(AVG_PRES_R1.getColumnName()));
-        poster.setAvg_pres_r2(rs.getDouble(AVG_PRES_R2.getColumnName()));
+        poster.setAvg_r1(getNullableDouble(AVG_R1.getColumnName(), rs));
+        poster.setAvg_r2(getNullableDouble(AVG_R2.getColumnName(), rs));
+        poster.setAvg_comm_r1(getNullableDouble(AVG_COMM_R1.getColumnName(), rs));
+        poster.setAvg_comm_r2(getNullableDouble(AVG_COMM_R2.getColumnName(), rs));
+        poster.setAvg_research_r1(getNullableDouble(AVG_RESEARCH_R1.getColumnName(), rs));
+        poster.setAvg_research_r2(getNullableDouble(AVG_RESEARCH_R2.getColumnName(), rs));
+        poster.setAvg_pres_r1(getNullableDouble(AVG_PRES_R1.getColumnName(), rs));
+        poster.setAvg_pres_r2(getNullableDouble(AVG_PRES_R2.getColumnName(), rs));
         return poster;
+    }
+
+    private Double getNullableDouble(String colName, ResultSet rs) throws SQLException {
+        Double colValue = rs.getDouble(colName);
+        if(rs.wasNull()){
+            return null;
+        }
+        return colValue;
     }
 
     @Override

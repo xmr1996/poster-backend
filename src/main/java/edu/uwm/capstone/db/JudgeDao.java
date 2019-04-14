@@ -17,7 +17,6 @@ public class JudgeDao extends BaseDao<Judge> {
 
     /**
      * Create a {@link Judge} object.
-     *
      * @param judge {@link Judge}
      * @return {@link Judge}
      */
@@ -27,20 +26,15 @@ public class JudgeDao extends BaseDao<Judge> {
         if (judge == null) {
             throw new RuntimeException("Request to create a new Judge received null");
         }
-
         LOG.trace("Creating judge {}", judge);
-
         judge.setRole("judge");
-
         MapSqlParameterSource parameters = new MapSqlParameterSource(rowMapper.mapObject(judge));
 
         int result = this.jdbcTemplate.update(sql("upsertJudge"),
                 parameters);
-
         if (result != 1) {
             throw new RuntimeException("Failed attempt to create judge " + judge.toString() + " affected " + result + " rows");
         }
-
         return judge;
     }
 
@@ -63,7 +57,7 @@ public class JudgeDao extends BaseDao<Judge> {
         try {
             return (List<Judge>) this.jdbcTemplate.query(sql("readJudges"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -86,7 +80,7 @@ public class JudgeDao extends BaseDao<Judge> {
             else
                 return (List<Judge>) this.jdbcTemplate.query(sql("readJudgesByStatus"), new MapSqlParameterSource("status", "Undergraduate"), rowMapper);
         }catch (EmptyResultDataAccessException e){
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -114,7 +108,7 @@ public class JudgeDao extends BaseDao<Judge> {
 
     @Override
     public void delete(long id) {
-
+        //Delete method with long paramenter is not used
     }
 
     public void deleteByJudgeId(long judge_id) {

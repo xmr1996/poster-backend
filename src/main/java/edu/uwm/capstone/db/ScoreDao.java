@@ -1,8 +1,6 @@
 package edu.uwm.capstone.db;
 
-import edu.uwm.capstone.model.Assignment.Assignment;
 import edu.uwm.capstone.sql.dao.BaseDao;
-import edu.uwm.capstone.sql.dao.BaseRowMapper;
 import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.sql.exception.DaoException;
@@ -10,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
 import java.util.Collections;
 import java.util.List;
@@ -66,7 +62,7 @@ public class ScoreDao extends BaseDao<Score> {
      * @return {@link Score}
      */
     public Score read(long judgeID, String posterID) {
-        LOG.trace("Reading Score {}", judgeID, posterID);
+        LOG.trace("Reading Score {}", judgeID + " " + posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("judge_id", judgeID);
@@ -85,7 +81,7 @@ public class ScoreDao extends BaseDao<Score> {
             return (List<Score>) this.jdbcTemplate.queryForObject(sql("getScoreByPosterID"), parameters, rowMapper);
         }
         catch (EmptyResultDataAccessException e){
-            return null;
+            return Collections.emptyList();
         }
     }
     //read all scores
@@ -94,7 +90,7 @@ public class ScoreDao extends BaseDao<Score> {
         try {
             return (List<Score>) this.jdbcTemplate.query(sql("readAllScores"), rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -103,7 +99,7 @@ public class ScoreDao extends BaseDao<Score> {
         try{
             return (List<Score>) this.jdbcTemplate.query(sql("readScoreByRound"), new MapSqlParameterSource("round", round), rowMapper);
         }catch (EmptyResultDataAccessException e){
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -149,7 +145,7 @@ public class ScoreDao extends BaseDao<Score> {
 
     @Override
     public void delete(long id) {
-
+        //delete method with long parameter is not needed
     }
 
     public void clearTable(){

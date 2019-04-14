@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 
-import java.util.List;
 
 public class RoundDao extends BaseDao<Round> {
     private static final Logger LOG = LoggerFactory.getLogger(RoundDao.class);
@@ -24,15 +23,20 @@ public class RoundDao extends BaseDao<Round> {
     }
 
     @Override
-    public void delete(long id) {}
+    public void delete(long id) {
+        //Delete method with long parameter is not used
+    }
 
     @Override
-    public void update(Round object) {}
+    public void update(Round object) {
+        //update method with Round object parameter is not used - different update method is used below
+    }
 
-    public List<Round> read(){
+    public Round read(){
         LOG.trace("Reading by round");
         try{
-            return (List<Round>)this.jdbcTemplate.query(sql("readAllRounds"),rowMapper);
+            MapSqlParameterSource parameters = new MapSqlParameterSource();
+            return (Round)this.jdbcTemplate.queryForObject(sql("readAllRounds"),parameters, rowMapper);
         }catch(EmptyResultDataAccessException e){
             return null;
         }
