@@ -62,7 +62,7 @@ public class ScoreDao extends BaseDao<Score> {
      * @return {@link Score}
      */
     public Score read(long judgeID, String posterID) {
-        LOG.trace("Reading Score {}", judgeID + " " + posterID);
+        LOG.trace("Reading Score {}", posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("judge_id", judgeID);
@@ -115,7 +115,6 @@ public class ScoreDao extends BaseDao<Score> {
         }
 
         LOG.trace("Updating score {}", score);
-        //score.setUpdatedDate(LocalDateTime.now());
         int result = this.jdbcTemplate.update(sql("upsertScore"), new MapSqlParameterSource(rowMapper.mapObject(score)));
 
         if (result != 1) {
