@@ -53,7 +53,7 @@ public class TestDataUtility {
 
     public static Judge judgeWithTestValues() {
         Judge judge = new Judge();
-        judge.setJudge_id(TestDataUtility.randomLong());
+        judge.setJudge_id(new Long(randomInt(1, 1000)));
         judge.setFirst_name(randomAlphabetic(randomInt(1, 100)));
         judge.setPin(randomAlphabetic(randomInt(1, 100)));
         judge.setLast_name(randomAlphabetic(randomInt(1, 100)));

@@ -47,9 +47,6 @@ ON DUPLICATE KEY UPDATE
 --STATEMENT readJudges
 SELECT * FROM judges;
 
---STATEMENT readJudge
-SELECT * FROM judges WHERE id = :id;
-
 --STATEMENT readJudgeByJudgeId
 SELECT * FROM judges WHERE judge_id = :judge_id;
 
