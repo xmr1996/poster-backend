@@ -50,7 +50,21 @@ public class ScoreDaoUnitTest {
     public void setUp() {
         assertNotNull(scoreDao);
         assertNotNull(scoreDao.sql("createScore"));
+        assertNotNull(scoreDao.sql("readScoreByRoundandJudge"));
+        assertNotNull(scoreDao.sql("readAllScores"));
+        assertNotNull(scoreDao.sql("getScoreByID"));
+        assertNotNull(scoreDao.sql("getScoreByPosterID"));
+        assertNotNull(scoreDao.sql("getScoreByJudgeID"));
+        assertNotNull(scoreDao.sql("getScoreByRound"));
         assertNotNull(scoreDao.sql("updateScore"));
+        assertNotNull(scoreDao.sql("deleteScorebyPosterID"));
+        assertNotNull(scoreDao.sql("getAllAssignments"));
+        assertNotNull(scoreDao.sql("upsertScore"));
+        assertNotNull(scoreDao.sql("clearScore"));
+        assertNotNull(scoreDao.sql("clearScoreByRound"));
+        assertNotNull(scoreDao.sql("readScoreByRound"));
+        assertNotNull(scoreDao.sql("deleteScoreByID"));
+
     }
 
 
