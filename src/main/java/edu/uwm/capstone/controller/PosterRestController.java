@@ -119,9 +119,9 @@ public class PosterRestController{
             }
             else if(round ==2){
                 posterDao.calculateAvgRound2();
-                posterDao.avgResearchR1();
-                posterDao.avgPresR1();
-                posterDao.avgCommR1();
+                posterDao.avgResearchR2();
+                posterDao.avgPresR2();
+                posterDao.avgCommR2();
             }
 
         } catch (IllegalArgumentException e) {
