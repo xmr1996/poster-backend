@@ -3,6 +3,7 @@ package edu.uwm.capstone.db;
 import edu.uwm.capstone.UnitTestConfig;
 import edu.uwm.capstone.model.Admin.Admin;
 import edu.uwm.capstone.util.TestDataUtility;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = UnitTestConfig.class)
@@ -27,9 +28,12 @@ public class AdminDaoUnitTest {
     public void setUp() {
         assertNotNull(adminDao);
         assertNotNull(adminDao.sql("createAdmin"));
+        assertNotNull(adminDao.sql("readAllAdmins"));
         assertNotNull(adminDao.sql("readAdmin"));
+        assertNotNull(adminDao.sql("readAdminEmailPin"));
         assertNotNull(adminDao.sql("updateAdmin"));
         assertNotNull(adminDao.sql("deleteAdmin"));
+        assertNotNull(adminDao.sql("clearAdmins"));
     }
 
     /**
@@ -37,105 +41,183 @@ public class AdminDaoUnitTest {
      */
     @Test
     public void create() {
-        Admin admin1 = new Admin();
-        admin1.setEmail("john3885@uwm.edu");
-        admin1.setWrite_w(true);
-        admin1.setRead_r(true);
-        admin1.setFirst_name("Tyler");
-        admin1.setLast_name("Johnson");
-        admin1.setPin("1234");
-        adminDao.create(admin1);
-
-        Admin admin2 = new Admin();
-        admin2.setEmail("pero@uwm.edu");
-        admin2.setWrite_w(true);
-        admin2.setRead_r(true);
-        admin2.setFirst_name("Wendy");
-        admin2.setLast_name("Pero");
-        admin2.setPin("1234");
-        adminDao.create(admin2);
-
-        Admin admin3 = new Admin();
-        admin3.setEmail("munson@uwm.edu");
-        admin3.setWrite_w(true);
-        admin3.setRead_r(true);
-        admin3.setFirst_name("Ethan");
-        admin3.setLast_name("Munson");
-        admin3.setPin("1234");
-        adminDao.create(admin3);
-
-        Admin admin4 = new Admin();
-        admin4.setEmail("cjscholl@uwm.edu");
-        admin4.setWrite_w(true);
-        admin4.setRead_r(true);
-        admin4.setFirst_name("Catelyn");
-        admin4.setLast_name("Scholl");
-        admin4.setPin("1234");
-        adminDao.create(admin4);
-
-        Admin admin5 = new Admin();
-        admin5.setEmail("xiangm@uwm.edu");
-        admin5.setWrite_w(true);
-        admin5.setRead_r(true);
-        admin5.setFirst_name("Mingren");
-        admin5.setLast_name("Xiang");
-        admin5.setPin("1234");
-        adminDao.create(admin5);
-
-        Admin admin6 = new Admin();
-        admin6.setEmail("faassad@uwm.edu");
-        admin6.setWrite_w(true);
-        admin6.setRead_r(true);
-        admin6.setFirst_name("Fawzieh");
-        admin6.setLast_name("Assad");
-        admin6.setPin("1234");
-        adminDao.create(admin6);
-
-        Admin admin7 = new Admin();
-        admin7.setEmail("adamdunn@uwm.edu");
-        admin7.setWrite_w(true);
-        admin7.setRead_r(true);
-        admin7.setFirst_name("Adam");
-        admin7.setLast_name("Dunn");
-        admin7.setPin("1234");
-        adminDao.create(admin7);
-
-        Admin admin8 = new Admin();
-        admin8.setEmail("doneil@uwm.edu");
-        admin8.setWrite_w(true);
-        admin8.setRead_r(true);
-        admin8.setFirst_name("David");
-        admin8.setLast_name("O'neil");
-        admin8.setPin("1234");
-        adminDao.create(admin8);
-
-        Admin admin9 = new Admin();
-        admin9.setEmail("jhortman@uwm.edu");
-        admin9.setWrite_w(true);
-        admin9.setRead_r(true);
-        admin9.setFirst_name("James");
-        admin9.setLast_name("Hortman");
-        admin9.setPin("1234");
-        adminDao.create(admin9);
-
-        Admin admin10 = new Admin();
-        admin10.setEmail("mdshahr3@uwm.edu");
-        admin10.setWrite_w(true);
-        admin10.setRead_r(true);
-        admin10.setFirst_name("Zane");
-        admin10.setLast_name("Shahrin");
-        admin10.setPin("1234");
-        adminDao.create(admin10);
-
-        Admin admin11 = new Admin();
-        admin11.setEmail("testadmin@uwm.edu");
-        admin11.setWrite_w(false);
-        admin11.setRead_r(true);
-        admin11.setFirst_name("Test");
-        admin11.setLast_name("User");
-        admin11.setPin("1234");
-        adminDao.create(admin11);
+        Admin createAdmin = TestDataUtility.adminWithTestValues();
+        adminDao.create(createAdmin);
+        assertNotNull(createAdmin.getEmail());
+        assertNotNull(createAdmin.getPin());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
+        assertNotNull(createAdmin.getRole());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
     }
 
+    /**
+     * Verify that {@link AdminDao#create} is working correctly when a request for creating a null object is made.
+     */
+    @Test(expected = RuntimeException.class)
+    public void createNullAdmin() {
+        adminDao.create(null);
+    }
+
+    /**
+     * Verify that {@link AdminDao#create} is working correctly when a request for a {@link Admin} that contains a value
+     * which exceeds the database configuration is made.
+     */
+    @Test(expected = RuntimeException.class)
+    public void createAdminColumnTooLong() {
+        // generate a test profile value with a column that will exceed the database configuration
+        Admin createAdmin = TestDataUtility.adminWithTestValues();
+        createAdmin.setFirst_name(RandomStringUtils.randomAlphabetic(2000));
+        adminDao.create(createAdmin);
+    }
+
+    /**
+     * Verify that {@link AdminDao#read} is working correctly.
+     */
+    @Test
+    public void readAdmin() {
+        Admin createAdmin = TestDataUtility.adminWithTestValues();
+        adminDao.create(createAdmin);
+        assertNotNull(createAdmin.getEmail());
+        assertNotNull(createAdmin.getPin());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
+        assertNotNull(createAdmin.getRole());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
+
+        Admin readAdmin = adminDao.read(createAdmin.getEmail());
+        assertNotNull(readAdmin);
+        assertEquals(createAdmin.getEmail(), readAdmin.getEmail());
+    }
+    /**
+     * Verify that {@link AdminDao#read} is working correctly when a request for a non-existent {@link Admin#getEmail()} is made.
+     */
+    @Test
+    public void readNonExistentAdminByEmailAndPin(){
+        Admin createAdmin = TestDataUtility.adminWithTestValues();
+        adminDao.create(createAdmin);
+        Admin invalidAdmin = TestDataUtility.adminWithTestValues();
+        String email = invalidAdmin.getEmail();
+        String pin = invalidAdmin.getPin();
+        Admin admin = adminDao.read(email,pin);
+        assertNull(admin);
+    }
+
+    /**
+     * Verify that {@link AdminDao#read} is working correctly when a request for a existent {@link Admin#getEmail()} is made.
+     */
+    @Test
+    public void readAdminEmailPin(){
+        Admin createAdmin = TestDataUtility.adminWithTestValues();
+        adminDao.create(createAdmin);
+        assertNotNull(createAdmin.getEmail());
+        assertNotNull(createAdmin.getPin());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
+        assertNotNull(createAdmin.getRole());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
+
+        Admin readAdmin = adminDao.read(createAdmin.getEmail(),createAdmin.getPin());
+        assertNotNull(readAdmin);
+        assertEquals(createAdmin.getEmail(),readAdmin.getEmail());
+        assertEquals(createAdmin.getPin(),readAdmin.getPin());
+    }
+
+    /**
+     * Verify that {@link AdminDao#update} is working correctly.
+     */
+    @Test
+    public void update() {
+        Admin createAdmin = TestDataUtility.adminWithTestValues();
+        adminDao.create(createAdmin);
+        assertNotNull(createAdmin.getEmail());
+        assertNotNull(createAdmin.getPin());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
+        assertNotNull(createAdmin.getRole());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
+
+        Admin verifyCreateAdmin = adminDao.read(createAdmin.getEmail());
+        assertNotNull(verifyCreateAdmin);
+        assertEquals(createAdmin.getEmail(), verifyCreateAdmin.getEmail());
+
+        Admin updateAdmin = TestDataUtility.adminWithTestValues();
+        updateAdmin.setFirst_name(createAdmin.getFirst_name());
+        updateAdmin.setLast_name(createAdmin.getLast_name());
+        updateAdmin.setEmail(createAdmin.getEmail());
+        updateAdmin.setPin(createAdmin.getPin());
+        updateAdmin.setRole(createAdmin.getRole());
+        updateAdmin.setWrite_w(createAdmin.isWrite_w());
+        updateAdmin.setRead_r(createAdmin.isRead_r());
+        adminDao.update(updateAdmin);
+
+        Admin verifyUpdateAdmin = adminDao.read(updateAdmin.getEmail());
+        assertNotNull(verifyUpdateAdmin);
+        assertEquals(createAdmin.getEmail(), verifyUpdateAdmin.getEmail());
+        assertEquals(createAdmin.getPin(), verifyUpdateAdmin.getPin());
+        assertEquals(createAdmin.getFirst_name(), verifyUpdateAdmin.getFirst_name());
+        assertEquals(createAdmin.getLast_name(), verifyUpdateAdmin.getLast_name());
+
+    }
+
+    /**
+     * Verify that {@link AdminDao#update} is working correctly when a request for creating a null object is made.
+     */
+    @Test(expected = RuntimeException.class)
+    public void updateNullAdmin() {
+        adminDao.update(null);
+    }
+
+    /**
+     * Verify that {@link AdminDao#update} is working correctly when a request for a non-existent {@link Admin#getEmail()} is made.
+     */
+    @Test(expected = RuntimeException.class)
+    public void updateNonExistentAdmin() {
+        // create a random admin id that will not be in our local database
+        Admin updateAdmin = TestDataUtility.adminWithTestValues();
+        updateAdmin.setEmail("@email.com");
+        adminDao.update(updateAdmin);
+    }
+
+    /**
+     * Verify that {@link AdminDao#delete} is working correctly.
+     */
+    @Test
+    public void delete() {
+        Admin createAdmin = TestDataUtility.adminWithTestValues();
+        adminDao.create(createAdmin);
+        assertNotNull(createAdmin.getEmail());
+        assertNotNull(createAdmin.getPin());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
+        assertNotNull(createAdmin.getRole());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
+
+        Admin verifyCreateAdmin = adminDao.read(createAdmin.getEmail());
+
+        assertNotNull(verifyCreateAdmin);
+        assertEquals(createAdmin.getEmail(),verifyCreateAdmin.getEmail());
+        assertEquals(createAdmin.getFirst_name(),verifyCreateAdmin.getFirst_name());
+        assertEquals(createAdmin.getLast_name(),verifyCreateAdmin.getLast_name());
+        assertEquals(createAdmin.getRole(),verifyCreateAdmin.getRole());
+        assertEquals(createAdmin.getPin(),verifyCreateAdmin.getPin());
+        adminDao.delete(createAdmin.getEmail());
+
+        Admin verifyDeleteAdmin = adminDao.read(createAdmin.getEmail());
+        assertNull(verifyDeleteAdmin);
+    }
+
+    /**
+     * Verify that {@link AdminDao#delete} is working correctly when a request for a non-existent {@link Admin#getEmail()} is made.
+     */
+    @Test(expected = RuntimeException.class)
+    public void deleteNonExistentAdmin() {
+        adminDao.delete("notARealEmail@email.com");
+    }
 
 }
