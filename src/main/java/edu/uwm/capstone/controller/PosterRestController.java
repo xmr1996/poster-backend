@@ -64,7 +64,7 @@ public class PosterRestController{
     public void update(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
             Assert.notNull(poster.getPoster_id(), "Poster Id must not be null");
-            Assert.notNull(posterDao.read(poster.getPoster_id()), "Could not update Poster " + poster.getPoster_id()+ " - record not found.");
+            Assert.notNull(posterDao.read(poster.getPoster_id()), "Could not update Poster - record not found.");
             posterDao.update(poster);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -204,8 +204,15 @@ public class PosterRestController{
 
     @ApiOperation(value = "Read poster by Poster_ID")
     @GetMapping(value = POSTER_PATH + "/poster_id/" + "{posterId}")
-    public Poster readByPosterID(@PathVariable String posterId){
-        return posterDao.read(posterId);
+    public Poster readByPosterID(@PathVariable String posterId, @ApiIgnore HttpServletResponse response) throws IOException {
+        try{
+            return posterDao.read(posterId);
+        }
+        catch (Exception e){
+            logger.error(e.getMessage(), e);
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
+            return null;
+        }
     }
 
     @ApiOperation(value = "Read poster by student status")
