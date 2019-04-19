@@ -59,7 +59,6 @@ public class TestDataUtility {
         judge.setLast_name(randomAlphabetic(randomInt(1, 100)));
         judge.setStatus("Graduate");
         judge.setEmail(randomAlphabetic(randomInt(1, 100)));
-        judge.setRole("judge");
         return judge;
     }
 
