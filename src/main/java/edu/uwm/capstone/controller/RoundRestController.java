@@ -26,7 +26,7 @@ public class RoundRestController {
     public Round getRounds(@ApiIgnore HttpServletResponse response) throws IOException {
         Round round = roundDao.read();
         if (round == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Rounds were not found.");
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Rounds were found.");
             return null;
         }
         return round;

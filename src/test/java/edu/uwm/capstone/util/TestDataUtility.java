@@ -10,6 +10,7 @@ import java.util.Random;
 import edu.uwm.capstone.model.Admin.Admin;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
+import edu.uwm.capstone.model.Round.Round;
 import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.model.Assignment.Assignment;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -101,6 +102,13 @@ public class TestDataUtility {
         assignment.setJudge_id(randomLong(1L,100L));
         assignment.setPoster_id(randomAlphabetic(randomInt(1,100)));
         return assignment;
+    }
+
+    public static Round roundWithTestValues(){
+        Round round = new Round();
+        round.setRound1(true);
+        round.setRound2(false);
+        return round;
     }
 
     public static Double randomDouble() { return new Random().nextDouble(); }
