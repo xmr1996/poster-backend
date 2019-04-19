@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -47,7 +48,7 @@ public class JudgeDaoUnitTest {
     public void create() {
         Judge createJudge = TestDataUtility.judgeWithTestValues();
         judgeDao.create(createJudge);
-        assertNotNull(createJudge.getJudge_id());
+        assertNotNull(createJudge.getRole());
     }
 
 
@@ -80,7 +81,7 @@ public class JudgeDaoUnitTest {
     public void read() {
         Judge createJudge = TestDataUtility.judgeWithTestValues();
         judgeDao.create(createJudge);
-        assertNotNull(createJudge.getJudge_id());
+        assertNotNull(createJudge.getRole());
 
         Judge readJudge = judgeDao.readByJudgeID(createJudge.getJudge_id());
         assertNotNull(readJudge);
@@ -88,6 +89,31 @@ public class JudgeDaoUnitTest {
         assertEquals(createJudge, readJudge);
     }
 
+    /**
+     * Verify that {@link JudgeDao#read()} is working correctly.
+     */
+    @Test
+    public void readAllJudge() {
+
+        List<Judge> result = judgeDao.read();
+        assertNotNull(result);
+        assertTrue(result.size()>0);
+    }
+
+    /**
+     * Verify that {@link JudgeDao#read(String, String)} is working correctly.
+     */
+    @Test
+    public void readByEmailPin() {
+        Judge createJudge = TestDataUtility.judgeWithTestValues();
+        judgeDao.create(createJudge);
+        assertNotNull(createJudge.getRole());
+
+        Judge readJudge = judgeDao.read(createJudge.getEmail(),createJudge.getPin());
+        assertNotNull(readJudge);
+        assertEquals(createJudge.getJudge_id(), readJudge.getJudge_id());
+        assertEquals(createJudge, readJudge);
+    }
     /**
      * Verify that {@link JudgeDao#read} is working correctly when a request for a non-existent {@link Judge#getJudge_id()} is made.
      */
@@ -106,7 +132,7 @@ public class JudgeDaoUnitTest {
     public void update() {
         Judge createJudge = TestDataUtility.judgeWithTestValues();
         judgeDao.create(createJudge);
-        assertNotNull(createJudge.getJudge_id());
+        assertNotNull(createJudge.getRole());
 
         Judge verifyCreateJudge = judgeDao.readByJudgeID(createJudge.getJudge_id());
         assertNotNull(verifyCreateJudge);
@@ -151,7 +177,7 @@ public class JudgeDaoUnitTest {
         // generate a test judge value with a column that will exceed the database configuration
         Judge createJudge = TestDataUtility.judgeWithTestValues();
         judgeDao.create(createJudge);
-        assertNotNull(createJudge.getJudge_id());
+        assertNotNull(createJudge.getRole());
 
         Judge verifyCreateJudge = judgeDao.readByJudgeID(createJudge.getJudge_id());
         assertNotNull(verifyCreateJudge);
@@ -171,7 +197,7 @@ public class JudgeDaoUnitTest {
     public void delete() {
         Judge createJudge = TestDataUtility.judgeWithTestValues();
         judgeDao.create(createJudge);
-        assertNotNull(createJudge.getJudge_id());
+        assertNotNull(createJudge.getRole());
 
         Judge verifyCreateJudge = judgeDao.readByJudgeID(createJudge.getJudge_id());
         assertNotNull(verifyCreateJudge);
