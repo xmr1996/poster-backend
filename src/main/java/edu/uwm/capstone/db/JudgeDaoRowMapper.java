@@ -39,9 +39,9 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
     @Override
     public Map<String, Object> mapObject(Judge object) {
         Map<String, Object> map = new HashMap<>();
-        map.put(JUDGE_ID.getColumnName(), object.getJudge_id());
-        map.put(FIRST_NAME.getColumnName(), object.getFirst_name());
-        map.put(LAST_NAME.getColumnName(), object.getLast_name());
+        map.put(JUDGE_ID.getColumnName(), object.getJudgeId());
+        map.put(FIRST_NAME.getColumnName(), object.getFirstName());
+        map.put(LAST_NAME.getColumnName(), object.getLastName());
         map.put(EMAIL.getColumnName(), object.getEmail());
         map.put(STATUS.getColumnName(), object.getStatus());
         map.put(PIN.getColumnName(), object.getPin());
@@ -52,9 +52,9 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
     @Override
     public Judge mapRow(ResultSet rs, int rowNum) throws SQLException {
         Judge folder = new Judge();
-        folder.setJudge_id(rs.getLong(JUDGE_ID.getColumnName()));
-        folder.setFirst_name(rs.getString(FIRST_NAME.getColumnName()));
-        folder.setLast_name(rs.getString(LAST_NAME.getColumnName()));
+        folder.setJudgeId(rs.getLong(JUDGE_ID.getColumnName()));
+        folder.setFirstName(rs.getString(FIRST_NAME.getColumnName()));
+        folder.setLastName(rs.getString(LAST_NAME.getColumnName()));
         folder.setEmail(rs.getString(EMAIL.getColumnName()));
         folder.setStatus(rs.getString(STATUS.getColumnName()));
         folder.setPin(rs.getString(PIN.getColumnName()));

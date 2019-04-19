@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 import static edu.uwm.capstone.util.TestDataUtility.roundWithTestValues;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RoundRestControllerUniTest {
+public class RoundRestControllerUnitTest {
     @Mock
     private RoundDao roundDao;
 

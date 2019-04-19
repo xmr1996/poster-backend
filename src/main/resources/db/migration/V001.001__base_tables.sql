@@ -17,14 +17,14 @@ CREATE TABLE posters (
   department VARCHAR(255),
   voted_for VARCHAR(255),
   role VARCHAR(255),
-  avg_r1 NUMERIC(3,2) DEFAULT NULL,
-  avg_r2 NUMERIC(3,2) DEFAULT NULL,
-  avg_comm_r1 NUMERIC(3,2) DEFAULT NULL,
-  avg_comm_r2 NUMERIC(3,2) DEFAULT NULL,
-  avg_research_r1 NUMERIC(3,2) DEFAULT NULL,
-  avg_research_r2 NUMERIC(3,2) DEFAULT NULL,
-  avg_pres_r1 NUMERIC(3,2) DEFAULT NULL,
-  avg_pres_r2 NUMERIC(3,2) DEFAULT NULL
+  avg_r1 DECIMAL(6,2) DEFAULT NULL,
+  avg_r2 DECIMAL(6,2) DEFAULT NULL,
+  avg_comm_r1 DECIMAL(6,2) DEFAULT NULL,
+  avg_comm_r2 DECIMAL(6,2) DEFAULT NULL,
+  avg_research_r1 DECIMAL(6,2) DEFAULT NULL,
+  avg_research_r2 DECIMAL(6,2) DEFAULT NULL,
+  avg_pres_r1 DECIMAL(6,2) DEFAULT NULL,
+  avg_pres_r2 DECIMAL(6,2) DEFAULT NULL
 );
 
 CREATE TABLE judges (

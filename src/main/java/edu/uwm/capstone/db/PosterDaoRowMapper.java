@@ -48,24 +48,24 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
     @Override
     public Poster mapRow(ResultSet rs, int rowNum) throws SQLException {
         Poster poster = new Poster();
-        poster.setPoster_id(rs.getString(POSTER_ID.getColumnName()));
+        poster.setPosterId(rs.getString(POSTER_ID.getColumnName()));
         poster.setTitle(rs.getString(TITLE.getColumnName()));
         poster.setEmail(rs.getString(EMAIL.getColumnName()));
-        poster.setFirst_name(rs.getString(FIRST_NAME.getColumnName()));
-        poster.setLast_name(rs.getString(LAST_NAME.getColumnName()));
+        poster.setFirstName(rs.getString(FIRST_NAME.getColumnName()));
+        poster.setLastName(rs.getString(LAST_NAME.getColumnName()));
         poster.setStatus(rs.getString(STATUS.getColumnName()));
         poster.setPin(rs.getString(PIN.getColumnName()));
         poster.setDepartment(rs.getString(DEPARTMENT.getColumnName()));
-        poster.setVoted_for(rs.getString(VOTED_FOR.getColumnName()));
+        poster.setVotedFor(rs.getString(VOTED_FOR.getColumnName()));
         poster.setRole(rs.getString(ROLE.getColumnName()));
-        poster.setAvg_r1(getNullableDouble(AVG_R1.getColumnName(), rs));
-        poster.setAvg_r2(getNullableDouble(AVG_R2.getColumnName(), rs));
-        poster.setAvg_comm_r1(getNullableDouble(AVG_COMM_R1.getColumnName(), rs));
-        poster.setAvg_comm_r2(getNullableDouble(AVG_COMM_R2.getColumnName(), rs));
-        poster.setAvg_research_r1(getNullableDouble(AVG_RESEARCH_R1.getColumnName(), rs));
-        poster.setAvg_research_r2(getNullableDouble(AVG_RESEARCH_R2.getColumnName(), rs));
-        poster.setAvg_pres_r1(getNullableDouble(AVG_PRES_R1.getColumnName(), rs));
-        poster.setAvg_pres_r2(getNullableDouble(AVG_PRES_R2.getColumnName(), rs));
+        poster.setAvgR1(getNullableDouble(AVG_R1.getColumnName(), rs));
+        poster.setAvgR2(getNullableDouble(AVG_R2.getColumnName(), rs));
+        poster.setAvgCommR1(getNullableDouble(AVG_COMM_R1.getColumnName(), rs));
+        poster.setAvgCommR2(getNullableDouble(AVG_COMM_R2.getColumnName(), rs));
+        poster.setAvgResearchR1(getNullableDouble(AVG_RESEARCH_R1.getColumnName(), rs));
+        poster.setAvgResearchR2(getNullableDouble(AVG_RESEARCH_R2.getColumnName(), rs));
+        poster.setAvgPresR1(getNullableDouble(AVG_PRES_R1.getColumnName(), rs));
+        poster.setAvgPresR2(getNullableDouble(AVG_PRES_R2.getColumnName(), rs));
         return poster;
     }
 
@@ -80,24 +80,24 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
     @Override
     public Map<String, Object> mapObject(Poster object) {
         Map<String,Object> map = new HashMap<>();
-        map.put(POSTER_ID.getColumnName(), object.getPoster_id());
+        map.put(POSTER_ID.getColumnName(), object.getPosterId());
         map.put(TITLE.getColumnName(),object.getTitle());
         map.put(EMAIL.getColumnName(),object.getEmail());
-        map.put(FIRST_NAME.getColumnName(),object.getFirst_name());
-        map.put(LAST_NAME.getColumnName(),object.getLast_name());
+        map.put(FIRST_NAME.getColumnName(),object.getFirstName());
+        map.put(LAST_NAME.getColumnName(),object.getLastName());
         map.put(STATUS.getColumnName(),object.getStatus());
         map.put(PIN.getColumnName(),object.getPin());
         map.put(DEPARTMENT.getColumnName(),object.getDepartment());
-        map.put(VOTED_FOR.getColumnName(), object.getVoted_for());
+        map.put(VOTED_FOR.getColumnName(), object.getVotedFor());
         map.put(ROLE.getColumnName(), object.getRole());
-        map.put(AVG_R1.getColumnName(),object.getAvg_r1());
-        map.put(AVG_R2.getColumnName(),object.getAvg_r2());
-        map.put(AVG_COMM_R1.getColumnName(),object.getAvg_comm_r1());
-        map.put(AVG_COMM_R2.getColumnName(),object.getAvg_comm_r2());
-        map.put(AVG_RESEARCH_R1.getColumnName(),object.getAvg_research_r1());
-        map.put(AVG_RESEARCH_R2.getColumnName(),object.getAvg_research_r2());
-        map.put(AVG_PRES_R1.getColumnName(),object.getAvg_pres_r1());
-        map.put(AVG_PRES_R2.getColumnName(),object.getAvg_pres_r2());
+        map.put(AVG_R1.getColumnName(),object.getAvgR1());
+        map.put(AVG_R2.getColumnName(),object.getAvgR2());
+        map.put(AVG_COMM_R1.getColumnName(),object.getAvgCommR1());
+        map.put(AVG_COMM_R2.getColumnName(),object.getAvgCommR2());
+        map.put(AVG_RESEARCH_R1.getColumnName(),object.getAvgResearchR1());
+        map.put(AVG_RESEARCH_R2.getColumnName(),object.getAvgResearchR2());
+        map.put(AVG_PRES_R1.getColumnName(),object.getAvgPresR1());
+        map.put(AVG_PRES_R2.getColumnName(),object.getAvgPresR2());
 
 
         return map;

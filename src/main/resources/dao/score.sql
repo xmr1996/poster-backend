@@ -18,7 +18,7 @@ VALUES(
     :total_score
 );
 
---STATEMENT readScoreByRoundandJudge
+--STATEMENT readScoreByRoundAndJudge
 SELECT posters.*, score.*
 FROM score
 INNER JOIN posters
@@ -49,7 +49,7 @@ UPDATE score SET
 WHERE
     poster_id = :poster_id and round = :round and judge_id = :judge_id;
 
---STATEMENT deleteScorebyPosterID
+--STATEMENT deleteScoreByPosterId
 DELETE FROM score WHERE poster_id = :poster_id;
 
 --STATEMENT getAllAssignments

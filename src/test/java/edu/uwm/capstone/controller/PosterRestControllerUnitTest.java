@@ -11,11 +11,9 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import javax.servlet.http.HttpServletResponse;
-import static edu.uwm.capstone.util.TestDataUtility.*;
-
 import java.io.IOException;
 
-import static edu.uwm.capstone.util.TestDataUtility.randomAlphabetic;
+import static edu.uwm.capstone.util.TestDataUtility.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -85,8 +83,19 @@ public class PosterRestControllerUnitTest {
 
     @Test
     public void updatePreconditionFailed() throws IOException {
-        posterRestController.update(posterWithTestValues(), response);
-        verify(response, times(1)).sendError(HttpServletResponse.SC_PRECONDITION_FAILED, "Could not update Poster - record not found.");
+        Poster poster = posterWithTestValues();
+        posterRestController.update(poster, response);
+        verify(response, times(1)).sendError(HttpServletResponse.SC_PRECONDITION_FAILED,
+                "Could not update Poster " + poster.getPosterId() + " - record not found.");
+    }
+
+    @Test
+    public void readById() throws IOException {
+        Poster poster = posterWithTestValues();
+        when(posterDao.read(anyString())).thenReturn(poster);
+
+        Poster receivedPoster = posterRestController.readByPosterID(poster.getPosterId(), response);
+        assertEquals(poster, receivedPoster);
     }
 
     @Test

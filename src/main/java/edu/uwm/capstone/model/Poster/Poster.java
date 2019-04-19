@@ -3,31 +3,29 @@ package edu.uwm.capstone.model.Poster;
 import java.util.Objects;
 
 public class Poster {
-    private String poster_id;
+    private String posterId;
     private String title;
     private String email;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private String status;
     private String pin;
     private String department;
-    private String voted_for;
+    private String votedFor;
     private String role;
-    private Double avg_r1;
-    private Double avg_r2;
-    private Double avg_comm_r1;
-    private Double avg_comm_r2;
-    private Double avg_research_r1;
-    private Double avg_research_r2;
-    private Double avg_pres_r1;
-    private Double avg_pres_r2;
+    private Double avgR1;
+    private Double avgR2;
+    private Double avgCommR1;
+    private Double avgCommR2;
+    private Double avgResearchR1;
+    private Double avgResearchR2;
+    private Double avgPresR1;
+    private Double avgPresR2;
 
-    public String getPoster_id() {
-        return poster_id;
-    }
+    public String getPosterId() { return posterId; }
 
-    public void setPoster_id(String poster_id) {
-        this.poster_id = poster_id;
+    public void setPosterId(String posterId) {
+        this.posterId = posterId;
     }
 
     public String getTitle() {
@@ -46,20 +44,20 @@ public class Poster {
         this.email = email;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getStatus() {
@@ -90,78 +88,78 @@ public class Poster {
         return role;
     }
 
-    public void setRole(String role){ this.role = role; }
+    public void setRole(String role) { this.role = role; }
 
-    public String getVoted_for() {
-        return voted_for;
+    public String getVotedFor() {
+        return votedFor;
     }
 
-    public void setVoted_for(String voted_for) {
-        this.voted_for = voted_for;
+    public void setVotedFor(String votedFor) {
+        this.votedFor = votedFor;
     }
 
-    public Double getAvg_r1() {
-        return avg_r1;
+    public Double getAvgR1() {
+        return avgR1;
     }
 
-    public void setAvg_r1(Double avg_r1) {
-        this.avg_r1 = avg_r1;
+    public void setAvgR1(Double avgR1) {
+        this.avgR1 = avgR1;
     }
 
-    public Double getAvg_r2() {
-        return avg_r2;
+    public Double getAvgR2() {
+        return avgR2;
     }
 
-    public void setAvg_r2(Double avg_r2) {
-        this.avg_r2 = avg_r2;
+    public void setAvgR2(Double avgR2) {
+        this.avgR2 = avgR2;
     }
 
-    public Double getAvg_comm_r1() {
-        return avg_comm_r1;
+    public Double getAvgCommR1() {
+        return avgCommR1;
     }
 
-    public void setAvg_comm_r1(Double avg_comm_r1) {
-        this.avg_comm_r1 = avg_comm_r1;
+    public void setAvgCommR1(Double avgCommR1) {
+        this.avgCommR1 = avgCommR1;
     }
 
-    public Double getAvg_comm_r2() {
-        return avg_comm_r2;
+    public Double getAvgCommR2() {
+        return avgCommR2;
     }
 
-    public void setAvg_comm_r2(Double avg_comm_r2) {
-        this.avg_comm_r2 = avg_comm_r2;
+    public void setAvgCommR2(Double avgCommR2) {
+        this.avgCommR2 = avgCommR2;
     }
 
-    public Double getAvg_research_r1() {
-        return avg_research_r1;
+    public Double getAvgResearchR1() {
+        return avgResearchR1;
     }
 
-    public void setAvg_research_r1(Double avg_research_r1) {
-        this.avg_research_r1 = avg_research_r1;
+    public void setAvgResearchR1(Double avgResearchR1) {
+        this.avgResearchR1 = avgResearchR1;
     }
 
-    public Double getAvg_research_r2() {
-        return avg_research_r2;
+    public Double getAvgResearchR2() {
+        return avgResearchR2;
     }
 
-    public void setAvg_research_r2(Double avg_research_r2) {
-        this.avg_research_r2 = avg_research_r2;
+    public void setAvgResearchR2(Double avgResearchR2) {
+        this.avgResearchR2 = avgResearchR2;
     }
 
-    public Double getAvg_pres_r1() {
-        return avg_pres_r1;
+    public Double getAvgPresR1() {
+        return avgPresR1;
     }
 
-    public void setAvg_pres_r1(Double avg_pres_r1) {
-        this.avg_pres_r1 = avg_pres_r1;
+    public void setAvgPresR1(Double avgPresR1) {
+        this.avgPresR1 = avgPresR1;
     }
 
-    public Double getAvg_pres_r2() {
-        return avg_pres_r2;
+    public Double getAvgPresR2() {
+        return avgPresR2;
     }
 
-    public void setAvg_pres_r2(Double avg_pres_r2) {
-        this.avg_pres_r2 = avg_pres_r2;
+    public void setAvgPresR2(Double avgPresR2) {
+        this.avgPresR2 = avgPresR2;
     }
 
     @Override
@@ -169,11 +167,11 @@ public class Poster {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Poster poster = (Poster) o;
-        return Objects.equals(poster_id, poster.poster_id);
+        return Objects.equals(posterId, poster.posterId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(poster_id);
+        return Objects.hash(posterId);
     }
 }

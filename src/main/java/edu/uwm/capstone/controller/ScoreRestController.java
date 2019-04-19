@@ -99,14 +99,14 @@ public class ScoreRestController {
     private void createScores(String posterId, List<Judge> judges){
         for(Judge judge : judges){
             Score score = new Score();
-            score.setJudge_id(judge.getJudge_id());
+            score.setJudge_id(judge.getJudgeId());
             score.setPoster_id(posterId);
             score.setRound(2);
             scoreDao.create(score);
         }
     }
 
-    @ApiOperation(value = "Read score by round and judge_id")
+    @ApiOperation(value = "Read score by round and judgeId")
     @GetMapping(value = SCORE_PATH + "{round}/{judgeId}")
     public List<PosterScore> readByRoundandJudge(@PathVariable String round, @PathVariable String judgeId, @ApiIgnore HttpServletResponse response) throws IOException {
         List<PosterScore> posters = posterScoreDao.readByRoundandJudge(Long.parseLong(round),Long.parseLong(judgeId));
@@ -197,8 +197,8 @@ public class ScoreRestController {
         }
     }
 
-    @ApiOperation(value = "Delete score by judge_id and poster_id")
-    @DeleteMapping(value = SCORE_PATH + "{judge_id}/{poster_id}")
+    @ApiOperation(value = "Delete score by judgeId and poster_id")
+    @DeleteMapping(value = SCORE_PATH + "{judgeId}/{poster_id}")
     public void delete(@PathVariable Long judgeId, @PathVariable String posterId, @ApiIgnore HttpServletResponse response) throws IOException {
         try{
             scoreDao.deleteScoreByID(judgeId, posterId);

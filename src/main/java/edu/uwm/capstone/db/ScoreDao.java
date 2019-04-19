@@ -55,7 +55,7 @@ public class ScoreDao extends BaseDao<Score> {
     }
 
     /**
-     * Retrieve a {@link Score} object by its {@link Score#getJudge_id() #getPoster_id()}.
+     * Retrieve a {@link Score} object by its {@link Score#getJudge_id() #getPosterId()}.
      *
      * @param judgeID long
      * @param posterID String
@@ -65,7 +65,7 @@ public class ScoreDao extends BaseDao<Score> {
         LOG.trace("Reading Score {}", posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue("judge_id", judgeID);
+            parameters.addValue("judgeId", judgeID);
             parameters.addValue("poster_id", posterID);
             return (Score) this.jdbcTemplate.queryForObject(sql("getScoreByID"),parameters, rowMapper);
         } catch (EmptyResultDataAccessException e) {
@@ -131,10 +131,10 @@ public class ScoreDao extends BaseDao<Score> {
     }
 
     public void deleteScoreByID(Long judgeId, String posterId){
-        LOG.trace("Removing score for judge_id: ", judgeId, " poster_id ", posterId);
+        LOG.trace("Removing score for judgeId: ", judgeId, " poster_id ", posterId);
 
         MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue("judge_id", judgeId);
+        parameters.addValue("judgeId", judgeId);
         parameters.addValue("poster_id", posterId);
         int result = this.jdbcTemplate.update(sql("deleteScoreByID"), parameters);
         if(result != 1){
