@@ -2,7 +2,7 @@ package edu.uwm.capstone.model.Assignment;
 
 public class Assignment {
     private String poster_id;
-    private Long judge_id;
+    private Long judgeId;
 
     public String getPoster_id() {
         return poster_id;
@@ -13,11 +13,11 @@ public class Assignment {
     }
 
     public Long getJudge_id() {
-        return judge_id;
+        return judgeId;
     }
 
-    public void setJudge_id(Long judge_id) {
-        this.judge_id = judge_id;
+    public void setJudge_id(Long judgeId) {
+        this.judgeId = judgeId;
     }
 
 }

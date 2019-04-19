@@ -43,21 +43,21 @@ public class TestDataUtility {
     {
         Admin admin = new Admin();
         admin.setEmail(randomAlphabetic(randomInt(1,100)));
-        admin.setFirst_name(randomAlphabetic(randomInt(1,100)));
-        admin.setLast_name(randomAlphabetic(randomInt(1,100)));
+        admin.setFirstName(randomAlphabetic(randomInt(1,100)));
+        admin.setLastName(randomAlphabetic(randomInt(1,100)));
         admin.setPin(randomAlphabetic(randomInt(1,100)));
-        admin.setRead_r(true);
-        admin.setWrite_w(true);
+        admin.setCanRead(true);
+        admin.setCanWrite(true);
         admin.setRole("admin");
         return admin;
     }
 
     public static Judge judgeWithTestValues() {
         Judge judge = new Judge();
-        judge.setJudge_id(new Long(randomInt(1, 1000)));
-        judge.setFirst_name(randomAlphabetic(randomInt(1, 100)));
+        judge.setJudgeId(new Long(randomInt(1, 1000)));
+        judge.setFirstName(randomAlphabetic(randomInt(1, 100)));
         judge.setPin(randomAlphabetic(randomInt(1, 100)));
-        judge.setLast_name(randomAlphabetic(randomInt(1, 100)));
+        judge.setLastName(randomAlphabetic(randomInt(1, 100)));
         judge.setStatus("Graduate");
         judge.setEmail(randomAlphabetic(randomInt(1, 100)));
         return judge;
@@ -65,21 +65,21 @@ public class TestDataUtility {
 
     public static Poster posterWithTestValues() {
         Poster poster = new Poster();
-        poster.setFirst_name(randomAlphabetic(randomInt(1, 100)));
+        poster.setFirstName(randomAlphabetic(randomInt(1, 100)));
         poster.setPin(randomAlphabetic(randomInt(1, 100)));
-        poster.setLast_name(randomAlphabetic(randomInt(1, 100)));
+        poster.setLastName(randomAlphabetic(randomInt(1, 100)));
         poster.setStatus("Graduate");
         poster.setEmail(randomAlphabetic(randomInt(1, 100)));
         poster.setDepartment(randomAlphabetic(randomInt(1, 100)));
-        poster.setPoster_id(randomAlphabetic(randomInt(1, 100)));
-        poster.setAvg_r1(randomDouble());
-        poster.setAvg_r2(randomDouble());
-        poster.setAvg_research_r1(randomDouble());
-        poster.setAvg_research_r2(randomDouble());
-        poster.setAvg_comm_r1(randomDouble());
-        poster.setAvg_comm_r2(randomDouble());
-        poster.setAvg_pres_r1(randomDouble());
-        poster.setAvg_pres_r2(randomDouble());
+        poster.setPosterId(randomAlphabetic(randomInt(1, 100)));
+        poster.setAvgR1(randomDouble());
+        poster.setAvgR2(randomDouble());
+        poster.setAvgResearchR1(randomDouble());
+        poster.setAvgResearchR2(randomDouble());
+        poster.setAvgCommR1(randomDouble());
+        poster.setAvgCommR2(randomDouble());
+        poster.setAvgPresR1(randomDouble());
+        poster.setAvgPresR2(randomDouble());
 
         return poster;
     }

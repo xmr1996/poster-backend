@@ -22,8 +22,8 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("round", round);
-            parameters.addValue("judge_id", judgeID);
-            return (List<PosterScore>) this.jdbcTemplate.query(sql("readScoreByRoundandJudge"), parameters, rowMapper);
+            parameters.addValue("judgeId", judgeID);
+            return (List<PosterScore>) this.jdbcTemplate.query(sql("readScoreByRoundAndJudge"), parameters, rowMapper);
         }catch(EmptyResultDataAccessException e){
             return Collections.emptyList();
         }

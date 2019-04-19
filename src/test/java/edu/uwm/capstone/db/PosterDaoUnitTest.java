@@ -9,11 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.Random;
 
 import static edu.uwm.capstone.db.ScoreDaoUnitTest.randomInt;
 import static edu.uwm.capstone.util.TestDataUtility.randomAlphabetic;
@@ -25,10 +22,7 @@ import static org.junit.Assert.*;
 public class PosterDaoUnitTest {
 
     @Autowired
-    ApplicationContext applicationContext;
-
-    @Autowired
-    PosterDao posterDao;
+    private PosterDao posterDao;
 
     @Before
     public void setUp() {
@@ -83,14 +77,14 @@ public class PosterDaoUnitTest {
     public void createPosterColumnTooLong() {
         // generate a test poster value with a column that will exceed the database configuration
         Poster createPoster = TestDataUtility.posterWithTestValues();
-        createPoster.setFirst_name(RandomStringUtils.randomAlphabetic(2000));
+        createPoster.setFirstName(RandomStringUtils.randomAlphabetic(2000));
         posterDao.create(createPoster);
     }
 
     @Test(expected = DaoException.class)
-    public void createPosterEmptyID(){
+    public void createPosterEmptyID() {
         Poster poster = TestDataUtility.posterWithTestValues();
-        poster.setPoster_id("");
+        poster.setPosterId("");
         posterDao.create(poster);
     }
 
@@ -101,21 +95,21 @@ public class PosterDaoUnitTest {
     public void read() {
         Poster createPoster = TestDataUtility.posterWithTestValues();
         posterDao.create(createPoster);
-        assertNotNull(createPoster.getPoster_id());
+        assertNotNull(createPoster.getPosterId());
 
-        Poster readPoster = posterDao.read(createPoster.getPoster_id());
+        Poster readPoster = posterDao.read(createPoster.getPosterId());
         assertNotNull(readPoster);
-        assertEquals(createPoster.getPoster_id(), readPoster.getPoster_id());
+        assertEquals(createPoster.getPosterId(), readPoster.getPosterId());
         assertEquals(createPoster, readPoster);
     }
 
     @Test(expected = DaoException.class)
-    public void readInvalidID(){
+    public void readInvalidID() {
         posterDao.read(TestDataUtility.randomAlphanumeric(3));
     }
 
     @Test
-    public void readByEmailAndPin(){
+    public void readByEmailAndPin() {
         Poster poster = TestDataUtility.posterWithTestValues();
         String email = poster.getEmail();
         String pin = poster.getPin();
@@ -124,7 +118,7 @@ public class PosterDaoUnitTest {
     }
 
     @Test
-    public void invalidReadByEmailAndPin(){
+    public void invalidReadByEmailAndPin() {
         assertNull(posterDao.read(TestDataUtility.randomAlphanumeric(100), TestDataUtility.randomAlphanumeric(5)));
     }
 
@@ -138,19 +132,19 @@ public class PosterDaoUnitTest {
         posterDao.create(createPoster);
         assertEquals("student", createPoster.getRole());
 
-        Poster verifyCreatePoster = posterDao.read(createPoster.getPoster_id());
+        Poster verifyCreatePoster = posterDao.read(createPoster.getPosterId());
         assertNotNull(verifyCreatePoster);
-        assertEquals(createPoster.getPoster_id(), verifyCreatePoster.getPoster_id());
+        assertEquals(createPoster.getPosterId(), verifyCreatePoster.getPosterId());
         assertEquals(createPoster, verifyCreatePoster);
 
         Poster updatePoster = TestDataUtility.posterWithTestValues();
-        updatePoster.setPoster_id(createPoster.getPoster_id());
+        updatePoster.setPosterId(createPoster.getPosterId());
         posterDao.update(updatePoster);
 
-        Poster verifyUpdatePoster = posterDao.read(updatePoster.getPoster_id());
+        Poster verifyUpdatePoster = posterDao.read(updatePoster.getPosterId());
         assertNotNull(verifyUpdatePoster);
-        assertEquals(createPoster.getPoster_id(), verifyUpdatePoster.getPoster_id());
-        assertEquals(updatePoster.getFirst_name(), verifyUpdatePoster.getFirst_name());
+        assertEquals(createPoster.getPosterId(), verifyUpdatePoster.getPosterId());
+        assertEquals(updatePoster.getFirstName(), verifyUpdatePoster.getFirstName());
     }
 
     /**
@@ -162,13 +156,13 @@ public class PosterDaoUnitTest {
     }
 
     /**
-     * Verify that {@link PosterDao#update} is working correctly when a request for a non-existent {@link Poster#getPoster_id()} is made.
+     * Verify that {@link PosterDao#update} is working correctly when a request for a non-existent {@link Poster#getPosterId()} is made.
      */
     @Test(expected = RuntimeException.class)
     public void updateNonExistentPoster() {
         // create a random poster id that will not be in our local database
         Poster updatePoster = TestDataUtility.posterWithTestValues();
-        updatePoster.setPoster_id(randomAlphabetic(randomInt(1, 100)));
+        updatePoster.setPosterId(randomAlphabetic(randomInt(1, 100)));
         posterDao.update(updatePoster);
     }
 
@@ -181,31 +175,31 @@ public class PosterDaoUnitTest {
         // generate a test poster value with a column that will exceed the database configuration
         Poster createPoster = TestDataUtility.posterWithTestValues();
         posterDao.create(createPoster);
-        assertNotNull(createPoster.getPoster_id());
+        assertNotNull(createPoster.getPosterId());
 
-        Poster verifyCreatePoster = posterDao.read(createPoster.getPoster_id());
+        Poster verifyCreatePoster = posterDao.read(createPoster.getPosterId());
         assertNotNull(verifyCreatePoster);
-        assertEquals(createPoster.getPoster_id(), verifyCreatePoster.getPoster_id());
+        assertEquals(createPoster.getPosterId(), verifyCreatePoster.getPosterId());
         assertEquals(createPoster, verifyCreatePoster);
 
         Poster updatePoster = TestDataUtility.posterWithTestValues();
-        updatePoster.setPoster_id(createPoster.getPoster_id());
-        updatePoster.setFirst_name(RandomStringUtils.randomAlphabetic(2000));
+        updatePoster.setPosterId(createPoster.getPosterId());
+        updatePoster.setFirstName(RandomStringUtils.randomAlphabetic(2000));
         posterDao.update(updatePoster);
     }
 
     @Test
-    public void castVote(){
+    public void castVote() {
         Poster poster = TestDataUtility.posterWithTestValues();
         posterDao.create(poster);
         String vote = TestDataUtility.randomAlphanumeric(3);
-        posterDao.setVote(poster.getPoster_id(), vote);
-        poster = posterDao.read(poster.getPoster_id());
-        assertEquals(vote, poster.getVoted_for());
+        posterDao.setVote(poster.getPosterId(), vote);
+        poster = posterDao.read(poster.getPosterId());
+        assertEquals(vote, poster.getVotedFor());
     }
 
     @Test(expected = DaoException.class)
-    public void castInvalidVote(){
+    public void castInvalidVote() {
         posterDao.setVote(TestDataUtility.randomAlphanumeric(3), TestDataUtility.randomAlphabetic(3));
     }
 
@@ -215,22 +209,22 @@ public class PosterDaoUnitTest {
     @Test(expected = DaoException.class)
     public void delete() {
         Poster createPoster = TestDataUtility.posterWithTestValues();
-        createPoster.setPoster_id("U12345");
+        createPoster.setPosterId("U12345");
         posterDao.create(createPoster);
         assertEquals("student", createPoster.getRole());
 
         Poster verifyCreatePoster = posterDao.read("U12345");
         assertNotNull(verifyCreatePoster);
-        assertEquals(createPoster.getPoster_id(), verifyCreatePoster.getPoster_id());
+        assertEquals(createPoster.getPosterId(), verifyCreatePoster.getPosterId());
         assertEquals(createPoster, verifyCreatePoster);
 
-        posterDao.delete(createPoster.getPoster_id());
+        posterDao.delete(createPoster.getPosterId());
 
-        posterDao.read(createPoster.getPoster_id());
+        posterDao.read(createPoster.getPosterId());
     }
 
     /**
-     * Verify that {@link PosterDao#delete} is working correctly when a request for a non-existent {@link Poster#getPoster_id()} is made.
+     * Verify that {@link PosterDao#delete} is working correctly when a request for a non-existent {@link Poster#getPosterId()} is made.
      */
     @Test(expected = RuntimeException.class)
     public void deleteNonExistentPoster() {
