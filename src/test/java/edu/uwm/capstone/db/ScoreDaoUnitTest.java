@@ -4,16 +4,24 @@ import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.UnitTestConfig;
+import edu.uwm.capstone.model.profile.Profile;
+import edu.uwm.capstone.util.TestDataUtility;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.Random;
 
+import static edu.uwm.capstone.util.TestDataUtility.posterWithTestValues;
+import static edu.uwm.capstone.util.TestDataUtility.scoreWithTestValues;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,6 +49,10 @@ public class ScoreDaoUnitTest {
      */
     public static int randomInt(int min, int max) {
         return new Random().ints(min, max).findAny().getAsInt();
+    }
+
+    public static String randomAlphabetic(int characterCount) {
+        return RandomStringUtils.randomAlphabetic(characterCount);
     }
 
 
@@ -75,6 +87,67 @@ public class ScoreDaoUnitTest {
     }
 
 
+    /**
+     * Verify that {@link ScoreDao#read(long)} is returning null when calling read score
+     */
+    @Test
+    public void read(){
+        Long id = new Random().longs(10000L, Long.MAX_VALUE).findAny().getAsLong();
+        Score score = scoreDao.read(id);
+        assertNull(score);
+    }
+
+    @Test
+    public void readScore(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        posterDao.create(poster);
+        assertNotNull(poster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        judgeDao.create(judge);
+        assertNotNull(judge);
+
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPosterId());
+        score.setJudge_id(judge.getJudgeId());
+        assertNotNull(judge);
+
+        Score createdScore = scoreDao.create(score);
+        assertNotNull(createdScore);
+
+        Score readScore = scoreDao.read(score.getJudge_id(), score.getPoster_id());
+        assertNotNull(readScore);
+        //assertEquals(createdScore,readScore);
+    }
+
+    @Test
+    public void readNonExistentScore(){
+        Long judgeID = new Random().longs(10000L, Long.MAX_VALUE).findAny().getAsLong();
+        String posterID = randomAlphabetic(50);
+        Score readScore = scoreDao.read(judgeID,posterID);
+        assertNull(readScore);
+    }
+
+    @Test
+    public void readAllScores(){
+//        Score score1 = TestDataUtility.scoreWithTestValues();
+//        Score score2 = TestDataUtility.scoreWithTestValues();
+//
+//        assertNotNull(score1);
+//        assertNotNull(score2);
+//
+//        scoreDao.create(score1);
+//        scoreDao.create(score2);
+//
+//        List<Score> scoreList= scoreDao.read();
+//        assertNotNull(scoreList);
+    }
+
+    @Test
+    public void readByRound(){
+
+    }
     /**
      * Verify that {@link ScoreDao#create} is working correctly.
      */
@@ -919,11 +992,6 @@ public class ScoreDaoUnitTest {
         s57.setJudge_id(judgeG13.getJudgeId());
         s57.setRound(1);
         scoreDao.create(s57);
-
-
-
-
-
     }
 
 
