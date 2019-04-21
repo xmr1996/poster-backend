@@ -64,8 +64,8 @@ public class JudgeRestController {
     @PutMapping(value = JUDGE_PATH)
     public void update(@RequestBody Judge judge, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            Assert.notNull(judge.getJudgeId(), "Judge Id must not be null");
-            Assert.notNull(judgeDao.read(judge.getJudgeId()), "Could not update judge " + judge.getJudgeId() + " - record not found.");
+            Assert.notNull(judge.getJudge_id(), "Judge Id must not be null");
+            Assert.notNull(judgeDao.read(judge.getJudge_id()), "Could not update judge " + judge.getJudge_id() + " - record not found.");
             judgeDao.update(judge);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -80,18 +80,18 @@ public class JudgeRestController {
     /**
      * Get the {@link Judge} by Id
      *
-     * @param judgeId {@link Judge#getJudgeId()}
+     * @param judge_id {@link Judge#getJudge_id()}
      * @param response  {@link HttpServletResponse}
      * @return {@link Judge} retrieved from the database
      * @throws IOException if error response cannot be created.
      */
-    @ApiOperation(value = "Read Judge by judgeId")
-    @GetMapping(value = JUDGE_PATH + "/judgeId/{judgeId}")
-    public Judge readByJudgeId(@PathVariable Long judgeId, @ApiIgnore HttpServletResponse response) throws IOException {
-        Judge judge = judgeDao.readByJudgeID(judgeId);
+    @ApiOperation(value = "Read Judge by judge_id")
+    @GetMapping(value = JUDGE_PATH + "/judge_id/{judge_id}")
+    public Judge readByJudgeId(@PathVariable Long judge_id, @ApiIgnore HttpServletResponse response) throws IOException {
+        Judge judge = judgeDao.readByJudgeID(judge_id);
 
         if (judge == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Judge with ID: " + judgeId + " not found.");
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Judge with ID: " + judge_id + " not found.");
             return null;
         }
 
@@ -119,17 +119,17 @@ public class JudgeRestController {
 
 
     /**
-     * Delete the {@link Judge} by judgeId
+     * Delete the {@link Judge} by judge_id
      *
-     * @param judgeId {@link Judge#getJudgeId()}
+     * @param judge_id {@link Judge#getJudge_id()}
      * @param response  {@link HttpServletResponse}
      * @throws IOException if error response cannot be created.
      */
-    @ApiOperation(value = "Delete Judge by judgeId")
-    @DeleteMapping(value = JUDGE_PATH + "/judgeId/{judgeId}")
-    public void deleteByJudgeId(@PathVariable Long judgeId, @ApiIgnore HttpServletResponse response) throws IOException {
+    @ApiOperation(value = "Delete Judge by judge_id")
+    @DeleteMapping(value = JUDGE_PATH + "/judge_id/{judge_id}")
+    public void deleteByJudgeId(@PathVariable Long judge_id, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            judgeDao.deleteByJudgeId(judgeId);
+            judgeDao.deleteByJudgeId(judge_id);
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }

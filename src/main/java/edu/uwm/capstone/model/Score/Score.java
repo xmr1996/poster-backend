@@ -2,7 +2,7 @@ package edu.uwm.capstone.model.Score;
 
 public class Score {
     private String poster_id;
-    private Long judgeId;
+    private Long judge_id;
     private int round;
     private Integer research_score;
     private Integer comm_score;
@@ -18,11 +18,11 @@ public class Score {
     }
 
     public Long getJudge_id() {
-        return judgeId;
+        return judge_id;
     }
 
-    public void setJudge_id(Long judgeId) {
-        this.judgeId = judgeId;
+    public void setJudge_id(Long judge_id) {
+        this.judge_id = judge_id;
     }
 
     public int getRound() {

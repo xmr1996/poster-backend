@@ -63,8 +63,8 @@ public class PosterRestController{
     @PutMapping(value = POSTER_PATH)
     public void update(@RequestBody Poster poster, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            Assert.notNull(poster.getPosterId(), "Poster Id must not be null");
-            Assert.notNull(posterDao.read(poster.getPosterId()), "Could not update Poster " + poster.getPosterId()+ " - record not found.");
+            Assert.notNull(poster.getPoster_id(), "Poster Id must not be null");
+            Assert.notNull(posterDao.read(poster.getPoster_id()), "Could not update Poster - record not found.");
             posterDao.update(poster);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
@@ -76,7 +76,7 @@ public class PosterRestController{
     }
 
     /**
-     * calculate {@link Poster#getAvgR1()}
+     * calculate {@link Poster#getAvg_r1()}
      * @param response {@link HttpServletResponse}
      * @throws IOException if error response cannot be created.
      */
@@ -291,7 +291,7 @@ public class PosterRestController{
     /**
      * Delete the {@link Poster} by poster_id
      *
-     * @param posterId {@link Poster#getPosterId()}
+     * @param posterId {@link Poster#getPoster_id()}
      * @param response  {@link HttpServletResponse}
      * @throws IOException if error response cannot be created.
      */

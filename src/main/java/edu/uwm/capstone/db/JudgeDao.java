@@ -2,16 +2,13 @@ package edu.uwm.capstone.db;
 
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.sql.dao.BaseDao;
-import edu.uwm.capstone.sql.exception.DaoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-
 import java.util.Collections;
+import edu.uwm.capstone.sql.exception.DaoException;
 import java.util.List;
-
-import static edu.uwm.capstone.db.JudgeDaoRowMapper.JudgeColumnType.JUDGE_ID;
 
 
 public class JudgeDao extends BaseDao<Judge> {
@@ -20,7 +17,6 @@ public class JudgeDao extends BaseDao<Judge> {
 
     /**
      * Create a {@link Judge} object.
-     *
      * @param judge {@link Judge}
      * @return {@link Judge}
      */
@@ -50,7 +46,7 @@ public class JudgeDao extends BaseDao<Judge> {
     public Judge readByJudgeID(long judgeId) {
         LOG.trace("Reading judge {}", judgeId);
         try {
-            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudgeByJudgeId"), new MapSqlParameterSource(JUDGE_ID.getColumnName(), judgeId), rowMapper);
+            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudgeByJudgeId"), new MapSqlParameterSource("judge_id", judgeId), rowMapper);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
@@ -65,25 +61,25 @@ public class JudgeDao extends BaseDao<Judge> {
         }
     }
 
-    public Judge read(String email, String pin) {
+    public Judge read(String email, String pin){
         LOG.trace("Reading Judge {}", email);
-        try {
+        try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("email", email);
             parameters.addValue("pin", pin);
-            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudgeEmailPin"), parameters, rowMapper);
-        } catch (EmptyResultDataAccessException e) {
+            return (Judge) this.jdbcTemplate.queryForObject(sql("readJudgeEmailPin"),parameters, rowMapper);
+        }catch (EmptyResultDataAccessException e) {
             return null;
         }
     }
 
-    public List<Judge> readAllJudges(String status) {
-        try {
-            if (status.equalsIgnoreCase("graduate"))
+    public List<Judge> readAllJudges(String status){
+        try{
+            if(status.equalsIgnoreCase("graduate"))
                 return (List<Judge>) this.jdbcTemplate.query(sql("readJudgesByStatus"), new MapSqlParameterSource("status", "Graduate"), rowMapper);
             else
                 return (List<Judge>) this.jdbcTemplate.query(sql("readJudgesByStatus"), new MapSqlParameterSource("status", "Undergraduate"), rowMapper);
-        } catch (EmptyResultDataAccessException e) {
+        }catch (EmptyResultDataAccessException e){
             return Collections.emptyList();
         }
     }
@@ -97,7 +93,7 @@ public class JudgeDao extends BaseDao<Judge> {
     public void update(Judge judge) {
         if (judge == null) {
             throw new DaoException("Request to update a Judge received null");
-        } else if (judge.getJudgeId() == null) {
+        } else if (judge.getJudge_id() == null) {
             throw new DaoException("When updating a Judge the id should not be null");
         }
 
@@ -116,17 +112,17 @@ public class JudgeDao extends BaseDao<Judge> {
     }
 
     public void deleteByJudgeId(long judgeId) {
-        LOG.trace("Deleting judge by judgeId{}", judgeId);
-        int result = this.jdbcTemplate.update(sql("deleteJudgeByJudgeId"), new MapSqlParameterSource(JUDGE_ID.getColumnName(), judgeId));
+        LOG.trace("Deleting judge by judge_id{}", judgeId);
+        int result = this.jdbcTemplate.update(sql("deleteJudgeByJudgeId"), new MapSqlParameterSource("judge_id", judgeId));
         if (result != 1) {
             throw new DaoException("Failed attempt to update judge " + judgeId + " affected " + result + " rows");
         }
     }
 
-    public void clearTable() {
+    public void clearTable(){
         LOG.trace("Clearing judges table");
         int result = this.jdbcTemplate.update(sql("clearJudges"), Collections.emptyMap());
-        if (result < 0) {
+        if(result < 0){
             throw new DaoException("Failed attempt to clear judges table");
         }
     }

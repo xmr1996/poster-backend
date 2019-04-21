@@ -45,11 +45,11 @@ public class AdminDaoUnitTest {
         adminDao.create(createAdmin);
         assertNotNull(createAdmin.getEmail());
         assertNotNull(createAdmin.getPin());
-        assertNotNull(createAdmin.getLastName());
-        assertNotNull(createAdmin.getFirstName());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
         assertNotNull(createAdmin.getRole());
-        assertTrue(createAdmin.getCanRead());
-        assertTrue(createAdmin.getCanWrite());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
     }
 
     /**
@@ -68,7 +68,7 @@ public class AdminDaoUnitTest {
     public void createAdminColumnTooLong() {
         // generate a test profile value with a column that will exceed the database configuration
         Admin createAdmin = TestDataUtility.adminWithTestValues();
-        createAdmin.setFirstName(RandomStringUtils.randomAlphabetic(2000));
+        createAdmin.setFirst_name(RandomStringUtils.randomAlphabetic(2000));
         adminDao.create(createAdmin);
     }
 
@@ -81,11 +81,11 @@ public class AdminDaoUnitTest {
         adminDao.create(createAdmin);
         assertNotNull(createAdmin.getEmail());
         assertNotNull(createAdmin.getPin());
-        assertNotNull(createAdmin.getLastName());
-        assertNotNull(createAdmin.getFirstName());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
         assertNotNull(createAdmin.getRole());
-        assertTrue(createAdmin.getCanRead());
-        assertTrue(createAdmin.getCanWrite());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
 
         Admin readAdmin = adminDao.read(createAdmin.getEmail());
         assertNotNull(readAdmin);
@@ -114,11 +114,11 @@ public class AdminDaoUnitTest {
         adminDao.create(createAdmin);
         assertNotNull(createAdmin.getEmail());
         assertNotNull(createAdmin.getPin());
-        assertNotNull(createAdmin.getLastName());
-        assertNotNull(createAdmin.getFirstName());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
         assertNotNull(createAdmin.getRole());
-        assertTrue(createAdmin.getCanRead());
-        assertTrue(createAdmin.getCanWrite());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
 
         Admin readAdmin = adminDao.read(createAdmin.getEmail(),createAdmin.getPin());
         assertNotNull(readAdmin);
@@ -135,32 +135,32 @@ public class AdminDaoUnitTest {
         adminDao.create(createAdmin);
         assertNotNull(createAdmin.getEmail());
         assertNotNull(createAdmin.getPin());
-        assertNotNull(createAdmin.getLastName());
-        assertNotNull(createAdmin.getFirstName());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
         assertNotNull(createAdmin.getRole());
-        assertTrue(createAdmin.getCanRead());
-        assertTrue(createAdmin.getCanWrite());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
 
         Admin verifyCreateAdmin = adminDao.read(createAdmin.getEmail());
         assertNotNull(verifyCreateAdmin);
         assertEquals(createAdmin.getEmail(), verifyCreateAdmin.getEmail());
 
         Admin updateAdmin = TestDataUtility.adminWithTestValues();
-        updateAdmin.setFirstName(createAdmin.getFirstName());
-        updateAdmin.setLastName(createAdmin.getLastName());
+        updateAdmin.setFirst_name(createAdmin.getFirst_name());
+        updateAdmin.setLast_name(createAdmin.getLast_name());
         updateAdmin.setEmail(createAdmin.getEmail());
         updateAdmin.setPin(createAdmin.getPin());
         updateAdmin.setRole(createAdmin.getRole());
-        updateAdmin.setCanWrite(createAdmin.getCanWrite());
-        updateAdmin.setCanRead(createAdmin.getCanRead());
+        updateAdmin.setWrite_w(createAdmin.isWrite_w());
+        updateAdmin.setRead_r(createAdmin.isRead_r());
         adminDao.update(updateAdmin);
 
         Admin verifyUpdateAdmin = adminDao.read(updateAdmin.getEmail());
         assertNotNull(verifyUpdateAdmin);
         assertEquals(createAdmin.getEmail(), verifyUpdateAdmin.getEmail());
         assertEquals(createAdmin.getPin(), verifyUpdateAdmin.getPin());
-        assertEquals(createAdmin.getFirstName(), verifyUpdateAdmin.getFirstName());
-        assertEquals(createAdmin.getLastName(), verifyUpdateAdmin.getLastName());
+        assertEquals(createAdmin.getFirst_name(), verifyUpdateAdmin.getFirst_name());
+        assertEquals(createAdmin.getLast_name(), verifyUpdateAdmin.getLast_name());
 
     }
 
@@ -192,18 +192,18 @@ public class AdminDaoUnitTest {
         adminDao.create(createAdmin);
         assertNotNull(createAdmin.getEmail());
         assertNotNull(createAdmin.getPin());
-        assertNotNull(createAdmin.getLastName());
-        assertNotNull(createAdmin.getFirstName());
+        assertNotNull(createAdmin.getLast_name());
+        assertNotNull(createAdmin.getFirst_name());
         assertNotNull(createAdmin.getRole());
-        assertTrue(createAdmin.getCanRead());
-        assertTrue(createAdmin.getCanWrite());
+        assertTrue(createAdmin.isRead_r());
+        assertTrue(createAdmin.isWrite_w());
 
         Admin verifyCreateAdmin = adminDao.read(createAdmin.getEmail());
 
         assertNotNull(verifyCreateAdmin);
         assertEquals(createAdmin.getEmail(),verifyCreateAdmin.getEmail());
-        assertEquals(createAdmin.getFirstName(),verifyCreateAdmin.getFirstName());
-        assertEquals(createAdmin.getLastName(),verifyCreateAdmin.getLastName());
+        assertEquals(createAdmin.getFirst_name(),verifyCreateAdmin.getFirst_name());
+        assertEquals(createAdmin.getLast_name(),verifyCreateAdmin.getLast_name());
         assertEquals(createAdmin.getRole(),verifyCreateAdmin.getRole());
         assertEquals(createAdmin.getPin(),verifyCreateAdmin.getPin());
         adminDao.delete(createAdmin.getEmail());

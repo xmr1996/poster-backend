@@ -76,7 +76,7 @@ public class ScoreRestControllerUnitTest{
     public void GenerateRoundTwoAssignments() throws IOException{
         List<String> posters = new ArrayList<>();
         Poster poster1 = posterWithTestValues();
-        posters.add(poster1.getPosterId());
+        posters.add(poster1.getPoster_id());
         when(posterDao.read(anyString())).thenReturn(poster1);
 
         List<Judge> judges = new ArrayList<>();
@@ -99,7 +99,7 @@ public class ScoreRestControllerUnitTest{
         List<String> posters = new ArrayList<>();
         Score score = scoreWithTestValues();
         Poster poster = posterWithTestValues();
-        posters.add(poster.getPosterId());
+        posters.add(poster.getPoster_id());
         //when(posterDao.read(anyString())).thenReturn(poster);
         //doThrow(new DaoException(TEST_ERROR_MESSAGE)).when(posterDao).read(anyString());
         //scoreRestController.GenerateRoundTwoAssignments(posters,response);
