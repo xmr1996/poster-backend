@@ -18,12 +18,12 @@ cache:
 Unit Tests:
   stage: Test
   script:
-    - mvn $MAVEN_CLI_OPTS clean test
+    - mvn $MAVEN_CLI_OPTS install
 
 Component Tests:
   stage: Test
   script:
-    - mvn $MAVEN_CLI_OPTS -P test-component clean test
+    - mvn $MAVEN_CLI_OPTS -P test-component test
   when: on_success
 
 SonarQube Analyze:

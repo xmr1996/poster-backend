@@ -1,24 +1,25 @@
 package edu.uwm.capstone.db;
 
-import edu.uwm.capstone.model.Poster.Poster;
-import edu.uwm.capstone.sql.dao.BaseDao;
-import edu.uwm.capstone.sql.exception.DaoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import edu.uwm.capstone.model.Poster.Poster;
+import edu.uwm.capstone.sql.dao.BaseDao;
+import edu.uwm.capstone.sql.exception.DaoException;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static edu.uwm.capstone.db.PosterDaoRowMapper.PosterColumnType.STATUS;
-import static edu.uwm.capstone.db.PosterScoreRowMapper.PosterScoreColumnType.POSTER_ID;
 
 
 public class PosterDao extends BaseDao<Poster> {
 
     private static final Logger LOG = LoggerFactory.getLogger(PosterDao.class);
+
+    private static final String POSTER_ID = "poster_id";
+    private static final String STATUS = "status";
 
     /**
      * Create a {@link Poster} object.
@@ -32,8 +33,8 @@ public class PosterDao extends BaseDao<Poster> {
         // validate input
         if (poster == null) {
             throw new DaoException("Request to create a new Poster received null");
-        } else if (poster.getPosterId().length() < 1) {
-            throw new DaoException("Request to create a new Poster received an empty posterId");
+        } else if(poster.getPoster_id().length() < 1){
+            throw new DaoException("Request to create a new Poster receieved an empty poster_id");
         }
 
         LOG.trace("Creating poster {}", poster);
@@ -52,7 +53,7 @@ public class PosterDao extends BaseDao<Poster> {
 
     @Override
     public Poster read(long id) {
-        throw new UnsupportedOperationException("unsupported operation");
+        return null;
     }
 
     public List<Poster> read() {
@@ -65,54 +66,40 @@ public class PosterDao extends BaseDao<Poster> {
     }
 
     /**
-     * Retrieve a {@link Poster} object by its {@link Poster#getPosterId()}.
+     * Retrieve a {@link Poster} object by its {@link Poster#getPoster_id()}.
      *
-     * @param posterId string
+     * @param posterID string
      * @return {@link Poster}
      */
-    public Poster read(String posterId) {
-        LOG.trace("Reading poster {}", posterId);
+    public Poster read(String posterID) {
+        LOG.trace("Reading poster {}", posterID);
         try {
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue(POSTER_ID.getColumnName(), posterId);
-            return (Poster) this.jdbcTemplate.queryForObject(sql("readPosterByID"), parameters, rowMapper);
+            parameters.addValue(POSTER_ID, posterID);
+            return (Poster) this.jdbcTemplate.queryForObject(sql("readPosterByID"),parameters, rowMapper);
         } catch (EmptyResultDataAccessException e) {
-            throw new DaoException("No poster matches the given posterId");
+            throw new DaoException("No poster matches the given poster_id");
         }
     }
 
-    /**
-     * Retrieve a {@link Poster} object by its email and pin}.
-     *
-     * @param email
-     * @param pin
-     * @return
-     */
-    public Poster read(String email, String pin) {
-        LOG.trace("Reading Poster by email {}", email);
-        try {
+    public Poster read(String email, String pin){
+        LOG.trace("Reading Poster []");
+        try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
             parameters.addValue("email", email);
             parameters.addValue("pin", pin);
-            return (Poster) this.jdbcTemplate.queryForObject(sql("readPosterEmailPin"), parameters, rowMapper);
-        } catch (EmptyResultDataAccessException e) {
+            return (Poster) this.jdbcTemplate.queryForObject(sql("readPosterEmailPin"),parameters, rowMapper);
+        } catch (EmptyResultDataAccessException e){
             return null;
         }
     }
 
-    /**
-     * Retrieve a {@link Poster}s by status}.
-     *
-     * @param status
-     * @return
-     */
-    public List<Poster> getPosterByStatus(String status) {
-        LOG.trace("Reading Posters by status {}", status);
-        try {
+    public List<Poster> getPosterByStatus(String status){
+        try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue(STATUS.getColumnName(), status);
-            return (List<Poster>) this.jdbcTemplate.query(sql("readPostersByStatus"), parameters, rowMapper);
-        } catch (EmptyResultDataAccessException e) {
+            parameters.addValue(STATUS, status);
+            return (List<Poster>) this.jdbcTemplate.query(sql("readPostersByStatus"),parameters,rowMapper);
+        } catch(EmptyResultDataAccessException e){
             return new ArrayList<>();
         }
 
@@ -127,7 +114,7 @@ public class PosterDao extends BaseDao<Poster> {
     public void update(Poster poster) {
         if (poster == null) {
             throw new DaoException("Request to update a Poster received null");
-        } else if (poster.getPosterId() == null) {
+        } else if (poster.getPoster_id() == null) {
             throw new DaoException("When updating a Poster the id should not be null");
         }
 
@@ -140,54 +127,56 @@ public class PosterDao extends BaseDao<Poster> {
         }
     }
 
-    public void setVote(String posterId, String vote) {
+    public void setVote(String posterId, String vote){
         MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue(POSTER_ID.getColumnName(), posterId);
+        parameters.addValue(POSTER_ID, posterId);
         parameters.addValue("vote", vote);
         int result = this.jdbcTemplate.update(sql("setVote"), parameters);
 
-        if (result != 1) {
+        if (result != 1){
             throw new DaoException("Failed to cast vote");
         }
     }
 
     @Override
     public void delete(long id) {
-        throw new UnsupportedOperationException("unsupported operation");
+        //delete methoed with string paramtere is used down bellow
     }
 
     /**
-     * Delete a {@link Poster} object by its {@link Poster#getPosterId()}.
+     * Delete a {@link Poster} object by its {@link Poster#getPoster_id()}.
      *
-     * @param posterId String
+     * @param posterID String
      */
-    public void delete(String posterId) {
-        LOG.trace("Deleting poster{}", posterId);
-        int result = this.jdbcTemplate.update(sql("deletePoster"), new MapSqlParameterSource(POSTER_ID.getColumnName(), posterId));
-        if (result != 1) {
-            throw new DaoException("Failed attempt to delete poster " + posterId + " affected " + result + " rows");
+    public void delete(String posterID){
+        LOG.trace("Deleting poster{}",posterID);
+        int result = this.jdbcTemplate.update(sql("deletePoster"), new MapSqlParameterSource(POSTER_ID, posterID));
+        if(result != 1){
+            throw new DaoException("Failed attempt to delete poster " + posterID + " affected " + result + " rows");
         }
     }
 
-    public List<Poster> getTop6R1(String status) {
-        try {
+    public List<Poster> getTop6R1(String status){
+        try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue(STATUS.getColumnName(), status);
-            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR1"), parameters, rowMapper);
-        } catch (EmptyResultDataAccessException e) {
+            parameters.addValue(STATUS, status);
+            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR1"),parameters,rowMapper);
+        } catch(EmptyResultDataAccessException e){
             return Collections.emptyList();
         }
     }
 
-    public List<Poster> getTop6R2(String status) {
-        try {
+    public List<Poster> getTop6R2(String status){
+        try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue(STATUS.getColumnName(), status);
-            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR2"), parameters, rowMapper);
-        } catch (EmptyResultDataAccessException e) {
+            parameters.addValue(STATUS, status);
+            return (List<Poster>) this.jdbcTemplate.query(sql("getTop6PostersR2"),parameters,rowMapper);
+        } catch(EmptyResultDataAccessException e){
             return Collections.emptyList();
         }
+
     }
+
 
     public void calculateAvgRound1() {
         LOG.trace("calculateAvgForAllR1");
@@ -229,10 +218,10 @@ public class PosterDao extends BaseDao<Poster> {
         this.jdbcTemplate.update(sql("insertAvgPresR2"), Collections.emptyMap());
     }
 
-    public void clearTable() {
+    public void clearTable(){
         LOG.trace("Clearing posters table");
         int result = this.jdbcTemplate.update(sql("clearPosters"), Collections.emptyMap());
-        if (result < 0) {
+        if(result < 0){
             throw new DaoException("Failed attempt to clear posters table");
         }
     }
