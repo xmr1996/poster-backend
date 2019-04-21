@@ -4,6 +4,7 @@ import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.UnitTestConfig;
+import edu.uwm.capstone.sql.exception.DaoException;
 import edu.uwm.capstone.util.TestDataUtility;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
@@ -14,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -76,6 +78,141 @@ public class ScoreDaoUnitTest {
         scoreDao.create(null);
     }
 
+    @Test
+    public void readScore(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        assertNotNull(createdPoster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        Judge createdJudge = judgeDao.create(judge);
+        assertNotNull(createdJudge);
+
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPoster_id());
+        score.setJudge_id(judge.getJudge_id());
+        assertNotNull(score);
+
+        Score createdScore = scoreDao.create(score);
+        assertNotNull(createdScore);
+
+        Score readScore = scoreDao.read(score.getJudge_id(), score.getPoster_id());
+        assertNotNull(readScore);
+        assertEquals(createdScore.getPoster_id(),readScore.getPoster_id());
+    }
+
+    @Test
+    public void readAllScores(){
+        List<Score> scoreList= scoreDao.read();
+        int initialSize = scoreList.size();
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        assertNotNull(createdPoster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        Judge createdJudge = judgeDao.create(judge);
+        assertNotNull(createdJudge);
+
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPoster_id());
+        score.setJudge_id(judge.getJudge_id());
+        assertNotNull(score);
+
+        Score createdScore = scoreDao.create(score);
+        assertNotNull(createdScore);
+
+        scoreDao.create(score);
+
+        scoreList= scoreDao.read();
+        assertNotNull(scoreList);
+
+        assertEquals(initialSize+1,scoreList.size());
+    }
+
+    @Test
+    public void readByRound(){
+        List<Score> scores = scoreDao.readByRound(1);
+        int initialSize = scores.size();
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        assertNotNull(createdPoster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        Judge createdJudge = judgeDao.create(judge);
+        assertNotNull(createdJudge);
+
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPoster_id());
+        score.setJudge_id(judge.getJudge_id());
+        score.setRound(1);
+        scoreDao.create(score);
+
+        scores = scoreDao.readByRound(1);
+        assertEquals(initialSize+1,scores.size());
+
+    }
+
+    @Test
+    public void readByInvalidRound(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        assertNotNull(createdPoster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        Judge createdJudge = judgeDao.create(judge);
+        assertNotNull(createdJudge);
+
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPoster_id());
+        score.setJudge_id(judge.getJudge_id());
+        score.setRound(1);
+        scoreDao.create(score);
+
+        List<Score> scores = scoreDao.readByRound(2);
+        assertEquals(0,scores.size());
+    }
+
+    @Test
+    public void update(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        assertNotNull(createdPoster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        Judge createdJudge = judgeDao.create(judge);
+        assertNotNull(createdJudge);
+
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPoster_id());
+        score.setJudge_id(judge.getJudge_id());
+        Score createdScore = scoreDao.create(score);
+        assertNotNull(createdScore);
+
+        Score verifyCreatedScore = scoreDao.read(score.getJudge_id(),score.getPoster_id());
+        assertNotNull(verifyCreatedScore);
+        assertEquals(score.getPoster_id(),verifyCreatedScore.getPoster_id());
+
+        Score updateScore = TestDataUtility.scoreWithTestValues();
+        updateScore.setJudge_id(score.getJudge_id());
+        updateScore.setPoster_id(score.getPoster_id());
+        updateScore.setComm_score(20);
+//        scoreDao.update(updateScore);
+
+        Score verifyUpdateScore = scoreDao.read(updateScore.getJudge_id(),updateScore.getPoster_id());
+        assertNotNull(verifyUpdateScore);
+        //assertEquals(updatedscore);
+
+    }
+
+    @Test(expected = DaoException.class)
+    public void updateNullScore(){
+        scoreDao.update(null);
+    }
 
     /**
      * Verify that {@link ScoreDao#create} is working correctly.
