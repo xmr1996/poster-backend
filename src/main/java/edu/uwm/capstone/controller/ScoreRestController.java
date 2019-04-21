@@ -197,11 +197,11 @@ public class ScoreRestController {
         }
     }
 
-    @ApiOperation(value = "Delete score by judge_id and poster_id")
-    @DeleteMapping(value = SCORE_PATH + "{judge_id}/{poster_id}")
-    public void delete(@PathVariable Long judge_id, @PathVariable String poster_id, @ApiIgnore HttpServletResponse response) throws IOException {
+    @ApiOperation(value = "Delete score by judgeId and poster_id")
+    @DeleteMapping(value = SCORE_PATH + "{judgeId}/{poster_id}")
+    public void delete(@PathVariable Long judgeId, @PathVariable String posterId, @ApiIgnore HttpServletResponse response) throws IOException {
         try{
-            scoreDao.deleteScoreByID(judge_id, poster_id);
+            scoreDao.deleteScoreByID(judgeId, posterId);
         } catch(Exception e){
             response.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         }
