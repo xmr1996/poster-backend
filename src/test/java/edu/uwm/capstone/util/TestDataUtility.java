@@ -10,7 +10,6 @@ import java.util.Random;
 import edu.uwm.capstone.model.Admin.Admin;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
-import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.model.Round.Round;
 import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.model.Assignment.Assignment;
@@ -110,24 +109,6 @@ public class TestDataUtility {
         round.setRound1(true);
         round.setRound2(false);
         return round;
-    }
-
-    public static PosterScore posterScoreWithTestValues(){
-        PosterScore posterScore = new PosterScore();
-        posterScore.setPoster_id(randomAlphabetic(randomInt(1, 100)));
-        posterScore.setJudge_id(randomLong(1L,100L));
-        posterScore.setRound(randomInt(1,2));
-        posterScore.setResearch_score(randomInt(1,50));
-        posterScore.setComm_score(randomInt(1,30));
-        posterScore.setPoster_score(randomInt(1,20));
-        posterScore.setFirst_name(randomAlphabetic(randomInt(1, 100)));
-        posterScore.setPin(randomInt(1, 100000));
-        posterScore.setLast_name(randomAlphabetic(randomInt(1, 100)));
-        posterScore.setStatus(randomAlphabetic(randomInt(1, 100)));
-        posterScore.setEmail(randomAlphabetic(randomInt(1, 100)));
-        posterScore.setDepartment(randomAlphabetic(randomInt(1, 100)));
-        posterScore.setPoster_id(randomAlphabetic(randomInt(1, 100)));
-        return posterScore;
     }
 
     public static Double randomDouble() { return new Random().nextDouble(); }
