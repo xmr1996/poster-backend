@@ -24,10 +24,6 @@ public class VoteDaoRowMapper extends BaseRowMapper<Vote> {
             columnName = name().toLowerCase();
         }
 
-        VoteColumnType(String columnName) {
-            this.columnName = columnName;
-        }
-
         public String getColumnName(){
             return columnName;
         }
