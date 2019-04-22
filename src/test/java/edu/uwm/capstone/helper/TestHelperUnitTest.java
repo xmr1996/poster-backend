@@ -8,9 +8,6 @@ import java.util.*;
 import org.junit.Test;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-
-import edu.uwm.capstone.model.cards.Rank;
-import edu.uwm.capstone.model.cards.Suit;
 import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import static org.junit.Assert.*;
 
@@ -160,24 +157,6 @@ public class TestHelperUnitTest {
         String randomString = TestHelper.randomStringFromList(listOfRandomStrings);
         assertNotNull(randomString);
         assertTrue(listOfRandomStrings.contains(randomString));
-    }
-
-    /**
-     * Verify that {@link TestHelper#randomRank} creates a random {@link Rank}.
-     */
-    @Test
-    public void randomRank() {
-        assertNotNull(TestHelper.randomRank());
-        assertTrue(TestHelper.randomRank() instanceof Rank);
-    }
-
-    /**
-     * Verify that {@link TestHelper#randomSuit} creates a random {@link Suit}.
-     */
-    @Test
-    public void randomSuit() {
-        assertNotNull(TestHelper.randomSuit());
-        assertTrue(TestHelper.randomSuit() instanceof Suit);
     }
 
     /**
