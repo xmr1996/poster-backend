@@ -73,14 +73,13 @@ public class AdminRestController {
     @ApiOperation(value = "Read Admin Account by Email")
     @GetMapping(value = ADMIN_PATH + "{email}")
     public Admin readById(@PathVariable String email, @ApiIgnore HttpServletResponse response) throws IOException {
-        Admin admin = adminDao.read(email);
-
-        if (admin == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Admin with Email: " + email + " not found.");
-            return null;
-        }
-
-        return admin;
+       try{
+           return adminDao.read(email);
+       }
+       catch(Exception e){
+           response.sendError(HttpServletResponse.SC_NOT_FOUND,e.getMessage());
+           return null;
+       }
     }
 
     /**
@@ -114,7 +113,7 @@ public class AdminRestController {
     @PutMapping(value = ADMIN_PATH)
     public void update(@RequestBody Admin admin, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
-            Assert.notNull(adminDao.read(admin.getEmail()), "Could not update Admin " + admin.getEmail() + " - record not found.");
+            Assert.notNull(adminDao.read(admin.getEmail()), "Could not update Admin - record not found.");
             adminDao.update(admin);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
