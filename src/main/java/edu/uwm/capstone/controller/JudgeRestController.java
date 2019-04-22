@@ -65,7 +65,7 @@ public class JudgeRestController {
     public void update(@RequestBody Judge judge, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
             Assert.notNull(judge.getJudge_id(), "Judge Id must not be null");
-            Assert.notNull(judgeDao.read(judge.getJudge_id()), "Could not update judge " + judge.getJudge_id() + " - record not found.");
+            Assert.notNull(judgeDao.readByJudgeID(judge.getJudge_id()), "Could not update judge " + judge.getJudge_id() + " - record not found.");
             judgeDao.update(judge);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);
