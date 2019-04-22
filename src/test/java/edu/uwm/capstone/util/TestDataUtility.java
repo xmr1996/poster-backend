@@ -14,6 +14,7 @@ import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.model.Round.Round;
 import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.model.Assignment.Assignment;
+import edu.uwm.capstone.model.Vote.Vote;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import edu.uwm.capstone.model.profile.Profile;
@@ -128,6 +129,13 @@ public class TestDataUtility {
         posterScore.setDepartment(randomAlphabetic(randomInt(1, 100)));
         posterScore.setPoster_id(randomAlphabetic(randomInt(1, 100)));
         return posterScore;
+    }
+
+    public static Vote voteWithTestValues(){
+        Vote vote = new Vote();
+        vote.setPoster_id(randomAlphabetic(randomInt(1, 100)));
+        vote.setVotes(randomInt(1,50));
+        return vote;
     }
 
 
