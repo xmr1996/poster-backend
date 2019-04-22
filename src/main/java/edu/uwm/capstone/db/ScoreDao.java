@@ -117,7 +117,7 @@ public class ScoreDao extends BaseDao<Score> {
         LOG.trace("Updating score {}", score);
         int result = this.jdbcTemplate.update(sql("upsertScore"), new MapSqlParameterSource(rowMapper.mapObject(score)));
 
-        if (result != 1) {
+        if (result < 1) {
             throw new DaoException("Failed attempt to update score " + score.toString() + " affected " + result + " rows");
         }
     }

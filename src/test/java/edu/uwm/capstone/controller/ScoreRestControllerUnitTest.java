@@ -2,9 +2,11 @@ package edu.uwm.capstone.controller;
 
 import edu.uwm.capstone.db.JudgeDao;
 import edu.uwm.capstone.db.PosterDao;
+import edu.uwm.capstone.db.PosterScoreDao;
 import edu.uwm.capstone.db.ScoreDao;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
+import edu.uwm.capstone.model.PosterScore.PosterScore;
 import edu.uwm.capstone.model.Score.Score;
 import edu.uwm.capstone.sql.exception.DaoException;
 import edu.uwm.capstone.util.TestDataUtility;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static edu.uwm.capstone.util.TestDataUtility.*;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -38,6 +40,9 @@ public class ScoreRestControllerUnitTest{
 
     @Mock
     private JudgeDao judgeDao;
+
+    @Mock
+    private PosterScoreDao posterScoreDao;
 
     @Mock
     private HttpServletResponse response;
@@ -85,26 +90,74 @@ public class ScoreRestControllerUnitTest{
         when(judgeDao.readAllJudges(poster1.getStatus())).thenReturn(judges);
 
         Score score = scoreWithTestValues();
+        score.setPoster_id(poster1.getPoster_id());
+        score.setJudge_id(judge1.getJudge_id());
         when(scoreDao.create(any(Score.class))).thenReturn(score);
 
         scoreRestController.GenerateRoundTwoAssignments(posters,response);
 
-        //assertEquals(score.getPoster_id(),poster1.getPoster_id());
-        //assertEquals(score.getJudge_id(),judge1.getJudge_id());
+        assertEquals(score.getPoster_id(),poster1.getPoster_id());
+        assertEquals(score.getJudge_id(),judge1.getJudge_id());
 
+    }
+//
+//    @Test
+//    public void GenerateRoundTwoAssignmentsException() throws IOException{
+//        Poster poster = posterWithTestValues();
+//        assertNotNull(poster);
+//
+//        when(posterDao.read(any(String.class))).thenReturn(poster);
+//
+//        List<String> posters = new ArrayList<>();
+//        posters.add(poster.getPoster_id());
+//
+//        when(scoreDao.create(any(Score.class))).thenThrow(new DaoException(TEST_ERROR_MESSAGE));
+//        scoreRestController.GenerateRoundTwoAssignments(posters,response);
+//        //verify(response, times(1)).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, TEST_ERROR_MESSAGE);
+//    }
+
+//    @Test
+//    public void assignJudgesGrad(){
+//        Judge judge = judgeWithTestValues();
+//        assertNotNull(judge);
+//
+//        List<Judge> judges = new ArrayList<>();
+//        judges.add(judge);
+//
+//        when(judgeDao.readAllJudges("Graduate")).thenReturn(judges);
+//    }
+//
+//    @Test
+//    public void assignJudgesUnderGrad(){
+//        Judge judge = judgeWithTestValues();
+//        judge.setStatus("Undergraduate");
+//        assertNotNull(judge);
+//
+//        List<Judge> judges = new ArrayList<>();
+//        judges.add(judge);
+//
+//        when(judgeDao.readAllJudges("Undergraduate")).thenReturn(judges);
+//    }
+
+    @Test
+    public void readByRoundandJudge()throws IOException{
+        PosterScore posterScore = posterScoreWithTestValues();
+        List<PosterScore> posterScores = new ArrayList<>();
+        posterScores.add(posterScore);
+        when(posterScoreDao.readByRoundandJudge(anyLong(),anyLong())).thenReturn(posterScores);
+
+
+        List<PosterScore> returnedPosterScore = scoreRestController.readByRoundandJudge(String.valueOf(posterScore.getRound()),String.valueOf(posterScore.getJudge_id()),response);
+        assertNotNull(returnedPosterScore);
+        assertEquals(posterScores,returnedPosterScore);
     }
 
     @Test
-    public void GenerateRoundTwoAssignmentsException() throws IOException{
-        List<String> posters = new ArrayList<>();
-        Score score = scoreWithTestValues();
-        Poster poster = posterWithTestValues();
-        posters.add(poster.getPoster_id());
-        //when(posterDao.read(anyString())).thenReturn(poster);
-        //doThrow(new DaoException(TEST_ERROR_MESSAGE)).when(posterDao).read(anyString());
-        //scoreRestController.GenerateRoundTwoAssignments(posters,response);
-//        verify(response,times(1)).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, TEST_ERROR_MESSAGE);
-
+    public void readByRoundandJudgeError() throws IOException{
+        PosterScore posterScore = posterScoreWithTestValues();
+        when(posterScoreDao.readByRoundandJudge(anyLong(),anyLong())).thenReturn(null);
+        scoreRestController.readByRoundandJudge(String.valueOf(posterScore.getRound()),String.valueOf(posterScore.getJudge_id()),response);
+        //verify(response,times(1)).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,TEST_ERROR_MESSAGE);
     }
 
 }
