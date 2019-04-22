@@ -12,6 +12,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -47,6 +49,10 @@ public class ScoreDaoUnitTest {
         return new Random().ints(min, max).findAny().getAsInt();
     }
 
+    public static long randomLong(long min, long max){
+        return new Random().longs(min,max).findAny().getAsLong();
+    }
+
 
     @Before
     public void setUp() {
@@ -76,6 +82,21 @@ public class ScoreDaoUnitTest {
     @Test(expected = RuntimeException.class)
     public void createNullScore() {
         scoreDao.create(null);
+    }
+
+    @Test(expected =  DaoException.class)
+    public void createDaoException(){
+        Score score = TestDataUtility.scoreWithTestValues();
+        assertNotNull(score);
+        score.setPoster_id(null);
+        scoreDao.create(score);
+    }
+
+
+    @Test
+    public void readLong(){
+        Score score = scoreDao.read(randomLong(1L,100L));
+        assertNull(score);
     }
 
     @Test
@@ -198,10 +219,9 @@ public class ScoreDaoUnitTest {
         assertEquals(score.getPoster_id(),verifyCreatedScore.getPoster_id());
 
         Score updateScore = TestDataUtility.scoreWithTestValues();
-        updateScore.setJudge_id(score.getJudge_id());
-        updateScore.setPoster_id(score.getPoster_id());
-        updateScore.setComm_score(20);
-//        scoreDao.update(updateScore);
+        updateScore.setJudge_id(verifyCreatedScore.getJudge_id());
+        updateScore.setPoster_id(verifyCreatedScore.getPoster_id());
+        //scoreDao.update(updateScore);
 
         Score verifyUpdateScore = scoreDao.read(updateScore.getJudge_id(),updateScore.getPoster_id());
         assertNotNull(verifyUpdateScore);
@@ -213,6 +233,76 @@ public class ScoreDaoUnitTest {
     public void updateNullScore(){
         scoreDao.update(null);
     }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void updateDataIntegrityException(){
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setJudge_id(randomLong(1L,100L));
+        scoreDao.update(score);
+    }
+
+    @Test
+    public void deleteById(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        assertNotNull(createdPoster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        Judge createdJudge = judgeDao.create(judge);
+        assertNotNull(createdJudge);
+
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPoster_id());
+        score.setJudge_id(judge.getJudge_id());
+        Score createdScore = scoreDao.create(score);
+        assertNotNull(createdScore);
+
+        scoreDao.deleteScoreByID(createdScore.getJudge_id(),createdScore.getPoster_id());
+
+        Score verifyDeletedScore = scoreDao.read(createdScore.getJudge_id(),createdScore.getPoster_id());
+        assertNull(verifyDeletedScore);
+    }
+
+    @Test
+    public void deleteByRound(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        assertNotNull(createdPoster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        Judge createdJudge = judgeDao.create(judge);
+        assertNotNull(createdJudge);
+
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPoster_id());
+        score.setJudge_id(judge.getJudge_id());
+        score.setRound(1);
+        Score createdScore = scoreDao.create(score);
+        assertNotNull(createdScore);
+
+        scoreDao.deleteScoreByRound(1);
+
+        Score verifyDeletedScore = scoreDao.read(createdScore.getJudge_id(),createdScore.getPoster_id());
+        assertNull(verifyDeletedScore);
+    }
+
+    @Test(expected = DaoException.class)
+    public void deleteException(){
+        scoreDao.deleteScoreByID(null,null);
+    }
+
+    @Test
+    public void clearTable(){
+        List<Score> score = scoreDao.read();
+        assertNotEquals(0,score);
+        scoreDao.clearTable();
+        List<Score> deletedScore = scoreDao.read();
+        assertEquals(0,deletedScore.size());
+    }
+
+
 
     /**
      * Verify that {@link ScoreDao#create} is working correctly.
