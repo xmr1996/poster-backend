@@ -94,4 +94,26 @@ public class AdminRestControllerUnitTest {
         adminRestController.readById(adminEmail, response);
         verify(response, times(1)).sendError(HttpServletResponse.SC_NOT_FOUND, null);
     }
+
+    @Test
+    public void delete() throws IOException {
+        Admin adminToCreate = adminWithTestValues();
+        adminDao.create(adminToCreate);
+        adminRestController.delete(adminToCreate.getEmail(), response);
+        verify(adminDao, times(1)).delete(adminToCreate.getEmail());
+    }
+
+    @Test
+    public void readAll() throws IOException {
+
+        adminRestController.readAll(response);
+        verify(adminDao, times(1)).readAll();
+    }
+
+    @Test
+    public void clearTable() throws IOException {
+
+        adminRestController.clearTable(response);
+        verify(adminDao, times(1)).clearTable();
+    }
 }
