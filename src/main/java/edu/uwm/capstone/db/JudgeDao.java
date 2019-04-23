@@ -38,11 +38,6 @@ public class JudgeDao extends BaseDao<Judge> {
         return judge;
     }
 
-    @Override
-    public Judge read(long id) {
-        return null;
-    }
-
     public Judge readByJudgeID(long judgeId) {
         LOG.trace("Reading judge {}", judgeId);
         try {
@@ -104,11 +99,6 @@ public class JudgeDao extends BaseDao<Judge> {
         if (result != 1) {
             throw new DaoException("Failed attempt to update judge " + judge.toString() + " affected " + result + " rows");
         }
-    }
-
-    @Override
-    public void delete(long id) {
-        //Delete method with long paramenter is not used
     }
 
     public void deleteByJudgeId(long judgeId) {

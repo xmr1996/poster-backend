@@ -30,18 +30,6 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
     }
 
     /**
-     *
-     * @param id long
-     * @return {@link Score}
-     */
-    @Override
-    public PosterScore read(long id) {
-        return null;
-    }
-
-
-
-    /**
      * Update the provided {@link Score} object.
      *
      * @param score {@link Score}
@@ -49,15 +37,6 @@ public class PosterScoreDao extends BaseDao<PosterScore> {
     @Override
     public void update(PosterScore score) {
         //update method with PosterScore object parameter is not needed
-    }
-
-    /**
-     *
-     * @param id long
-     */
-    @Override
-    public void delete(long id) {
-        //delete method with long parameter is not needed
     }
 
 

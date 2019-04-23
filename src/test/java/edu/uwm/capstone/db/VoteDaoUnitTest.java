@@ -40,11 +40,6 @@ public class VoteDaoUnitTest {
     }
 
     @Test
-    public void readVotes(){
-        assertNull(voteDao.read(randomLong()));
-    }
-
-    @Test
     public void testGetEmptyVotes(){
         posterDao.clearTable();
         List<Vote> votes = voteDao.read("Invalid");

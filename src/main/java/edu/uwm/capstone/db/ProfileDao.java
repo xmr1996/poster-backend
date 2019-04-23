@@ -56,7 +56,6 @@ public class ProfileDao extends BaseDao<Profile> {
      * @param id long
      * @return {@link Profile}
      */
-    @Override
     public Profile read(long id) {
         LOG.trace("Reading profile {}", id);
         try {
@@ -102,7 +101,6 @@ public class ProfileDao extends BaseDao<Profile> {
      *
      * @param id long
      */
-    @Override
     public void delete(long id) {
         LOG.trace("Deleting profile {}", id);
         int result = this.jdbcTemplate.update(sql("deleteProfile"), new MapSqlParameterSource("id", id));

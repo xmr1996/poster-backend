@@ -94,13 +94,6 @@ public class ScoreDaoUnitTest {
 
 
     @Test
-    public void readLong(){
-        Score score = scoreDao.read(randomLong(1L,100L));
-        assertNull(score);
-    }
-
-
-    @Test
     public void readByPosterID(){
         Poster poster = TestDataUtility.posterWithTestValues();
         Poster createdPoster = posterDao.create(poster);

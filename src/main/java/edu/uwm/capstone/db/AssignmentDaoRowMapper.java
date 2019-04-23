@@ -24,10 +24,6 @@ public class AssignmentDaoRowMapper extends BaseRowMapper<Assignment> {
             columnName = name().toLowerCase();
         }
 
-        AssignmentColumnType(String columnName) {
-            this.columnName = columnName;
-        }
-
         public String getColumnName(){
             return columnName;
         }

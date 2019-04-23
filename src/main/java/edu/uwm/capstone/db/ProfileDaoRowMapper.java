@@ -24,10 +24,6 @@ public class ProfileDaoRowMapper extends BaseRowMapper<Profile> {
             columnName = name().toLowerCase();
         }
 
-        ProfileColumnType(String columnName) {
-            this.columnName = columnName;
-        }
-
         public String getColumnName(){
             return columnName;
         }
