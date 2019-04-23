@@ -50,6 +50,20 @@ public class RoundRestControllerUniTest {
         verify(response,times(1)).sendError(HttpServletResponse.SC_NOT_FOUND,"No Rounds were found.");
     }
 
+    @Test
+    public void updateRound()throws IOException{
+        when(roundDao.update(anyInt(),anyBoolean())).thenReturn(1);
+        roundRestController.updateRound(Integer.toString(1),Integer.toString(1),response);
+        verify(roundDao,times(1)).update(anyInt(),anyBoolean());
+    }
 
+    @Test
+    public void updateRoundInvalid()throws IOException{
+        String roundNum = Integer.toString(3);
+        when(roundDao.update(anyInt(),anyBoolean())).thenReturn(0);
+        roundRestController.updateRound(Integer.toString(3),roundNum,response);
+        verify(response,times(1)).sendError(HttpServletResponse.SC_NOT_FOUND,"Round num " + roundNum + " is not found");
+
+    }
 
 }
