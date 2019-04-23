@@ -1,9 +1,7 @@
 package edu.uwm.capstone.controller;
 
-import edu.uwm.capstone.db.JudgeDao;
-import edu.uwm.capstone.db.PosterDao;
-import edu.uwm.capstone.db.PosterScoreDao;
-import edu.uwm.capstone.db.ScoreDao;
+import edu.uwm.capstone.db.*;
+import edu.uwm.capstone.model.Assignment.Assignment;
 import edu.uwm.capstone.model.Judge.Judge;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.model.PosterScore.PosterScore;
@@ -40,6 +38,9 @@ public class ScoreRestControllerUnitTest{
 
     @Mock
     private JudgeDao judgeDao;
+
+    @Mock
+    private AssignmentDao assignmentDao;
 
     @Mock
     private PosterScoreDao posterScoreDao;
@@ -100,44 +101,7 @@ public class ScoreRestControllerUnitTest{
         assertEquals(score.getJudge_id(),judge1.getJudge_id());
 
     }
-//
-//    @Test
-//    public void GenerateRoundTwoAssignmentsException() throws IOException{
-//        Poster poster = posterWithTestValues();
-//        assertNotNull(poster);
-//
-//        when(posterDao.read(any(String.class))).thenReturn(poster);
-//
-//        List<String> posters = new ArrayList<>();
-//        posters.add(poster.getPoster_id());
-//
-//        when(scoreDao.create(any(Score.class))).thenThrow(new DaoException(TEST_ERROR_MESSAGE));
-//        scoreRestController.GenerateRoundTwoAssignments(posters,response);
-//        //verify(response, times(1)).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, TEST_ERROR_MESSAGE);
-//    }
 
-//    @Test
-//    public void assignJudgesGrad(){
-//        Judge judge = judgeWithTestValues();
-//        assertNotNull(judge);
-//
-//        List<Judge> judges = new ArrayList<>();
-//        judges.add(judge);
-//
-//        when(judgeDao.readAllJudges("Graduate")).thenReturn(judges);
-//    }
-//
-//    @Test
-//    public void assignJudgesUnderGrad(){
-//        Judge judge = judgeWithTestValues();
-//        judge.setStatus("Undergraduate");
-//        assertNotNull(judge);
-//
-//        List<Judge> judges = new ArrayList<>();
-//        judges.add(judge);
-//
-//        when(judgeDao.readAllJudges("Undergraduate")).thenReturn(judges);
-//    }
 
     @Test
     public void readByRoundandJudge()throws IOException{
@@ -157,7 +121,110 @@ public class ScoreRestControllerUnitTest{
         PosterScore posterScore = posterScoreWithTestValues();
         when(posterScoreDao.readByRoundandJudge(anyLong(),anyLong())).thenReturn(null);
         scoreRestController.readByRoundandJudge(String.valueOf(posterScore.getRound()),String.valueOf(posterScore.getJudge_id()),response);
-        //verify(response,times(1)).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,TEST_ERROR_MESSAGE);
+        verify(response,times(1)).sendError(HttpServletResponse.SC_NOT_FOUND,"Score round number" + posterScore.getRound() + " and judge id: "+posterScore.getJudge_id() + " not found.");
+    }
+
+    @Test
+    public void readByRound(){
+        Score score = scoreWithTestValues();
+        assertNotNull(score);
+        List<Score> scores = new ArrayList<>();
+        scores.add(score);
+        when(scoreDao.readByRound(any(Integer.class))).thenReturn(scores);
+        List<Score> returnedScore = scoreRestController.readByRound(score.getRound());
+        assertEquals(scores,returnedScore);
+    }
+
+    @Test
+    public void update() throws IOException{
+        Score score = scoreWithTestValues();
+        when(scoreDao.read(anyLong(),anyString())).thenReturn(score);
+
+        scoreRestController.update(score,response);
+        verify(scoreDao,times(1)).update(score);
+    }
+
+
+    @Test
+    public void readAllScore() throws IOException{
+        Score score = scoreWithTestValues();
+        List<Score> createdScores = new ArrayList<>();
+        createdScores.add(score);
+
+        when(scoreDao.read()).thenReturn(createdScores);
+
+        List<Score> returnedScores = scoreRestController.readAllScore(response);
+        assertEquals(createdScores,returnedScores);
+    }
+
+
+    @Test
+    public void readAllScoresException() throws IOException{
+        when(scoreDao.read()).thenReturn(null);
+
+        scoreRestController.readAllScore(response);
+        verify(response,times(1)).sendError(HttpServletResponse.SC_NOT_FOUND,"No Scores were found.");
+    }
+
+    @Test
+    public void readAllAssignments() throws IOException{
+        Assignment assignment = assignmentWithTestValues();
+        List<Assignment> assignments = new ArrayList<>();
+        assignments.add(assignment);
+
+        when(assignmentDao.readAssignments(anyInt())).thenReturn(assignments);
+
+        List<Assignment> returnedAssignment = scoreRestController.readAllAssignments(anyInt(),response);
+        assertEquals(assignments,returnedAssignment);
+
+    }
+
+    @Test
+    public void readAllAssignmentsException() throws IOException{
+        when(assignmentDao.readAssignments(anyInt())).thenReturn(null);
+
+        scoreRestController.readAllAssignments(anyInt(),response);
+        verify(response,times(1)).sendError(HttpServletResponse.SC_NOT_FOUND,"No assignments were found.");
+    }
+
+    @Test
+    public void clearTable() throws IOException{
+        scoreRestController.clearTable(response);
+        verify(scoreDao,times(1)).clearTable();
+
+    }
+
+    @Test
+    public void clearTableException() throws IOException{
+        doThrow(new DaoException(TEST_ERROR_MESSAGE)).when(scoreDao).clearTable();
+        scoreRestController.clearTable(response);
+        verify(response, times(1)).sendError(HttpServletResponse.SC_NOT_FOUND,TEST_ERROR_MESSAGE);
+
+    }
+
+    @Test
+    public void delete() throws IOException{
+        scoreRestController.delete(anyLong(),anyString(),response);
+        verify(scoreDao,times(1)).deleteScoreByID(anyLong(),anyString());
+    }
+
+    @Test
+    public void deleteException() throws IOException{
+        doThrow(new DaoException(TEST_ERROR_MESSAGE)).when(scoreDao).deleteScoreByID(anyLong(),anyString());
+        scoreRestController.delete(anyLong(),anyString(),response);
+        verify(response,times(1)).sendError(HttpServletResponse.SC_NOT_FOUND,TEST_ERROR_MESSAGE);
+    }
+
+    @Test
+    public void importCSV(){
+        Score score1 = scoreWithTestValues();
+        Score score2 = scoreWithTestValues();
+        List<Score> scores = new ArrayList<>();
+        scores.add(score1);
+        scores.add(score2);
+
+        scoreRestController.importCSV(scores);
+        verify(scoreDao,times(scores.size())).create(any(Score.class));
     }
 
 }
