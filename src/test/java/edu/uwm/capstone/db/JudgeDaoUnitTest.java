@@ -219,4 +219,12 @@ public class JudgeDaoUnitTest {
         Long id = new Random().longs(10000L, Long.MAX_VALUE).findAny().getAsLong();
         judgeDao.deleteByJudgeId(id);
     }
+
+    @Test
+    public void TestClearTable() {
+        judgeDao.clearTable();
+        List<Judge> result = judgeDao.read();
+        assertNotNull(result);
+        assertTrue(result.size()==0);
+    }
 }
