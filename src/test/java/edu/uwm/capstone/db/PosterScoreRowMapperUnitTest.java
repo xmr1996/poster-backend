@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = UnitTestConfig.class)
-public class PosterScoreRowMapperTest {
+public class PosterScoreRowMapperUnitTest {
 
     @Autowired
     PosterScoreRowMapper posterScoreRowMapper;
