@@ -57,5 +57,41 @@ public class JudgeRestControllerUnitTest {
         verify(response, times(1)).sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, TEST_ERROR_MESSAGE);
     }
 
+    @Test
+    public void update() throws IOException {
+        Judge judgeToCreate = judgeWithTestValues();
+        when(judgeDao.readByJudgeID(anyLong())).thenReturn(judgeToCreate);
+
+        judgeRestController.update(judgeToCreate, response);
+        verify(judgeDao, times(1)).update(judgeToCreate);
+    }
+
+    @Test
+    public void readById() throws IOException {
+        Judge judgeToCreate = judgeWithTestValues();
+        judgeDao.create(judgeToCreate);
+        judgeRestController.readByJudgeId(judgeToCreate.getJudge_id(), response);
+        verify(judgeDao, times(1)).readByJudgeID(judgeToCreate.getJudge_id());
+    }
+
+    @Test
+    public void delete() throws IOException {
+        Judge judgeToCreate = judgeWithTestValues();
+        judgeDao.create(judgeToCreate);
+        judgeRestController.deleteByJudgeId(judgeToCreate.getJudge_id(), response);
+        verify(judgeDao, times(1)).deleteByJudgeId(judgeToCreate.getJudge_id());
+    }
+
+    @Test
+    public void readAll() throws IOException {
+        judgeRestController.readAllJudges( response);
+        verify(judgeDao, times(1)).read();
+    }
+
+    @Test
+    public void clearTable() throws IOException {
+        judgeRestController.clearTable( response);
+        verify(judgeDao, times(1)).clearTable();
+    }
 
 }
