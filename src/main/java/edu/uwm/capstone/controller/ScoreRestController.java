@@ -160,7 +160,7 @@ public class ScoreRestController {
         List<Score> scores = scoreDao.read();
 
         if (scores == null) {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Scores were not found.");
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "No Scores were found.");
             return Collections.emptyList();
         }
 

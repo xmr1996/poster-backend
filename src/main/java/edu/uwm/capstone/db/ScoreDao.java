@@ -77,8 +77,8 @@ public class ScoreDao extends BaseDao<Score> {
         LOG.trace("Getting Reading scores {}", poster);
         try{
             MapSqlParameterSource parameters = new MapSqlParameterSource();
-            parameters.addValue("Poster", poster);
-            return (List<Score>) this.jdbcTemplate.queryForObject(sql("getScoreByPosterID"), parameters, rowMapper);
+            parameters.addValue("poster_id", poster.getPoster_id());
+            return (List<Score>) this.jdbcTemplate.query(sql("getScoreByPosterID"), parameters, rowMapper);
         }
         catch (EmptyResultDataAccessException e){
             return Collections.emptyList();

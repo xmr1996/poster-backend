@@ -99,6 +99,31 @@ public class ScoreDaoUnitTest {
         assertNull(score);
     }
 
+
+    @Test
+    public void readByPosterID(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        assertNotNull(createdPoster);
+
+        Judge judge = TestDataUtility.judgeWithTestValues();
+        Judge createdJudge = judgeDao.create(judge);
+        assertNotNull(createdJudge);
+
+        Score score = TestDataUtility.scoreWithTestValues();
+        score.setPoster_id(poster.getPoster_id());
+        score.setJudge_id(judge.getJudge_id());
+        Score createdScore = scoreDao.create(score);
+        assertNotNull(createdScore);
+
+
+        List<Score> readScores = scoreDao.read(poster);
+        assertNotNull(readScores);
+        assertTrue(readScores.size() == 1);
+        assertTrue(readScores.get(0).getPoster_id().equals(createdScore.getPoster_id()));
+    }
+
+
     @Test
     public void readScore(){
         Poster poster = TestDataUtility.posterWithTestValues();
@@ -121,6 +146,15 @@ public class ScoreDaoUnitTest {
         Score readScore = scoreDao.read(score.getJudge_id(), score.getPoster_id());
         assertNotNull(readScore);
         assertEquals(createdScore.getPoster_id(),readScore.getPoster_id());
+    }
+
+    @Test
+    public void readEmptyList(){
+        scoreDao.clearTable();
+        scoreDao.read();
+
+        List<Score> readScores = scoreDao.read();
+        assertTrue(readScores.isEmpty());
     }
 
     @Test
@@ -221,11 +255,12 @@ public class ScoreDaoUnitTest {
         Score updateScore = TestDataUtility.scoreWithTestValues();
         updateScore.setJudge_id(verifyCreatedScore.getJudge_id());
         updateScore.setPoster_id(verifyCreatedScore.getPoster_id());
-        //scoreDao.update(updateScore);
+        updateScore.setComm_score(10);
+        scoreDao.update(updateScore);
 
         Score verifyUpdateScore = scoreDao.read(updateScore.getJudge_id(),updateScore.getPoster_id());
         assertNotNull(verifyUpdateScore);
-        //assertEquals(updatedscore);
+        assertEquals(updateScore.getComm_score(),verifyUpdateScore.getComm_score());
 
     }
 
