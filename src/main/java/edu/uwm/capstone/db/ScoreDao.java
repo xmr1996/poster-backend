@@ -49,11 +49,6 @@ public class ScoreDao extends BaseDao<Score> {
             return score;
     }
 
-    @Override
-    public Score read(long id) {
-        return null;
-    }
-
     /**
      * Retrieve a {@link Score} object by its {@link Score#getJudge_id() #getPoster_id()}.
      *
@@ -140,11 +135,6 @@ public class ScoreDao extends BaseDao<Score> {
         if(result != 1){
             throw new DaoException("Unable to delete score");
         }
-    }
-
-    @Override
-    public void delete(long id) {
-        //delete method with long parameter is not needed
     }
 
     public void clearTable(){

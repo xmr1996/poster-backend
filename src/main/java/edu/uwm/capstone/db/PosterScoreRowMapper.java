@@ -34,10 +34,6 @@ public class PosterScoreRowMapper extends BaseRowMapper<PosterScore> {
             columnName = name().toLowerCase();
         }
 
-        PosterScoreColumnType(String columnName) {
-            this.columnName = columnName;
-        }
-
         public String getColumnName(){
             return columnName;
         }

@@ -27,10 +27,6 @@ public class JudgeDaoRowMapper extends BaseRowMapper<Judge> {
             columnName = name().toLowerCase();
         }
 
-        JudgeColumnType(String columnName) {
-            this.columnName = columnName;
-        }
-
         public String getColumnName(){
             return columnName;
         }

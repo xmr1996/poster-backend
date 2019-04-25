@@ -122,15 +122,4 @@ public class AdminDao extends BaseDao<Admin> {
             throw new DaoException("Failed attempt to clear judges table");
         }
     }
-
-    @Override
-    public Admin read(long id) {
-        return null;
-    }
-
-
-    @Override
-    public void delete(long id) {
-        //delete method with long parameter is not needed/used
-    }
 }

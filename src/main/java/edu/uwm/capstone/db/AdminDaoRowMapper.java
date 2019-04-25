@@ -28,10 +28,6 @@ public class AdminDaoRowMapper extends BaseRowMapper<Admin> {
             columnName = name().toLowerCase();
         }
 
-        AdminColumnType(String columnName) {
-            this.columnName = columnName;
-        }
-
         public String getColumnName() {
             return columnName;
         }

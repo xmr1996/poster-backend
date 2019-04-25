@@ -30,10 +30,6 @@ public class ScoreDaoRowMapper extends BaseRowMapper<Score> {
             columnName = name().toLowerCase();
         }
 
-        ScoreColumnType(String columnName) {
-            this.columnName = columnName;
-        }
-
         public String getColumnName(){
             return columnName;
         }

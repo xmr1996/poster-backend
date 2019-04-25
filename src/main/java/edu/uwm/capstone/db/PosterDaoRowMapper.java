@@ -36,10 +36,6 @@ public class PosterDaoRowMapper extends BaseRowMapper<Poster> {
             columnName = name().toLowerCase();
         }
 
-        PosterColumnType(String columnName){
-            this.columnName = columnName;
-        }
-
         public String getColumnName(){
             return columnName;
         }

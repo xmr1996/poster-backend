@@ -51,11 +51,6 @@ public class PosterDao extends BaseDao<Poster> {
         return poster;
     }
 
-    @Override
-    public Poster read(long id) {
-        return null;
-    }
-
     public List<Poster> read() {
         LOG.trace("Reading poster");
         try {
@@ -136,11 +131,6 @@ public class PosterDao extends BaseDao<Poster> {
         if (result != 1){
             throw new DaoException("Failed to cast vote");
         }
-    }
-
-    @Override
-    public void delete(long id) {
-        //delete methoed with string paramtere is used down bellow
     }
 
     /**

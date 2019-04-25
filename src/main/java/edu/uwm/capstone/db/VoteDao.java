@@ -19,12 +19,7 @@ public class VoteDao extends BaseDao<Vote> {
     public Vote create(Vote vote) {
         return null;
     }
-    public Vote read(long id) {
-        return null;
-    }
-    public void delete(long id) {
-        //delete method with long parameter is not needed
-    }
+
     public void update(Vote vote) {
         //update method with Vote object is not needed
     }

@@ -21,10 +21,6 @@ public class RoundDaoRowMapper extends BaseRowMapper<Round> {
             columnName = name().toLowerCase();
         }
 
-        RoundColumnType(String columnName) {
-            this.columnName = columnName;
-        }
-
         public String getColumnName(){
             return columnName;
         }

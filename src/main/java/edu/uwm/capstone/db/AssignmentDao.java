@@ -21,17 +21,9 @@ public class AssignmentDao extends BaseDao<Assignment> {
         return null;
     }
 
-    public Assignment read(long id) {
-            return null;
-    }
-
-    public void delete(long id) {
-        //Delete method with long parameter is not needed
-    }
     public void update(Assignment score) {
         //Update method with Assignment parameter is not needed
     }
-    //  Get All Assignments
 
     //read all assignments
     public List<Assignment> readAssignments(int round){
