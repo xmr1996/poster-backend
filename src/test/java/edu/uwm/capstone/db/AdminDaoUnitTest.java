@@ -12,6 +12,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -218,6 +220,19 @@ public class AdminDaoUnitTest {
     @Test(expected = RuntimeException.class)
     public void deleteNonExistentAdmin() {
         adminDao.delete("notARealEmail@email.com");
+    }
+
+    @Test
+    public void clearTable(){
+        Admin admin = TestDataUtility.adminWithTestValues();
+        Admin createdAdmin = adminDao.create(admin);
+        assertNotNull(createdAdmin);
+
+        List<Admin> adminList = adminDao.readAll();
+        assertTrue(adminList.size() != 0);
+        adminDao.clearTable();
+        adminList = adminDao.readAll();
+        assertTrue(adminList.size() == 0);
     }
 
 }
