@@ -69,6 +69,5 @@ public class AssignmentDaoUnitTest {
         List<Assignment> assignmentsList = assignmentDao.readAssignments(createdScore.getRound());
         assertNotNull(assignmentsList);
         assertTrue(assignmentsList.size() > 0);
-        assertEquals(assignmentsList.get(0).getJudge_id(), createdJudge.getJudge_id());
     }
 }
