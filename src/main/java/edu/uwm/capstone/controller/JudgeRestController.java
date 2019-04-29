@@ -41,6 +41,7 @@ public class JudgeRestController {
     public Judge create(@RequestBody Judge judge, @ApiIgnore HttpServletResponse response) throws IOException {
         try {
             Assert.notNull(judge, "Received null Judge object");
+            Assert.notNull(judge.getStatus(),"Received null Judge status");
             return judgeDao.create(judge);
         } catch (IllegalArgumentException e) {
             logger.error(e.getMessage(), e);

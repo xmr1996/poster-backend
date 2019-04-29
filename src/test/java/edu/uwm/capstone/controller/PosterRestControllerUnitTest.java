@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import static edu.uwm.capstone.util.TestDataUtility.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static edu.uwm.capstone.util.TestDataUtility.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
@@ -96,6 +98,36 @@ public class PosterRestControllerUnitTest {
 
         posterRestController.readByPosterID(posterId, response);
         verify(response, times(1)).sendError(HttpServletResponse.SC_NOT_FOUND, null);
+    }
+
+    @Test
+    public void getPostersByStatus(){
+        Poster poster = posterWithTestValues();
+        List<Poster> postersList = new ArrayList<>();
+        postersList.add(poster);
+        when(posterDao.getPosterByStatus(anyString())).thenReturn(postersList);
+        List<Poster> returnedPosters = posterRestController.getPostersByStatus(poster.getStatus());
+        assertEquals(postersList,returnedPosters);
+    }
+
+    @Test
+    public void getTop6R1(){
+        Poster poster = posterWithTestValues();
+        List<Poster> posterList = new ArrayList<>();
+        posterList.add(poster);
+        when(posterDao.getTop6R1(anyString())).thenReturn(posterList);
+        List<Poster> returnedPosters = posterRestController.getTop6R1(poster.getStatus());
+        assertEquals(posterList,returnedPosters);
+    }
+
+    @Test
+    public void getTop6R2(){
+        Poster poster = posterWithTestValues();
+        List<Poster> posterList = new ArrayList<>();
+        posterList.add(poster);
+        when(posterDao.getTop6R2(anyString())).thenReturn(posterList);
+        List<Poster> returnedPosters = posterRestController.getTop6R2(poster.getStatus());
+        assertEquals(posterList,returnedPosters);
     }
 
 }
