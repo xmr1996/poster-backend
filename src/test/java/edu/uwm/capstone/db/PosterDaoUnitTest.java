@@ -4,18 +4,23 @@ import edu.uwm.capstone.UnitTestConfig;
 import edu.uwm.capstone.model.Poster.Poster;
 import edu.uwm.capstone.sql.exception.DaoException;
 import edu.uwm.capstone.util.TestDataUtility;
+import org.LatencyUtils.TimeCappedMovingAverageIntervalEstimator;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static edu.uwm.capstone.db.ScoreDaoUnitTest.randomInt;
+import static edu.uwm.capstone.util.TestDataUtility.posterScoreWithTestValues;
 import static edu.uwm.capstone.util.TestDataUtility.randomAlphabetic;
 import static org.junit.Assert.*;
 
@@ -237,6 +242,26 @@ public class PosterDaoUnitTest {
         posterDao.delete(randomAlphabetic(randomInt(1, 100)));
     }
 
+
+    @Test
+    public void readList(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        Poster createdPoster = posterDao.create(poster);
+        List<Poster> postersList = new ArrayList<>();
+        postersList.add(createdPoster);
+        List<Poster> readPosters = posterDao.read();
+        assertTrue(postersList.contains(poster) && readPosters.contains(poster));
+    }
+
+
+    @Test
+    public void getPosterByStatus(){
+        Poster poster = TestDataUtility.posterWithTestValues();
+        posterDao.create(poster);
+        List<Poster> readPosters = posterDao.getPosterByStatus(poster.getStatus());
+        assertTrue(readPosters.contains(poster));
+    }
+    
 
 }
 
