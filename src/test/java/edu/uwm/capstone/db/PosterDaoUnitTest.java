@@ -261,22 +261,7 @@ public class PosterDaoUnitTest {
         List<Poster> readPosters = posterDao.getPosterByStatus(poster.getStatus());
         assertTrue(readPosters.contains(poster));
     }
-
-    @Test
-    public void getTop6R1(){
-        Poster poster = TestDataUtility.posterWithTestValues();
-        posterDao.create(poster);
-        List<Poster> readPosters = posterDao.getTop6R1(poster.getStatus());
-        assertTrue(readPosters.contains(poster));
-    }
-
-    @Test
-    public void getTop6R2(){
-        Poster poster = TestDataUtility.posterWithTestValues();
-        posterDao.create(poster);
-        List<Poster> readPosters = posterDao.getTop6R2(poster.getStatus());
-        assertTrue(readPosters.contains(poster));
-    }
+    
 
 }
 
