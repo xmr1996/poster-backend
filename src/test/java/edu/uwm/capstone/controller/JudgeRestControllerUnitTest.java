@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import static edu.uwm.capstone.util.TestDataUtility.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static edu.uwm.capstone.util.TestDataUtility.randomAlphabetic;
 import static org.junit.Assert.assertEquals;
@@ -92,6 +94,19 @@ public class JudgeRestControllerUnitTest {
     public void clearTable() throws IOException {
         judgeRestController.clearTable( response);
         verify(judgeDao, times(1)).clearTable();
+    }
+
+    @Test
+    public void testImportCSV() {
+        int num_of_judges = randomInt(0, 100);
+        List<Judge> judges = new ArrayList<>();
+
+        for(int i = 0; i < num_of_judges; i++){
+            judges.add(judgeWithTestValues());
+        }
+
+        judgeRestController.importCSV(judges);
+        verify(judgeDao, times(num_of_judges)).create(any(Judge.class));
     }
 
 }
