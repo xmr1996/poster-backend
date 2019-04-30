@@ -130,4 +130,31 @@ public class PosterRestControllerUnitTest {
         assertEquals(posterList,returnedPosters);
     }
 
+    @Test
+    public void delete() throws IOException {
+        Poster posterToCreate = posterWithTestValues();
+        posterDao.create(posterToCreate);
+        posterRestController.deleteByJudgeId(posterToCreate.getPoster_id(), response);
+        verify(posterDao, times(1)).delete(posterToCreate.getPoster_id());
+    }
+
+    @Test
+    public void clearTable() throws IOException {
+        posterRestController.clearTable( response);
+        verify(posterDao, times(1)).clearTable();
+    }
+
+    @Test
+    public void testImportCSV() {
+        int num_of_posters = randomInt(0, 100);
+        List<Poster> posters = new ArrayList<>();
+
+        for(int i = 0; i < num_of_posters; i++){
+            posters.add(posterWithTestValues());
+        }
+
+        posterRestController.importCSV(posters);
+        verify(posterDao, times(num_of_posters)).create(any(Poster.class));
+    }
+
 }
