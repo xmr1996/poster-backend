@@ -1,0 +1,21 @@
+2019-05-30 18:39:07 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column """FIRST_NAME"" VARCHAR(255)": "'xCIaAWYcIuNUeoKBbXUbTZFsjmiipXeWpzgRInJZbeedsQqmRfjmVZPstmzeKIuJHmwSuCbeGdiHbBdiyKqjmatUftZUClGtyxcZVWEgNFzygrttgXUzRweEvMCavfh... (2000)"; SQL statement:
+INSERT INTO administrator (    email,    first_name,    last_name,    read_r,    write_w,    pin,    role  ) VALUES (    ?,    ?,    ?,    ?,    ?,    ?,    ?  ); [22001-199]
+2019-05-30 18:39:09 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column """FIRST_NAME"" VARCHAR(255)": "'CjtyiWsiJAjQbwxLtgdqFulwKXHAxOfUoozwVilkDjvKtDILEvjBCTxkcKJWyqxpmAOBZoyaQdKYSWFMLnnxxZnizgOWQDQAKUXuelXTitQMOLztyBgFnIyIuNglUOQ... (2000)"; SQL statement:
+INSERT INTO judges (    judge_id,    first_name,    last_name,    status,    pin,    email,    role  ) VALUES (    ?,    ?,    ?,    ?,    ?,    ?,    ?  )  ON DUPLICATE KEY UPDATE    first_name = ?,    last_name = ?,    status = ?,    pin = ?,    email = ?,    role = ?; [22001-199]
+2019-05-30 18:39:09 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column """FIRST_NAME"" VARCHAR(255)": "'gPBlNdrxUTgIebRsyDuAGFkoidlPLEndoIjySXSQSZJhzXVHECgGlVBUwPmCgsRxSKpLSooNXrQrtzdELePrfdxYVWlsmOLuERNPfpwJOCMVLNRpaMmxAzErwmeeomv... (2000)"; SQL statement:
+UPDATE judges SET    first_name = ?,    last_name = ?,    status = ?,    pin = ?,    email = ?  WHERE    judge_id = ?; [22001-199]
+2019-05-30 18:39:10 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column """FIRST_NAME"" VARCHAR(255)": "'zhXrDbXfdQnlzpZoiWXRnhMPtGByhWGvVjrRQECOvoSXoArYPOmRBHNCpBUAXUXwnwZDpbrBPCyAcVCehynpmRBZCDfRCHvNpsChrwERsGIIObyTuMLUGYIaPeSeJQG... (2000)"; SQL statement:
+INSERT INTO posters (    poster_id,    title,    email,    first_name,    last_name,    status,    pin,    department,    voted_for,    role  ) VALUES (    ?,    ?,    ?,    ?,    ?,    ?,    ?,    ?,    ?,    ?  )  ON DUPLICATE KEY UPDATE    title = ?,    email = ?,    first_name = ?,    last_name = ?,    status = ?,    pin = ?,    department = ?,    voted_for = ?,    role = ?; [22001-199]
+2019-05-30 18:39:10 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column """FIRST_NAME"" VARCHAR(255)": "'TYxFVRAHybrcQWmcIxqsykUqdscoeOgYKVTuuEbYVfqEzdPUutxbiEMeQbGwvgnizoehZGDRjUlOYgPZeccVSxSKvgtFtGhhVrpAQTstCvKFPBTFULqxyjjPIhByPHZ... (2000)"; SQL statement:
+UPDATE posters SET    title = ?,    email = ?,    first_name = ?,    last_name = ?,    pin = ?,    status = ?,    department = ?,    voted_for = ?,    role = ?  WHERE    poster_id = ?; [22001-199]
+2019-05-30 18:39:11 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column """NAME"" VARCHAR(255) NOT NULL": "'XAUVIkhIRIuElEMgmVCqAprflAawjYSaHyPnPuEPDQBNzsBBpvPUgtoPSZGonWSqKWhnjiHaatqMDGewuKfHJsOUgkHkWBDSWSrHmWxShoEpfXTaHGNnYArmFRKncWX... (2000)"; SQL statement:
+INSERT INTO profiles (    name,    project,    created_date  ) VALUES (    ?,    ?,    ?  ); [22001-199]
+2019-05-30 18:39:11 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column """NAME"" VARCHAR(255) NOT NULL": "'CossFlBquADihhMfDZIsvKDAJqjfGqWAoqwJPvwnpDPBBKizYKWqRjvhRXRsSJpVJzaFFPuffBqLfgnCePkolHPEXvuadtSqtnuDZCYvmWLvYpVEFpxKAHwAxXdoSAV... (2000)"; SQL statement:
+UPDATE profiles SET    name = ?,    project = ?,    updated_date = ?  WHERE    id = ?; [22001-199]

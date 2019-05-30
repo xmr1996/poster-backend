@@ -79,11 +79,14 @@ public class ScoreRestController {
 
         for(String poster_id : posters){
             Poster poster = posterDao.read(poster_id);
-            assignJudges(poster_id, poster.getStatus());
+            boolean check = assignJudges(poster_id, poster.getStatus());
+            if(!check){
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "status is invalid.");
+            }
         }
     }
 
-    private void assignJudges(String posterId, String status){
+    private boolean assignJudges(String posterId, String status){
         List<Judge> judges = new ArrayList<>();
 
         if(status.equals("Graduate")) {
@@ -92,7 +95,12 @@ public class ScoreRestController {
         else if(status.equals("Undergraduate")) {
             judges = judgeDao.readAllJudges("Undergraduate");
         }
+        else{
+            return false;
+        }
         createScores(posterId, judges);
+        return true;
+
 
     }
 
